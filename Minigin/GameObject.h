@@ -1,5 +1,8 @@
 #pragma once
 #include <memory>
+#include <vector>
+
+#include "Component.h"
 #include "Transform.h"
 
 namespace dae
@@ -10,7 +13,7 @@ namespace dae
 	class GameObject 
 	{
 	public:
-		virtual void Update();
+		virtual void Update(float deltaTime);
 		virtual void Render() const;
 
 		void SetTexture(const std::string& filename);
@@ -23,8 +26,13 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
+		void AddComponent(std::unique_ptr<Component> component) { m_Components.push_back(component); }
+
 	private:
 		Transform m_transform{};
+
+		std::vector<std::unique_ptr<Component>> m_Components;
+
 		// todo: mmm, every gameobject has a texture? Is that correct?
 		std::shared_ptr<Texture2D> m_texture{};
 	};
