@@ -15,6 +15,6 @@ namespace dae
 		virtual void Render() const{}
 
 	protected:
-		Transform m_Transform;
+		Transform& m_Transform;
 	};
 }
