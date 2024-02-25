@@ -26,7 +26,7 @@ namespace dae
 		virtual ~TextComponent() = default;
 		TextComponent(const TextComponent& other) = delete;
 		TextComponent(TextComponent&& other) = delete;
-		TextComponent& operator=(const TextComponent& other) = delete;
+		TextComponent& operator=(const TextComponent& other);
 		TextComponent& operator=(TextComponent&& other) = delete;
 	private:
 		bool m_NeedsUpdate;

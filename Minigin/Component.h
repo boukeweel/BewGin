@@ -10,6 +10,7 @@ namespace dae
 		 * it will alwasys needs to transform of the Gameobject when creating it so it know with location it needs to be at
 		 */
 		Component(Transform& transfrom);
+		virtual ~Component() = default;
 
 		virtual void Update(float deltaTime) { deltaTime += 1; }
 		virtual void Render() const{}
