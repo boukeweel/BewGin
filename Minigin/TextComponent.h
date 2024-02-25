@@ -14,15 +14,15 @@ namespace dae
 		public Component
 	{
 	public:
-		void Update(float deltaTime);
-		void Render() const;
+		void Update(float deltaTime) override;
+		void Render() const override;
 
 		void SetText(const std::string& text);
 		void SetPosition(float x, float y);
 		void SetFont(std::shared_ptr<Font> font);
 		void SetFontSize(int size);
 
-		TextComponent(const std::string& text, std::shared_ptr<Font> font);
+		TextComponent(Transform& transform, const std::string& text, std::shared_ptr<Font> font);
 		virtual ~TextComponent() = default;
 		TextComponent(const TextComponent& other) = delete;
 		TextComponent(TextComponent&& other) = delete;
@@ -31,7 +31,6 @@ namespace dae
 	private:
 		bool m_NeedsUpdate;
 		std::string m_Text;
-		Transform m_Transform{};
 		std::shared_ptr<Font> m_Font;
 		std::shared_ptr<Texture2D> m_TextTexture;
 		int m_FontSize;

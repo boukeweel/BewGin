@@ -7,13 +7,15 @@
 #include "Renderer.h"
 #include "Texture2D.h"
 
-dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font):
-	m_NeedsUpdate(true), m_Text(text), m_Font(std::move(font)), m_TextTexture(nullptr)
+dae::TextComponent::TextComponent(Transform& transform,const std::string& text, std::shared_ptr<Font> font):
+	m_NeedsUpdate(true), m_Text(text), m_Font(std::move(font)), m_TextTexture(nullptr), Component(transform)
 {
 }
 
 void dae::TextComponent::Update(float deltaTime)
 {
+	deltaTime += 1;
+
 	if (m_NeedsUpdate)
 	{
 		const SDL_Color color = { 255,255,255,255 }; // only white text is supported now

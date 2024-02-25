@@ -3,7 +3,7 @@
 #include <memory>
 #include "GameObject.h"
 #include "Transform.h"
-
+/*
 namespace dae
 {
 	class Font;
@@ -31,3 +31,4 @@ namespace dae
 		std::shared_ptr<Texture2D> m_textTexture;
 	};
 }
+*/
