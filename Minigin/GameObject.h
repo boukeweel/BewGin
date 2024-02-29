@@ -9,15 +9,14 @@ namespace dae
 {
 	class Texture2D;
 
-	//todo should be final
 	class GameObject final
 	{
 	public:
 		void Update(float deltaTime);
 		void Render() const;
 
-		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
+		Transform GetTransform() const;
 
 		GameObject() = default;
 		~GameObject();
@@ -30,7 +29,7 @@ namespace dae
 		T* AddComponent(Args&&... args)
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be derived from Component");
-			std::shared_ptr<T> newComponent = std::make_shared<T>(m_transform,std::forward<Args>(args)...);
+			std::shared_ptr<T> newComponent = std::make_shared<T>(this,std::forward<Args>(args)...);
 			T* rawPointer = newComponent.get();
 			m_Components.push_back(std::move(newComponent));
 			return rawPointer;
@@ -66,8 +65,5 @@ namespace dae
 		Transform m_transform{};
 
 		std::vector<std::shared_ptr<Component>> m_Components;
-
-		// todo: mmm, every gameobject has a texture? Is that correct?
-		std::shared_ptr<Texture2D> m_texture{};
 	};
 }

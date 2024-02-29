@@ -8,15 +8,22 @@ namespace dae
         public Component
     {
     public:
-        //I feel like this is not the best way even tho the book said this was one of the options
-        FpsComponent(Transform&, TextComponent* textComponent);
-        virtual ~FpsComponent();
+        FpsComponent(GameObject* pParentObject);
+        ~FpsComponent() override;
 
         void Update(float deltaTime) override;
-        void Render() const override {};
+        void Render() const override {}
 
+        FpsComponent(const FpsComponent& other) = delete;
+        FpsComponent(FpsComponent&& other) = delete;
+        FpsComponent& operator=(const FpsComponent& other);
+        FpsComponent& operator=(FpsComponent&& other) = delete;
     private:
         float m_fps;
+        float m_frameCount;
+        float m_accumulatedTime;
+        float m_updateInterval;
+
 
         TextComponent* textComponent;
     };

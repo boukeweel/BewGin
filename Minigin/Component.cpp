@@ -1,5 +1,15 @@
 #include "Component.h"
 
-dae::Component::Component(Transform& transfrom) :m_Transform{ transfrom }
+dae::Component::Component(GameObject* pparentObject) :m_pParentObject{ pparentObject }
 {
+}
+
+dae::Component::~Component()
+{
+
+}
+
+dae::GameObject* dae::Component::GetParentObject() const
+{
+	return m_pParentObject;
 }

@@ -90,7 +90,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	// todo: this update loop could use some work.
 	bool doContinue = true;
 	auto lastTime = std::chrono::high_resolution_clock::now();
-	const auto ms_per_frame = std::chrono::milliseconds(m_FrameRate / 1000);
+	const auto ms_per_frame = std::chrono::milliseconds(1000 / m_FrameRate);
 	while (doContinue)
 	{
 		const auto currentTime = std::chrono::high_resolution_clock::now();

@@ -22,7 +22,7 @@ namespace dae
 		void SetFont(std::shared_ptr<Font> font);
 		void SetFontSize(int size);
 
-		TextComponent(Transform& transform, const std::string& text, std::shared_ptr<Font> font);
+		TextComponent(GameObject* pparentObject, const std::string& text, std::shared_ptr<Font> font);
 		virtual ~TextComponent() = default;
 		TextComponent(const TextComponent& other) = delete;
 		TextComponent(TextComponent&& other) = delete;
