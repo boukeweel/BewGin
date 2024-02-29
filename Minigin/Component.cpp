@@ -6,7 +6,6 @@ dae::Component::Component(GameObject* pparentObject) :m_pParentObject{ pparentOb
 
 dae::Component::~Component()
 {
-
 }
 
 dae::GameObject* dae::Component::GetParentObject() const

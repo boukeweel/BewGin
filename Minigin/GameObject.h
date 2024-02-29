@@ -18,12 +18,11 @@ namespace dae
 		void SetPosition(float x, float y);
 		Transform GetTransform() const;
 
-		GameObject() = default;
-		~GameObject();
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
+		std::shared_ptr<GameObject> GetParrent();
+		void SetParrent(std::shared_ptr<GameObject> pParent);
+
+		int GetChildCount();
+		std::shared_ptr<GameObject> GetChildAtIndex(int index);
 
 		template<typename T,typename... Args>
 		T* AddComponent(Args&&... args)
@@ -31,21 +30,21 @@ namespace dae
 			static_assert(std::is_base_of<Component, T>::value, "T must be derived from Component");
 			std::shared_ptr<T> newComponent = std::make_shared<T>(this,std::forward<Args>(args)...);
 			T* rawPointer = newComponent.get();
-			m_Components.push_back(std::move(newComponent));
+			m_pComponents.push_back(std::move(newComponent));
 			return rawPointer;
 		}
 		template<typename T>
 		void RemoveComponent()
 		{
-			m_Components.erase(std::remove_if(std::begin(m_Components), std::end(m_Components), [](const std::unique_ptr<Component>& component)
+			m_pComponents.erase(std::remove_if(std::begin(m_pComponents), std::end(m_pComponents), [](const std::unique_ptr<Component>& component)
 				{
 					return dynamic_cast<T*>(component.get()) != nullptr;
-				}), std::end(m_Components));
+				}), std::end(m_pComponents));
 		}
 		template<typename T>
 		T* GetComponent() const
 		{
-			for (const auto& component : m_Components)
+			for (const auto& component : m_pComponents)
 			{
 				T* desiredComponent = dynamic_cast<T*>(component.get());
 				if(desiredComponent != nullptr)
@@ -61,9 +60,22 @@ namespace dae
 			return GetComponent<T>() != nullptr;
 		}
 
+		GameObject() = default;
+		~GameObject();
+		GameObject(const GameObject& other) = delete;
+		GameObject(GameObject&& other) = delete;
+		GameObject& operator=(const GameObject& other) = delete;
+		GameObject& operator=(GameObject&& other) = delete;
+
 	private:
 		Transform m_transform{};
 
-		std::vector<std::shared_ptr<Component>> m_Components;
+		std::vector<std::shared_ptr<Component>> m_pComponents;
+
+		std::shared_ptr<GameObject> m_pParent;
+		std::vector<std::shared_ptr<GameObject>> m_pChildren;
+
+		void AddChild(std::shared_ptr<GameObject> child);
+		void RemoveChild(std::shared_ptr<GameObject> child);
 	};
 }

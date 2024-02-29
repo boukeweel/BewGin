@@ -11,19 +11,19 @@ dae::TextureComponent::TextureComponent(GameObject* pParentObject, const std::st
 
 void dae::TextureComponent::Render() const
 {
-	if (m_texture != nullptr)
+	if (m_pTexture != nullptr)
 	{
 		const auto& pos = GetParentObject()->GetTransform().GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
+		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);
 	}
 }
 
 void dae::TextureComponent::SetTexture(const std::string& filename)
 {
-	m_texture = ResourceManager::GetInstance().LoadTexture(filename);
+	m_pTexture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
 std::shared_ptr<dae::Texture2D> dae::TextureComponent::GetTexture()
 {
-	return m_texture;
+	return m_pTexture;
 }

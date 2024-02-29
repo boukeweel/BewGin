@@ -6,34 +6,34 @@
 #include "GameObject.h"
 #include "TextComponent.h"
 
-dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentObject),m_fps{0},m_frameCount{0},m_accumulatedTime{0},m_updateInterval{0.5f}
+dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentObject),m_fps{0},m_FrameCount{0},m_AccumulatedTime{0},m_UpdateInterval{0.5f}
 {
 	if(GetParentObject()->HasComponent<TextComponent>())
 	{
-		textComponent = GetParentObject()->GetComponent<TextComponent>();
+		m_pTextComponent = GetParentObject()->GetComponent<TextComponent>();
 	}
 }
 
 dae::FpsComponent::~FpsComponent()
 {
-	delete textComponent;
+	delete m_pTextComponent;
     
 }
 
 void dae::FpsComponent::Update(float deltaTime)
 {
-    m_accumulatedTime += deltaTime;
-    m_frameCount++;
+    m_AccumulatedTime += deltaTime;
+    m_FrameCount++;
 
-    if (m_accumulatedTime >= m_updateInterval) {
+    if (m_AccumulatedTime >= m_UpdateInterval) {
         
-        m_fps = m_frameCount / m_accumulatedTime;
+        m_fps = m_FrameCount / m_AccumulatedTime;
 
         std::ostringstream stream;
         stream << std::fixed << std::setprecision(1) << m_fps;
-        textComponent->SetText(stream.str());
+        m_pTextComponent->SetText(stream.str());
 
-        m_frameCount = 0;
-        m_accumulatedTime = 0;
+        m_FrameCount = 0;
+        m_AccumulatedTime = 0;
     }
 }

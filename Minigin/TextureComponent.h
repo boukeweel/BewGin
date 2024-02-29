@@ -21,10 +21,10 @@ namespace dae
 		virtual ~TextureComponent() = default;
 		TextureComponent(const TextureComponent& other) = delete;
 		TextureComponent(TextureComponent&& other) = delete;
-		TextureComponent& operator=(const TextureComponent& other);
+		TextureComponent& operator=(const TextureComponent& other)  = delete;
 		TextureComponent& operator=(TextureComponent&& other) = delete;
 	private:
-		std::shared_ptr<Texture2D> m_texture{};
+		std::shared_ptr<Texture2D> m_pTexture{};
 	};
 }
 

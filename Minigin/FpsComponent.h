@@ -16,16 +16,15 @@ namespace dae
 
         FpsComponent(const FpsComponent& other) = delete;
         FpsComponent(FpsComponent&& other) = delete;
-        FpsComponent& operator=(const FpsComponent& other);
+        FpsComponent& operator=(const FpsComponent& other) = delete;
         FpsComponent& operator=(FpsComponent&& other) = delete;
     private:
         float m_fps;
-        float m_frameCount;
-        float m_accumulatedTime;
-        float m_updateInterval;
+        float m_FrameCount;
+        float m_AccumulatedTime;
+        float m_UpdateInterval;
 
-
-        TextComponent* textComponent;
+        TextComponent* m_pTextComponent;
     };
 }
 
