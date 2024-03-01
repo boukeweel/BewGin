@@ -18,11 +18,11 @@ namespace dae
 		void SetPosition(float x, float y);
 		Transform GetTransform() const;
 
-		std::shared_ptr<GameObject> GetParrent();
-		void SetParrent(std::shared_ptr<GameObject> pParent);
+		GameObject* GetParrent() const;
+		void SetParrent(GameObject* pParent);
 
-		int GetChildCount();
-		std::shared_ptr<GameObject> GetChildAtIndex(int index);
+		int GetChildCount() const;
+		GameObject* GetChildAtIndex(int index) const;
 
 		template<typename T,typename... Args>
 		T* AddComponent(Args&&... args)
@@ -72,10 +72,11 @@ namespace dae
 
 		std::vector<std::shared_ptr<Component>> m_pComponents;
 
-		std::shared_ptr<GameObject> m_pParent;
-		std::vector<std::shared_ptr<GameObject>> m_pChildren;
+		GameObject* m_pParent{};
+		std::vector<GameObject*> m_pChildren{};
 
-		void AddChild(std::shared_ptr<GameObject> child);
-		void RemoveChild(std::shared_ptr<GameObject> child);
+		void AddChild(GameObject* child);
+		void RemoveChild(GameObject* child);
+		bool IsChild(GameObject* newParent) const;
 	};
 }

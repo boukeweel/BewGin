@@ -1,7 +1,18 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 
-dae::GameObject::~GameObject() = default;
+dae::GameObject::~GameObject()
+{
+	delete m_pParent;
+
+	for (auto childs : m_pChildren)
+	{
+		delete childs;
+	}
+
+	m_pParent = nullptr;
+	m_pChildren.empty();
+}
 
 
 
@@ -32,33 +43,56 @@ dae::Transform dae::GameObject::GetTransform() const
 	return m_transform;
 }
 
-std::shared_ptr<dae::GameObject> dae::GameObject::GetParrent()
+dae::GameObject* dae::GameObject::GetParrent() const
 {
 	return m_pParent;
 }
 
-void dae::GameObject::SetParrent(std::shared_ptr<GameObject> pParent)
+void dae::GameObject::SetParrent(GameObject* pParent)
 {
+	if(m_pParent == pParent || pParent == this || IsChild(pParent))
+	{
+		//todo make a trow with custom expetion error
+		return;
+	}
 
+	if(m_pParent)
+	{
+		m_pParent->RemoveChild(this);
+	}
+	m_pParent = pParent;
+	if(m_pParent)
+	{
+		m_pParent->AddChild(this);
+	}
+
+	//todo update position rotation and scale
 }
 
-int dae::GameObject::GetChildCount()
+int dae::GameObject::GetChildCount() const
 {
 	return static_cast<int>(m_pChildren.size());
 }
 
-std::shared_ptr<dae::GameObject> dae::GameObject::GetChildAtIndex(int index)
+dae::GameObject* dae::GameObject::GetChildAtIndex(int index) const
 {
 	return m_pChildren[index];
 }
 
-void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)
+void dae::GameObject::AddChild(GameObject* child)
 {
-
+	m_pChildren.push_back(child);
 }
 
-void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> child)
+void dae::GameObject::RemoveChild(GameObject* child)
 {
+	child->SetParrent(nullptr);
+}
 
+bool dae::GameObject::IsChild(GameObject* newParent) const
+{
+	auto it = std::find(std::begin(m_pChildren), std::end(m_pChildren), newParent);
+
+	return it != std::end(m_pChildren);
 }
 
