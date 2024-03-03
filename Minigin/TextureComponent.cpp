@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
+#include "Texture2D.h"
 
 dae::TextureComponent::TextureComponent(GameObject* pParentObject, const std::string& filename) : Component(pParentObject)
 {
@@ -13,8 +14,11 @@ void dae::TextureComponent::Render() const
 {
 	if (m_pTexture != nullptr)
 	{
-		const auto& pos = GetParentObject()->GetTransform().GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);
+		const auto& pos = GetParentObject()->GetWorldPosition();
+		float width  = static_cast<float>(m_pTexture->GetSize().x);
+		float height = static_cast<float>(m_pTexture->GetSize().y);
+
+		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x - width / 2, pos.y - height / 2 , width,height);
 	}
 }
 

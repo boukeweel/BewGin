@@ -9,14 +9,12 @@
 #include "Texture2D.h"
 
 dae::TextComponent::TextComponent(GameObject* pparentObject,const std::string& text, std::shared_ptr<Font> font):
-	m_NeedsUpdate(true), m_Text(text), m_pFont(std::move(font)), m_pTextTexture(nullptr), Component(pparentObject)
+	m_NeedsUpdate(true), m_Text(text), m_pFont(std::move(font)), m_pTextTexture(nullptr), Component(pparentObject), m_FontSize{1}
 {
 }
 
-void dae::TextComponent::Update(float deltaTime)
+void dae::TextComponent::Update(float /*deltaTime*/)
 {
-	deltaTime += 1;
-
 	if (m_NeedsUpdate)
 	{
 		const SDL_Color color = { 255,255,255,255 }; // only white text is supported now
@@ -40,7 +38,7 @@ void dae::TextComponent::Render() const
 {
 	if (m_pTextTexture != nullptr)
 	{
-		const auto& pos = GetParentObject()->GetTransform().GetPosition();
+		const auto& pos = GetParentObject()->GetWorldPosition();
 		Renderer::GetInstance().RenderTexture(*m_pTextTexture, pos.x, pos.y);
 	}
 }

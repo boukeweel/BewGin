@@ -16,10 +16,11 @@ namespace dae
 		void Render() const;
 
 		void SetPosition(float x, float y);
+		glm::vec3& GetWorldPosition();
 		Transform GetTransform() const;
 
 		GameObject* GetParrent() const;
-		void SetParrent(GameObject* pParent);
+		void SetParrent(GameObject* pParent, bool KeepWorldPosition = false);
 
 		int GetChildCount() const;
 		GameObject* GetChildAtIndex(int index) const;
@@ -60,23 +61,32 @@ namespace dae
 			return GetComponent<T>() != nullptr;
 		}
 
-		GameObject() = default;
+		GameObject();
 		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
+		void SetPositionDirty();
 	private:
 		Transform m_transform{};
+		glm::vec3 m_WorldPosition{};
+		glm::vec3 m_LocalPosition{};
 
-		std::vector<std::shared_ptr<Component>> m_pComponents;
+		std::vector<std::shared_ptr<Component>> m_pComponents{};
 
 		GameObject* m_pParent{};
 		std::vector<GameObject*> m_pChildren{};
 
+		bool m_PositionDirty{false};
+
 		void AddChild(GameObject* child);
 		void RemoveChild(GameObject* child);
 		bool IsChild(GameObject* newParent) const;
+
+		void UpdateWorldPosition();
+		void SetLocalPosition(const glm::vec3& pos);
+		
 	};
 }

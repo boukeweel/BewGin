@@ -33,7 +33,7 @@ namespace dae
 		std::string m_Text;
 		std::shared_ptr<Font> m_pFont;
 		std::shared_ptr<Texture2D> m_pTextTexture;
-		int m_FontSize;
+		int m_FontSize{};
 	};
 
 }
