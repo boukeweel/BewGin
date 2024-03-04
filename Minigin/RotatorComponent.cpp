@@ -1,6 +1,7 @@
 #include "RotatorComponent.h"
 
 #include "GameObject.h"
+#include <SDL_stdinc.h>
 
 dae::RotatorComponent::RotatorComponent(GameObject* pParentObject, float radius, float RotationSpeed):Component(pParentObject),m_Radius{ radius },m_RotationSpeed{RotationSpeed},m_CurrentRotation{0}
 {
@@ -10,6 +11,11 @@ dae::RotatorComponent::RotatorComponent(GameObject* pParentObject, float radius,
 void dae::RotatorComponent::Update(float deltaTime)
 {
 	m_CurrentRotation += m_RotationSpeed * deltaTime;
+
+	float TwoPi = 2 * static_cast<float>(M_PI);
+
+	if (m_CurrentRotation > TwoPi)
+		m_CurrentRotation -= TwoPi;
 
 	if(GetParentObject())
 	{

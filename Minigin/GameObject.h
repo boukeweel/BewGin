@@ -29,7 +29,7 @@ namespace dae
 		T* AddComponent(Args&&... args)
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be derived from Component");
-			std::shared_ptr<T> newComponent = std::make_shared<T>(this,std::forward<Args>(args)...);
+			std::unique_ptr<T> newComponent = std::make_unique<T>(this,std::forward<Args>(args)...);
 			T* rawPointer = newComponent.get();
 			m_pComponents.push_back(std::move(newComponent));
 			return rawPointer;
@@ -74,7 +74,7 @@ namespace dae
 		glm::vec3 m_WorldPosition{};
 		glm::vec3 m_LocalPosition{};
 
-		std::vector<std::shared_ptr<Component>> m_pComponents{};
+		std::vector<std::unique_ptr<Component>> m_pComponents{};
 
 		GameObject* m_pParent{};
 		std::vector<GameObject*> m_pChildren{};
