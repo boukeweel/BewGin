@@ -7,6 +7,7 @@ namespace dae
 	{
 	public:
 		bool ProcessInput();
+
 	};
 
 }
