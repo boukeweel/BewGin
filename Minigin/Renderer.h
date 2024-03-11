@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL.h>
 
-#include "imguiManager.h"
 #include "Singleton.h"
 
 namespace dae
@@ -16,9 +15,6 @@ namespace dae
 		SDL_Renderer* m_renderer{};
 		SDL_Window* m_window{};
 		SDL_Color m_clearColor{};
-
-		//this feels not good to do here, just not sure where to do it than
-		imguiManager m_imguiManager{};
 
 	public:
 		void Init(SDL_Window* window);

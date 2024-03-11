@@ -1,4 +1,4 @@
-#include "imguiManager.h"
+#include "ImGuiTrashTheCacheComponent.h"
 
 #include <chrono>
 
@@ -6,15 +6,11 @@
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_sdl2.h"
 
-void imguiManager::Init(SDL_Window* window)
+dae::ImGuiTrashTheCacheComponent::ImGuiTrashTheCacheComponent(GameObject* pParentObject): Component(pParentObject)
 {
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
-	ImGui_ImplOpenGL3_Init();
 }
 
-void imguiManager::Render() const
+void dae::ImGuiTrashTheCacheComponent::Render() const
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
@@ -27,14 +23,8 @@ void imguiManager::Render() const
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void imguiManager::Destroy()
-{
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
-}
 
-void imguiManager::GraphsExOne() const
+void dae::ImGuiTrashTheCacheComponent::GraphsExOne() const
 {
 	ImGui::Begin("Graph ex1");
 
@@ -52,7 +42,7 @@ void imguiManager::GraphsExOne() const
 	ImGui::End();
 }
 
-void imguiManager::GraphsExTwo() const
+void dae::ImGuiTrashTheCacheComponent::GraphsExTwo() const
 {
 	ImGui::Begin("Graph ex2");
 
@@ -85,7 +75,7 @@ void imguiManager::GraphsExTwo() const
 }
 
 
-std::vector<float> imguiManager::MeasureExOne(int samples) const
+std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExOne(int samples) const
 {
 	const int size = 100000000;
 	int* buffer = new int[size];
@@ -114,11 +104,11 @@ std::vector<float> imguiManager::MeasureExOne(int samples) const
 
 	}
 	CleanUpMeasurements(durations);
-
+	delete buffer;
 	return durations;
 }
 
-std::vector<float> imguiManager::MeasureExTwo(int samples) const
+std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExTwo(int samples) const
 {
 	const int size = 10000000;
 	GameObject3D* buffer = new GameObject3D[size];
@@ -152,7 +142,7 @@ std::vector<float> imguiManager::MeasureExTwo(int samples) const
 	return durations;
 }
 
-std::vector<float> imguiManager::MeasureExTwoAlt(int samples) const
+std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExTwoAlt(int samples) const
 {
 	const int size = 10000000;
 	GameObject3DAlt* buffer = new GameObject3DAlt[size];
@@ -187,7 +177,7 @@ std::vector<float> imguiManager::MeasureExTwoAlt(int samples) const
 }
 
 
-void imguiManager::CleanUpMeasurements(std::vector<float>& durations) const
+void dae::ImGuiTrashTheCacheComponent::CleanUpMeasurements(std::vector<float>& durations) const
 {
 	auto minIndex = std::min_element(durations.begin(), durations.end()) - durations.begin();
 	auto maxIndex = std::max_element(durations.begin(), durations.end()) - durations.begin();
