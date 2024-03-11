@@ -1,12 +1,17 @@
 #include <SDL.h>
 #include <backends/imgui_impl_sdl2.h>
 #include "InputManager.h"
+#include <Windows.h>
+#include <Xinput.h>
 
 #include <SDL_syswm.h>
 
 
 bool dae::InputManager::ProcessInput()
 {
+	//for controller input
+	XINPUT_STATE state;
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {

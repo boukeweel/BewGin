@@ -13,14 +13,14 @@ struct Transform
 		0,0,0,1 };
 };
 
-class GameObject3D
+class GameObject3D final
 {
 public:
 	Transform transform;
 	int ID;
 };
 
-class GameObject3DAlt
+class GameObject3DAlt final
 {
 public:
 	Transform* transform;
@@ -29,7 +29,7 @@ public:
 
 namespace dae
 {
-	class ImGuiTrashTheCacheComponent : public Component
+	class ImGuiTrashTheCacheComponent final : public Component
 	{
 	public:
 		ImGuiTrashTheCacheComponent(GameObject* pParentObject);
