@@ -18,7 +18,22 @@ bool dae::InputManager::ProcessInput()
 			return false;
 		}
 		if (e.type == SDL_KEYDOWN) {
-			
+			switch (e.key.keysym.sym) {
+			case SDLK_w:
+
+				break;
+			case SDLK_a:
+
+				break;
+			case SDLK_s:
+
+				break;
+			case SDLK_d:
+
+				break;
+			default:
+				break;
+			}
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
 			
@@ -28,5 +43,10 @@ bool dae::InputManager::ProcessInput()
 	}
 
 	return true;
+}
+
+void dae::InputManager::BindCommands(GameObject* pTargetObject, Command* pCommand)
+{
+	commands.emplace(pTargetObject, pCommand);
 }
  

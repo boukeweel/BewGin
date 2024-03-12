@@ -16,6 +16,7 @@ namespace dae
 		void Render() const;
 
 		void SetPosition(float x, float y);
+		void SetPosition(const glm::vec3& pos);
 		glm::vec3& GetWorldPosition();
 		Transform GetTransform() const;
 

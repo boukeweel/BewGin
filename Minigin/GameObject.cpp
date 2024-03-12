@@ -117,6 +117,11 @@ void dae::GameObject::SetPosition(float x, float y)
 	m_transform.SetPosition(GetWorldPosition());
 }
 
+void dae::GameObject::SetPosition(const glm::vec3& pos)
+{
+	SetPosition(pos.x, pos.y);
+}
+
 glm::vec3& dae::GameObject::GetWorldPosition()
 {
 	if (m_PositionDirty)

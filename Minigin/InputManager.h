@@ -1,7 +1,7 @@
 #pragma once
 #define WIN32_LEAN_AND_MEAN
 
-
+#include "Command.h"
 #include "Singleton.h"
 //#pragma comment(lib,"xinput.lib")
 
@@ -11,7 +11,6 @@ namespace dae
 	{
 	public:
 		bool ProcessInput();
-
 	};
 
 }
