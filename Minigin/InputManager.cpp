@@ -10,7 +10,7 @@
 bool dae::InputManager::ProcessInput()
 {
 	//for controller input
-	XINPUT_STATE state;
+	//XINPUT_STATE state;
 
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
@@ -44,9 +44,3 @@ bool dae::InputManager::ProcessInput()
 
 	return true;
 }
-
-void dae::InputManager::BindCommands(GameObject* pTargetObject, Command* pCommand)
-{
-	commands.emplace(pTargetObject, pCommand);
-}
- 

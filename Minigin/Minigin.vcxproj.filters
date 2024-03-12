@@ -22,6 +22,12 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{b325c92f-3fb4-427c-bea7-710c9ac9cf5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\PlayerComponents">
+      <UniqueIdentifier>{708fb6b6-aa2c-4ebc-9c93-47888ea57927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\AssigmentComponents">
+      <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -63,13 +69,7 @@
     <ClInclude Include="TextComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="FpsComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="TextureComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RotatorComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imconfig.h">
@@ -96,9 +96,6 @@
     <ClInclude Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiTrashTheCacheComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Commands</Filter>
     </ClInclude>
@@ -106,7 +103,16 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMovement.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components\PlayerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiTrashTheCacheComponent.h">
+      <Filter>Components\AssigmentComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RotatorComponent.h">
+      <Filter>Components\AssigmentComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="FpsComponent.h">
+      <Filter>Components\AssigmentComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,13 +155,7 @@
     <ClCompile Include="TextComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="FpsComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="TextureComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RotatorComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui.cpp">
@@ -179,9 +179,6 @@
     <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiTrashTheCacheComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Command.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
@@ -189,7 +186,16 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components\PlayerComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiTrashTheCacheComponent.cpp">
+      <Filter>Components\AssigmentComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="RotatorComponent.cpp">
+      <Filter>Components\AssigmentComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsComponent.cpp">
+      <Filter>Components\AssigmentComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
