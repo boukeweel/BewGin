@@ -9,7 +9,7 @@ namespace dae
 	{
 	public:
 		MoveUp() = default;
-		void Execute(GameObject& gameobject) override;
+		void Execute(GameObject* gameobject) override;
 
 		MoveUp(const MoveUp& other) = delete;
 		MoveUp(MoveUp&& other) = delete;
@@ -21,7 +21,7 @@ namespace dae
 	{
 	public:
 		MoveDown() = default;
-		void Execute(GameObject& gameobject) override;
+		void Execute(GameObject* gameobject) override;
 
 		MoveDown(const MoveDown& other) = delete;
 		MoveDown(MoveDown&& other) = delete;
@@ -33,7 +33,7 @@ namespace dae
 	{
 	public:
 		MoveLeft() = default;
-		void Execute(GameObject& gameobject) override;
+		void Execute(GameObject* gameobject) override;
 
 		MoveLeft(const MoveLeft& other) = delete;
 		MoveLeft(MoveLeft&& other) = delete;
@@ -45,12 +45,36 @@ namespace dae
 	{
 	public:
 		MoveRight() = default;
-		void Execute(GameObject& gameobject) override;
+		void Execute(GameObject* gameobject) override;
 
 		MoveRight(const MoveRight& other) = delete;
 		MoveRight(MoveRight&& other) = delete;
 		MoveRight& operator=(const MoveRight& other) = delete;
 		MoveRight& operator=(MoveRight&& other) = delete;
+	};
+
+	class ReleaseUpDown final : public Command
+	{
+	public:
+		ReleaseUpDown() = default;
+		void Execute(GameObject* gameobject) override;
+
+		ReleaseUpDown(const ReleaseUpDown& other) = delete;
+		ReleaseUpDown(ReleaseUpDown&& other) = delete;
+		ReleaseUpDown& operator=(const ReleaseUpDown& other) = delete;
+		ReleaseUpDown& operator=(ReleaseUpDown&& other) = delete;
+	};
+
+	class ReleaseRightLeft final : public Command
+	{
+	public:
+		ReleaseRightLeft() = default;
+		void Execute(GameObject* gameobject) override;
+
+		ReleaseRightLeft(const ReleaseRightLeft& other) = delete;
+		ReleaseRightLeft(ReleaseRightLeft&& other) = delete;
+		ReleaseRightLeft& operator=(const ReleaseRightLeft& other) = delete;
+		ReleaseRightLeft& operator=(ReleaseRightLeft&& other) = delete;
 	};
 }
 

@@ -3,9 +3,9 @@
 #include "GameObject.h"
 #include "PlayerMovement.h"
 
-void dae::MoveUp::Execute(GameObject& gameobject)
+void dae::MoveUp::Execute(GameObject* gameobject)
 {
-	auto comp = gameobject.GetComponent<PlayerMovement>();
+	auto comp = gameobject->GetComponent<PlayerMovement>();
 	if(comp)
 	{
 		comp->MoveUp();
@@ -13,9 +13,9 @@ void dae::MoveUp::Execute(GameObject& gameobject)
 	return;
 }
 
-void dae::MoveDown::Execute(GameObject& gameobject)
+void dae::MoveDown::Execute(GameObject* gameobject)
 {
-	auto comp = gameobject.GetComponent<PlayerMovement>();
+	auto comp = gameobject->GetComponent<PlayerMovement>();
 	if (comp)
 	{
 		comp->MoveDown();
@@ -23,9 +23,9 @@ void dae::MoveDown::Execute(GameObject& gameobject)
 	return;
 }
 
-void dae::MoveLeft::Execute(GameObject& gameobject)
+void dae::MoveLeft::Execute(GameObject* gameobject)
 {
-	auto comp = gameobject.GetComponent<PlayerMovement>();
+	auto comp = gameobject->GetComponent<PlayerMovement>();
 	if (comp)
 	{
 		comp->MoveLeft();
@@ -33,12 +33,32 @@ void dae::MoveLeft::Execute(GameObject& gameobject)
 	return;
 }
 
-void dae::MoveRight::Execute(GameObject& gameobject)
+void dae::MoveRight::Execute(GameObject* gameobject)
 {
-	auto comp = gameobject.GetComponent<PlayerMovement>();
+	auto comp = gameobject->GetComponent<PlayerMovement>();
 	if (comp)
 	{
 		comp->MoveRight();
+	}
+	return;
+}
+
+void dae::ReleaseUpDown::Execute(GameObject* gameobject)
+{
+	auto comp = gameobject->GetComponent<PlayerMovement>();
+	if (comp)
+	{
+		comp->ReleaseUpDown();
+	}
+	return;
+}
+
+void dae::ReleaseRightLeft::Execute(GameObject* gameobject)
+{
+	auto comp = gameobject->GetComponent<PlayerMovement>();
+	if (comp)
+	{
+		comp->ReleaseLeftRight();
 	}
 	return;
 }

@@ -14,12 +14,6 @@ dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentO
 	}
 }
 
-dae::FpsComponent::~FpsComponent()
-{
-	delete m_pTextComponent;
-    
-}
-
 void dae::FpsComponent::Update(float deltaTime)
 {
     m_AccumulatedTime += deltaTime;

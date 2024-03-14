@@ -15,6 +15,8 @@ namespace dae
 		void MoveDown();
 		void MoveRight();
 		void MoveLeft();
+		void ReleaseUpDown();
+		void ReleaseLeftRight();
 
 		void SetSpeed(float speed);
 

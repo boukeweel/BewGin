@@ -12,6 +12,7 @@
 #include "ResourceManager.h"
 #include "chrono"
 #include "ImGuiTrashTheCacheComponent.h"
+#include "MoveCommands.h"
 
 
 
@@ -87,7 +88,6 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
-	
 
 	bool doContinue = true;
 	auto lastTime = std::chrono::high_resolution_clock::now();

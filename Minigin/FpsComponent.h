@@ -9,7 +9,6 @@ namespace dae
     {
     public:
         FpsComponent(GameObject* pParentObject);
-        ~FpsComponent() override;
 
         void Update(float deltaTime) override;
         void Render() const override {}
