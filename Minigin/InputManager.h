@@ -4,10 +4,11 @@
 #include <memory>
 
 #include "Command.h"
+#include "Controller.h"
 #include "Singleton.h"
 #include "map"
 #include "string"
-//#pragma comment(lib,"xinput.lib")
+
 
 
 
@@ -27,9 +28,12 @@ namespace dae
 		void AddCommand(std::string Key,GameObject* targetObject ,std::unique_ptr<Command> command);
 
 	private:
-
+		void HandelControllerInput();
 		void ProccessKeyInput(SDL_KeyboardEvent& keyEvent, const std::string& prefix);
+		void ProccessKeyInput(std::string key);
+
 		std::map<std::string, CommandInfo> m_Commands;
+		Controller m_Controller{};
 	};
 
 }

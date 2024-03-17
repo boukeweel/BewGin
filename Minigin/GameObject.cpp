@@ -8,19 +8,6 @@ dae::GameObject::GameObject() : m_PositionDirty{ false }
 {
 }
 
-dae::GameObject::~GameObject()
-{
-	delete m_pParent;
-
-	for (auto childs : m_pChildren)
-	{
-		delete childs;
-	}
-
-	m_pParent = nullptr;
-	m_pChildren.clear();
-}
-
 void dae::GameObject::Update(float deltaTime)
 {
 	for (auto& component : m_pComponents)

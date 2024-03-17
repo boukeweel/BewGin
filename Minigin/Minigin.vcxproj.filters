@@ -114,6 +114,9 @@
     <ClInclude Include="FpsComponent.h">
       <Filter>Components\AssigmentComponents</Filter>
     </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="FpsComponent.cpp">
       <Filter>Components\AssigmentComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
