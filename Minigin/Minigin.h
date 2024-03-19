@@ -16,7 +16,5 @@ namespace dae
 		Minigin& operator=(const Minigin& other) = delete;
 		Minigin& operator=(Minigin&& other) = delete;
 
-	private:
-		const int m_FrameRate{ 60 };
 	};
 }

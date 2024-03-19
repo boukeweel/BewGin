@@ -8,7 +8,7 @@ dae::Component::~Component()
 {
 }
 
-void dae::Component::Update(float /*deltaTime*/)
+void dae::Component::Update()
 {
 }
 

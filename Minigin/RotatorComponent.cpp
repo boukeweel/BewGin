@@ -3,14 +3,16 @@
 #include "GameObject.h"
 #include <SDL_stdinc.h>
 
+#include "GameTime.h"
+
 dae::RotatorComponent::RotatorComponent(GameObject* pParentObject, float radius, float RotationSpeed):Component(pParentObject),m_Radius{ radius },m_RotationSpeed{RotationSpeed},m_CurrentRotation{0}
 {
 	m_Center = GetParentObject()->GetTransform().GetPosition();
 }
 
-void dae::RotatorComponent::Update(float deltaTime)
+void dae::RotatorComponent::Update()
 {
-	m_CurrentRotation += m_RotationSpeed * deltaTime;
+	m_CurrentRotation += m_RotationSpeed * GameTime::GetDeltaTimeFloat();
 
 	float TwoPi = 2 * static_cast<float>(M_PI);
 

@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "GameObject.h"
+#include "GameTime.h"
 #include "TextComponent.h"
 
 dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentObject),m_fps{0},m_FrameCount{0},m_AccumulatedTime{0},m_UpdateInterval{0.5f}
@@ -14,9 +15,9 @@ dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentO
 	}
 }
 
-void dae::FpsComponent::Update(float deltaTime)
+void dae::FpsComponent::Update()
 {
-    m_AccumulatedTime += deltaTime;
+    m_AccumulatedTime += GameTime::GetDeltaTimeFloat();
     m_FrameCount++;
 
     if (m_AccumulatedTime >= m_UpdateInterval) {

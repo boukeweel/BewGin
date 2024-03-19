@@ -11,7 +11,7 @@ namespace dae
 		Component(GameObject* pparentObject);
 		virtual ~Component();
 
-		virtual void Update(float deltaTime);
+		virtual void Update();
 		virtual void Render() const{}
 
 	protected:

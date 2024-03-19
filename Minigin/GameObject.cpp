@@ -8,11 +8,11 @@ dae::GameObject::GameObject() : m_PositionDirty{ false }
 {
 }
 
-void dae::GameObject::Update(float deltaTime)
+void dae::GameObject::Update()
 {
 	for (auto& component : m_pComponents)
 	{
-		component->Update(deltaTime);
+		component->Update();
 	}
 }
 
@@ -40,7 +40,6 @@ void dae::GameObject::SetParrent(GameObject* pParent, bool KeepWorldPosition)
 {
 	if (m_pParent == pParent || pParent == this || IsChild(pParent))
 	{
-		//todo make a trow with custom expetion error
 		return;
 	}
 

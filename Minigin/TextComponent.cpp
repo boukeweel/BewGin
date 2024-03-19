@@ -13,7 +13,7 @@ dae::TextComponent::TextComponent(GameObject* pparentObject,const std::string& t
 {
 }
 
-void dae::TextComponent::Update(float /*deltaTime*/)
+void dae::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{

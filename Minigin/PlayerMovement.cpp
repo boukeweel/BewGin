@@ -1,20 +1,21 @@
 #include "PlayerMovement.h"
 
 #include "GameObject.h"
+#include "GameTime.h"
 
 dae::PlayerMovement::PlayerMovement(GameObject* pParentObject, float speed)
 : Component(pParentObject), m_speed{speed}, m_MoveDirection{0,0}
 {
 }
 
-void dae::PlayerMovement::Update(float deltaTime)
+void dae::PlayerMovement::Update()
 {
 	if(glm::length(m_MoveDirection) > 0)
 	{
 		glm::vec3 position = GetParentObject()->GetWorldPosition();
 
-		position.x += m_MoveDirection.x * m_speed * deltaTime;
-		position.y += m_MoveDirection.y * m_speed * deltaTime;
+		position.x += m_MoveDirection.x * m_speed * GameTime::GetDeltaTimeFloat();
+		position.y += m_MoveDirection.y * m_speed * GameTime::GetDeltaTimeFloat();
 
 		GetParentObject()->SetPosition(position);
 	}

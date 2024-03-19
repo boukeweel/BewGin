@@ -9,7 +9,7 @@ namespace dae
 	public:
 		PlayerMovement(GameObject* pParentObject,float speed);
 
-		void Update(float deltaTime) override;
+		void Update() override;
 
 		void MoveUp();
 		void MoveDown();

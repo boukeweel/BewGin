@@ -14,7 +14,7 @@ namespace dae
 		public Component
 	{
 	public:
-		void Update(float deltaTime) override;
+		void Update() override;
 		void Render() const override;
 
 		void SetText(const std::string& text);

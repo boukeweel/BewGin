@@ -12,7 +12,7 @@ namespace dae
 		void Remove(std::unique_ptr<GameObject> object);
 		void RemoveAll();
 
-		void Update(float deltaTime);
+		void Update();
 		void Render() const;
 
 		~Scene();

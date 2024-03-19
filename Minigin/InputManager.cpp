@@ -68,7 +68,7 @@ void dae::InputManager::ProccessKeyInput(SDL_KeyboardEvent& keyEvent, const std:
 	ProccessKeyInput(commandName);
 }
 
-void dae::InputManager::ProccessKeyInput(std::string key)
+void dae::InputManager::ProccessKeyInput(const std::string& key)
 {
 	if (m_Commands.find(key) != m_Commands.end()) {
 		CommandInfo& commandInfo = m_Commands[key];

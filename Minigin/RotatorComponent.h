@@ -9,7 +9,7 @@ namespace dae
 	public:
 		RotatorComponent(GameObject* pParentObject, float radius, float RotationSpeed = 1);
 
-		void Update(float deltaTime) override;
+		void Update() override;
 	private:
 		float m_Radius;
 		const float m_RotationSpeed;

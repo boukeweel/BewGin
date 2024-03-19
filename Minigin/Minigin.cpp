@@ -11,6 +11,7 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "chrono"
+#include "GameTime.h"
 #include "ImGuiTrashTheCacheComponent.h"
 #include "MoveCommands.h"
 
@@ -88,23 +89,16 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
+	
 
 	bool doContinue = true;
-	auto lastTime = std::chrono::high_resolution_clock::now();
-	const auto ms_per_frame = std::chrono::milliseconds(1000 / m_FrameRate);
 	while (doContinue)
 	{
-		const auto currentTime = std::chrono::high_resolution_clock::now();
-		const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-		lastTime = currentTime;
-
+		GameTime::Update();
 		doContinue = input.ProcessInput();
-		sceneManager.Update(deltaTime);
+		sceneManager.Update();
 		renderer.Render();
 
-		
-		const auto sleepTime = currentTime + std::chrono::milliseconds(ms_per_frame) - std::chrono::high_resolution_clock::now();
-
-		std::this_thread::sleep_for(sleepTime);
+		std::this_thread::sleep_for(GameTime::GetSleepTime());
 	}
 }

@@ -30,7 +30,7 @@ namespace dae
 	private:
 		void HandelControllerInput();
 		void ProccessKeyInput(SDL_KeyboardEvent& keyEvent, const std::string& prefix);
-		void ProccessKeyInput(std::string key);
+		void ProccessKeyInput(const std::string& key);
 
 		std::unordered_map<std::string, CommandInfo> m_Commands;
 		Controller m_Controller{};
