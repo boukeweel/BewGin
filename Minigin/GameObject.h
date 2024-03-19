@@ -20,6 +20,9 @@ namespace dae
 		glm::vec3& GetWorldPosition();
 		Transform GetTransform() const;
 
+		//todo temp
+		void Translate(const glm::vec3& translation);
+
 		GameObject* GetParrent() const;
 		void SetParrent(GameObject* pParent, bool KeepWorldPosition = false);
 

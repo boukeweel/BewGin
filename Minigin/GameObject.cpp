@@ -30,6 +30,11 @@ dae::Transform dae::GameObject::GetTransform() const
 	return m_transform;
 }
 
+void dae::GameObject::Translate(const glm::vec3& translation)
+{
+	SetLocalPosition(m_LocalPosition + translation);
+}
+
 #pragma region hierargie
 dae::GameObject* dae::GameObject::GetParrent() const
 {

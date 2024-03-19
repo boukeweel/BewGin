@@ -102,9 +102,6 @@
     <ClInclude Include="MoveCommands.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerMovement.h">
-      <Filter>Components\PlayerComponents</Filter>
-    </ClInclude>
     <ClInclude Include="ImGuiTrashTheCacheComponent.h">
       <Filter>Components\AssigmentComponents</Filter>
     </ClInclude>
@@ -190,9 +187,6 @@
     </ClCompile>
     <ClCompile Include="MoveCommands.cpp">
       <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMovement.cpp">
-      <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiTrashTheCacheComponent.cpp">
       <Filter>Components\AssigmentComponents</Filter>

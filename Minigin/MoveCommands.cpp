@@ -1,64 +1,16 @@
 #include "MoveCommands.h"
 
 #include "GameObject.h"
-#include "PlayerMovement.h"
+#include "GameTime.h"
 
-void dae::MoveUp::Execute(GameObject* gameobject)
+dae::MoveCommand::MoveCommand(GameObject* targetObject, const glm::vec3& Direction, float speed)
+	:m_TargetObject{ targetObject }, m_Direction{ Direction }, m_Speed{ speed }
 {
-	auto comp = gameobject->GetComponent<PlayerMovement>();
-	if(comp)
-	{
-		comp->MoveUp();
-	}
-	return;
 }
 
-void dae::MoveDown::Execute(GameObject* gameobject)
+void dae::MoveCommand::Execute()
 {
-	auto comp = gameobject->GetComponent<PlayerMovement>();
-	if (comp)
-	{
-		comp->MoveDown();
-	}
-	return;
-}
+	glm::vec3 velocity = glm::normalize(m_Direction) * m_Speed;
 
-void dae::MoveLeft::Execute(GameObject* gameobject)
-{
-	auto comp = gameobject->GetComponent<PlayerMovement>();
-	if (comp)
-	{
-		comp->MoveLeft();
-	}
-	return;
-}
-
-void dae::MoveRight::Execute(GameObject* gameobject)
-{
-	auto comp = gameobject->GetComponent<PlayerMovement>();
-	if (comp)
-	{
-		comp->MoveRight();
-	}
-	return;
-}
-
-void dae::ReleaseUpDown::Execute(GameObject* gameobject)
-{
-	auto comp = gameobject->GetComponent<PlayerMovement>();
-	if (comp)
-	{
-		comp->ReleaseUpDown();
-	}
-	return;
-}
-
-void dae::ReleaseRightLeft::Execute(GameObject* gameobject)
-{
-	auto comp = gameobject->GetComponent<PlayerMovement>();
-	if (comp)
-	{
-		comp->ReleaseLeftRight();
-	}
-	return;
+	m_TargetObject->Translate(velocity * GameTime::GetDeltaTimeFloat());
 }
