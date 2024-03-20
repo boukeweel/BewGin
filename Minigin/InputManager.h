@@ -9,9 +9,7 @@
 #include "Command.h"
 #include "Singleton.h"
 #include "string"
-
-
-
+#include <SDL_events.h>
 
 namespace dae
 {
@@ -73,6 +71,10 @@ namespace dae
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
+
+		InputManager();
+		~InputManager();
+
 		bool ProcessInput();
 
 		void AddCommand(std::string Key, ButtonState state, int conrollerIndex, std::unique_ptr<Command> command)
@@ -84,9 +86,12 @@ namespace dae
 			m_Commands.emplace_back(state, 0, INPUT_BUTTONS.at(Key), std::move(command));
 		}
 
-	private:
+		class ControllerImpl;
+		std::unique_ptr<ControllerImpl> m_ControllerImpl;
+
 		bool HandelKeyBoardEvent(const SDL_Event& event) const;
 		void HandleKeyboardContinually() const;
+		void HandleControllerContinually();
 
 		std::vector<CommandInfo> m_Commands;
 	};

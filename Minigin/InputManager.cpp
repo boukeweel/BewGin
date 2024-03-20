@@ -7,7 +7,7 @@
 
 bool dae::InputManager::ProcessInput()
 {
-
+	HandleControllerContinually();
 	HandleKeyboardContinually();
 
 	SDL_Event e;

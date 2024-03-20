@@ -1,91 +1,98 @@
-#include "Controller.h"
-#include <windows.h>
-#include <xinput.h>
+#include <iostream>
 
-class Controller::ControllerImpl {
-public:
-    ControllerImpl() : m_PreviusState{}, m_CurrentState{} {}
+#include "InputManager.h"
+#include <XInput.h>
+#pragma comment(lib,"xinput.lib")
 
-    bool ProcessInput() {
-        memcpy(&m_PreviusState, &m_CurrentState, sizeof(XINPUT_STATE));
-        ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-        DWORD dwResult = XInputGetState(0, &m_CurrentState);
-        return dwResult == ERROR_SUCCESS;
-    }
+namespace dae
+{
+    class InputManager::ControllerImpl
+    {
 
-    bool IsDpadUpPressed() const {
-        return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP;
-    }
+    public:
+        void HandleControllerContinually(const std::vector<dae::CommandInfo>& Commands)
+        {
+           
+            UpdateControllerInfo();
+           
+            
 
-    bool IsDpadDownPressed() const {
-        return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN;
-    }
+            for (auto&& command : Commands)
+            {
+               
+                for (auto&& controllerButton : command.m_Action.ControllerButtons)
+                {
+                    if (command.m_ButtonState == dae::ButtonState::Held && IsHeld(controllerButton, command.m_ControllerIndex))
+                    {
+                        command.m_Command->Execute();
+                        break;
+                    }
+                    else if (command.m_ButtonState == dae::ButtonState::Down && IsDownThisFrame(controllerButton, command.m_ControllerIndex))
+                        command.m_Command->Execute();
+                    else if (command.m_ButtonState == dae::ButtonState::Up && IsUpThisFrame(controllerButton, command.m_ControllerIndex))
+                        command.m_Command->Execute();
+                }
+            }
+        }
 
-    bool IsDpadLeftPressed() const {
-        return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT;
-    }
+    private:
 
-    bool IsDpadRightPressed() const {
-        return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT;
-    }
+        struct XINPUT_GAMEPAD_STATE
+        {
+            XINPUT_STATE CurrentControllerState;
+            XINPUT_STATE PriviusControllerState;
+            WORD ButtonsPressedThisFrame;
+            WORD ButtonsReleasedThisFrame;
+        };
 
-    bool IsDpadUpReleased() const {
-        return !(m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP) && (m_PreviusState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP);
-    }
+        bool IsDownThisFrame(WORD button, int controllerIndex = 0) const
+        {
+            return m_ControllerStates[controllerIndex].ButtonsPressedThisFrame & button;
+        }
+        bool IsUpThisFrame(WORD button, int controllerIndex = 0) const
+        {
+            return m_ControllerStates[controllerIndex].ButtonsReleasedThisFrame & button;
+        }
+        bool IsHeld(WORD button, int controllerIndex = 0) const
+        {
+            return m_ControllerStates[controllerIndex].CurrentControllerState.Gamepad.wButtons & button;
+        }
 
-    bool IsDpadDownReleased() const {
-        return !(m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN) && (m_PreviusState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN);
-    }
+        void UpdateControllerInfo()
+        {
+            int joystickCount = XUSER_MAX_COUNT;
+            m_ControllerStates.resize(joystickCount);
 
-    bool IsDpadLeftReleased() const {
-        return !(m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT) && (m_PreviusState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT);
-    }
+            for (int controllerIndex = 0; controllerIndex < joystickCount; controllerIndex++)
+            {
+                XINPUT_GAMEPAD_STATE& gamepadState = m_ControllerStates[controllerIndex];
 
-    bool IsDpadRightReleased() const {
-        return !(m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT) && (m_PreviusState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT);
-    }
+                memcpy(&gamepadState.PriviusControllerState, &gamepadState.CurrentControllerState, sizeof(XINPUT_STATE));
 
-private:
-    XINPUT_STATE m_PreviusState;
-    XINPUT_STATE m_CurrentState;
-};
+                ZeroMemory(&gamepadState.CurrentControllerState, sizeof(XINPUT_STATE));
 
-Controller::Controller() : m_Impl(std::make_unique<ControllerImpl>()) {}
+            	XInputGetState(controllerIndex, &gamepadState.CurrentControllerState);
 
-Controller::~Controller() = default;
+                WORD buttonChanges = gamepadState.CurrentControllerState.Gamepad.wButtons ^ gamepadState.PriviusControllerState.Gamepad.wButtons;
+                gamepadState.ButtonsPressedThisFrame = buttonChanges & gamepadState.CurrentControllerState.Gamepad.wButtons;
+                gamepadState.ButtonsReleasedThisFrame = buttonChanges & ~gamepadState.CurrentControllerState.Gamepad.wButtons;
+            }
+        }
 
-bool Controller::ProcessInput() {
-    return m_Impl->ProcessInput();
+        std::vector<XINPUT_GAMEPAD_STATE> m_ControllerStates{};
+    };
 }
 
-bool Controller::IsDpadUpPressed() const {
-    return m_Impl->IsDpadUpPressed();
+dae::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}
+{
+	
 }
 
-bool Controller::IsDpadDownPressed() const {
-    return m_Impl->IsDpadDownPressed();
+dae::InputManager::~InputManager() = default;
+
+void dae::InputManager::HandleControllerContinually() 
+{
+    
+    m_ControllerImpl->HandleControllerContinually(m_Commands);
 }
 
-bool Controller::IsDpadLeftPressed() const {
-    return m_Impl->IsDpadLeftPressed();
-}
-
-bool Controller::IsDpadRightPressed() const {
-    return m_Impl->IsDpadRightPressed();
-}
-
-bool Controller::IsDpadUpReleased() const {
-    return m_Impl->IsDpadUpReleased();
-}
-
-bool Controller::IsDpadDownReleased() const {
-    return m_Impl->IsDpadDownReleased();
-}
-
-bool Controller::IsDpadLeftReleased() const {
-    return m_Impl->IsDpadLeftReleased();
-}
-
-bool Controller::IsDpadRightReleased() const {
-    return m_Impl->IsDpadRightReleased();
-}
