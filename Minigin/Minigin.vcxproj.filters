@@ -22,11 +22,17 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{b325c92f-3fb4-427c-bea7-710c9ac9cf5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\PlayerComponents">
-      <UniqueIdentifier>{708fb6b6-aa2c-4ebc-9c93-47888ea57927}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components\AssigmentComponents">
       <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEvents">
+      <UniqueIdentifier>{163f3d03-1f72-42ef-9b25-a0993514d0dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\CharecterComponents">
+      <UniqueIdentifier>{708fb6b6-aa2c-4ebc-9c93-47888ea57927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\CharecterComponents\PlayerComponents">
+      <UniqueIdentifier>{04e4ac85-91b3-468b-a5cd-b16dba163a34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,15 +123,27 @@
     <ClInclude Include="GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>GameEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>GameEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="TempComands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Components\CharecterComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Components\CharecterComponents\PlayerComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
@@ -151,9 +169,6 @@
     </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
       <Filter>Components</Filter>
@@ -202,6 +217,27 @@
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>GameEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>GameEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TempComands.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Components\CharecterComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Components\CharecterComponents\PlayerComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

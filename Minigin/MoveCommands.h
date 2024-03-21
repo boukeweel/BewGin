@@ -5,6 +5,8 @@
 
 namespace dae
 {
+	class GameObject;
+
 	class MoveCommand final : public Command
 	{
 	public:

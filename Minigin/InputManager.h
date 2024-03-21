@@ -18,7 +18,7 @@ namespace dae
 		std::vector<SDL_Scancode> keyBoardkeys;
 		std::vector <WORD> ControllerButtons;
 
-		//for stick controls
+		//for stick controls not inplement yet, and not sure if need for galica 
 		std::vector <DWORD> ControllerAxis;
 
 		bool HasKeyboardKey(SDL_Scancode compareKey) const
@@ -35,6 +35,8 @@ namespace dae
 			return std::find(ControllerAxis.begin(), ControllerAxis.end(), compareAxis) != ControllerAxis.end();
 		}
 	};
+
+	//todo this should chance from strings to enum or somthing else, atleast not string
 	inline static const std::unordered_map<std::string, InputAction> INPUT_BUTTONS
 	{
 		{"W",{{SDL_SCANCODE_W} ,{}, {} }},
