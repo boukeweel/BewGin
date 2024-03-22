@@ -1,5 +1,7 @@
 #include "ScoreComponent.h"
 
+#include "GameObject.h"
+
 dae::ScoreComponent::ScoreComponent(GameObject* pparentObject) : Component(pparentObject)
 {
 }
@@ -7,7 +9,7 @@ dae::ScoreComponent::ScoreComponent(GameObject* pparentObject) : Component(ppare
 
 void dae::ScoreComponent::Won()
 {
-	//todo notify observer
+	GetParentObject()->GetSubject()->notify(GameEvents::PlayerWon, GetParentObject());
 }
 
 void dae::ScoreComponent::AddScore(int addAmount)
@@ -16,5 +18,5 @@ void dae::ScoreComponent::AddScore(int addAmount)
 	if (m_Score >= m_WinAmount)
 		Won();
 
-	//todo notify teks component
+	GetParentObject()->GetSubject()->notify(GameEvents::PlayerAddedScore, GetParentObject());
 }

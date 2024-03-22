@@ -10,6 +10,7 @@ namespace dae
 	{
 		PlayerDied,
 		PlayerTookDamages,
+		PlayerAddedScore,
 		PlayerWon
 	};
 

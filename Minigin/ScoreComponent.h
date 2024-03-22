@@ -6,7 +6,8 @@ namespace dae
 	class ScoreComponent :
 		public Component
 	{
-		void Won();
+	public:
+		
 		void AddScore(int addAmount);
 		int getScore() const { return m_Score; }
 
@@ -18,9 +19,13 @@ namespace dae
 		ScoreComponent& operator=(ScoreComponent&& other) = delete;
 
 	private:
+		void Won();
+
 		int m_Score{ 0 };
 		int m_WinAmount{ 10000 };
 	};
 }
+
+
 
 

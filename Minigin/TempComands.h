@@ -20,6 +20,22 @@ namespace dae
 		GameObject* m_TargetObject;
 		int m_Damages;
 	};
+
+	class Score final : public Command
+	{
+	public:
+		Score(GameObject* targetObject, int Dammages);
+		void Execute() override;
+
+		Score(const Score& other) = delete;
+		Score(Score&& other) = delete;
+		Score& operator=(const Score& other) = delete;
+		Score& operator=(Score&& other) = delete;
+
+	private:
+		GameObject* m_TargetObject;
+		int m_Score;
+	};
 }
 
 
