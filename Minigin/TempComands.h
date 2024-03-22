@@ -5,7 +5,7 @@ namespace dae
 {
 	class GameObject;
 
-	class DammagesPlayer final : public dae::Command
+	class DammagesPlayer final : public Command
 	{
 	public:
 		DammagesPlayer(GameObject* targetObject, int Dammages);
@@ -18,7 +18,7 @@ namespace dae
 
 	private:
 		GameObject* m_TargetObject;
-		int Dammages;
+		int m_Damages;
 	};
 }
 

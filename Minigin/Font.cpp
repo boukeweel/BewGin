@@ -19,3 +19,8 @@ dae::Font::~Font()
 {
 	TTF_CloseFont(m_font);
 }
+
+void dae::Font::ChangeSize(unsigned int /*newSize*/)
+{
+    //todo add the chance size function 
+}

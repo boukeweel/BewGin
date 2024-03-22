@@ -6,6 +6,7 @@
 
 dae::GameObject::GameObject() : m_PositionDirty{ false }
 {
+	m_subject = std::make_unique<Subject>();
 }
 
 void dae::GameObject::Update()

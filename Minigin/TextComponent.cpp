@@ -13,6 +13,10 @@ dae::TextComponent::TextComponent(GameObject* pparentObject,const std::string& t
 {
 }
 
+dae::TextComponent::TextComponent(GameObject* pparentObject, std::shared_ptr<Font> font) : TextComponent(pparentObject," ",font)
+{
+}
+
 void dae::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
@@ -60,9 +64,9 @@ void dae::TextComponent::SetFont(std::shared_ptr<Font> font)
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::SetFontSize(int size)
+void dae::TextComponent::SetFontSize(unsigned int size)
 {
-	m_FontSize = size;
+	m_pFont->ChangeSize(size);
 }
 
 

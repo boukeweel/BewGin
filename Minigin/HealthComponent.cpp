@@ -1,5 +1,7 @@
 #include "HealthComponent.h"
 
+#include "GameObject.h"
+
 dae::HealthComponent::HealthComponent(GameObject* pparentObject, int lifes) : Component(pparentObject), m_Lifes{ lifes }
 {
 }
@@ -9,18 +11,19 @@ void dae::HealthComponent::TakeDammages(int amount)
 	if(m_IsAlive)
 	{
 		m_Lifes -= amount;
+		GetParentObject()->GetSubject()->notify(GameEvents::PlayerTookDamages, GetParentObject());
+		
 		if (m_Lifes == 0)
 		{
 			Died();
 		}
-
-		//todo update teks idk what I should do with observer or just pass it true
+		
 	}
 }
 
 void dae::HealthComponent::Died()
 {
-	//todo notify a observer
+	GetParentObject()->GetSubject()->notify(GameEvents::PlayerDied, GetParentObject());
 	m_IsAlive = false;
 }
 
