@@ -9,14 +9,14 @@ namespace dae
 	enum class GameEvents
 	{
 		PlayerDied,
+		PlayerTookDammags,
 		PlayerWon
 	};
 
 	class Observer
 	{
 	public:
-		virtual void Notify(GameEvents event, GameObject* gameObject);
-
+		virtual void Notify(const GameEvents& event, GameObject* gameObject);
 
 		Observer() = default;
 		virtual ~Observer() = default;

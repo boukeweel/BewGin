@@ -1,6 +1,6 @@
 #include "HealthComponent.h"
 
-dae::HealthComponent::HealthComponent(GameObject* pparentObject, int lifes) : Component(pparentObject), m_Lifes{ lifes }
+dae::HealthComponent::HealthComponent(GameObject* pparentObject, int lifes) : Subject(pparentObject), m_Lifes{ lifes }
 {
 }
 

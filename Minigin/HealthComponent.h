@@ -1,10 +1,10 @@
 #pragma once
-#include "Component.h"
+#include "Subject.h"
 
 namespace dae
 {
 	class HealthComponent :
-		public Component
+		public Subject
 	{
 	public:
 		void TakeDammages(int amount);
