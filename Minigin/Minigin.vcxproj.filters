@@ -138,9 +138,6 @@
     <ClInclude Include="ScoreComponent.h">
       <Filter>Components\CharecterComponents\PlayerComponents</Filter>
     </ClInclude>
-    <ClInclude Include="TextObsever.h">
-      <Filter>GameEvents</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -221,7 +218,13 @@
     <ClCompile Include="GameTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Observer.cpp">
+      <Filter>GameEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
       <Filter>GameEvents</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
@@ -235,15 +238,6 @@
     </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components\CharecterComponents\PlayerComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Subject.cpp">
-      <Filter>GameEvents</Filter>
-    </ClCompile>
-    <ClCompile Include="TextObsever.cpp">
-      <Filter>GameEvents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

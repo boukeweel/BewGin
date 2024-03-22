@@ -192,7 +192,6 @@
     <ClInclude Include="FpsComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameTime.h" />
-    <ClInclude Include="TextObsever.h" />
     <ClInclude Include="ImGuiTrashTheCacheComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Minigin.h" />
@@ -228,7 +227,6 @@
     <ClCompile Include="FpsComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTime.cpp" />
-    <ClCompile Include="TextObsever.cpp" />
     <ClCompile Include="ImGuiTrashTheCacheComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
