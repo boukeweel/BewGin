@@ -45,13 +45,15 @@ namespace dae
 		{"D",{{SDL_SCANCODE_D} ,{}, {} }},
 
 		{"E",{{SDL_SCANCODE_E} ,{}, {} }},
+		{"C",{{SDL_SCANCODE_C} ,{}, {} }},
 
 		{"DpadUP",		{{} ,{XINPUT_GAMEPAD_DPAD_UP}   , {} }},
 		{"DpadDown",	{{} ,{XINPUT_GAMEPAD_DPAD_DOWN} , {} }},
 		{"DpadLeft",	{{} ,{XINPUT_GAMEPAD_DPAD_LEFT} , {} }},
 		{"DpadRight",	{{} ,{XINPUT_GAMEPAD_DPAD_RIGHT}, {} }},
 
-		{"DpadA",	{{SDL_SCANCODE_Q} ,{XINPUT_GAMEPAD_DPAD_RIGHT}, {} }}
+		{"DpadA",	{{SDL_SCANCODE_Q} ,{XINPUT_GAMEPAD_A}, {} }},
+		{"DpadX",	{{SDL_SCANCODE_X} ,{XINPUT_GAMEPAD_X}, {} }}
 	};
 
 	enum class ButtonState

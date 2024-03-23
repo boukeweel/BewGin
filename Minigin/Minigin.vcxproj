@@ -204,11 +204,12 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="ScoreTextObserver.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TempComands.h" />
     <ClInclude Include="TextComponent.h" />
-    <ClInclude Include="TextObserver.h" />
+    <ClInclude Include="LivesTextObserver.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="Transform.h" />
@@ -241,10 +242,11 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="ScoreTextObserver.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TempComands.cpp" />
     <ClCompile Include="TextComponent.cpp" />
-    <ClCompile Include="TextObserver.cpp" />
+    <ClCompile Include="LivesTextObserver.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureComponent.cpp" />
     <ClCompile Include="Transform.cpp" />
