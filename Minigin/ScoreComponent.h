@@ -22,7 +22,7 @@ namespace dae
 		void Won();
 
 		int m_Score{ 0 };
-		int m_WinAmount{ 10000 };
+		int m_WinAmount{ 1000 };
 	};
 }
 

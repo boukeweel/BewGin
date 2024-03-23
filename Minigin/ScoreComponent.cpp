@@ -15,8 +15,7 @@ void dae::ScoreComponent::Won()
 void dae::ScoreComponent::AddScore(int addAmount)
 {
 	m_Score += addAmount;
+	GetParentObject()->GetSubject()->notify(GameEvents::PlayerAddedScore, GetParentObject());
 	if (m_Score >= m_WinAmount)
 		Won();
-
-	GetParentObject()->GetSubject()->notify(GameEvents::PlayerAddedScore, GetParentObject());
 }
