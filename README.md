@@ -43,7 +43,7 @@ set the controlls for the players
 add the inputs to the input map so that its able to be used
 
 ### BewGin.cpp
-#### BewGin()
+**BewGin()**:
 Creates the window here you can set the Width and Height of the window
 
 #### ~BewGin()
