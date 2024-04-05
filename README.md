@@ -21,4 +21,56 @@ Download the latest release of this project and compile/run in visual studio. Si
 
 # BewGin Documantation
 
-here I will start to write documantation for the gameengine to keep it as clear for me and other poeple
+## Agenda
+
+1. [Mainfiles](#Mainfiles)
+
+# API 
+
+## Mainfiles
+### main.cpp
+#### main()
+gets the engine and calls the run function
+
+#### Load()
+load all the gameobjects for the test project in the game engine
+
+#### SetControllersPlayer1 SetControllersPlayer2
+set the controlls for the players
+
+#### AddTestingInputs
+add the inputs to the input map so that its able to be used
+
+### BewGin.cpp
+#### BewGin()
+Creates the window here you can set the Width and Height of the window
+
+#### ~BewGin()
+...
+
+#### Run()
+Starts the gameloop for the game
+the game loop is now limeted to around 60 fps
+
+#### PrintSDLVersion()
+prints out all the sdl versions that are being used 
+
+### Render.cpp
+
+### ResourceManager.cpp
+
+### scene.cpp
+
+### sceneManger.cpp
+
+### texture.cpp
+
+### font.cpp
+
+### singelton.h
+
+
+## Input
+### InputManger.h
+
+
