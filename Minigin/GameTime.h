@@ -7,7 +7,7 @@ namespace bew
 {
 	class GameTime final
 	{
-		friend class Minigin;
+		friend class BewGin;
 
 	public:
 		static double GetDeltaTime() { return s_DeltaTime; }

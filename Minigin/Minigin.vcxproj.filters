@@ -13,25 +13,31 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{186527d0-f848-4a66-85b9-ceaf486fef7b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="imgui">
       <UniqueIdentifier>{8899acbe-0f38-4277-ad0f-df776b392443}</UniqueIdentifier>
     </Filter>
     <Filter Include="Commands">
       <UniqueIdentifier>{b325c92f-3fb4-427c-bea7-710c9ac9cf5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\AssigmentComponents">
-      <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEvents">
       <UniqueIdentifier>{163f3d03-1f72-42ef-9b25-a0993514d0dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\CharecterComponents">
+    <Filter Include="Input">
+      <UniqueIdentifier>{16144297-e511-4a48-8738-9f7a8960b330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{f45724b7-d0c5-4d20-9985-d86b7c1ef04d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Components">
+      <UniqueIdentifier>{186527d0-f848-4a66-85b9-ceaf486fef7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Components\AssigmentComponents">
+      <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Components\CharecterComponents">
       <UniqueIdentifier>{708fb6b6-aa2c-4ebc-9c93-47888ea57927}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\CharecterComponents\PlayerComponents">
+    <Filter Include="GameObject\Components\CharecterComponents\PlayerComponents">
       <UniqueIdentifier>{04e4ac85-91b3-468b-a5cd-b16dba163a34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -48,15 +54,6 @@
     <ClInclude Include="Texture2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,17 +63,17 @@
     <ClInclude Include="Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
+    <ClInclude Include="BewGin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Components</Filter>
+      <Filter>GameObject\Components</Filter>
     </ClInclude>
     <ClInclude Include="TextComponent.h">
-      <Filter>Components</Filter>
+      <Filter>GameObject\Components</Filter>
     </ClInclude>
     <ClInclude Include="TextureComponent.h">
-      <Filter>Components</Filter>
+      <Filter>GameObject\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imconfig.h">
       <Filter>imgui</Filter>
@@ -109,16 +106,13 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="ImGuiTrashTheCacheComponent.h">
-      <Filter>Components\AssigmentComponents</Filter>
+      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClInclude>
     <ClInclude Include="RotatorComponent.h">
-      <Filter>Components\AssigmentComponents</Filter>
+      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClInclude>
     <ClInclude Include="FpsComponent.h">
-      <Filter>Components\AssigmentComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameTime.h">
       <Filter>Header Files</Filter>
@@ -133,10 +127,10 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="HealthComponent.h">
-      <Filter>Components\CharecterComponents</Filter>
+      <Filter>GameObject\Components\CharecterComponents</Filter>
     </ClInclude>
     <ClInclude Include="ScoreComponent.h">
-      <Filter>Components\CharecterComponents\PlayerComponents</Filter>
+      <Filter>GameObject\Components\CharecterComponents\PlayerComponents</Filter>
     </ClInclude>
     <ClInclude Include="LivesTextObserver.h">
       <Filter>GameEvents</Filter>
@@ -144,21 +138,24 @@
     <ClInclude Include="ScoreTextObserver.h">
       <Filter>GameEvents</Filter>
     </ClInclude>
+    <ClInclude Include="SubjectComponent.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
@@ -173,14 +170,14 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Minigin.cpp">
+    <ClCompile Include="BewGin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="TextureComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui.cpp">
       <Filter>imgui</Filter>
@@ -203,41 +200,32 @@
     <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Command.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
     <ClCompile Include="MoveCommands.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiTrashTheCacheComponent.cpp">
-      <Filter>Components\AssigmentComponents</Filter>
+      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClCompile>
     <ClCompile Include="RotatorComponent.cpp">
-      <Filter>Components\AssigmentComponents</Filter>
+      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClCompile>
     <ClCompile Include="FpsComponent.cpp">
-      <Filter>Components\AssigmentComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>GameEvents</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Components</Filter>
+      <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="TempComands.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="HealthComponent.cpp">
-      <Filter>Components\CharecterComponents</Filter>
+      <Filter>GameObject\Components\CharecterComponents</Filter>
     </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components\CharecterComponents\PlayerComponents</Filter>
+      <Filter>GameObject\Components\CharecterComponents\PlayerComponents</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>Source Files</Filter>
@@ -250,6 +238,18 @@
     </ClCompile>
     <ClCompile Include="ScoreTextObserver.cpp">
       <Filter>GameEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

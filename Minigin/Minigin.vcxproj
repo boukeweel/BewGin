@@ -193,7 +193,7 @@
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="ImGuiTrashTheCacheComponent.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Minigin.h" />
+    <ClInclude Include="BewGin.h" />
     <ClInclude Include="MoveCommands.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="HealthComponent.h" />
@@ -231,7 +231,7 @@
     <ClCompile Include="ImGuiTrashTheCacheComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Minigin.cpp" />
+    <ClCompile Include="BewGin.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />

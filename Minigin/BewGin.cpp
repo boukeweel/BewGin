@@ -5,7 +5,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <thread> 
-#include "Minigin.h"
+#include "BewGin.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -47,7 +47,7 @@ void PrintSDLVersion()
 		version.major, version.minor, version.patch);
 }
 
-bew::Minigin::Minigin(const std::string &dataPath)
+bew::BewGin::BewGin(const std::string &dataPath)
 {
 	PrintSDLVersion();
 	
@@ -74,7 +74,7 @@ bew::Minigin::Minigin(const std::string &dataPath)
 	ResourceManager::GetInstance().Init(dataPath);
 }
 
-bew::Minigin::~Minigin()
+bew::BewGin::~BewGin()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(g_window);
@@ -82,7 +82,7 @@ bew::Minigin::~Minigin()
 	SDL_Quit();
 }
 
-void bew::Minigin::Run(const std::function<void()>& load)
+void bew::BewGin::Run(const std::function<void()>& load)
 {
 	load();
 
