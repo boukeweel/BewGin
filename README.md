@@ -23,38 +23,45 @@ Download the latest release of this project and compile/run in visual studio. Si
 
 ## Agenda
 
+### API
+#### MainFiles
 1. [AI](#API)
 2. [Mainfiles](#Mainfiles)
+3. [main.cpp](#main.cpp)
+4. [BewGin.cpp](#BewGin.cpp)
+5. [Render.cpp](#Render.cpp)
+6. [ResourceManager.cpp](#ResourceManager.cpp)
+7. [scene.cpp](#scene.cpp)
+8. [sceneManger.cpp](#sceneManger.cpp)
+9. [texture.cpp](#texture.cpp)
+10. [font.cpp](#font.cpp)
+11. [singelton.h](#singelton.h)
+
+#### Input
+12. [InputManger.h](#InputManger.h)
 
 # API 
 
 ## Mainfiles
 ### main.cpp
-#### main()
-gets the engine and calls the run function
+- **main()**: Gets the engine and calls the run function.
 
-#### Load()
-load all the gameobjects for the test project in the game engine
+- **Load()**: Load all the game objects for the test project in the game engine.
 
-#### SetControllersPlayer1 SetControllersPlayer2
-set the controlls for the players
+- **SetControllersPlayer1 SetControllersPlayer2**: Set the controls for the players.
 
-#### AddTestingInputs
-add the inputs to the input map so that its able to be used
+- **AddTestingInputs**: Add the inputs to the input map so that it's able to be used.
 
 ### BewGin.cpp
-**BewGin()**:
-Creates the window here you can set the Width and Height of the window
 
-#### ~BewGin()
-...
+- **BewGin()**: Creates the window; here you can set the Width and Height of the window.
 
-#### Run()
-Starts the gameloop for the game
-the game loop is now limeted to around 60 fps
+- **~BewGin()**: ...
 
-#### PrintSDLVersion()
-prints out all the sdl versions that are being used 
+- **Run()**: Starts the game loop for the game; the game loop is now limited to around 60 fps.
+
+- **PrintSDLVersion()**: Prints out all the SDL versions that are being used.
+
 
 ### Render.cpp
 
