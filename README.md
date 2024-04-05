@@ -31,7 +31,7 @@ start of documantation, will just do a bit every day
 
 - **Load()**: Load all the game objects for the test project in the game engine.
 
-- **SetControllersPlayer1 SetControllersPlayer2**: Set the controls for the players.
+- **SetControllersPlayer1() SetControllersPlayer2()**: Set the controls for the players.
 
 - **AddTestingInputs**: Add the inputs to the input map so that it's able to be used.
 
