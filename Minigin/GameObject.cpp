@@ -4,12 +4,12 @@
 
 #include "ResourceManager.h"
 
-dae::GameObject::GameObject() : m_PositionDirty{ false }
+bew::GameObject::GameObject() : m_PositionDirty{ false }
 {
 	m_subject = std::make_unique<Subject>();
 }
 
-void dae::GameObject::Update()
+void bew::GameObject::Update()
 {
 	for (auto& component : m_pComponents)
 	{
@@ -17,7 +17,7 @@ void dae::GameObject::Update()
 	}
 }
 
-void dae::GameObject::Render() const
+void bew::GameObject::Render() const
 {
 	for (auto& element : m_pComponents)
 	{
@@ -25,24 +25,24 @@ void dae::GameObject::Render() const
 	}
 }
 
-dae::Transform dae::GameObject::GetTransform() const
+bew::Transform bew::GameObject::GetTransform() const
 {
 
 	return m_transform;
 }
 
-void dae::GameObject::Translate(const glm::vec3& translation)
+void bew::GameObject::Translate(const glm::vec3& translation)
 {
 	SetLocalPosition(m_LocalPosition + translation);
 }
 
 #pragma region hierargie
-dae::GameObject* dae::GameObject::GetParrent() const
+bew::GameObject* bew::GameObject::GetParrent() const
 {
 	return m_pParent;
 }
 
-void dae::GameObject::SetParrent(GameObject* pParent, bool KeepWorldPosition)
+void bew::GameObject::SetParrent(GameObject* pParent, bool KeepWorldPosition)
 {
 	if (m_pParent == pParent || pParent == this || IsChild(pParent))
 	{
@@ -73,27 +73,27 @@ void dae::GameObject::SetParrent(GameObject* pParent, bool KeepWorldPosition)
 	}
 }
 
-int dae::GameObject::GetChildCount() const
+int bew::GameObject::GetChildCount() const
 {
 	return static_cast<int>(m_pChildren.size());
 }
 
-dae::GameObject* dae::GameObject::GetChildAtIndex(int index) const
+bew::GameObject* bew::GameObject::GetChildAtIndex(int index) const
 {
 	return m_pChildren[index];
 }
 
-void dae::GameObject::AddChild(GameObject* child)
+void bew::GameObject::AddChild(GameObject* child)
 {
 	m_pChildren.emplace_back(child);
 }
 
-void dae::GameObject::RemoveChild(GameObject* child)
+void bew::GameObject::RemoveChild(GameObject* child)
 {
 	child->SetParrent(nullptr);
 }
 
-bool dae::GameObject::IsChild(GameObject* newParent) const
+bool bew::GameObject::IsChild(GameObject* newParent) const
 {
 	auto it = std::find(std::begin(m_pChildren), std::end(m_pChildren), newParent);
 
@@ -102,32 +102,32 @@ bool dae::GameObject::IsChild(GameObject* newParent) const
 #pragma endregion
 
 #pragma region Postion
-void dae::GameObject::SetPosition(float x, float y)
+void bew::GameObject::SetPosition(float x, float y)
 {
 	SetLocalPosition({ x,y,0 });
 
 	m_transform.SetPosition(GetWorldPosition());
 }
 
-void dae::GameObject::SetPosition(const glm::vec3& pos)
+void bew::GameObject::SetPosition(const glm::vec3& pos)
 {
 	SetPosition(pos.x, pos.y);
 }
 
-glm::vec3& dae::GameObject::GetWorldPosition()
+glm::vec3& bew::GameObject::GetWorldPosition()
 {
 	if (m_PositionDirty)
 		UpdateWorldPosition();
 	return m_WorldPosition;
 }
 
-void dae::GameObject::SetLocalPosition(const glm::vec3& pos)
+void bew::GameObject::SetLocalPosition(const glm::vec3& pos)
 {
 	m_LocalPosition = pos;
 	SetPositionDirty();
 }
 
-void dae::GameObject::SetPositionDirty()
+void bew::GameObject::SetPositionDirty()
 {
 	m_PositionDirty = true;
 
@@ -140,7 +140,7 @@ void dae::GameObject::SetPositionDirty()
 	}
 }
 
-void dae::GameObject::UpdateWorldPosition()
+void bew::GameObject::UpdateWorldPosition()
 {
 	if (m_PositionDirty)
 	{

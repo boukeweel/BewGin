@@ -2,7 +2,7 @@
 #include "Observer.h"
 #include "TextComponent.h"
 
-namespace dae
+namespace bew
 {
 	class LivesTextObserver :
 		public Observer

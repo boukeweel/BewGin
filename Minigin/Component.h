@@ -1,7 +1,7 @@
 #pragma once
 #include "Transform.h"
 
-namespace dae
+namespace bew
 {
 	class GameObject;
 

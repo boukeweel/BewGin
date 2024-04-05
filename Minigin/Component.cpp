@@ -1,18 +1,18 @@
 #include "Component.h"
 
-dae::Component::Component(GameObject* pparentObject) :m_pParentObject{ pparentObject }
+bew::Component::Component(GameObject* pparentObject) :m_pParentObject{ pparentObject }
 {
 }
 
-dae::Component::~Component()
+bew::Component::~Component()
 {
 }
 
-void dae::Component::Update()
+void bew::Component::Update()
 {
 }
 
-dae::GameObject* dae::Component::GetParentObject() const
+bew::GameObject* bew::Component::GetParentObject() const
 {
 	return m_pParentObject;
 }

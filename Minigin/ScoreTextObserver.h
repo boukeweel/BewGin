@@ -2,7 +2,7 @@
 #include "Observer.h"
 #include "TextComponent.h"
 
-namespace dae
+namespace bew
 {
 	class ScoreTextObserver :
 		public Observer

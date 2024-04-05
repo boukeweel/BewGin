@@ -4,13 +4,13 @@
 #include "LivesTextObserver.h"
 #include "ScoreComponent.h"
 
-dae::ScoreTextObserver::ScoreTextObserver(TextComponent* pTextComponent) : m_TextComponent{ pTextComponent }
+bew::ScoreTextObserver::ScoreTextObserver(TextComponent* pTextComponent) : m_TextComponent{ pTextComponent }
 {
 	//to set the first base text
 	m_ScoreTxt = m_TextComponent->getText();
 }
 
-void dae::ScoreTextObserver::Notify(GameEvents event, GameObject* gameObject)
+void bew::ScoreTextObserver::Notify(GameEvents event, GameObject* gameObject)
 {
 	switch (event)
 	{

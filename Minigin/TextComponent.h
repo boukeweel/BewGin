@@ -5,7 +5,7 @@
 #include "string"
 #include "Transform.h"
 
-namespace dae
+namespace bew
 {
 	class Font;
 	class Texture2D;

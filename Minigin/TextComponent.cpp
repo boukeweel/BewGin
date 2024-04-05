@@ -8,16 +8,16 @@
 #include "Renderer.h"
 #include "Texture2D.h"
 
-dae::TextComponent::TextComponent(GameObject* pparentObject,const std::string& text, std::shared_ptr<Font> font):
+bew::TextComponent::TextComponent(GameObject* pparentObject,const std::string& text, std::shared_ptr<Font> font):
 	m_NeedsUpdate(true), m_Text(text), m_pFont(std::move(font)), m_pTextTexture(nullptr), Component(pparentObject), m_FontSize{1}
 {
 }
 
-dae::TextComponent::TextComponent(GameObject* pparentObject, std::shared_ptr<Font> font) : TextComponent(pparentObject," ",font)
+bew::TextComponent::TextComponent(GameObject* pparentObject, std::shared_ptr<Font> font) : TextComponent(pparentObject," ",font)
 {
 }
 
-void dae::TextComponent::Update()
+void bew::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{
@@ -38,7 +38,7 @@ void dae::TextComponent::Update()
 	}
 }
 
-void dae::TextComponent::Render() const
+void bew::TextComponent::Render() const
 {
 	if (m_pTextTexture != nullptr)
 	{
@@ -47,24 +47,24 @@ void dae::TextComponent::Render() const
 	}
 }
 
-void dae::TextComponent::SetText(const std::string& text)
+void bew::TextComponent::SetText(const std::string& text)
 {
 	m_Text = text;
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::SetPosition(float x, float y)
+void bew::TextComponent::SetPosition(float x, float y)
 {
 	GetParentObject()->GetTransform().SetPosition(x, y, 0.0f);
 }
 
-void dae::TextComponent::SetFont(std::shared_ptr<Font> font)
+void bew::TextComponent::SetFont(std::shared_ptr<Font> font)
 {
 	m_pFont = std::move(font);
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::SetFontSize(unsigned int size)
+void bew::TextComponent::SetFontSize(unsigned int size)
 {
 	m_pFont->ChangeSize(size);
 }

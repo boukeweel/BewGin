@@ -2,11 +2,11 @@
 #include <SDL_ttf.h>
 #include "Font.h"
 
-TTF_Font* dae::Font::GetFont() const {
+TTF_Font* bew::Font::GetFont() const {
 	return m_font;
 }
 
-dae::Font::Font(const std::string& fullPath, unsigned int size) : m_font(nullptr)
+bew::Font::Font(const std::string& fullPath, unsigned int size) : m_font(nullptr)
 {
 	m_font = TTF_OpenFont(fullPath.c_str(), size);
 	if (m_font == nullptr) 
@@ -15,12 +15,12 @@ dae::Font::Font(const std::string& fullPath, unsigned int size) : m_font(nullptr
 	}
 }
 
-dae::Font::~Font()
+bew::Font::~Font()
 {
 	TTF_CloseFont(m_font);
 }
 
-void dae::Font::ChangeSize(unsigned int /*newSize*/)
+void bew::Font::ChangeSize(unsigned int /*newSize*/)
 {
     //todo add the chance size function 
 }

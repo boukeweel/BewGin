@@ -4,13 +4,13 @@
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
 
-dae::LivesTextObserver::LivesTextObserver(TextComponent* pTextComponent) : m_TextComponent{pTextComponent}
+bew::LivesTextObserver::LivesTextObserver(TextComponent* pTextComponent) : m_TextComponent{pTextComponent}
 {
 	//to set the first base text
 	m_livesTxt = m_TextComponent->getText();
 }
 
-void dae::LivesTextObserver::Notify(GameEvents event, GameObject* gameObject)
+void bew::LivesTextObserver::Notify(GameEvents event, GameObject* gameObject)
 {
 	switch (event)
 	{

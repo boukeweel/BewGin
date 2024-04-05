@@ -2,11 +2,11 @@
 
 #include "GameObject.h"
 
-dae::HealthComponent::HealthComponent(GameObject* pparentObject, int lifes) : Component(pparentObject), m_Lifes{ lifes }
+bew::HealthComponent::HealthComponent(GameObject* pparentObject, int lifes) : Component(pparentObject), m_Lifes{ lifes }
 {
 }
 
-void dae::HealthComponent::TakeDammages(int amount)
+void bew::HealthComponent::TakeDammages(int amount)
 {
 	if(m_IsAlive)
 	{
@@ -21,13 +21,13 @@ void dae::HealthComponent::TakeDammages(int amount)
 	}
 }
 
-void dae::HealthComponent::Died()
+void bew::HealthComponent::Died()
 {
 	GetParentObject()->GetSubject()->notify(GameEvents::PlayerDied, GetParentObject());
 	m_IsAlive = false;
 }
 
-void dae::HealthComponent::SetLifes(int amoutLives)
+void bew::HealthComponent::SetLifes(int amoutLives)
 {
 	if (!m_IsAlive)
 		m_IsAlive = true;
@@ -35,7 +35,7 @@ void dae::HealthComponent::SetLifes(int amoutLives)
 	m_Lifes = amoutLives;
 }
 
-void dae::HealthComponent::SetBackAlive()
+void bew::HealthComponent::SetBackAlive()
 {
 	SetLifes(1);
 }

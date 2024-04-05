@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace dae
+namespace bew
 {
 	class GameObject;
 	//this should become something the user can add things to

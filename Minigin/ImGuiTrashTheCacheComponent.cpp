@@ -6,11 +6,11 @@
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_sdl2.h"
 
-dae::ImGuiTrashTheCacheComponent::ImGuiTrashTheCacheComponent(GameObject* pParentObject): Component(pParentObject)
+bew::ImGuiTrashTheCacheComponent::ImGuiTrashTheCacheComponent(GameObject* pParentObject): Component(pParentObject)
 {
 }
 
-void dae::ImGuiTrashTheCacheComponent::Render() const
+void bew::ImGuiTrashTheCacheComponent::Render() const
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
@@ -24,7 +24,7 @@ void dae::ImGuiTrashTheCacheComponent::Render() const
 }
 
 
-void dae::ImGuiTrashTheCacheComponent::GraphsExOne() const
+void bew::ImGuiTrashTheCacheComponent::GraphsExOne() const
 {
 	ImGui::Begin("Graph ex1");
 
@@ -42,7 +42,7 @@ void dae::ImGuiTrashTheCacheComponent::GraphsExOne() const
 	ImGui::End();
 }
 
-void dae::ImGuiTrashTheCacheComponent::GraphsExTwo() const
+void bew::ImGuiTrashTheCacheComponent::GraphsExTwo() const
 {
 	ImGui::Begin("Graph ex2");
 
@@ -75,7 +75,7 @@ void dae::ImGuiTrashTheCacheComponent::GraphsExTwo() const
 }
 
 
-std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExOne(int samples) const
+std::vector<float> bew::ImGuiTrashTheCacheComponent::MeasureExOne(int samples) const
 {
 	const int size = 100000000;
 	int* buffer = new int[size];
@@ -108,7 +108,7 @@ std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExOne(int samples) c
 	return durations;
 }
 
-std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExTwo(int samples) const
+std::vector<float> bew::ImGuiTrashTheCacheComponent::MeasureExTwo(int samples) const
 {
 	const int size = 10000000;
 	GameObject3D* buffer = new GameObject3D[size];
@@ -142,7 +142,7 @@ std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExTwo(int samples) c
 	return durations;
 }
 
-std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExTwoAlt(int samples) const
+std::vector<float> bew::ImGuiTrashTheCacheComponent::MeasureExTwoAlt(int samples) const
 {
 	const int size = 10000000;
 	GameObject3DAlt* buffer = new GameObject3DAlt[size];
@@ -177,7 +177,7 @@ std::vector<float> dae::ImGuiTrashTheCacheComponent::MeasureExTwoAlt(int samples
 }
 
 
-void dae::ImGuiTrashTheCacheComponent::CleanUpMeasurements(std::vector<float>& durations) const
+void bew::ImGuiTrashTheCacheComponent::CleanUpMeasurements(std::vector<float>& durations) const
 {
 	auto minIndex = std::min_element(durations.begin(), durations.end()) - durations.begin();
 	auto maxIndex = std::max_element(durations.begin(), durations.end()) - durations.begin();

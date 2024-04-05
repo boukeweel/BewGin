@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-bool dae::InputManager::ProcessInput()
+bool bew::InputManager::ProcessInput()
 {
 	HandleControllerContinually();
 	HandleKeyboardContinually();
@@ -26,7 +26,7 @@ bool dae::InputManager::ProcessInput()
 	return true;
 }
 
-void dae::InputManager::HandleKeyboardContinually() const
+void bew::InputManager::HandleKeyboardContinually() const
 {
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 
@@ -43,7 +43,7 @@ void dae::InputManager::HandleKeyboardContinually() const
 	}
 }
 
-bool dae::InputManager::HandelKeyBoardEvent(const SDL_Event& event) const
+bool bew::InputManager::HandelKeyBoardEvent(const SDL_Event& event) const
 {
 	switch (event.type)
 	{
@@ -62,7 +62,7 @@ bool dae::InputManager::HandelKeyBoardEvent(const SDL_Event& event) const
 	return false;
 }
 
-void dae::CommandInfo::TryExecutedKeyBoard(ButtonState checkState, SDL_Scancode key) const
+void bew::CommandInfo::TryExecutedKeyBoard(ButtonState checkState, SDL_Scancode key) const
 {
 	if (m_ButtonState != checkState)
 		return;
@@ -74,7 +74,7 @@ void dae::CommandInfo::TryExecutedKeyBoard(ButtonState checkState, SDL_Scancode 
 
 }
 
-void dae::CommandInfo::TryExecutedControllerButton(ButtonState checkState, int controllerIndex, WORD button) const
+void bew::CommandInfo::TryExecutedControllerButton(ButtonState checkState, int controllerIndex, WORD button) const
 {
 	if (m_ButtonState != checkState)
 		return;
@@ -88,7 +88,7 @@ void dae::CommandInfo::TryExecutedControllerButton(ButtonState checkState, int c
 	m_Command->Execute();
 }
 
-void dae::CommandInfo::TryExecutedControllerAxis(int controllerIndex, DWORD axis) const
+void bew::CommandInfo::TryExecutedControllerAxis(int controllerIndex, DWORD axis) const
 {
 	if (!m_Action.HasControllerAxis(axis))
 		return;

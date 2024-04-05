@@ -1,5 +1,5 @@
 #pragma once
-namespace dae
+namespace bew
 {
 	template <typename T>
 	class Singleton

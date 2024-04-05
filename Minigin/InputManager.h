@@ -11,7 +11,7 @@
 #include "string"
 #include <SDL_events.h>
 
-namespace dae
+namespace bew
 {
 	//todo rewrite this its to mutch form julian
 	struct InputAction

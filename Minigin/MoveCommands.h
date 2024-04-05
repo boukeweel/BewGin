@@ -3,7 +3,7 @@
 
 #include "Command.h"
 
-namespace dae
+namespace bew
 {
 	class GameObject;
 

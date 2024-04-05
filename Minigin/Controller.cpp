@@ -4,13 +4,13 @@
 #include <XInput.h>
 #pragma comment(lib,"xinput.lib")
 
-namespace dae
+namespace bew
 {
     class InputManager::ControllerImpl
     {
 
     public:
-        void HandleControllerContinually(const std::vector<dae::CommandInfo>& Commands)
+        void HandleControllerContinually(const std::vector<bew::CommandInfo>& Commands)
         {
            
             UpdateControllerInfo();
@@ -22,14 +22,14 @@ namespace dae
                
                 for (auto&& controllerButton : command.m_Action.ControllerButtons)
                 {
-                    if (command.m_ButtonState == dae::ButtonState::Held && IsHeld(controllerButton, command.m_ControllerIndex))
+                    if (command.m_ButtonState == bew::ButtonState::Held && IsHeld(controllerButton, command.m_ControllerIndex))
                     {
                         command.m_Command->Execute();
                         break;
                     }
-                    else if (command.m_ButtonState == dae::ButtonState::Down && IsDownThisFrame(controllerButton, command.m_ControllerIndex))
+                    else if (command.m_ButtonState == bew::ButtonState::Down && IsDownThisFrame(controllerButton, command.m_ControllerIndex))
                         command.m_Command->Execute();
-                    else if (command.m_ButtonState == dae::ButtonState::Up && IsUpThisFrame(controllerButton, command.m_ControllerIndex))
+                    else if (command.m_ButtonState == bew::ButtonState::Up && IsUpThisFrame(controllerButton, command.m_ControllerIndex))
                         command.m_Command->Execute();
                 }
             }
@@ -83,14 +83,14 @@ namespace dae
     };
 }
 
-dae::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}
+bew::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}
 {
 	
 }
 
-dae::InputManager::~InputManager() = default;
+bew::InputManager::~InputManager() = default;
 
-void dae::InputManager::HandleControllerContinually() 
+void bew::InputManager::HandleControllerContinually() 
 {
     
     m_ControllerImpl->HandleControllerContinually(m_Commands);

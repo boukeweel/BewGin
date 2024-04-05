@@ -3,7 +3,7 @@
 
 #include "Singleton.h"
 
-namespace dae
+namespace bew
 {
 	class GameTime final
 	{

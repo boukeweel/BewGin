@@ -3,7 +3,7 @@
 #include "memory"
 #include "Observer.h"
 
-namespace dae
+namespace bew
 {
 	class Subject
 	{

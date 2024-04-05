@@ -2,18 +2,18 @@
 
 #include "GameObject.h"
 
-dae::ScoreComponent::ScoreComponent(GameObject* pparentObject) : Component(pparentObject)
+bew::ScoreComponent::ScoreComponent(GameObject* pparentObject) : Component(pparentObject)
 {
 }
 
 
-void dae::ScoreComponent::Won()
+void bew::ScoreComponent::Won()
 {
 	GetParentObject()->GetSubject()->notify(GameEvents::PlayerWon, GetParentObject());
 	m_Won = true;
 }
 
-void dae::ScoreComponent::AddScore(int addAmount)
+void bew::ScoreComponent::AddScore(int addAmount)
 {
 	if(m_Won != true)
 	{

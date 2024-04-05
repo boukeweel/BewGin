@@ -7,7 +7,7 @@
 #include "GameTime.h"
 #include "TextComponent.h"
 
-dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentObject),m_fps{0},m_FrameCount{0},m_AccumulatedTime{0},m_UpdateInterval{0.5f}
+bew::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentObject),m_fps{0},m_FrameCount{0},m_AccumulatedTime{0},m_UpdateInterval{0.5f}
 {
 	if(GetParentObject()->HasComponent<TextComponent>())
 	{
@@ -15,7 +15,7 @@ dae::FpsComponent::FpsComponent(GameObject* pParentObject) :  Component(pParentO
 	}
 }
 
-void dae::FpsComponent::Update()
+void bew::FpsComponent::Update()
 {
     m_AccumulatedTime += GameTime::GetDeltaTimeFloat();
     m_FrameCount++;

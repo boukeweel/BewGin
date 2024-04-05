@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "TextComponent.h"
 
-namespace dae
+namespace bew
 {
     class FpsComponent final :
         public Component

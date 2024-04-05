@@ -27,7 +27,7 @@ public:
 	int ID;
 };
 
-namespace dae
+namespace bew
 {
 	class ImGuiTrashTheCacheComponent final : public Component
 	{

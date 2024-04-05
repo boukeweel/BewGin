@@ -5,12 +5,12 @@
 #include "ResourceManager.h"
 #include "Texture2D.h"
 
-dae::TextureComponent::TextureComponent(GameObject* pParentObject, const std::string& filename) : Component(pParentObject)
+bew::TextureComponent::TextureComponent(GameObject* pParentObject, const std::string& filename) : Component(pParentObject)
 {
 	SetTexture(filename);
 }
 
-void dae::TextureComponent::Render() const
+void bew::TextureComponent::Render() const
 {
 	if (m_pTexture != nullptr)
 	{
@@ -22,12 +22,12 @@ void dae::TextureComponent::Render() const
 	}
 }
 
-void dae::TextureComponent::SetTexture(const std::string& filename)
+void bew::TextureComponent::SetTexture(const std::string& filename)
 {
 	m_pTexture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
-std::shared_ptr<dae::Texture2D> dae::TextureComponent::GetTexture()
+std::shared_ptr<bew::Texture2D> bew::TextureComponent::GetTexture()
 {
 	return m_pTexture;
 }

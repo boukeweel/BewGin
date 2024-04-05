@@ -5,12 +5,12 @@
 
 #include "GameTime.h"
 
-dae::RotatorComponent::RotatorComponent(GameObject* pParentObject, float radius, float RotationSpeed):Component(pParentObject),m_Radius{ radius },m_RotationSpeed{RotationSpeed},m_CurrentRotation{0}
+bew::RotatorComponent::RotatorComponent(GameObject* pParentObject, float radius, float RotationSpeed):Component(pParentObject),m_Radius{ radius },m_RotationSpeed{RotationSpeed},m_CurrentRotation{0}
 {
 	m_Center = GetParentObject()->GetTransform().GetPosition();
 }
 
-void dae::RotatorComponent::Update()
+void bew::RotatorComponent::Update()
 {
 	m_CurrentRotation += m_RotationSpeed * GameTime::GetDeltaTimeFloat();
 

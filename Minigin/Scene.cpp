@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iostream>
 
-using namespace dae;
+using namespace bew;
 
 unsigned int Scene::m_idCounter = 0;
 
