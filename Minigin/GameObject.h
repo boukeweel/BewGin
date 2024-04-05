@@ -30,8 +30,6 @@ namespace bew
 		int GetChildCount() const;
 		GameObject* GetChildAtIndex(int index) const;
 
-		Subject* GetSubject() { return m_subject.get(); }
-
 		template<typename T,typename... Args>
 		T* AddComponent(Args&&... args)
 		{
@@ -94,7 +92,5 @@ namespace bew
 
 		void UpdateWorldPosition();
 		void SetLocalPosition(const glm::vec3& pos);
-
-		std::unique_ptr<Subject> m_subject{nullptr};
 	};
 }

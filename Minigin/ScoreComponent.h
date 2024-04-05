@@ -3,15 +3,17 @@
 
 namespace bew
 {
+	enum class GameEvents;
+
 	class ScoreComponent :
 		public Component
 	{
 	public:
-		
 		void AddScore(int addAmount);
 		int getScore() const { return m_Score; }
 
 		ScoreComponent(GameObject* pparentObject);
+		void notifySubject(GameEvents event, GameObject* object);
 		virtual ~ScoreComponent() = default;
 		ScoreComponent(const ScoreComponent& other) = delete;
 		ScoreComponent(ScoreComponent&& other) = delete;

@@ -8,6 +8,8 @@ bew::ScoreTextObserver::ScoreTextObserver(TextComponent* pTextComponent) : m_Tex
 {
 	//to set the first base text
 	m_ScoreTxt = m_TextComponent->getText();
+	//still feels not good but bit better
+	m_TextComponent->SetText(m_ScoreTxt + "0");
 }
 
 void bew::ScoreTextObserver::Notify(GameEvents event, GameObject* gameObject)

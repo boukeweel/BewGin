@@ -6,7 +6,6 @@
 
 bew::GameObject::GameObject() : m_PositionDirty{ false }
 {
-	m_subject = std::make_unique<Subject>();
 }
 
 void bew::GameObject::Update()

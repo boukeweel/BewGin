@@ -8,6 +8,8 @@ bew::LivesTextObserver::LivesTextObserver(TextComponent* pTextComponent) : m_Tex
 {
 	//to set the first base text
 	m_livesTxt = m_TextComponent->getText();
+
+	m_TextComponent->SetText(m_livesTxt + "3");
 }
 
 void bew::LivesTextObserver::Notify(GameEvents event, GameObject* gameObject)

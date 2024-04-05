@@ -9,9 +9,9 @@ namespace bew
 	{
 	public:
 		Component(GameObject* pparentObject);
-		virtual ~Component();
+		virtual ~Component() = default;
 
-		virtual void Update();
+		virtual void Update(){}
 		virtual void Render() const{}
 
 	protected:
