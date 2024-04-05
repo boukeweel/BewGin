@@ -26,8 +26,8 @@ Download the latest release of this project and compile/run in visual studio. Si
 ### API
 #### MainFiles
 1. [AI](#API)
-2. [Mainfiles](#Mainfiles)
-3. [main.cpp](#main.cpp)
+2. [Mainfiles](##Mainfiles)
+3. [main.cpp](###main.cpp)
 4. [BewGin.cpp](#BewGin.cpp)
 5. [Render.cpp](#Render.cpp)
 6. [ResourceManager.cpp](#ResourceManager.cpp)
