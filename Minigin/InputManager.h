@@ -35,28 +35,46 @@ namespace bew
 		{
 			return std::find(ControllerAxis.begin(), ControllerAxis.end(), compareAxis) != ControllerAxis.end();
 		}
+
+		bool operator==(const InputAction& other) const {
+
+			//first check if the size is the same if not its not the same inputaction
+			if(keyBoardkeys.size() != other.keyBoardkeys.size()
+				|| ControllerButtons.size() != other.ControllerButtons.size()
+				|| ControllerAxis.size() != other.ControllerAxis.size())
+			{
+				return false;
+			}
+
+			//makes early exit if one of the things is already mis matched
+			if(!keyBoardkeys.empty())
+			{
+				for (size_t i = 0; i < keyBoardkeys.size(); ++i) {
+					if (keyBoardkeys[i] != other.keyBoardkeys[i]) {
+						return false;
+					}
+				}
+			}
+			if (!ControllerButtons.empty())
+			{
+				for (size_t i = 0; i < ControllerButtons.size(); ++i) {
+					if (ControllerButtons[i] != other.ControllerButtons[i]) {
+						return false;
+					}
+				}
+			}
+			if (!ControllerAxis.empty())
+			{
+				for (size_t i = 0; i < ControllerAxis.size(); ++i) {
+					if (ControllerAxis[i] != other.ControllerAxis[i]) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
 	};
-
-	//todo this should chance from strings to enum or somthing else, atleast not string
-	inline static const std::unordered_map<std::string, InputAction> INPUT_BUTTONS
-	{
-		{"W",{{SDL_SCANCODE_W} ,{}, {} }},
-		{"S",{{SDL_SCANCODE_S} ,{}, {} }},
-		{"A",{{SDL_SCANCODE_A} ,{}, {} }},
-		{"D",{{SDL_SCANCODE_D} ,{}, {} }},
-
-		{"E",{{SDL_SCANCODE_E} ,{}, {} }},
-		{"C",{{SDL_SCANCODE_C} ,{}, {} }},
-
-		{"DpadUP",		{{} ,{XINPUT_GAMEPAD_DPAD_UP}   , {} }},
-		{"DpadDown",	{{} ,{XINPUT_GAMEPAD_DPAD_DOWN} , {} }},
-		{"DpadLeft",	{{} ,{XINPUT_GAMEPAD_DPAD_LEFT} , {} }},
-		{"DpadRight",	{{} ,{XINPUT_GAMEPAD_DPAD_RIGHT}, {} }},
-
-		{"DpadA",	{{SDL_SCANCODE_Q} ,{XINPUT_GAMEPAD_A}, {} }},
-		{"DpadX",	{{SDL_SCANCODE_X} ,{XINPUT_GAMEPAD_X}, {} }}
-	};
-
 	enum class ButtonState
 	{
 		Up,
@@ -71,7 +89,6 @@ namespace bew
 		InputAction m_Action;
 		std::unique_ptr<Command> m_Command;
 
-
 		void TryExecutedKeyBoard(ButtonState checkState, SDL_Scancode key) const;
 		void TryExecutedControllerButton(ButtonState checkState, int controllerIndex, WORD button) const;
 		void TryExecutedControllerAxis(int controllerIndex, DWORD axis) const;
@@ -85,13 +102,28 @@ namespace bew
 
 		bool ProcessInput();
 
-		void AddCommand(std::string Key, ButtonState state, int conrollerIndex, std::unique_ptr<Command> command)
+		void AddCommand(const std::string& Key, ButtonState state, int conrollerIndex, std::unique_ptr<Command> command)
 		{
-			m_Commands.emplace_back(state, conrollerIndex, INPUT_BUTTONS.at(Key), std::move(command));
+			m_Commands.emplace_back(state, conrollerIndex, InputButtons.at(Key), std::move(command));
 		}
-		void AddCommand(std::string Key, ButtonState state, std::unique_ptr<Command> command)
+		void AddCommand(const std::string& Key, ButtonState state, std::unique_ptr<Command> command)
 		{
-			m_Commands.emplace_back(state, 0, INPUT_BUTTONS.at(Key), std::move(command));
+			AddCommand(Key, state, 0, std::move(command));
+		}
+
+		void RemoveCommand(const std::string& key) {
+			m_Commands.erase(std::remove_if(m_Commands.begin(), m_Commands.end(),
+				[this,&key](const CommandInfo& cmd) { return cmd.m_Action == InputButtons.at(key); }),
+				m_Commands.end());
+		}
+
+		void AddInput(const std::string& key, const InputAction& actions)
+		{
+			InputButtons[key] = actions;
+		}
+		void RemoveInput(const std::string& key)
+		{
+			InputButtons.erase(key);
 		}
 
 		class ControllerImpl;
@@ -100,7 +132,8 @@ namespace bew
 		bool HandelKeyBoardEvent(const SDL_Event& event) const;
 		void HandleKeyboardContinually() const;
 		void HandleControllerContinually();
-
+	private:
+		std::unordered_map<std::string, InputAction> InputButtons{};
 		std::vector<CommandInfo> m_Commands;
 	};
 
