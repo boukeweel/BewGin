@@ -21,24 +21,7 @@ Download the latest release of this project and compile/run in visual studio. Si
 
 # BewGin Documantation
 
-## Agenda
-
-### API
-#### MainFiles
-1. [AI](#API)
-2. [Mainfiles](##Mainfiles)
-3. [main.cpp](###main.cpp)
-4. [BewGin.cpp](#BewGin.cpp)
-5. [Render.cpp](#Render.cpp)
-6. [ResourceManager.cpp](#ResourceManager.cpp)
-7. [scene.cpp](#scene.cpp)
-8. [sceneManger.cpp](#sceneManger.cpp)
-9. [texture.cpp](#texture.cpp)
-10. [font.cpp](#font.cpp)
-11. [singelton.h](#singelton.h)
-
-#### Input
-12. [InputManger.h](#InputManger.h)
+start of documantation, will just do a bit every day 
 
 # API 
 
