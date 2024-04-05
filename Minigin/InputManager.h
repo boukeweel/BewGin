@@ -13,6 +13,7 @@
 
 namespace dae
 {
+	//todo rewrite this its to mutch form julian
 	struct InputAction
 	{
 		std::vector<SDL_Scancode> keyBoardkeys;

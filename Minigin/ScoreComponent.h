@@ -21,6 +21,7 @@ namespace dae
 	private:
 		void Won();
 
+		bool m_Won{false};
 		int m_Score{ 0 };
 		int m_WinAmount{ 1000 };
 	};
