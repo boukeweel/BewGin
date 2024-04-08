@@ -13,6 +13,8 @@
 
 namespace bew
 {
+	enum class ActionKeys;
+
 	//todo rewrite this its to mutch form julian
 	struct InputAction
 	{
@@ -102,26 +104,26 @@ namespace bew
 
 		bool ProcessInput();
 
-		void AddCommand(const std::string& Key, ButtonState state, int conrollerIndex, std::unique_ptr<Command> command)
+		void AddCommand(const ActionKeys& Key, ButtonState state, int conrollerIndex, std::unique_ptr<Command> command)
 		{
 			m_Commands.emplace_back(state, conrollerIndex, InputButtons.at(Key), std::move(command));
 		}
-		void AddCommand(const std::string& Key, ButtonState state, std::unique_ptr<Command> command)
+		void AddCommand(const ActionKeys& Key, ButtonState state, std::unique_ptr<Command> command)
 		{
 			AddCommand(Key, state, 0, std::move(command));
 		}
 
-		void RemoveCommand(const std::string& key) {
+		void RemoveCommand(const ActionKeys& key) {
 			m_Commands.erase(std::remove_if(m_Commands.begin(), m_Commands.end(),
 				[this,&key](const CommandInfo& cmd) { return cmd.m_Action == InputButtons.at(key); }),
 				m_Commands.end());
 		}
 
-		void AddInput(const std::string& key, const InputAction& actions)
+		void AddInput(const ActionKeys& key, const InputAction& actions)
 		{
 			InputButtons[key] = actions;
 		}
-		void RemoveInput(const std::string& key)
+		void RemoveInput(const ActionKeys& key)
 		{
 			InputButtons.erase(key);
 		}
@@ -133,7 +135,7 @@ namespace bew
 		void HandleKeyboardContinually() const;
 		void HandleControllerContinually();
 	private:
-		std::unordered_map<std::string, InputAction> InputButtons{};
+		std::unordered_map<ActionKeys, InputAction> InputButtons{};
 		std::vector<CommandInfo> m_Commands;
 	};
 

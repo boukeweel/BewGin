@@ -229,6 +229,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="ImGuiTrashTheCacheComponent.cpp" />
+    <ClCompile Include="InputKeyEnum.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="BewGin.cpp" />

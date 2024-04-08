@@ -251,5 +251,8 @@
     <ClCompile Include="Transform.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="InputKeyEnum.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
