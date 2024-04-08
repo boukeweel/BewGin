@@ -120,24 +120,26 @@ glm::vec3& bew::GameObject::GetWorldPosition()
 		UpdateWorldPosition();
 	return m_WorldPosition;
 }
-void bew::GameObject::SetRotation(float x, float y, float z)
-{
-	m_transform.SetRotation(x, y, z);
-}
 
+///Rotation is in degrees
+void bew::GameObject::SetRotation(float x)
+{
+	m_transform.SetRotation(x, 0, 0);
+}
+///Rotation is in degrees
 void bew::GameObject::SetRotation(const glm::vec3& rotation)
 {
-	SetRotation(rotation.x, rotation.y, rotation.z);
+	SetRotation(rotation.x);
 }
 
-void bew::GameObject::SetScale(float x, float y, float z)
+void bew::GameObject::SetScale(float x, float y)
 {
-	m_transform.SetScale(x, y, z);
+	m_transform.SetScale(x, y,0);
 }
 
 void bew::GameObject::SetScale(const glm::vec3& scale)
 {
-	SetScale(scale.x, scale.y, scale.z);
+	SetScale(scale.x, scale.y);
 }
 
 void bew::GameObject::SetPositionDirty()

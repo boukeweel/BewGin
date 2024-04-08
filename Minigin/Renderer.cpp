@@ -60,23 +60,32 @@ void bew::Renderer::Destroy()
 	}
 }
 
-void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
+void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float angle) const
 {
 	SDL_Rect dst{};
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
 	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+	SDL_Point center;
+	center.x = dst.w / 2;
+	center.y = dst.h / 2;
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, angle, &center, SDL_FLIP_NONE);
 }
 
-void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
+void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height , const float angle) const
 {
 	SDL_Rect dst{};
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
 	dst.w = static_cast<int>(width);
 	dst.h = static_cast<int>(height);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+
+	SDL_Point center;
+	center.x = dst.w / 2;
+	center.y = dst.h / 2;
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, angle, &center, SDL_FLIP_NONE);
 }
 
 SDL_Renderer* bew::Renderer::GetSDLRenderer() const { return m_renderer; }
