@@ -10,26 +10,22 @@ namespace bew
     {
 
     public:
-        void HandleControllerContinually(const std::vector<bew::CommandInfo>& Commands)
+        void HandleControllerContinually(const std::vector<CommandInfo>& Commands)
         {
-           
             UpdateControllerInfo();
-           
-            
 
             for (auto&& command : Commands)
             {
-               
                 for (auto&& controllerButton : command.m_Action.ControllerButtons)
                 {
-                    if (command.m_ButtonState == bew::ButtonState::Held && IsHeld(controllerButton, command.m_ControllerIndex))
+                    if (command.m_ButtonState == ButtonState::Held && IsHeld(controllerButton, command.m_ControllerIndex))
                     {
                         command.m_Command->Execute();
                         break;
                     }
-                    else if (command.m_ButtonState == bew::ButtonState::Down && IsDownThisFrame(controllerButton, command.m_ControllerIndex))
+                    else if (command.m_ButtonState == ButtonState::Down && IsDownThisFrame(controllerButton, command.m_ControllerIndex))
                         command.m_Command->Execute();
-                    else if (command.m_ButtonState == bew::ButtonState::Up && IsUpThisFrame(controllerButton, command.m_ControllerIndex))
+                    else if (command.m_ButtonState == ButtonState::Up && IsUpThisFrame(controllerButton, command.m_ControllerIndex))
                         command.m_Command->Execute();
                 }
             }
@@ -60,7 +56,8 @@ namespace bew
 
         void UpdateControllerInfo()
         {
-            int joystickCount = XUSER_MAX_COUNT;
+            //todo find a way to detect how many controllers are connected 
+            const int joystickCount = XUSER_MAX_COUNT;
             m_ControllerStates.resize(joystickCount);
 
             for (int controllerIndex = 0; controllerIndex < joystickCount; controllerIndex++)
@@ -85,14 +82,12 @@ namespace bew
 
 bew::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}
 {
-	
 }
 
 bew::InputManager::~InputManager() = default;
 
 void bew::InputManager::HandleControllerContinually() 
 {
-    
     m_ControllerImpl->HandleControllerContinually(m_Commands);
 }
 
