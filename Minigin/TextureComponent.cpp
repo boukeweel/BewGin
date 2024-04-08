@@ -15,8 +15,8 @@ void bew::TextureComponent::Render() const
 	if (m_pTexture != nullptr)
 	{
 		const auto& pos = GetParentObject()->GetWorldPosition();
-		float width  = static_cast<float>(m_pTexture->GetSize().x);
-		float height = static_cast<float>(m_pTexture->GetSize().y);
+		float width  = static_cast<float>(m_pTexture->GetSize().x) * GetParentObject()->GetTransform().GetScale().x;
+		float height = static_cast<float>(m_pTexture->GetSize().y) * GetParentObject()->GetTransform().GetScale().y;
 
 		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x - width / 2, pos.y - height / 2 , width,height);
 	}

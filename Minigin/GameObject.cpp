@@ -1,7 +1,4 @@
 #include "GameObject.h"
-
-#include <iostream>
-
 #include "ResourceManager.h"
 
 bew::GameObject::GameObject() : m_PositionDirty{ false }
@@ -26,7 +23,6 @@ void bew::GameObject::Render() const
 
 bew::Transform bew::GameObject::GetTransform() const
 {
-
 	return m_transform;
 }
 
@@ -112,6 +108,11 @@ void bew::GameObject::SetPosition(const glm::vec3& pos)
 {
 	SetPosition(pos.x, pos.y);
 }
+void bew::GameObject::SetLocalPosition(const glm::vec3& pos)
+{
+	m_LocalPosition = pos;
+	SetPositionDirty();
+}
 
 glm::vec3& bew::GameObject::GetWorldPosition()
 {
@@ -119,11 +120,24 @@ glm::vec3& bew::GameObject::GetWorldPosition()
 		UpdateWorldPosition();
 	return m_WorldPosition;
 }
-
-void bew::GameObject::SetLocalPosition(const glm::vec3& pos)
+void bew::GameObject::SetRotation(float x, float y, float z)
 {
-	m_LocalPosition = pos;
-	SetPositionDirty();
+	m_transform.SetRotation(x, y, z);
+}
+
+void bew::GameObject::SetRotation(const glm::vec3& rotation)
+{
+	SetRotation(rotation.x, rotation.y, rotation.z);
+}
+
+void bew::GameObject::SetScale(float x, float y, float z)
+{
+	m_transform.SetScale(x, y, z);
+}
+
+void bew::GameObject::SetScale(const glm::vec3& scale)
+{
+	SetScale(scale.x, scale.y, scale.z);
 }
 
 void bew::GameObject::SetPositionDirty()

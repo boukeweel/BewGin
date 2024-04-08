@@ -17,8 +17,15 @@ namespace bew
 		void Render() const;
 
 		void SetPosition(float x, float y);
-		void SetPosition(const glm::vec3& pos);
+		void SetPosition(const glm::vec3& pos); 
 		glm::vec3& GetWorldPosition();
+
+		void SetRotation(float x, float y, float z);
+		void SetRotation(const glm::vec3& rotation);
+
+		void SetScale(float x, float y, float z);
+		void SetScale(const glm::vec3& scale);
+
 		Transform GetTransform() const;
 
 		//todo temp
@@ -73,7 +80,7 @@ namespace bew
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
-		void SetPositionDirty();
+		
 	private:
 		Transform m_transform{};
 		glm::vec3 m_WorldPosition{};
@@ -85,6 +92,10 @@ namespace bew
 		std::vector<GameObject*> m_pChildren{};
 
 		bool m_PositionDirty{false};
+		bool m_RotationDirty{ false };
+		bool m_ScaleDirty{ false };
+
+		void SetPositionDirty();
 
 		void AddChild(GameObject* child);
 		void RemoveChild(GameObject* child);
@@ -92,5 +103,7 @@ namespace bew
 
 		void UpdateWorldPosition();
 		void SetLocalPosition(const glm::vec3& pos);
+
+		
 	};
 }
