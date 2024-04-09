@@ -57,15 +57,10 @@ namespace bew
 		template<typename T>
 		T* GetComponent() const
 		{
-			for (const auto& component : m_pComponents)
-			{
-				T* desiredComponent = dynamic_cast<T*>(component.get());
-				if(desiredComponent != nullptr)
-				{
-					return desiredComponent;
-				}
-			}
-			return nullptr;
+			auto it = std::find_if(m_pComponents.begin(), m_pComponents.end(), [](const auto& component) {
+				return dynamic_cast<T*>(component.get()) != nullptr;
+				});
+			return (it != m_pComponents.end()) ? dynamic_cast<T*>(it->get()) : nullptr;
 		}
 		template<typename T>
 		bool HasComponent() const
@@ -92,8 +87,6 @@ namespace bew
 		std::vector<GameObject*> m_pChildren{};
 
 		bool m_PositionDirty{false};
-		bool m_RotationDirty{ false };
-		bool m_ScaleDirty{ false };
 
 		void SetPositionDirty();
 
@@ -103,7 +96,5 @@ namespace bew
 
 		void UpdateWorldPosition();
 		void SetLocalPosition(const glm::vec3& pos);
-
-		
 	};
 }
