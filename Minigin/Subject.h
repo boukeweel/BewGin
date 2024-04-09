@@ -5,7 +5,7 @@
 
 namespace bew
 {
-	class Subject
+	class Subject final
 	{
 	public:
 		void AddObserver(std::unique_ptr<Observer> observer);

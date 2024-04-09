@@ -4,7 +4,7 @@
 
 namespace bew
 {
-	class BewGin
+	class BewGin final 
 	{
 	public:
 		explicit BewGin(const std::string& dataPath);

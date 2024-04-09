@@ -4,7 +4,7 @@
 
 namespace bew
 {
-	class LivesTextObserver :
+	class LivesTextObserver final :
 		public Observer
 	{
 	public:

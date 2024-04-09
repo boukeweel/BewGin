@@ -4,7 +4,7 @@
 
 namespace bew
 {
-	class ScoreTextObserver :
+	class ScoreTextObserver final :
 		public Observer
 	{
 	public:

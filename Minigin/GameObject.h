@@ -74,8 +74,6 @@ namespace bew
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
-
-		
 	private:
 		Transform m_transform{};
 		glm::vec3 m_WorldPosition{};

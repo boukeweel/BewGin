@@ -4,7 +4,7 @@
 
 namespace bew
 {
-	class SubjectComponent :
+	class SubjectComponent final :
 		public Component
 	{
 	public:

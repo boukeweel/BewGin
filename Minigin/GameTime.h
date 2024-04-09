@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+#include <thread>
 
 #include "Singleton.h"
 
@@ -21,7 +22,9 @@ namespace bew
 		static std::chrono::milliseconds GetSleepTime()
 		{
 			const auto ms_per_frame = std::chrono::milliseconds(1000 / s_MaxFrames);
-			return std::chrono::duration_cast<std::chrono::milliseconds>(s_CurrentTime + ms_per_frame - std::chrono::high_resolution_clock::now());
+			const auto frame_start_time = std::chrono::steady_clock::now();
+			const auto frame_end_time = frame_start_time + ms_per_frame;
+			return std::chrono::duration_cast<std::chrono::milliseconds>(frame_end_time - frame_start_time);
 		}
 
 

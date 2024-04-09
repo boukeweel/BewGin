@@ -5,7 +5,7 @@ namespace bew
 {
 	enum class GameEvents;
 
-	class HealthComponent :
+	class HealthComponent final :
 		public Component
 	{
 	public:
