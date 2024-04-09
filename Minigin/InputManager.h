@@ -86,6 +86,12 @@ namespace bew
 
 	struct CommandInfo
 	{
+		//not sure why I need this but other wise I get a error in the galiga project, even tho I did not get one when minigin was the exe
+		CommandInfo(ButtonState buttonState, int controllerIndex, const InputAction& action, std::unique_ptr<Command> command)
+			: m_ButtonState(buttonState), m_ControllerIndex(controllerIndex), m_Action(action), m_Command(std::move(command))
+		{
+		}
+
 		ButtonState m_ButtonState;
 		int m_ControllerIndex;
 		InputAction m_Action;
