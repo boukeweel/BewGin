@@ -8,7 +8,7 @@ using namespace bew;
 
 unsigned int Scene::m_idCounter = 0;
 
-Scene::Scene(const std::string& name) : m_name(name) {}
+Scene::Scene(const std::string& name) : m_name(name), m_id(m_idCounter++){}
 
 Scene::~Scene() = default;
 

@@ -22,6 +22,7 @@
 #include "TextComponent.h"
 #include "TextureComponent.h"
 #include <InputKeyEnum.cpp>
+#include <iostream>
 
 void SetControllersPlayer1(bew::InputManager& input, bew::GameObject* player)
 {

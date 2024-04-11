@@ -16,48 +16,54 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{12c7fa29-dbdd-4c59-b07f-5ea760868cc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{66e28c2a-f6a2-458f-b194-ece0b8bda536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{ef55fe01-8d73-4bc8-a2ae-e4e1a531fb92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galiga.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HealthComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesTextObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveCommands.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreTextObserver.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MoveCommands.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="TempComands.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTextObserver.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesTextObserver.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LivesTextObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveCommands.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="ScoreComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreTextObserver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="TempComands.h">
-      <Filter>Header Files</Filter>
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveCommands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesTextObserver.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTextObserver.h">
+      <Filter>Events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

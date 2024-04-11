@@ -1,28 +1,56 @@
 #include "SceneManager.h"
 
+#include <iostream>
+
 #include "GameObject.h"
 #include "Scene.h"
 #include "TextComponent.h"
 
 void bew::SceneManager::Update()
 {
-	for(auto& scene : m_scenes)
-	{
-		scene->Update();
-	}
+	m_scenes[m_CurrentScene]->Update();
 }
 
-void bew::SceneManager::Render()
+void bew::SceneManager::Render() const
 {
-	for (const auto& scene : m_scenes)
-	{
-		scene->Render();
-	}
+	m_scenes[m_CurrentScene]->Render();
 }
 
 bew::Scene& bew::SceneManager::CreateScene(const std::string& name)
 {
+	//checking if a other scene with the same name exists
+	for (const auto& scene : m_scenes)
+	{
+		if (scene->GetName().size() == name.size())
+		{
+			if (scene->GetName() == name)
+			{
+				std::cout << "You where trying to create a scene with the name: " << name << " but a differenct scene with the same name already exists\n";
+				return *m_scenes[scene->getId()];
+			}
+		}
+	}
+
 	const auto& scene = std::shared_ptr<Scene>(new Scene(name));
 	m_scenes.push_back(scene);
 	return *scene;
+}
+
+void bew::SceneManager::LoadScene(const unsigned int& idScene)
+{
+	m_CurrentScene = idScene;
+}
+
+void bew::SceneManager::LoadScene(const std::string& name)
+{
+	for (const auto& scene : m_scenes)
+	{
+		if(scene->GetName().size() == name.size())
+		{
+			if(scene->GetName() == name)
+			{
+				m_CurrentScene = scene->getId();
+			}
+		}
+	}
 }
