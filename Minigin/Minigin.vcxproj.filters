@@ -34,12 +34,6 @@
     <Filter Include="GameObject\Components\AssigmentComponents">
       <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Components\CharecterComponents">
-      <UniqueIdentifier>{708fb6b6-aa2c-4ebc-9c93-47888ea57927}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Components\CharecterComponents\PlayerComponents">
-      <UniqueIdentifier>{04e4ac85-91b3-468b-a5cd-b16dba163a34}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -102,9 +96,6 @@
     <ClInclude Include="Command.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="MoveCommands.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
     <ClInclude Include="ImGuiTrashTheCacheComponent.h">
       <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClInclude>
@@ -121,21 +112,6 @@
       <Filter>GameEvents</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
-      <Filter>GameEvents</Filter>
-    </ClInclude>
-    <ClInclude Include="TempComands.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>GameObject\Components\CharecterComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>GameObject\Components\CharecterComponents\PlayerComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="LivesTextObserver.h">
-      <Filter>GameEvents</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreTextObserver.h">
       <Filter>GameEvents</Filter>
     </ClInclude>
     <ClInclude Include="SubjectComponent.h">
@@ -197,9 +173,6 @@
     <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="MoveCommands.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
     <ClCompile Include="ImGuiTrashTheCacheComponent.cpp">
       <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClCompile>
@@ -215,25 +188,10 @@
     <ClCompile Include="Component.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
-    <ClCompile Include="TempComands.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>GameObject\Components\CharecterComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>GameObject\Components\CharecterComponents\PlayerComponents</Filter>
-    </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Subject.cpp">
-      <Filter>GameEvents</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesTextObserver.cpp">
-      <Filter>GameEvents</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreTextObserver.cpp">
       <Filter>GameEvents</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">

@@ -4,7 +4,7 @@
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
 
-bew::LivesTextObserver::LivesTextObserver(TextComponent* pTextComponent) : m_TextComponent{pTextComponent}
+LivesTextObserver::LivesTextObserver(bew::TextComponent* pTextComponent) : m_TextComponent{pTextComponent}
 {
 	//to set the first base text
 	m_livesTxt = m_TextComponent->getText();
@@ -12,11 +12,11 @@ bew::LivesTextObserver::LivesTextObserver(TextComponent* pTextComponent) : m_Tex
 	m_TextComponent->SetText(m_livesTxt + "3");
 }
 
-void bew::LivesTextObserver::Notify(GameEvents event, GameObject* gameObject)
+void LivesTextObserver::Notify(bew::GameEvents event, bew::GameObject* gameObject)
 {
 	switch (event)
 	{
-	case GameEvents::PlayerTookDamages:
+	case bew::GameEvents::PlayerTookDamages:
 		if (gameObject->HasComponent<HealthComponent>())
 		{
 			int lives = gameObject->GetComponent<HealthComponent>()->GetLives();
@@ -24,7 +24,7 @@ void bew::LivesTextObserver::Notify(GameEvents event, GameObject* gameObject)
 			m_TextComponent->SetText(m_livesTxt + std::to_string(lives));
 		}
 		break;
-	case GameEvents::PlayerDied:
+	case bew::GameEvents::PlayerDied:
 		m_TextComponent->SetText(m_livesTxt + "Dead");
 		break;
 	}

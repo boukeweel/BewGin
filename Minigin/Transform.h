@@ -3,7 +3,6 @@
 
 namespace bew
 {
-	//todo add rotation, position and scale
 	class Transform final
 	{
 	public:

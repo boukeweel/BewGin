@@ -4,7 +4,7 @@
 #include "LivesTextObserver.h"
 #include "ScoreComponent.h"
 
-bew::ScoreTextObserver::ScoreTextObserver(TextComponent* pTextComponent) : m_TextComponent{ pTextComponent }
+ScoreTextObserver::ScoreTextObserver(bew::TextComponent* pTextComponent) : m_TextComponent{ pTextComponent }
 {
 	//to set the first base text
 	m_ScoreTxt = m_TextComponent->getText();
@@ -12,16 +12,16 @@ bew::ScoreTextObserver::ScoreTextObserver(TextComponent* pTextComponent) : m_Tex
 	m_TextComponent->SetText(m_ScoreTxt + "0");
 }
 
-void bew::ScoreTextObserver::Notify(GameEvents event, GameObject* gameObject)
+void ScoreTextObserver::Notify(bew::GameEvents event, bew::GameObject* gameObject)
 {
 	switch (event)
 	{
 		//wanted to do it in one observer but it does not work like this
-	case GameEvents::PlayerWon:
+	case bew::GameEvents::PlayerWon:
 		m_TextComponent->SetText(m_ScoreTxt + "WON");
 		//trigger achivement
 		break;
-	case GameEvents::PlayerAddedScore:
+	case bew::GameEvents::PlayerAddedScore:
 		if (gameObject->HasComponent<ScoreComponent>())
 		{
 			int score = gameObject->GetComponent<ScoreComponent>()->getScore();

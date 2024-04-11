@@ -3,13 +3,13 @@ namespace bew
 	//should be added on
 	enum class ActionKeys
 	{
-		w,
-		a,
-		s,
-		d,
+		MoveUpKeyBoard,
+		MoveLeftKeyBoard,
+		MoveDownKeyBoard,
+		MoveRightKeyBoard,
 
-		e,
-		c,
+		ActionKeyOneKeyBoard,
+		ActionKeyTwoKeyBoard,
 
 		DpadUp,
 		DpadDown,

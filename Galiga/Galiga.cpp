@@ -25,35 +25,35 @@
 
 void SetControllersPlayer1(bew::InputManager& input, bew::GameObject* player)
 {
-	input.AddCommand(bew::ActionKeys::w, bew::ButtonState::Held, std::make_unique<bew::MoveCommand>(player, glm::vec3(0, -1, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::s, bew::ButtonState::Held, std::make_unique<bew::MoveCommand>(player, glm::vec3(0, 1, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::d, bew::ButtonState::Held, std::make_unique<bew::MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::a, bew::ButtonState::Held, std::make_unique<bew::MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveUpKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(0, -1, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveDownKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(0, 1, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
 
-	input.AddCommand(bew::ActionKeys::e, bew::ButtonState::Up, std::make_unique<bew::DammagesPlayer>(player, 1));
-	input.AddCommand(bew::ActionKeys::c, bew::ButtonState::Up, std::make_unique<bew::Score>(player, 100));
+	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Up, std::make_unique<DammagesPlayer>(player, 1));
+	input.AddCommand(bew::ActionKeys::ActionKeyTwoKeyBoard, bew::ButtonState::Up, std::make_unique<Score>(player, 100));
 }
 
 void SetControllersPlayer2(bew::InputManager& input, bew::GameObject* player)
 {
-	input.AddCommand(bew::ActionKeys::DpadUp, bew::ButtonState::Held, 0, std::make_unique<bew::MoveCommand>(player, glm::vec3(0, -1, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::DpadDown, bew::ButtonState::Held, 0, std::make_unique<bew::MoveCommand>(player, glm::vec3(0, 1, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, 0, std::make_unique<bew::MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, 0, std::make_unique<bew::MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadUp, bew::ButtonState::Held, 0, std::make_unique<MoveCommand>(player, glm::vec3(0, -1, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadDown, bew::ButtonState::Held, 0, std::make_unique<MoveCommand>(player, glm::vec3(0, 1, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, 0, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, 0, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
 
-	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Up, std::make_unique<bew::DammagesPlayer>(player, 1));
-	input.AddCommand(bew::ActionKeys::DpadX, bew::ButtonState::Up, std::make_unique<bew::Score>(player, 100));
+	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Up, std::make_unique<DammagesPlayer>(player, 1));
+	input.AddCommand(bew::ActionKeys::DpadX, bew::ButtonState::Up, std::make_unique<Score>(player, 100));
 }
 
 void AddTestingInputs(bew::InputManager& input)
 {
-	input.AddInput(bew::ActionKeys::w, { {SDL_SCANCODE_W}, {}, {} });
-	input.AddInput(bew::ActionKeys::s, { {SDL_SCANCODE_S}, {}, {} });
-	input.AddInput(bew::ActionKeys::a, { {SDL_SCANCODE_A}, {}, {} });
-	input.AddInput(bew::ActionKeys::d, { {SDL_SCANCODE_D}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_W}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_S}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_A}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { {SDL_SCANCODE_D}, {}, {} });
 
-	input.AddInput(bew::ActionKeys::e, { {SDL_SCANCODE_E}, {}, {} });
-	input.AddInput(bew::ActionKeys::c, { {SDL_SCANCODE_C}, {}, {} });
+	input.AddInput(bew::ActionKeys::ActionKeyOneKeyBoard, { {SDL_SCANCODE_E}, {}, {} });
+	input.AddInput(bew::ActionKeys::ActionKeyTwoKeyBoard, { {SDL_SCANCODE_C}, {}, {} });
 
 	input.AddInput(bew::ActionKeys::DpadUp, { {}, {XINPUT_GAMEPAD_DPAD_UP}, {} });
 	input.AddInput(bew::ActionKeys::DpadDown, { {}, {XINPUT_GAMEPAD_DPAD_DOWN}, {} });
@@ -110,8 +110,8 @@ void load()
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
 	Player1->SetPosition(200, 200);
-	Player1->AddComponent<bew::HealthComponent>(3);
-	Player1->AddComponent<bew::ScoreComponent>();
+	Player1->AddComponent<HealthComponent>(3);
+	Player1->AddComponent<ScoreComponent>();
 
 	auto Player1ScoreText = std::make_unique<bew::GameObject>();
 	Player1ScoreText->SetPosition(0, 185);
@@ -123,8 +123,8 @@ void load()
 
 	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
 
-	Player1Subject->GetSubject()->AddObserver(std::make_unique<bew::LivesTextObserver>(textLivesp1));
-	Player1Subject->GetSubject()->AddObserver(std::make_unique<bew::ScoreTextObserver>(textScorep1));
+	Player1Subject->GetSubject()->AddObserver(std::make_unique<LivesTextObserver>(textLivesp1));
+	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
 	scene.Add(std::move(Player1HealthText));
 	scene.Add(std::move(Player1ScoreText));
@@ -136,8 +136,8 @@ void load()
 	auto Player2 = std::make_unique<bew::GameObject>();
 	Player2->AddComponent<bew::TextureComponent>("Player2.png");
 	Player2->SetPosition(220, 200);
-	Player2->AddComponent<bew::HealthComponent>(3);
-	Player2->AddComponent<bew::ScoreComponent>();
+	Player2->AddComponent<HealthComponent>(3);
+	Player2->AddComponent<ScoreComponent>();
 
 	auto Player2ScoreText = std::make_unique<bew::GameObject>();
 	Player2ScoreText->SetPosition(0, 215);
@@ -149,8 +149,8 @@ void load()
 
 	auto Player2Subject = Player2->AddComponent<bew::SubjectComponent>();
 
-	Player2Subject->GetSubject()->AddObserver(std::make_unique<bew::ScoreTextObserver>(textScorep2));
-	Player2Subject->GetSubject()->AddObserver(std::make_unique<bew::LivesTextObserver>(textLivesp2));
+	Player2Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep2));
+	Player2Subject->GetSubject()->AddObserver(std::make_unique<LivesTextObserver>(textLivesp2));
 
 	scene.Add(std::move(Player2ScoreText));
 	scene.Add(std::move(Player2HealthText));
