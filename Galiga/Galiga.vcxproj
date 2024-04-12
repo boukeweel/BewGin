@@ -151,20 +151,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="Galiga.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="LivesTextObserver.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
+    <ClCompile Include="ObjectPoolingComponent.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreTextObserver.cpp" />
+    <ClCompile Include="ShootCommand.cpp" />
     <ClCompile Include="TempComands.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="LivesTextObserver.h" />
     <ClInclude Include="MoveCommands.h" />
+    <ClInclude Include="ObjectPoolingComponent.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreTextObserver.h" />
+    <ClInclude Include="ShootCommand.h" />
     <ClInclude Include="TempComands.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

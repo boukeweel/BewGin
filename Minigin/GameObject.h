@@ -37,6 +37,9 @@ namespace bew
 		int GetChildCount() const;
 		GameObject* GetChildAtIndex(int index) const;
 
+		bool GetIsActive() { return m_IsActive; }
+		void SetIsActive(const bool& active) { m_IsActive = active; }
+
 		template<typename T,typename... Args>
 		T* AddComponent(Args&&... args)
 		{
@@ -85,6 +88,8 @@ namespace bew
 		std::vector<GameObject*> m_pChildren{};
 
 		bool m_PositionDirty{false};
+
+		bool m_IsActive{false};
 
 		void SetPositionDirty();
 

@@ -10,6 +10,9 @@ MoveCommand::MoveCommand(bew::GameObject* targetObject, const glm::vec3& Directi
 
 void MoveCommand::Execute()
 {
+	if(!m_TargetObject->GetIsActive())
+		return;
+
 	glm::vec3 velocity = glm::normalize(m_Direction) * m_Speed;
 
 	m_TargetObject->Translate(velocity * bew::GameTime::GetDeltaTimeFloat());

@@ -59,8 +59,8 @@ bew::BewGin::BewGin(const std::string &dataPath)
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		640,
-		480,
+		448,
+		576,
 		SDL_WINDOW_OPENGL
 	);
 	if (g_window == nullptr) 

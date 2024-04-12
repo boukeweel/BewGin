@@ -7,6 +7,9 @@ bew::GameObject::GameObject() : m_PositionDirty{ false }
 
 void bew::GameObject::Update()
 {
+	if(!m_IsActive)
+		return;
+
 	for (auto& component : m_pComponents)
 	{
 		component->Update();
@@ -15,6 +18,9 @@ void bew::GameObject::Update()
 
 void bew::GameObject::Render() const
 {
+	if (!m_IsActive)
+		return;
+
 	for (auto& element : m_pComponents)
 	{
 		element->Render();
@@ -28,6 +34,8 @@ bew::Transform bew::GameObject::GetTransform() const
 
 void bew::GameObject::Translate(const glm::vec3& translation)
 {
+	if (!m_IsActive)
+		return;
 	SetLocalPosition(m_LocalPosition + translation);
 }
 

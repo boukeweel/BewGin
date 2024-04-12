@@ -27,7 +27,7 @@ private:
 class Score final : public bew::Command
 {
 public:
-	Score(bew::GameObject* targetObject, int Dammages);
+	Score(bew::GameObject* targetObject, int Score);
 	void Execute() override;
 
 	Score(const Score& other) = delete;
@@ -38,6 +38,21 @@ public:
 private:
 	bew::GameObject* m_TargetObject;
 	int m_Score;
+};
+
+class SwitchScene final : public bew::Command
+{
+public:
+	SwitchScene(unsigned int scene);
+	void Execute() override;
+
+	SwitchScene(const Score& other) = delete;
+	SwitchScene(Score&& other) = delete;
+	SwitchScene& operator=(const Score& other) = delete;
+	SwitchScene& operator=(Score&& other) = delete;
+
+private:
+	unsigned int m_Scene;
 };
 
 

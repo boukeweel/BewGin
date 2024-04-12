@@ -24,7 +24,9 @@
 #include <InputKeyEnum.cpp>
 #include <iostream>
 
-void SetControllersPlayer1(bew::InputManager& input, bew::GameObject* player)
+#include "BulletComponent.h"
+
+void SetControllsDemoLevelP1(bew::InputManager& input, bew::GameObject* player)
 {
 	input.AddCommand(bew::ActionKeys::MoveUpKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(0, -1, 0), 100.f));
 	input.AddCommand(bew::ActionKeys::MoveDownKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(0, 1, 0), 100.f));
@@ -34,8 +36,7 @@ void SetControllersPlayer1(bew::InputManager& input, bew::GameObject* player)
 	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Up, std::make_unique<DammagesPlayer>(player, 1));
 	input.AddCommand(bew::ActionKeys::ActionKeyTwoKeyBoard, bew::ButtonState::Up, std::make_unique<Score>(player, 100));
 }
-
-void SetControllersPlayer2(bew::InputManager& input, bew::GameObject* player)
+void SetControllsDemoLevelP2(bew::InputManager& input, bew::GameObject* player)
 {
 	input.AddCommand(bew::ActionKeys::DpadUp, bew::ButtonState::Held, 0, std::make_unique<MoveCommand>(player, glm::vec3(0, -1, 0), 100.f));
 	input.AddCommand(bew::ActionKeys::DpadDown, bew::ButtonState::Held, 0, std::make_unique<MoveCommand>(player, glm::vec3(0, 1, 0), 100.f));
@@ -46,12 +47,18 @@ void SetControllersPlayer2(bew::InputManager& input, bew::GameObject* player)
 	input.AddCommand(bew::ActionKeys::DpadX, bew::ButtonState::Up, std::make_unique<Score>(player, 100));
 }
 
+void SetControlsGaligaP1(bew::InputManager& input, bew::GameObject* player)
+{
+	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
+}
+
 void AddTestingInputs(bew::InputManager& input)
 {
 	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_W}, {}, {} });
 	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_S}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_A}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { {SDL_SCANCODE_D}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_A,SDL_SCANCODE_LEFT}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { {SDL_SCANCODE_D, SDL_SCANCODE_RIGHT}, {}, {} });
 
 	input.AddInput(bew::ActionKeys::ActionKeyOneKeyBoard, { {SDL_SCANCODE_E}, {}, {} });
 	input.AddInput(bew::ActionKeys::ActionKeyTwoKeyBoard, { {SDL_SCANCODE_C}, {}, {} });
@@ -63,13 +70,14 @@ void AddTestingInputs(bew::InputManager& input)
 
 	input.AddInput(bew::ActionKeys::DpadA, { {}, {XINPUT_GAMEPAD_A}, {} });
 	input.AddInput(bew::ActionKeys::DpadX, { {}, {XINPUT_GAMEPAD_X}, {} });
+
+	input.AddInput(bew::ActionKeys::Num0, { {SDL_SCANCODE_0}, {}, {} });
+	input.AddInput(bew::ActionKeys::Num1, { {SDL_SCANCODE_1}, {}, {} });
 }
 
-void load()
+void CreateDemoScene(bew::InputManager& input)
 {
-	auto& scene = bew::SceneManager::GetInstance().CreateScene("Galiga");
-	auto& input = bew::InputManager::GetInstance();
-	AddTestingInputs(input);
+	auto& scene = bew::SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_unique<bew::GameObject>();
 	go->AddComponent<bew::TextureComponent>("background.tga");
@@ -104,8 +112,13 @@ void load()
 	Player2ControlsTxt->SetPosition(0, 120);
 	Player2ControlsTxt->AddComponent<bew::TextComponent>("Move with Dpad Take life with Dpad A and add score with Dpad X ", fontTxt);
 
+	auto SwitchSceneTxt = std::make_unique<bew::GameObject>();
+	SwitchSceneTxt->SetPosition(0, 150);
+	SwitchSceneTxt->AddComponent<bew::TextComponent>("Switch to Game scene with 1 ", fontTxt);
+
 	scene.Add(std::move(Player1ControlsTxt));
 	scene.Add(std::move(Player2ControlsTxt));
+	scene.Add(std::move(SwitchSceneTxt));
 
 	//---------------------------------------------------------------------------
 	auto Player1 = std::make_unique<bew::GameObject>();
@@ -130,7 +143,7 @@ void load()
 	scene.Add(std::move(Player1HealthText));
 	scene.Add(std::move(Player1ScoreText));
 
-	SetControllersPlayer1(input, Player1.get());
+	SetControllsDemoLevelP1(input, Player1.get());
 
 	//---------------------------------------------------------------------------
 
@@ -156,12 +169,52 @@ void load()
 	scene.Add(std::move(Player2ScoreText));
 	scene.Add(std::move(Player2HealthText));
 
-	SetControllersPlayer2(input, Player2.get());
+	SetControllsDemoLevelP2(input, Player2.get());
 
 	//---------------------------------------------------------------------------
 
 	scene.Add(std::move(Player1));
 	scene.Add(std::move(Player2));
+}
+
+void CreateGameScene(bew::InputManager& input)
+{
+	auto& scene = bew::SceneManager::GetInstance().CreateScene("Galiga");
+	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("Lingua.otf", 14);
+
+	auto SwitchSceneTxt = std::make_unique<bew::GameObject>();
+	SwitchSceneTxt->SetPosition(0, 150);
+	SwitchSceneTxt->AddComponent<bew::TextComponent>("Switch to Demo scene with 0 ", fontTxt);
+	scene.Add(std::move(SwitchSceneTxt));
+
+	auto Player1 = std::make_unique<bew::GameObject>();
+	Player1->AddComponent<bew::TextureComponent>("Player1.png");
+	Player1->SetPosition(200, 500);
+	Player1->SetScale(2, 2);
+
+	SetControlsGaligaP1(input, Player1.get());
+
+	scene.Add(std::move(Player1));
+
+
+	auto bullet = std::make_unique<bew::GameObject>();
+	bullet->AddComponent<bew::TextureComponent>("Bullet.png");
+	bullet->AddComponent<BulletComponent>(100.f);
+	bullet->SetPosition(200, 500);
+	bullet->SetScale(2, 2);
+}
+
+void load()
+{
+	auto& input = bew::InputManager::GetInstance();
+	AddTestingInputs(input);
+	CreateDemoScene(input);
+	CreateGameScene(input);
+
+	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
+	input.AddCommand(bew::ActionKeys::Num1, bew::ButtonState::Up, std::make_unique<SwitchScene>(1));
+
+	bew::SceneManager::GetInstance().LoadScene(1);
 }
 
 int main(int, char* []) {

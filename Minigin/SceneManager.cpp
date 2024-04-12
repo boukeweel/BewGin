@@ -26,7 +26,7 @@ bew::Scene& bew::SceneManager::CreateScene(const std::string& name)
 			if (scene->GetName() == name)
 			{
 				std::cout << "You where trying to create a scene with the name: " << name << " but a differenct scene with the same name already exists\n";
-				return *m_scenes[scene->getId()];
+				return *m_scenes[scene->GetId()];
 			}
 		}
 	}
@@ -38,7 +38,9 @@ bew::Scene& bew::SceneManager::CreateScene(const std::string& name)
 
 void bew::SceneManager::LoadScene(const unsigned int& idScene)
 {
+	m_scenes[m_CurrentScene]->ChangeActiveStateInScene(false);
 	m_CurrentScene = idScene;
+	m_scenes[m_CurrentScene]->ChangeActiveStateInScene(true);
 }
 
 void bew::SceneManager::LoadScene(const std::string& name)
@@ -49,7 +51,7 @@ void bew::SceneManager::LoadScene(const std::string& name)
 		{
 			if(scene->GetName() == name)
 			{
-				m_CurrentScene = scene->getId();
+				LoadScene(scene->GetId());
 			}
 		}
 	}

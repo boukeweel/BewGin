@@ -12,8 +12,10 @@ namespace bew
 		void Remove(std::unique_ptr<GameObject> object);
 		void RemoveAll();
 
-		int getId() { return m_id; }
+		int GetId() { return m_id; }
 		const std::string& GetName() { return m_name; }
+
+		void ChangeActiveStateInScene(bool state);
 
 		void Update();
 		void Render() const;
