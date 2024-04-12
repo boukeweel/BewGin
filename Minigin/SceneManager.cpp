@@ -16,7 +16,7 @@ void bew::SceneManager::Render() const
 	m_scenes[m_CurrentScene]->Render();
 }
 
-bew::Scene& bew::SceneManager::CreateScene(const std::string& name)
+bew::Scene& bew::SceneManager::CreateScene(const std::string& name, std::unique_ptr<BaseSceneCreator> load)
 {
 	//checking if a other scene with the same name exists
 	for (const auto& scene : m_scenes)
@@ -31,16 +31,16 @@ bew::Scene& bew::SceneManager::CreateScene(const std::string& name)
 		}
 	}
 
-	const auto& scene = std::shared_ptr<Scene>(new Scene(name));
+	const auto& scene = std::shared_ptr<Scene>(new Scene(name,std::move(load)));
 	m_scenes.push_back(scene);
 	return *scene;
 }
 
 void bew::SceneManager::LoadScene(const unsigned int& idScene)
 {
-	m_scenes[m_CurrentScene]->ChangeActiveStateInScene(false);
+	m_scenes[m_CurrentScene]->RemoveAll();
 	m_CurrentScene = idScene;
-	m_scenes[m_CurrentScene]->ChangeActiveStateInScene(true);
+	m_scenes[m_CurrentScene]->LoadInScene();
 }
 
 void bew::SceneManager::LoadScene(const std::string& name)

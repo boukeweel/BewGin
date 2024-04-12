@@ -22,6 +22,9 @@
     <Filter Include="Events">
       <UniqueIdentifier>{ef55fe01-8d73-4bc8-a2ae-e4e1a531fb92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{45cdaf6a-ee7c-4e95-90d7-263c6571e80d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galiga.cpp">
@@ -54,6 +57,15 @@
     <ClCompile Include="ObjectPoolingComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseSceneCreator.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GaligaScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthComponent.h">
@@ -81,6 +93,15 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPoolingComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseSceneCreator.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GaligaScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

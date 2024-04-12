@@ -1,33 +1,37 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
+#include "SceneManager.h"
 
 bew::GameObject::GameObject() : m_PositionDirty{ false }
 {
 }
 
-bew::GameObject::GameObject(const bew::GameObject& other) :
-	m_transform(other.m_transform),
-	m_WorldPosition(other.m_WorldPosition),
-	m_LocalPosition(other.m_LocalPosition),
-	m_pParent(nullptr), // The copied object will initially have no parent
-	m_IsActive(other.m_IsActive)
-{
-	// Copy components
-	m_pComponents.reserve(other.m_pComponents.size());
-	for (const auto& component : other.m_pComponents)
-	{
-		m_pComponents.push_back(component->Clone(this)); // Assuming Clone function exists in Component class
-	}
-
-	// Copy children (deep copy)
-	m_pChildren.reserve(other.m_pChildren.size());
-	for (const auto& child : other.m_pChildren)
-	{
-		auto newChild = std::make_unique<GameObject>(*child);
-		newChild->m_pParent = this; // Set the parent of the new child to the copied object
-		m_pChildren.push_back(newChild.get());
-	}
-}
+//bew::GameObject::GameObject(const bew::GameObject& other) :
+//	m_transform(other.m_transform),
+//	m_WorldPosition(other.m_WorldPosition),
+//	m_LocalPosition(other.m_LocalPosition),
+//	m_pParent(nullptr), // The copied object will initially have no parent
+//	m_IsActive(other.m_IsActive)
+//{
+//	// Copy components
+//	m_pComponents.reserve(other.m_pComponents.size());
+//	for (const auto& component : other.m_pComponents)
+//	{
+//		m_pComponents.push_back(component->Clone(this)); // Assuming Clone function exists in Component class
+//	}
+//
+//
+//	
+//	// Copy children (deep copy)
+//	m_pChildren.reserve(other.m_pChildren.size());
+//	for (const auto& child : other.m_pChildren)
+//	{
+//		auto newChild = std::make_unique<GameObject>(*child);
+//		newChild->m_pParent = this; // Set the parent of the new child to the copied object
+//		m_pChildren.push_back(newChild.get());
+//
+//	}
+//}
 
 void bew::GameObject::Update()
 {

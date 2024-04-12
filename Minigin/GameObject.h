@@ -92,7 +92,7 @@ namespace bew
 
 		bool m_PositionDirty{false};
 
-		bool m_IsActive{false};
+		bool m_IsActive{true};
 
 		void SetPositionDirty();
 

@@ -8,7 +8,7 @@ using namespace bew;
 
 unsigned int Scene::m_idCounter = 0;
 
-Scene::Scene(const std::string& name) : m_name(name), m_id(m_idCounter++){}
+Scene::Scene(const std::string& name, std::unique_ptr<BaseSceneCreator> load) : m_name(name), m_id(m_idCounter++), m_Load{ std::move(load) } {}
 
 Scene::~Scene() = default;
 
@@ -25,6 +25,11 @@ void Scene::Remove(std::unique_ptr<GameObject> object)
 void Scene::RemoveAll()
 {
 	m_objects.clear();
+}
+
+void Scene::LoadInScene()
+{
+	m_Load->Load();
 }
 
 void Scene::ChangeActiveStateInScene(bool state)

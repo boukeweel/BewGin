@@ -37,5 +37,10 @@ SwitchScene::SwitchScene(unsigned int scene) :m_Scene{scene}
 
 void SwitchScene::Execute()
 {
-	bew::SceneManager::GetInstance().LoadScene(m_Scene);
+	auto& sceneManger = bew::SceneManager::GetInstance();
+
+	if (sceneManger.GetCurrentSceneId() != m_Scene)
+	{
+		sceneManger.LoadScene(m_Scene);
+	}
 }

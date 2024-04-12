@@ -1,8 +1,11 @@
 #pragma once
+#include <functional>
 #include <vector>
 #include <string>
 #include <memory>
 #include "Singleton.h"
+
+class BaseSceneCreator;
 
 namespace bew
 {
@@ -10,10 +13,13 @@ namespace bew
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		Scene& CreateScene(const std::string& name);
+		Scene& CreateScene(const std::string& name, std::unique_ptr<BaseSceneCreator> load);
 
 		void LoadScene(const unsigned int& idScene);
 		void LoadScene(const std::string& name);
+
+		Scene& GetCurrentScene() const { return *m_scenes[m_CurrentScene]; }
+		unsigned int GetCurrentSceneId() const { return m_CurrentScene; }
 
 		void Update();
 		void Render() const;

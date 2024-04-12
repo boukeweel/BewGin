@@ -151,8 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseSceneCreator.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
+    <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="Galiga.cpp" />
+    <ClCompile Include="GaligaScene.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="LivesTextObserver.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
@@ -163,7 +166,10 @@
     <ClCompile Include="TempComands.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseSceneCreator.h" />
     <ClInclude Include="BulletComponent.h" />
+    <ClInclude Include="DemoScene.h" />
+    <ClInclude Include="GaligaScene.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="LivesTextObserver.h" />
     <ClInclude Include="MoveCommands.h" />
