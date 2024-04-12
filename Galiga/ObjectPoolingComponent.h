@@ -1,5 +1,6 @@
 #pragma once
 #include <Component.h>
+#include <memory>
 #include <vector>
 
 class ObjectPoolingComponent : public bew::Component
@@ -11,8 +12,12 @@ public:
     ObjectPoolingComponent(ObjectPoolingComponent&& other) = delete;
     ObjectPoolingComponent& operator=(const ObjectPoolingComponent& other) = delete;
     ObjectPoolingComponent& operator=(ObjectPoolingComponent&& other) = delete;
-
 private:
-    std::vector<bew::GameObject*> objects;
+    std::unique_ptr<bew::GameObject> m_BaseObject;
+    std::vector<bew::GameObject*> m_Objects;
+    int m_Currentobj{ 0 };
+    int m_MaxCurrentObjects;
+
+    void CreateObjects(int amout);
 };
 

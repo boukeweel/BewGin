@@ -196,7 +196,6 @@ void CreateGameScene(bew::InputManager& input)
 
 	scene.Add(std::move(Player1));
 
-
 	auto bullet = std::make_unique<bew::GameObject>();
 	bullet->AddComponent<bew::TextureComponent>("Bullet.png");
 	bullet->AddComponent<BulletComponent>(100.f);
