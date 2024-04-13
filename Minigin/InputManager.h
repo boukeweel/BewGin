@@ -83,7 +83,6 @@ namespace bew
 		Down,
 		Held
 	};
-
 	struct CommandInfo
 	{
 		//not sure why I need this but other wise I get MoveLeftKeyBoard error in the galiga project, even tho I did not get one when minigin was the exe
@@ -101,6 +100,7 @@ namespace bew
 		void TryExecutedControllerButton(ButtonState checkState, int controllerIndex, WORD button) const;
 		void TryExecutedControllerAxis(int controllerIndex, DWORD axis) const;
 	};
+
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
@@ -119,6 +119,10 @@ namespace bew
 			AddCommand(Key, state, 0, std::move(command));
 		}
 
+		void RemoveAllCommands()
+		{
+			m_Commands.clear();
+		}
 		void RemoveCommand(const ActionKeys& key) {
 			m_Commands.erase(std::remove_if(m_Commands.begin(), m_Commands.end(),
 				[this,&key](const CommandInfo& cmd) { return cmd.m_Action == InputButtons.at(key); }),

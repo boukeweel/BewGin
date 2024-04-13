@@ -11,6 +11,8 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
+#include "TempComands.h"
+
 void GaligaScene::Load()
 {
 	auto& input = bew::InputManager::GetInstance();
@@ -37,6 +39,8 @@ void GaligaScene::Load()
 	bullet->AddComponent<BulletComponent>(100.f);
 	bullet->SetPosition(200, 500);
 	bullet->SetScale(2, 2);*/
+
+	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)

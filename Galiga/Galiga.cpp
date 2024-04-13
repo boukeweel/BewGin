@@ -46,18 +46,12 @@ void AddTestingInputs()
 
 void load()
 {
-	
 	AddTestingInputs();
 
 	bew::SceneManager::GetInstance().CreateScene("Demo", std::make_unique<DemoScene>());
 	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
 
 	bew::SceneManager::GetInstance().LoadScene(1);
-
-	auto& input = bew::InputManager::GetInstance();
-
-	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
-	input.AddCommand(bew::ActionKeys::Num1, bew::ButtonState::Up, std::make_unique<SwitchScene>(1));
 }
 
 int main(int, char* []) {

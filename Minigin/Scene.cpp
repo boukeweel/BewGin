@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include "InputManager.h"
+
 using namespace bew;
 
 unsigned int Scene::m_idCounter = 0;
@@ -25,6 +27,7 @@ void Scene::Remove(std::unique_ptr<GameObject> object)
 void Scene::RemoveAll()
 {
 	m_objects.clear();
+	bew::InputManager::GetInstance().RemoveAllCommands();
 }
 
 void Scene::LoadInScene()

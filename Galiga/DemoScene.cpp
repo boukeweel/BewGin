@@ -119,6 +119,8 @@ void DemoScene::Load()
 
 	scene.Add(std::move(Player1));
 	scene.Add(std::move(Player2));
+
+	input.AddCommand(bew::ActionKeys::Num1, bew::ButtonState::Up, std::make_unique<SwitchScene>(1));
 }
 
 void DemoScene::SetControllsDemoLevelP1(bew::InputManager& input, bew::GameObject* player)
