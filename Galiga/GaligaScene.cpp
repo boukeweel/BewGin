@@ -11,6 +11,7 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
+#include "ObjectPoolingComponent.h"
 #include "TempComands.h"
 
 void GaligaScene::Load()
@@ -32,13 +33,13 @@ void GaligaScene::Load()
 
 	SetControllsP1(input, Player1.get());
 
-	scene.Add(std::move(Player1));
+	auto bulletObjectPull = std::make_unique<bew::GameObject>();
+	BulletPreset bullet;
+	bulletObjectPull->AddComponent<ObjectPoolingComponent>(&bullet, 5);
+	bulletObjectPull->SetParrent(Player1.get());
 
-	/*auto bullet = std::make_unique<bew::GameObject>();
-	bullet->AddComponent<bew::TextureComponent>("Bullet.png");
-	bullet->AddComponent<BulletComponent>(100.f);
-	bullet->SetPosition(200, 500);
-	bullet->SetScale(2, 2);*/
+	scene.Add(std::move(bulletObjectPull));
+	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }

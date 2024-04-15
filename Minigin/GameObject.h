@@ -40,6 +40,8 @@ namespace bew
 		bool GetIsActive() { return m_IsActive; }
 		void SetIsActive(const bool& active) { m_IsActive = active; }
 
+		
+
 		template<typename T,typename... Args>
 		T* AddComponent(Args&&... args)
 		{
@@ -74,7 +76,7 @@ namespace bew
 		GameObject();
 
 		//copy operator
-		GameObject(const GameObject& other);
+		GameObject(const GameObject& other) = delete;
 
 		~GameObject() = default;
 		GameObject(GameObject&& other) = delete;

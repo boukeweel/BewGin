@@ -25,6 +25,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{45cdaf6a-ee7c-4e95-90d7-263c6571e80d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Presets">
+      <UniqueIdentifier>{f19769e1-53cb-458b-9500-a7145602762a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galiga.cpp">
@@ -54,9 +57,6 @@
     <ClCompile Include="BulletComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectPoolingComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BaseSceneCreator.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -65,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="GaligaScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectPreset.cpp">
+      <Filter>Presets</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectPoolingComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,9 +98,6 @@
     <ClInclude Include="BulletComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectPoolingComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseSceneCreator.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -103,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="GaligaScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPoolingComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

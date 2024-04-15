@@ -1,10 +1,13 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
+#include "Scene.h"
 #include "SceneManager.h"
 
 bew::GameObject::GameObject() : m_PositionDirty{ false }
 {
 }
+
+
 
 //bew::GameObject::GameObject(const bew::GameObject& other) :
 //	m_transform(other.m_transform),
@@ -17,19 +20,21 @@ bew::GameObject::GameObject() : m_PositionDirty{ false }
 //	m_pComponents.reserve(other.m_pComponents.size());
 //	for (const auto& component : other.m_pComponents)
 //	{
-//		m_pComponents.push_back(component->Clone(this)); // Assuming Clone function exists in Component class
+//		
+//		//m_pComponents.push_back(component->Clone(this)); // Assuming Clone function exists in Component class
 //	}
 //
 //
-//	
-//	// Copy children (deep copy)
+//	auto& scene = SceneManager::GetInstance().GetCurrentScene();
+//
+//	//copy the children
 //	m_pChildren.reserve(other.m_pChildren.size());
 //	for (const auto& child : other.m_pChildren)
 //	{
 //		auto newChild = std::make_unique<GameObject>(*child);
 //		newChild->m_pParent = this; // Set the parent of the new child to the copied object
-//		m_pChildren.push_back(newChild.get());
-//
+//		AddChild(newChild.get());
+//		scene.Add(std::move(newChild));
 //	}
 //}
 

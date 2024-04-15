@@ -160,6 +160,7 @@
     <ClCompile Include="LivesTextObserver.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
     <ClCompile Include="ObjectPoolingComponent.cpp" />
+    <ClCompile Include="ObjectPreset.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreTextObserver.cpp" />
     <ClCompile Include="ShootCommand.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="LivesTextObserver.h" />
     <ClInclude Include="MoveCommands.h" />
     <ClInclude Include="ObjectPoolingComponent.h" />
+    <ClInclude Include="ObjectPreset.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreTextObserver.h" />
     <ClInclude Include="ShootCommand.h" />
