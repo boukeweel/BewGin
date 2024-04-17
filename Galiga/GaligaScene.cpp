@@ -12,6 +12,7 @@
 #include <InputKeyEnum.cpp>
 
 #include "ObjectPoolingComponent.h"
+#include "ShootCommand.h"
 #include "TempComands.h"
 
 void GaligaScene::Load()
@@ -33,12 +34,10 @@ void GaligaScene::Load()
 
 	SetControllsP1(input, Player1.get());
 
-	auto bulletObjectPull = std::make_unique<bew::GameObject>();
-	BulletPreset bullet;
-	bulletObjectPull->AddComponent<ObjectPoolingComponent>(&bullet, 5);
-	bulletObjectPull->SetParrent(Player1.get());
+	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 5);
 
-	scene.Add(std::move(bulletObjectPull));
+	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(Player1.get()));
+
 	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));

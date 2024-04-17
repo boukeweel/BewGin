@@ -7,6 +7,8 @@ class ObjectPreset
 {
 public:
 	virtual std::unique_ptr<bew::GameObject>  Create() = 0;
+
+	virtual ~ObjectPreset() = default;
 };
 
 class BulletPreset : public ObjectPreset

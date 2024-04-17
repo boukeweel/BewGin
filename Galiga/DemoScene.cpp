@@ -50,7 +50,7 @@ void DemoScene::Load()
 
 	auto Player1ControlsTxt = std::make_unique<bew::GameObject>();
 	Player1ControlsTxt->SetPosition(0, 100);
-	Player1ControlsTxt->AddComponent<bew::TextComponent>("Move with WASD Take life with E and add score with C ", fontTxt);
+	Player1ControlsTxt->AddComponent<bew::TextComponent>("Move with WASD Take life with z and add score with x ", fontTxt);
 
 	auto Player2ControlsTxt = std::make_unique<bew::GameObject>();
 	Player2ControlsTxt->SetPosition(0, 120);

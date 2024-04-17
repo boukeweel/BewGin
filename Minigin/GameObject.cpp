@@ -1,4 +1,7 @@
 #include "GameObject.h"
+
+#include <iostream>
+
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -6,37 +9,6 @@
 bew::GameObject::GameObject() : m_PositionDirty{ false }
 {
 }
-
-
-
-//bew::GameObject::GameObject(const bew::GameObject& other) :
-//	m_transform(other.m_transform),
-//	m_WorldPosition(other.m_WorldPosition),
-//	m_LocalPosition(other.m_LocalPosition),
-//	m_pParent(nullptr), // The copied object will initially have no parent
-//	m_IsActive(other.m_IsActive)
-//{
-//	// Copy components
-//	m_pComponents.reserve(other.m_pComponents.size());
-//	for (const auto& component : other.m_pComponents)
-//	{
-//		
-//		//m_pComponents.push_back(component->Clone(this)); // Assuming Clone function exists in Component class
-//	}
-//
-//
-//	auto& scene = SceneManager::GetInstance().GetCurrentScene();
-//
-//	//copy the children
-//	m_pChildren.reserve(other.m_pChildren.size());
-//	for (const auto& child : other.m_pChildren)
-//	{
-//		auto newChild = std::make_unique<GameObject>(*child);
-//		newChild->m_pParent = this; // Set the parent of the new child to the copied object
-//		AddChild(newChild.get());
-//		scene.Add(std::move(newChild));
-//	}
-//}
 
 void bew::GameObject::Update()
 {
@@ -126,7 +98,8 @@ void bew::GameObject::AddChild(GameObject* child)
 
 void bew::GameObject::RemoveChild(GameObject* child)
 {
-	child->SetParrent(nullptr);
+	auto it = std::find(std::begin(m_pChildren), std::end(m_pChildren), child);
+	m_pChildren.erase(it);
 }
 
 bool bew::GameObject::IsChild(GameObject* newParent) const
