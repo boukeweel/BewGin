@@ -8,12 +8,9 @@
 #include "BewGin.h"
 #include "GameObject.h"
 #include "InputManager.h"
-#include "MoveCommands.h"
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
-#include "TempComands.h"
-#include "TextComponent.h"
 #include <InputKeyEnum.cpp>
 #include <iostream>
 #include "DemoScene.h"

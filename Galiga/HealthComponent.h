@@ -15,6 +15,7 @@ public:
 	void Died();
 
 	int GetLives() const { return m_Lifes; }
+	bool GetAlive() const { return m_IsAlive; }
 
 	//this is for object pooling of the enemy
 	void SetLifes(int amoutLives);

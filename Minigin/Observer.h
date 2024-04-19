@@ -11,7 +11,9 @@ namespace bew
 		PlayerDied,
 		PlayerTookDamages,
 		PlayerAddedScore,
-		PlayerWon
+		PlayerWon,
+		TakeDamages,
+		Died,
 	};
 
 	class Observer

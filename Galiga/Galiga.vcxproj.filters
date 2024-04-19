@@ -28,16 +28,19 @@
     <Filter Include="Presets">
       <UniqueIdentifier>{f19769e1-53cb-458b-9500-a7145602762a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\PlayerComponents">
+      <UniqueIdentifier>{51345229-26fd-41f5-9f0f-a3d312c1764e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\EnemyComponents">
+      <UniqueIdentifier>{bc49c9c2-e397-4d5f-bfb5-6dd48147c28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events\PlayerEvents">
+      <UniqueIdentifier>{89965280-d980-48a7-8afe-923329af1d2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galiga.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="MoveCommands.cpp">
       <Filter>Commands</Filter>
@@ -45,17 +48,8 @@
     <ClCompile Include="TempComands.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreTextObserver.cpp">
-      <Filter>Events</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesTextObserver.cpp">
-      <Filter>Events</Filter>
-    </ClCompile>
     <ClCompile Include="ShootCommand.cpp">
       <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="BulletComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="BaseSceneCreator.cpp">
       <Filter>Scenes</Filter>
@@ -69,37 +63,37 @@
     <ClCompile Include="ObjectPreset.cpp">
       <Filter>Presets</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectPoolingComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BulletComponent.cpp">
+      <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
-    <ClCompile Include="PoolComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Components\PlayerComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectPoolingComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyComponent.cpp">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesTextObserver.cpp">
+      <Filter>Events\PlayerEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTextObserver.cpp">
+      <Filter>Events\PlayerEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="TempComands.h">
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="MoveCommands.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="LivesTextObserver.h">
-      <Filter>Events</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreTextObserver.h">
-      <Filter>Events</Filter>
-    </ClInclude>
     <ClInclude Include="ShootCommand.h">
       <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="BaseSceneCreator.h">
       <Filter>Scenes</Filter>
@@ -113,11 +107,29 @@
     <ClInclude Include="ObjectPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectPoolingComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PoolComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletComponent.h">
+      <Filter>Components\PlayerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Components\PlayerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPoolingComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyComponent.h">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesTextObserver.h">
+      <Filter>Events\PlayerEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTextObserver.h">
+      <Filter>Events\PlayerEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

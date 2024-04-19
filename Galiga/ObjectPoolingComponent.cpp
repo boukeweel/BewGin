@@ -4,8 +4,8 @@
 #include "Scene.h"
 #include "SceneManager.h"
 
-ObjectPoolingComponent::ObjectPoolingComponent(bew::GameObject* pParentObject,std::unique_ptr<ObjectPreset>  object, int amount)
-: Component(pParentObject),m_BaseObject{std::move(object)}
+ObjectPoolingComponent::ObjectPoolingComponent(bew::GameObject* pParentObject,std::unique_ptr<ObjectPreset>  object, int amount, glm::vec3 posOfset)
+: Component(pParentObject),m_BaseObject{std::move(object)},m_PosOfset(posOfset)
 {
 	CreateObjects(amount);
 }
@@ -28,7 +28,7 @@ void ObjectPoolingComponent::CreateObjects(int amount)
 
 void ObjectPoolingComponent::SetNextObjectActive()
 {
-	SetNextObjectActive(GetParentObject()->GetWorldPosition());
+	SetNextObjectActive(GetParentObject()->GetWorldPosition() + m_PosOfset);
 }
 
 void ObjectPoolingComponent::SetNextObjectActive(glm::vec3 pos)
@@ -43,7 +43,7 @@ void ObjectPoolingComponent::SetNextObjectActive(glm::vec3 pos)
 	for (m_Currentobj = 0; m_Currentobj < m_POOLSIZE; ++m_Currentobj)
 	{
 		auto poolcomponent = m_Objects[m_Currentobj]->GetComponent<PoolComponent>();
-		if (poolcomponent->InUse() == false)
+		if (!poolcomponent->InUse())
 		{
 			poolcomponent->SetInUse(true);
 			break;

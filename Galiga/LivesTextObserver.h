@@ -22,5 +22,3 @@ private:
 	std::string m_livesTxt;
 };
 
-
-

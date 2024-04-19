@@ -4,9 +4,9 @@
 class PoolComponent final : public bew::Component
 {
 public:
-	PoolComponent(bew::GameObject* pParentObject) : Component{pParentObject}{}
-
-    bool InUse() { return m_InUse; }
+    PoolComponent(bew::GameObject* pParentObject) : Component{ pParentObject }, m_InUse{false} {}
+    
+    bool InUse() const { return m_InUse; }
     void SetInUse(bool used) { m_InUse = used; }
 
     virtual ~PoolComponent() = default;
