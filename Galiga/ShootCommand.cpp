@@ -1,6 +1,7 @@
 #include "ShootCommand.h"
 
 #include "ObjectPoolingComponent.h"
+#include "SoundServiceLocator.h"
 
 ShootCommand::ShootCommand(bew::GameObject* targetObject) : m_TargetObject{targetObject}
 {

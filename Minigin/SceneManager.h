@@ -15,7 +15,7 @@ namespace bew
 	public:
 		Scene& CreateScene(const std::string& name, std::unique_ptr<BaseSceneCreator> load);
 
-		void LoadScene(const unsigned int& idScene);
+		void LoadScene(unsigned int idScene);
 		void LoadScene(const std::string& name);
 
 		Scene& GetCurrentScene() const { return *m_scenes[m_CurrentScene]; }

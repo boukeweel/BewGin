@@ -15,6 +15,8 @@
 #include <iostream>
 #include "DemoScene.h"
 #include "GaligaScene.h"
+#include "LoggingSDLSoundSystem.h"
+#include "SoundServiceLocator.h"
 
 
 void AddTestingInputs()
@@ -41,6 +43,8 @@ void AddTestingInputs()
 	input.AddInput(bew::ActionKeys::Num1, { {SDL_SCANCODE_1}, {}, {} });
 }
 
+
+
 void load()
 {
 	AddTestingInputs();
@@ -49,6 +53,8 @@ void load()
 	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
 
 	bew::SceneManager::GetInstance().LoadScene(1);
+
+	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::LoggingSDLSoundSystem>());
 }
 
 int main(int, char* []) {

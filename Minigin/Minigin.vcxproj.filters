@@ -34,6 +34,9 @@
     <Filter Include="GameObject\Components\AssigmentComponents">
       <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{ffbd48f1-eccb-4075-b37f-ab76f315d3af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -126,6 +129,18 @@
     <ClInclude Include="Transform.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="SoundServiceLocator.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLSoundSystem.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggingSDLSoundSystem.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -208,6 +223,18 @@
     </ClCompile>
     <ClCompile Include="InputKeyEnum.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggingSDLSoundSystem.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLSoundSystem.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundServiceLocator.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

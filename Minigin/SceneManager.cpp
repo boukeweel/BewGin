@@ -36,7 +36,7 @@ bew::Scene& bew::SceneManager::CreateScene(const std::string& name, std::unique_
 	return *scene;
 }
 
-void bew::SceneManager::LoadScene(const unsigned int& idScene)
+void bew::SceneManager::LoadScene(unsigned int idScene)
 {
 	m_scenes[m_CurrentScene]->RemoveAll();
 	m_CurrentScene = idScene;
