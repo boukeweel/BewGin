@@ -29,6 +29,16 @@ void GaligaScene::Load()
 	SwitchSceneTxt->AddComponent<bew::TextComponent>("Switch to Demo scene with 0 ", fontTxt);
 	scene.Add(std::move(SwitchSceneTxt));
 
+	auto ControlTxt = std::make_unique<bew::GameObject>();
+	ControlTxt->SetPosition(0, 170);
+	ControlTxt->AddComponent<bew::TextComponent>("Move with arrow Left and Right Shoot with z ", fontTxt);
+	scene.Add(std::move(ControlTxt));
+
+	auto ControlControllerTxt = std::make_unique<bew::GameObject>();
+	ControlControllerTxt->SetPosition(0, 190);
+	ControlControllerTxt->AddComponent<bew::TextComponent>("Move with Dpad Left and Right Shoot with DpadA ", fontTxt);
+	scene.Add(std::move(ControlControllerTxt));
+
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
 	Player1->SetPosition(200, 500);
@@ -59,4 +69,8 @@ void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* play
 	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
 	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
 	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(player));
+
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down, std::make_unique<ShootCommand>(player));
 }

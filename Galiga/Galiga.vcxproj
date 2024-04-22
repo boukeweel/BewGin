@@ -151,7 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BaseSceneCreator.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />

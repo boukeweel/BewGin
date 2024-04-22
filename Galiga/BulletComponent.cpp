@@ -19,6 +19,5 @@ void BulletComponent::Update()
 		{
 			poolComp->SetInUse(false);
 		}
-
 	}
 }

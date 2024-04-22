@@ -16,7 +16,9 @@ EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* 
 
 void EnemyComponent::Update()
 {
+	//todo
 	//should be in fixxed update
+	//and should be a collision component the 
 	for (const auto& bullet : *m_pBulletVector)
 	{
 		if(bullet->GetComponent<PoolComponent>()->InUse())
