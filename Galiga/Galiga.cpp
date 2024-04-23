@@ -43,8 +43,6 @@ void AddTestingInputs()
 	input.AddInput(bew::ActionKeys::Num1, { {SDL_SCANCODE_1}, {}, {} });
 }
 
-
-
 void load()
 {
 	AddTestingInputs();
