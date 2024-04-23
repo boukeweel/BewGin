@@ -62,6 +62,7 @@ void GaligaScene::Load()
 	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
+
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)

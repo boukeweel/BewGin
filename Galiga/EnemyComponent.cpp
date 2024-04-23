@@ -14,14 +14,8 @@ EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* 
 	}
 }
 
-void EnemyComponent::FixedUpdate()
-{
-	std::cout << "fix\n";
-}
-
 void EnemyComponent::Update()
 {
-	std::cout << "upd\n";
 	//todo
 	//should be in fixxed update
 	//and should be a collision component the 
