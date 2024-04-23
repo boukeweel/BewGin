@@ -8,6 +8,7 @@ class EnemyComponent :
 public:
     EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player);
 
+    void FixedUpdate() override;
     void Update() override;
 
     virtual ~EnemyComponent() = default;

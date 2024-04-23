@@ -6,6 +6,11 @@
 #include "Scene.h"
 #include "TextComponent.h"
 
+void bew::SceneManager::FixedUpdate()
+{
+	m_scenes[m_CurrentScene]->FixedUpdate();
+}
+
 void bew::SceneManager::Update()
 {
 	m_scenes[m_CurrentScene]->Update();

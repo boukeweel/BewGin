@@ -21,6 +21,7 @@ namespace bew
 
 		void ChangeActiveStateInScene(bool state);
 
+		void FixedUpdate();
 		void Update();
 		void Render() const;
 

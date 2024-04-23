@@ -10,6 +10,17 @@ bew::GameObject::GameObject() : m_PositionDirty{ false }
 {
 }
 
+void bew::GameObject::FixedUpdate()
+{
+	if (!m_IsActive)
+		return;
+
+	for (auto& component : m_pComponents)
+	{
+		component->FixedUpdate();
+	}
+}
+
 void bew::GameObject::Update()
 {
 	if(!m_IsActive)

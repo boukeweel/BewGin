@@ -16,5 +16,7 @@ namespace bew
 		BewGin& operator=(const BewGin& other) = delete;
 		BewGin& operator=(BewGin&& other) = delete;
 
+	private:
+		double m_Lag{0};
 	};
 }

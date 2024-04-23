@@ -94,7 +94,16 @@ void bew::BewGin::Run(const std::function<void()>& load)
 	while (doContinue)
 	{
 		GameTime::Update();
+		m_Lag += GameTime::GetDeltaTime();
+
 		doContinue = input.ProcessInput();
+
+		while (m_Lag >= GameTime::GetFixedDeltaTime())
+		{
+			sceneManager.FixedUpdate();
+			m_Lag -= GameTime::GetFixedDeltaTime();
+		}
+
 		sceneManager.Update();
 		renderer.Render();
 

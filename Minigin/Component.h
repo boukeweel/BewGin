@@ -11,6 +11,7 @@ namespace bew
 		Component(GameObject* pparentObject);
 		virtual ~Component() = default;
 
+		virtual void FixedUpdate(){}
 		virtual void Update(){}
 		virtual void Render() const{}
 

@@ -21,6 +21,7 @@ namespace bew
 		Scene& GetCurrentScene() const { return *m_scenes[m_CurrentScene]; }
 		unsigned int GetCurrentSceneId() const { return m_CurrentScene; }
 
+		void FixedUpdate();
 		void Update();
 		void Render() const;
 	private:

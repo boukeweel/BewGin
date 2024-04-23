@@ -43,6 +43,14 @@ void Scene::ChangeActiveStateInScene(bool state)
 	}
 }
 
+void bew::Scene::FixedUpdate()
+{
+	for (auto& object : m_objects)
+	{
+		object->FixedUpdate();
+	}
+}
+
 void Scene::Update()
 {
 	for(auto& object : m_objects)

@@ -13,6 +13,7 @@ namespace bew
 	class GameObject final
 	{
 	public:
+		void FixedUpdate();
 		void Update();
 		void Render() const;
 
