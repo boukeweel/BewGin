@@ -141,6 +141,9 @@
     <ClInclude Include="LoggingSDLSoundSystem.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="AudioClip.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -234,6 +237,9 @@
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioClip.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>

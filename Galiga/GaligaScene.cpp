@@ -47,7 +47,6 @@ void GaligaScene::Load()
 
 	SetControllsP1(input, Player1.get());
 
-	
 
 	auto Enemy = std::make_unique<bew::GameObject>();
 	/*auto enemySubject =*/ Enemy->AddComponent<bew::SubjectComponent>();
