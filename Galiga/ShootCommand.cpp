@@ -17,5 +17,6 @@ void ShootCommand::Execute()
 	if(ObjPooling != nullptr)
 	{
 		ObjPooling->SetNextObjectActive();
+		bew::SoundServiceLocator::GetSoundSystem().Play(0, 10);
 	}
 }

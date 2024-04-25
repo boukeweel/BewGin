@@ -52,7 +52,9 @@ void load()
 
 	bew::SceneManager::GetInstance().LoadScene(1);
 
-	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::LoggingSDLSoundSystem>());
+	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::SoundSystem>());
+	auto audio  = bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav");
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(audio));
 }
 
 int main(int, char* []) {

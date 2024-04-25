@@ -6,7 +6,10 @@ namespace bew
 	class SDLSoundSystem :
 		public SoundSystem
 	{
-		void Play(sound_id id, float volume) override;
+	public:
+		SDLSoundSystem() = default;
+		virtual ~SDLSoundSystem() = default;
+		/*void Play(sound_id id, float volume) override;*/
 	};
 }
 

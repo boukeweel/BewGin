@@ -9,7 +9,7 @@ namespace bew
 	public:
 		LoggingSDLSoundSystem() = default;
 		virtual ~LoggingSDLSoundSystem() = default;
-		void Play(sound_id id, float volume) override;
+		/*void Play(sound_id id, float volume) override;*/
 	};
 }
 
