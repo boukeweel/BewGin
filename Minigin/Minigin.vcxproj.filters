@@ -141,6 +141,9 @@
     <ClInclude Include="LoggingSDLSoundSystem.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="HitBoxComponent.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
     <ClInclude Include="AudioClip.h">
       <Filter>Sound</Filter>
     </ClInclude>
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="SoundSystem.cpp">
       <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="HitBoxComponent.cpp">
+      <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="AudioClip.cpp">
       <Filter>Sound</Filter>

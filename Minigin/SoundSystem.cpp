@@ -8,7 +8,7 @@ bew::SoundSystem::SoundSystem()
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
 		std::cerr << "SDL Mixer initialization error: " << Mix_GetError() << std::endl;
 	}
-	m_WorkerThread = std::thread(&SoundSystem::Run, this);
+	m_WorkerThread = std::thread(&SoundSystem::Run,this);
 }
 
 bew::SoundSystem::~SoundSystem()
@@ -22,12 +22,8 @@ bew::SoundSystem::~SoundSystem()
 
 void bew::SoundSystem::AddClip(sound_id id, std::unique_ptr<AudioClip> clip)
 {
+	std::lock_guard<std::mutex> lock(m_QueueMutex);
 	m_AudioClips[id] = std::move(clip);
-}
-
-void bew::SoundSystem::RemoveClip(sound_id id)
-{
-	m_AudioClips.erase(id);
 }
 
 bew::AudioClip* bew::SoundSystem::GetAudioClip(sound_id id)

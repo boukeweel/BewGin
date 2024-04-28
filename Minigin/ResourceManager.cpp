@@ -2,6 +2,9 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "ResourceManager.h"
+
+#include <SDL_mixer.h>
+
 #include "Renderer.h"
 #include "Texture2D.h"
 #include "Font.h"
@@ -40,7 +43,6 @@ std::unique_ptr<bew::AudioClip> bew::ResourceManager::LoadAudio(const std::strin
 	if (!chunk) {
 		throw std::runtime_error(std::string("Failed to load audio: ") + Mix_GetError());
 	}
-	std::unique_ptr<Mix_Chunk> chunkPtr(chunk); 
-	return std::make_unique<AudioClip>(std::move(chunkPtr));
+	return std::make_unique<AudioClip>(chunk);
 }
 

@@ -9,7 +9,7 @@ namespace bew {
     class AudioClip final {
     public:
         Mix_Chunk* GetMixChunk() const;
-        explicit AudioClip(std::unique_ptr<Mix_Chunk> chunk);
+        explicit AudioClip(Mix_Chunk* chunk);
         ~AudioClip();
 
         void Play();
@@ -21,7 +21,7 @@ namespace bew {
         AudioClip& operator=(const AudioClip&&) = delete;
 
     private:
-        std::unique_ptr<Mix_Chunk> m_chunk;
+        Mix_Chunk* m_chunk;
         int m_Volume{};
     };
 }

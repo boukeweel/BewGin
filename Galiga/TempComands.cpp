@@ -18,17 +18,17 @@ void DammagesPlayer::Execute()
 		m_TargetObject->GetComponent<HealthComponent>()->TakeDammages(m_Damages);
 }
 
-Score::Score(bew::GameObject* targetObject, int score) : m_TargetObject{ targetObject }, m_Score{ score }
+Score::Score(bew::GameObject* targetObject, int score) : m_pTargetObject{ targetObject }, m_Score{ score }
 {
 }
 
 void Score::Execute()
 {
-	if (!m_TargetObject->GetIsActive())
+	if (!m_pTargetObject->GetIsActive())
 		return;
 
-	if (m_TargetObject->HasComponent<ScoreComponent>())
-		m_TargetObject->GetComponent<ScoreComponent>()->AddScore(100);
+	if (m_pTargetObject->HasComponent<ScoreComponent>())
+		m_pTargetObject->GetComponent<ScoreComponent>()->AddScore(100);
 }
 
 SwitchScene::SwitchScene(unsigned int scene) :m_Scene{scene}

@@ -1,5 +1,7 @@
 #pragma once
+#include <iostream>
 #include <mutex>
+#include <ostream>
 #include <queue>
 #include <thread>
 #include <unordered_map>
@@ -18,7 +20,6 @@ namespace bew
 		virtual void Play(sound_id id, int volume) = 0;
 
 		virtual void AddClip(sound_id id, std::unique_ptr<AudioClip> clip);
-		virtual void RemoveClip(sound_id id);
 
 		AudioClip* GetAudioClip(sound_id id);
 
@@ -27,11 +28,11 @@ namespace bew
 		SoundSystem& operator=(const SoundSystem& other) = delete;
 		SoundSystem& operator=(SoundSystem&& other) = delete;
 	protected:
-		virtual void Run() {
-			while (m_Running) {
+		void Run() {
+			while (m_Running)
+			{
 				std::unique_lock<std::mutex> lock(m_QueueMutex);
-				m_QueueCondition.wait(lock, [this] { return !m_EventQueue.empty(); });
-
+				m_QueueCondition.wait(lock, [this] { return !m_EventQueue.empty() || !m_Running; });
 				if (!m_EventQueue.empty()) {
 					SoundEvent event = m_EventQueue.front();
 					m_EventQueue.pop();

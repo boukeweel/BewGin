@@ -14,7 +14,6 @@ namespace bew
 		void Play(sound_id id, int volume) override;
 
 		void AddClip(sound_id id, std::unique_ptr<AudioClip> clip) override;
-		void RemoveClip(sound_id id) override;
 
 		LoggingSDLSoundSystem(const LoggingSDLSoundSystem& other) = delete;
 		LoggingSDLSoundSystem(LoggingSDLSoundSystem&& other) = delete;

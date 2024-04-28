@@ -10,6 +10,7 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
+#include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "HealthComponent.h"
 #include "ObjectPoolingComponent.h"
@@ -54,8 +55,10 @@ void GaligaScene::Load()
 	Enemy->AddComponent<HealthComponent>(1);
 	Enemy->AddComponent<EnemyComponent>(Player1.get());
 	Enemy->SetPosition(200, 100);
-	Enemy->SetScale(2, 2);
+	Enemy->SetScale(2,2);
 	Enemy->SetRotation(180);
+	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16})->SetDrawHitBox(true);
+
 
 	scene.Add(std::move(Enemy));
 	scene.Add(std::move(Player1));

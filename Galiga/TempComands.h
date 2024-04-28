@@ -36,7 +36,7 @@ public:
 	Score& operator=(Score&& other) = delete;
 
 private:
-	bew::GameObject* m_TargetObject;
+	bew::GameObject* m_pTargetObject;
 	int m_Score;
 };
 

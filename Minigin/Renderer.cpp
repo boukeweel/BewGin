@@ -88,4 +88,10 @@ void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, angle, &center, SDL_FLIP_NONE);
 }
 
+void bew::Renderer::RenderRect(const SDL_Rect& rect)
+{
+	SDL_SetRenderDrawColor(GetSDLRenderer(), 255, 0, 0, 255);
+	SDL_RenderDrawRect(GetSDLRenderer(), &rect);
+}
+
 SDL_Renderer* bew::Renderer::GetSDLRenderer() const { return m_renderer; }

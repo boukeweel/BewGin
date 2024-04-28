@@ -16,8 +16,6 @@ namespace bew
 		SDLSoundSystem(SDLSoundSystem&& other) = delete;
 		SDLSoundSystem& operator=(const SDLSoundSystem& other) = delete;
 		SDLSoundSystem& operator=(SDLSoundSystem&& other) = delete;
-
-	private:
 	};
 }
 

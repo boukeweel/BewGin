@@ -24,6 +24,8 @@ namespace bew
 		void RenderTexture(const Texture2D& texture, float x, float y, const float angle = 0) const;
 		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height, const float angle = 0) const;
 
+		void RenderRect(const SDL_Rect& rect);
+
 		SDL_Renderer* GetSDLRenderer() const;
 
 		const SDL_Color& GetBackgroundColor() const { return m_clearColor; }

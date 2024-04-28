@@ -15,9 +15,4 @@ void bew::LoggingSDLSoundSystem::AddClip(sound_id id, std::unique_ptr<AudioClip>
 	std::cout << "added clip at id " << id << std::endl;
 }
 
-void bew::LoggingSDLSoundSystem::RemoveClip(sound_id id)
-{
-	m_RealSoundSystem->RemoveClip(id);
-	std::cout << "Removed clip at id " << id << std::endl;
-}
 
