@@ -9,7 +9,15 @@ namespace bew
 	public:
 		SDLSoundSystem() = default;
 		virtual ~SDLSoundSystem() = default;
-		/*void Play(sound_id id, float volume) override;*/
+
+		void Play(sound_id id, int volume) override;
+
+		SDLSoundSystem(const SDLSoundSystem& other) = delete;
+		SDLSoundSystem(SDLSoundSystem&& other) = delete;
+		SDLSoundSystem& operator=(const SDLSoundSystem& other) = delete;
+		SDLSoundSystem& operator=(SDLSoundSystem&& other) = delete;
+
+	private:
 	};
 }
 

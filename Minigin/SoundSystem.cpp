@@ -20,13 +20,6 @@ bew::SoundSystem::~SoundSystem()
 	}
 }
 
-void bew::SoundSystem::Play(sound_id id, int volume)
-{
-	std::lock_guard<std::mutex> lock(m_QueueMutex);
-	m_EventQueue.push({ id, volume });
-	m_QueueCondition.notify_one();
-}
-
 void bew::SoundSystem::AddClip(sound_id id, std::unique_ptr<AudioClip> clip)
 {
 	m_AudioClips[id] = std::move(clip);
@@ -39,7 +32,7 @@ void bew::SoundSystem::RemoveClip(sound_id id)
 
 bew::AudioClip* bew::SoundSystem::GetAudioClip(sound_id id)
 {
-	if (m_AudioClips.count(id)) {
+	if (m_AudioClips.contains(id)) {
 		return m_AudioClips[id].get();
 	}
 	return nullptr;

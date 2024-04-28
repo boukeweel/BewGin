@@ -43,3 +43,4 @@ std::unique_ptr<bew::AudioClip> bew::ResourceManager::LoadAudio(const std::strin
 	std::unique_ptr<Mix_Chunk> chunkPtr(chunk); 
 	return std::make_unique<AudioClip>(std::move(chunkPtr));
 }
+

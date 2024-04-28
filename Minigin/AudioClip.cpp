@@ -7,9 +7,9 @@ namespace bew {
         Mix_FreeChunk(m_chunk.get());
     }
 
-    void AudioClip::Play(int volume)
+    void AudioClip::Play()
     {
-        Mix_VolumeChunk(m_chunk.get(), volume);
+        Mix_VolumeChunk(m_chunk.get(), m_Volume);
         Mix_PlayChannel(-1, m_chunk.get(), 0);
     }
 

@@ -2,8 +2,22 @@
 
 #include <iostream>
 
-//void bew::LoggingSDLSoundSystem::Play(sound_id id, float volume)
-//{
-//	//play sound function
-//	std::cout << "sound id " << id << " At volume " << volume;
-//}
+
+void bew::LoggingSDLSoundSystem::Play(sound_id id, int volume)
+{
+	m_RealSoundSystem->Play(id,volume);
+	std::cout << "Playing: " << id << " at volume " << volume << std::endl;
+}
+
+void bew::LoggingSDLSoundSystem::AddClip(sound_id id, std::unique_ptr<AudioClip> clip)
+{
+	m_RealSoundSystem->AddClip(id, std::move(clip));
+	std::cout << "added clip at id " << id << std::endl;
+}
+
+void bew::LoggingSDLSoundSystem::RemoveClip(sound_id id)
+{
+	m_RealSoundSystem->RemoveClip(id);
+	std::cout << "Removed clip at id " << id << std::endl;
+}
+

@@ -12,7 +12,8 @@ namespace bew {
         explicit AudioClip(std::unique_ptr<Mix_Chunk> chunk);
         ~AudioClip();
 
-        void Play(int volume);
+        void Play();
+        void SetVolume(int volume) { m_Volume = volume; }
 
         AudioClip(const AudioClip&) = delete;
         AudioClip(AudioClip&&) = delete;
@@ -21,6 +22,7 @@ namespace bew {
 
     private:
         std::unique_ptr<Mix_Chunk> m_chunk;
+        int m_Volume{};
     };
 }
 

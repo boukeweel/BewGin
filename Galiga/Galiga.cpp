@@ -12,10 +12,10 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include <InputKeyEnum.cpp>
-#include <iostream>
 #include "DemoScene.h"
 #include "GaligaScene.h"
 #include "LoggingSDLSoundSystem.h"
+#include "SDLSoundSystem.h"
 #include "SoundServiceLocator.h"
 
 
@@ -52,9 +52,13 @@ void load()
 
 	bew::SceneManager::GetInstance().LoadScene(1);
 
-	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::SoundSystem>());
-	auto audio  = bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav");
-	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(audio));
+#if NDEBUG
+	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::SDLSoundSystem>());
+#else
+	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::LoggingSDLSoundSystem>(std::make_unique<bew::SDLSoundSystem>()));
+#endif
+
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav")));
 }
 
 int main(int, char* []) {
