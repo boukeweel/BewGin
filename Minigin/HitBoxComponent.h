@@ -15,6 +15,8 @@ namespace bew
 		//void FixedUpdate() override;
 		void Render() const override;
 
+		void SetHitBox(SDL_Rect hitbox) { m_hitbox = hitbox; }
+
 		void SetDrawHitBox(bool drawHitBox) { m_DrawHitBox = drawHitBox; }
 		SDL_Rect GetHitBox() const;
 

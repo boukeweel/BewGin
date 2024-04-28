@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "GameObject.h"
+#include "HitBoxComponent.h"
 #include "ObjectPoolingComponent.h"
 #include "PoolComponent.h"
 
@@ -14,16 +15,24 @@ EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* 
 	}
 }
 
-void EnemyComponent::Update()
+void EnemyComponent::FixedUpdate()
 {
-	//todo
-	//should be in fixxed update
-	//and should be a collision component the 
+	CheckInHitBox();
+}
+
+void EnemyComponent::CheckInHitBox()
+{
 	for (const auto& bullet : *m_pBulletVector)
 	{
-		if(bullet->GetComponent<PoolComponent>()->InUse())
+		if (bullet->GetComponent<PoolComponent>()->InUse())
 		{
+			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(bullet->GetComponent<bew::HitBoxComponent>()->GetHitBox()))
+			{
+				bullet->GetComponent<PoolComponent>()->SetInUse(false);
+				bullet->SetIsActive(false);
 
+				GetParentObject()->SetIsActive(false);
+			}
 		}
 	}
 }

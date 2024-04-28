@@ -8,7 +8,7 @@ class EnemyComponent :
 public:
     EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player);
 
-    void Update() override;
+    void FixedUpdate() override;
 
     virtual ~EnemyComponent() = default;
     EnemyComponent(const EnemyComponent& other) = delete;
@@ -17,7 +17,7 @@ public:
     EnemyComponent& operator=(EnemyComponent&& other) = delete;
 private:
 
-    bool CheckInHitBox(const glm::vec3& pos);
+    void CheckInHitBox();
 
     bew::GameObject* m_pPlayer;
     std::vector<bew::GameObject*>* m_pBulletVector;

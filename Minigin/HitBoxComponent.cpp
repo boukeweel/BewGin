@@ -1,10 +1,6 @@
-
-#include <SDL_render.h>
-
 #include "GameObject.h"
 #include "Renderer.h"
 #include "HitBoxComponent.h"
-
 
 bew::HitBoxComponent::HitBoxComponent(GameObject* pparentObject, SDL_Rect hitBox) : Component(pparentObject),m_hitbox{hitBox}
 {
@@ -18,8 +14,6 @@ void bew::HitBoxComponent::Render() const
 {
 	if(m_DrawHitBox)
 	{
-		
-		
 		Renderer::GetInstance().RenderRect(GetHitBox());
 	}
 }
@@ -33,9 +27,10 @@ SDL_Rect bew::HitBoxComponent::GetHitBox() const
 	return hitbox;
 }
 
-bool bew::HitBoxComponent::InsideHitBox(SDL_Rect /*OtherHitBox*/)
+bool bew::HitBoxComponent::InsideHitBox(SDL_Rect OtherHitBox)
 {
-
-	return true;
+	SDL_Rect result;
+	SDL_Rect OwnHitBox = GetHitBox();
+	return SDL_IntersectRect(&OwnHitBox,&OtherHitBox, &result);
 }
 
