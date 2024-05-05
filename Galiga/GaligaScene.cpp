@@ -13,7 +13,10 @@
 #include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "HealthComponent.h"
+#include "LivesTextObserver.h"
 #include "ObjectPoolingComponent.h"
+#include "ScoreComponent.h"
+#include "ScoreTextObserver.h"
 #include "ShootCommand.h"
 #include "SubjectComponent.h"
 #include "TempComands.h"
@@ -40,12 +43,14 @@ void GaligaScene::Load()
 	ControlControllerTxt->AddComponent<bew::TextComponent>("Move with Dpad Left and Right Shoot with DpadA ", fontTxt);
 	scene.Add(std::move(ControlControllerTxt));
 
+	
+
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
 	Player1->SetPosition(200, 500);
 	Player1->SetScale(2, 2);
 	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,10,0 });
-
+	Player1->AddComponent<ScoreComponent>();
 	SetControllsP1(input, Player1.get());
 
 
@@ -59,7 +64,15 @@ void GaligaScene::Load()
 	Enemy->SetRotation(180);
 	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16})->SetDrawHitBox(true);
 
+	auto Player1ScoreText = std::make_unique<bew::GameObject>();
+	Player1ScoreText->SetPosition(0, 210);
+	auto textScorep1 = Player1ScoreText->AddComponent<bew::TextComponent>("Player1 Score: ", fontTxt);
 
+	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
+
+	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
+
+	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Enemy));
 	scene.Add(std::move(Player1));
 

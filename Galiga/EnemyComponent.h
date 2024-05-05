@@ -2,6 +2,11 @@
 #include <Component.h>
 #include <vector>
 
+namespace bew
+{
+	enum class GameEvents;
+}
+
 class EnemyComponent :
     public bew::Component
 {

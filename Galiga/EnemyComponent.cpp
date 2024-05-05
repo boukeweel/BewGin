@@ -6,6 +6,8 @@
 #include "HitBoxComponent.h"
 #include "ObjectPoolingComponent.h"
 #include "PoolComponent.h"
+#include "ScoreComponent.h"
+#include "SubjectComponent.h"
 
 EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player): Component(pParentObject),m_pPlayer{ Player }
 {
@@ -32,6 +34,9 @@ void EnemyComponent::CheckInHitBox()
 				bullet->SetIsActive(false);
 
 				GetParentObject()->SetIsActive(false);
+
+				//todo kinda wack ngl
+				m_pPlayer->GetComponent<ScoreComponent>()->AddScore(100);
 			}
 		}
 	}
