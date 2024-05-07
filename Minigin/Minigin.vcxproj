@@ -201,6 +201,7 @@
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_truetype.h" />
+    <ClInclude Include="AnimatorComponent.h" />
     <ClInclude Include="AudioClip.h" />
     <ClInclude Include="HitBoxComponent.h" />
     <ClInclude Include="Command.h" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundServiceLocator.h" />
     <ClInclude Include="SoundSystem.h" />
+    <ClInclude Include="SpriteSheetComponent.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="SubjectComponent.h" />
     <ClInclude Include="TextComponent.h" />
@@ -238,6 +240,7 @@
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_draw.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_widgets.cpp" />
+    <ClCompile Include="AnimatorComponent.cpp" />
     <ClCompile Include="AudioClip.cpp" />
     <ClCompile Include="HitBoxComponent.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -259,6 +262,7 @@
     <ClCompile Include="SDLSoundSystem.cpp" />
     <ClCompile Include="SoundServiceLocator.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
+    <ClCompile Include="SpriteSheetComponent.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />

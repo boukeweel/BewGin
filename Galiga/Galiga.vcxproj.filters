@@ -81,6 +81,9 @@
     <ClCompile Include="HealthComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="BeeEnemyComponent.cpp">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="HealthComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BeeEnemyComponent.h">
+      <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

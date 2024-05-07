@@ -16,12 +16,15 @@ public:
     void FixedUpdate() override;
 
     virtual ~EnemyComponent() = default;
+
     EnemyComponent(const EnemyComponent& other) = delete;
     EnemyComponent(EnemyComponent&& other) = delete;
     EnemyComponent& operator=(const EnemyComponent& other) = delete;
     EnemyComponent& operator=(EnemyComponent&& other) = delete;
-private:
+protected:
+    bew::GameObject* GetPlayer() { return m_pPlayer; }
 
+private:
     void CheckInHitBox();
 
     bew::GameObject* m_pPlayer;

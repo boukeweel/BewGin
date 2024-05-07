@@ -12,7 +12,6 @@ namespace bew
 		HitBoxComponent(GameObject* pparentObject, SDL_Rect hitBox);
 		virtual ~HitBoxComponent() = default;
 
-		//void FixedUpdate() override;
 		void Render() const override;
 
 		void SetHitBox(SDL_Rect hitbox) { m_hitbox = hitbox; }
@@ -21,6 +20,7 @@ namespace bew
 		SDL_Rect GetHitBox() const;
 
 		bool InsideHitBox(SDL_Rect OtherHitBox);
+		bool InsideHitBox(GameObject* OtherObject);
 
 		HitBoxComponent(const HitBoxComponent& other) = delete;
 		HitBoxComponent(HitBoxComponent&& other) = delete;

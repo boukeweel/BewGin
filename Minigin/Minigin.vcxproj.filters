@@ -147,6 +147,12 @@
     <ClInclude Include="AudioClip.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteSheetComponent.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatorComponent.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -247,6 +253,12 @@
     </ClCompile>
     <ClCompile Include="AudioClip.cpp">
       <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheetComponent.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatorComponent.cpp">
+      <Filter>GameObject\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

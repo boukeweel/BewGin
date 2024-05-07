@@ -29,7 +29,6 @@ namespace bew
 
 		Transform GetTransform() const;
 
-		//todo temp
 		void Translate(const glm::vec3& translation);
 
 		GameObject* GetParrent() const;
@@ -38,7 +37,7 @@ namespace bew
 		int GetChildCount() const;
 		GameObject* GetChildAtIndex(int index) const;
 
-		bool GetIsActive() { return m_IsActive; }
+		bool GetIsActive() const { return m_IsActive; }
 		void SetIsActive(const bool& active) { m_IsActive = active; }
 
 		

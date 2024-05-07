@@ -26,11 +26,13 @@ void EnemyComponent::CheckInHitBox()
 {
 	for (const auto& bullet : *m_pBulletVector)
 	{
-		if (bullet->GetComponent<PoolComponent>()->InUse())
+		auto bulletPoolComp = bullet->GetComponent<PoolComponent>();
+
+		if (bulletPoolComp->InUse())
 		{
-			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(bullet->GetComponent<bew::HitBoxComponent>()->GetHitBox()))
+			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(bullet))
 			{
-				bullet->GetComponent<PoolComponent>()->SetInUse(false);
+				bulletPoolComp->SetInUse(false);
 				bullet->SetIsActive(false);
 
 				GetParentObject()->SetIsActive(false);

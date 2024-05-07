@@ -189,6 +189,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BeeEnemyComponent.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
@@ -206,6 +207,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseSceneCreator.h" />
+    <ClInclude Include="BeeEnemyComponent.h" />
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="EnemyComponent.h" />

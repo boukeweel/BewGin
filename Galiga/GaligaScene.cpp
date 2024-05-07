@@ -49,13 +49,12 @@ void GaligaScene::Load()
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
 	Player1->SetPosition(200, 500);
 	Player1->SetScale(2, 2);
-	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,10,0 });
+	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
 	SetControllsP1(input, Player1.get());
 
 
 	auto Enemy = std::make_unique<bew::GameObject>();
-	/*auto enemySubject =*/ Enemy->AddComponent<bew::SubjectComponent>();
 	Enemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
 	Enemy->AddComponent<HealthComponent>(1);
 	Enemy->AddComponent<EnemyComponent>(Player1.get());

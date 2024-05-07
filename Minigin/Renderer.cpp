@@ -66,7 +66,7 @@ void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
 	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-	SDL_Point center;
+	SDL_Point center{};
 	center.x = dst.w / 2;
 	center.y = dst.h / 2;
 
@@ -81,14 +81,26 @@ void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 	dst.w = static_cast<int>(width);
 	dst.h = static_cast<int>(height);
 
-	SDL_Point center;
+	SDL_Point center{};
 	center.x = dst.w / 2;
 	center.y = dst.h / 2;
 
 	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, angle, &center, SDL_FLIP_NONE);
 }
 
-void bew::Renderer::RenderRect(const SDL_Rect& rect)
+void bew::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float spriteWidth, const float spriteHeight, const float srcX, const float srcY, const float srcWidth, const float srcHeight, const float angle) const
+{
+	SDL_Rect srcRect{ static_cast<int>(srcX), static_cast<int>(srcY), static_cast<int>(srcWidth), static_cast<int>(srcHeight) };
+	SDL_Rect dstRect{ static_cast<int>(x), static_cast<int>(y), static_cast<int>(spriteWidth), static_cast<int>(spriteHeight) };
+
+	SDL_Point center{};
+	center.x = dstRect.w / 2;
+	center.y = dstRect.h / 2;
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), &srcRect, &dstRect, angle, &center, SDL_FLIP_NONE);
+}
+
+void bew::Renderer::RenderRect(const SDL_Rect& rect) const
 {
 	SDL_SetRenderDrawColor(GetSDLRenderer(), 255, 0, 0, 255);
 	SDL_RenderDrawRect(GetSDLRenderer(), &rect);

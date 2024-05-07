@@ -34,3 +34,8 @@ bool bew::HitBoxComponent::InsideHitBox(SDL_Rect OtherHitBox)
 	return SDL_IntersectRect(&OwnHitBox,&OtherHitBox, &result);
 }
 
+bool bew::HitBoxComponent::InsideHitBox(GameObject* OtherObject)
+{
+	return InsideHitBox(OtherObject->GetComponent<HitBoxComponent>()->GetHitBox());
+}
+
