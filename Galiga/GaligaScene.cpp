@@ -10,6 +10,7 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
+#include "AnimatorComponent.h"
 #include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "HealthComponent.h"
@@ -18,6 +19,7 @@
 #include "ScoreComponent.h"
 #include "ScoreTextObserver.h"
 #include "ShootCommand.h"
+#include "SpriteSheetComponent.h"
 #include "SubjectComponent.h"
 #include "TempComands.h"
 
@@ -76,6 +78,17 @@ void GaligaScene::Load()
 	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
+
+
+	auto Explotion = std::make_unique<bew::GameObject>();
+	Explotion->AddComponent<bew::SpriteSheetComponent>("ExplotionSheet.png", 1, 5);
+	Explotion->SetPosition(200, 400);
+	std::vector<bew::KeyFrame> keyframes{ {0,0},{0, 1}, { 0, 2 }, { 0, 3 },{ 0, 4 } };
+	Explotion->AddComponent<bew::AnimatorComponent>(keyframes,0.05,false)->PlayAnimation();
+	
+
+	scene.Add(std::move(Explotion));
+
 
 }
 

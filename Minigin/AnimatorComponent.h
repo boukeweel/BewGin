@@ -6,20 +6,18 @@
 namespace bew
 {
 	class SpriteSheetComponent;
-}
 
-namespace bew
-{
+	struct KeyFrame
+	{
+		int row;
+		int column;
+	};
+
+	//this is more a animtion class than animator
 	class AnimatorComponent : public Component
 	{
-		struct KeyFrame
-		{
-			int row;
-			int column;
-		};
 	public:
-		AnimatorComponent(GameObject* pParentObject);
-		AnimatorComponent(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration);
+		AnimatorComponent(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping);
 
 		void Update() override;
 
@@ -43,7 +41,7 @@ namespace bew
 		int m_CurrentFrame{0};
 		double m_TimeElapsed{0.0};
 		bool m_IsAnimating{false};
-
+		bool m_Looping{ true };
 	};
 }
 

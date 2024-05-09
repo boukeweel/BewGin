@@ -29,7 +29,7 @@ void bew::SpriteSheetComponent::Render() const
         Renderer::GetInstance().RenderTexture(*m_pTexture,
             pos.x - spriteWidth / 2, pos.y - spriteHeight / 2,
             spriteWidth, spriteHeight,
-            m_CurrentSprite.x * spriteWidth, m_CurrentSprite.y * spriteHeight,
+            m_CurrentSprite.y * spriteWidth, m_CurrentSprite.x * spriteHeight,
             spriteWidth, spriteHeight,
             GetParentObject()->GetTransform().GetRotation().x);
     }
