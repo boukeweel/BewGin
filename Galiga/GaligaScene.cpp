@@ -10,7 +10,7 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
-#include "AnimatorComponent.h"
+#include "Animation.h"
 #include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "HealthComponent.h"
@@ -45,8 +45,6 @@ void GaligaScene::Load()
 	ControlControllerTxt->AddComponent<bew::TextComponent>("Move with Dpad Left and Right Shoot with DpadA ", fontTxt);
 	scene.Add(std::move(ControlControllerTxt));
 
-	
-
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
 	Player1->SetPosition(200, 500);
@@ -55,7 +53,6 @@ void GaligaScene::Load()
 	Player1->AddComponent<ScoreComponent>();
 	SetControllsP1(input, Player1.get());
 
-
 	auto Enemy = std::make_unique<bew::GameObject>();
 	Enemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
 	Enemy->AddComponent<HealthComponent>(1);
@@ -63,7 +60,7 @@ void GaligaScene::Load()
 	Enemy->SetPosition(200, 100);
 	Enemy->SetScale(2,2);
 	Enemy->SetRotation(180);
-	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16})->SetDrawHitBox(true);
+	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16});
 
 	auto Player1ScoreText = std::make_unique<bew::GameObject>();
 	Player1ScoreText->SetPosition(0, 210);
@@ -78,18 +75,6 @@ void GaligaScene::Load()
 	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
-
-
-	auto Explotion = std::make_unique<bew::GameObject>();
-	Explotion->AddComponent<bew::SpriteSheetComponent>("ExplotionSheet.png", 1, 5);
-	Explotion->SetPosition(200, 400);
-	std::vector<bew::KeyFrame> keyframes{ {0,0},{0, 1}, { 0, 2 }, { 0, 3 },{ 0, 4 } };
-	Explotion->AddComponent<bew::AnimatorComponent>(keyframes,0.05,false)->PlayAnimation();
-	
-
-	scene.Add(std::move(Explotion));
-
-
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)

@@ -13,22 +13,20 @@ namespace bew
 		int column;
 	};
 
-	//this is more a animtion class than animator
-	class Animation : public Component
+	class Animation final
 	{
 	public:
-		Animation(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping);
+		Animation(GameObject* TargetObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping);
 
-		void Update() override;
+		void Update();
 
 		void SetKeyFrames(const std::vector<KeyFrame>& keyframes);
 		void SetFrameDuration(double frameDuration);
 
-		void PlayAnimation(const std::vector<KeyFrame>& keyframes, double frameDuration);
 		void PlayAnimation();
 		void StopAnimation();
 
-		virtual ~Animation() = default;
+		~Animation() = default;
 		Animation(const Animation& other) = delete;
 		Animation(Animation&& other) = delete;
 		Animation& operator=(const Animation& other) = delete;

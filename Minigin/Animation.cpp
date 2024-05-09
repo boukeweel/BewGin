@@ -5,11 +5,10 @@
 #include "SpriteSheetComponent.h"
 
 
-
-bew::Animation::Animation(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping)
-	: Component(pParentObject),m_Keyframes(keyframes),m_FrameDuration{frameDuration},m_Looping{looping}
+bew::Animation::Animation(GameObject* TargetObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping)
+	: m_Keyframes(keyframes),m_FrameDuration{frameDuration},m_Looping{looping}
 {
-	m_pSpriteSheet = GetParentObject()->GetComponent<SpriteSheetComponent>();
+	m_pSpriteSheet = TargetObject->GetComponent<SpriteSheetComponent>();
 
 	if (m_pSpriteSheet == nullptr)
 	{
@@ -47,15 +46,6 @@ void bew::Animation::SetKeyFrames(const std::vector<KeyFrame>& keyframes)
 void bew::Animation::SetFrameDuration(double frameDuration)
 {
 	m_FrameDuration = frameDuration;
-}
-
-void bew::Animation::PlayAnimation(const std::vector<KeyFrame>& keyframes, double frameDuration)
-{
-	m_Keyframes = keyframes;
-	m_FrameDuration = frameDuration;
-	m_CurrentFrame = 0;
-	m_TimeElapsed = 0.0;
-	m_IsAnimating = true;
 }
 
 void bew::Animation::PlayAnimation()
