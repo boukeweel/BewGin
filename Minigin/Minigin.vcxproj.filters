@@ -37,6 +37,9 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{ffbd48f1-eccb-4075-b37f-ab76f315d3af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{4dbe93df-26d9-403f-b428-f806446fb76b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -150,8 +153,11 @@
     <ClInclude Include="SpriteSheetComponent.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatorComponent.h">
-      <Filter>GameObject\Components</Filter>
+    <ClInclude Include="Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,8 +263,11 @@
     <ClCompile Include="SpriteSheetComponent.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
-    <ClCompile Include="AnimatorComponent.cpp">
-      <Filter>GameObject\Components</Filter>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

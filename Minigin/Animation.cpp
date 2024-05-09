@@ -1,4 +1,4 @@
-#include "AnimatorComponent.h"
+#include "Animation.h"
 #include <iostream>
 #include "GameObject.h"
 #include "GameTime.h"
@@ -6,7 +6,7 @@
 
 
 
-bew::AnimatorComponent::AnimatorComponent(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping)
+bew::Animation::Animation(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping)
 	: Component(pParentObject),m_Keyframes(keyframes),m_FrameDuration{frameDuration},m_Looping{looping}
 {
 	m_pSpriteSheet = GetParentObject()->GetComponent<SpriteSheetComponent>();
@@ -17,7 +17,7 @@ bew::AnimatorComponent::AnimatorComponent(GameObject* pParentObject, const std::
 	}
 }
 
-void bew::AnimatorComponent::Update()
+void bew::Animation::Update()
 {
 	if(m_IsAnimating && !m_Keyframes.empty())
 	{
@@ -30,7 +30,7 @@ void bew::AnimatorComponent::Update()
 			else
 			{
 				m_CurrentFrame++;
-				if (m_CurrentFrame > m_Keyframes.size())
+				if (m_CurrentFrame == m_Keyframes.size() - 1)
 					m_IsAnimating = false;
 			}
 			m_pSpriteSheet->SetSprite(m_Keyframes[m_CurrentFrame].row, m_Keyframes[m_CurrentFrame].column);
@@ -39,17 +39,17 @@ void bew::AnimatorComponent::Update()
 	}
 }
 
-void bew::AnimatorComponent::SetKeyFrames(const std::vector<KeyFrame>& keyframes)
+void bew::Animation::SetKeyFrames(const std::vector<KeyFrame>& keyframes)
 {
 	m_Keyframes = keyframes;
 }
 
-void bew::AnimatorComponent::SetFrameDuration(double frameDuration)
+void bew::Animation::SetFrameDuration(double frameDuration)
 {
 	m_FrameDuration = frameDuration;
 }
 
-void bew::AnimatorComponent::PlayAnimation(const std::vector<KeyFrame>& keyframes, double frameDuration)
+void bew::Animation::PlayAnimation(const std::vector<KeyFrame>& keyframes, double frameDuration)
 {
 	m_Keyframes = keyframes;
 	m_FrameDuration = frameDuration;
@@ -58,14 +58,14 @@ void bew::AnimatorComponent::PlayAnimation(const std::vector<KeyFrame>& keyframe
 	m_IsAnimating = true;
 }
 
-void bew::AnimatorComponent::PlayAnimation()
+void bew::Animation::PlayAnimation()
 {
 	m_CurrentFrame = 0;
 	m_TimeElapsed = 0.0;
 	m_IsAnimating = true;
 }
 
-void bew::AnimatorComponent::StopAnimation()
+void bew::Animation::StopAnimation()
 {
 	m_IsAnimating = false;
 }

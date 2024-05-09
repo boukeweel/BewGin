@@ -14,10 +14,10 @@ namespace bew
 	};
 
 	//this is more a animtion class than animator
-	class AnimatorComponent : public Component
+	class Animation : public Component
 	{
 	public:
-		AnimatorComponent(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping);
+		Animation(GameObject* pParentObject, const std::vector<KeyFrame>& keyframes, double frameDuration,bool looping);
 
 		void Update() override;
 
@@ -28,11 +28,11 @@ namespace bew
 		void PlayAnimation();
 		void StopAnimation();
 
-		virtual ~AnimatorComponent() = default;
-		AnimatorComponent(const AnimatorComponent& other) = delete;
-		AnimatorComponent(AnimatorComponent&& other) = delete;
-		AnimatorComponent& operator=(const AnimatorComponent& other) = delete;
-		AnimatorComponent& operator=(AnimatorComponent&& other) = delete;
+		virtual ~Animation() = default;
+		Animation(const Animation& other) = delete;
+		Animation(Animation&& other) = delete;
+		Animation& operator=(const Animation& other) = delete;
+		Animation& operator=(Animation&& other) = delete;
 	private:
 		SpriteSheetComponent* m_pSpriteSheet;
 		std::vector<KeyFrame> m_Keyframes{};
