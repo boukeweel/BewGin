@@ -6,6 +6,9 @@
 #include <SDL_ttf.h>
 #include <thread> 
 #include "BewGin.h"
+
+#include <iostream>
+
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -13,7 +16,7 @@
 #include "chrono"
 #include "GameTime.h"
 #include "ImGuiTrashTheCacheComponent.h"
-
+#include "RandomFunctions.h"
 
 
 SDL_Window* g_window{};
@@ -59,8 +62,8 @@ bew::BewGin::BewGin(const std::string &dataPath)
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		448,
-		576,
+		ScreenWidth,
+		ScreenHeight,
 		SDL_WINDOW_OPENGL
 	);
 	if (g_window == nullptr) 
@@ -71,6 +74,8 @@ bew::BewGin::BewGin(const std::string &dataPath)
 	Renderer::GetInstance().Init(g_window);
 
 	ResourceManager::GetInstance().Init(dataPath);
+
+	srand(static_cast<unsigned int>( time(NULL)));
 }
 
 bew::BewGin::~BewGin()
@@ -88,11 +93,11 @@ void bew::BewGin::Run(const std::function<void()>& load)
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
-	
 
 	bool doContinue = true;
 	while (doContinue)
 	{
+		
 		GameTime::Update();
 		m_Lag += GameTime::GetDeltaTime();
 

@@ -4,6 +4,9 @@
 
 namespace bew
 {
+	const static int ScreenWidth{ 448 };
+	const static int ScreenHeight{ 576 };
+
 	class BewGin final 
 	{
 	public:

@@ -216,6 +216,7 @@
     <ClInclude Include="BewGin.h" />
     <ClInclude Include="LoggingSDLSoundSystem.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="RandomFunctions.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="RotatorComponent.h" />

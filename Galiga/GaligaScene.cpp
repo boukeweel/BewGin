@@ -20,15 +20,27 @@
 #include "ScoreTextObserver.h"
 #include "ShootCommand.h"
 #include "SpriteSheetComponent.h"
+#include "StarComponent.h"
 #include "SubjectComponent.h"
 #include "TempComands.h"
 
 void GaligaScene::Load()
 {
+
 	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("Lingua.otf", 14);
+
+	auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
+
+	for (int i = 0; i < 50; ++i)
+	{
+		auto testStar = std::make_unique<bew::GameObject>();
+		testStar->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
+		testStar->AddComponent<StarComponent>();
+		scene.Add(std::move(testStar));
+	}
 
 	auto SwitchSceneTxt = std::make_unique<bew::GameObject>();
 	SwitchSceneTxt->SetPosition(0, 150);
@@ -51,7 +63,14 @@ void GaligaScene::Load()
 	Player1->SetScale(2, 2);
 	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
+	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
 	SetControllsP1(input, Player1.get());
+
+	auto Player1ScoreText = std::make_unique<bew::GameObject>();
+	Player1ScoreText->SetPosition(0, 210);
+	auto textScorep1 = Player1ScoreText->AddComponent<bew::TextComponent>("Player1 Score: ", fontTxt);
+
+	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
 	auto Enemy = std::make_unique<bew::GameObject>();
 	Enemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
@@ -62,17 +81,12 @@ void GaligaScene::Load()
 	Enemy->SetRotation(180);
 	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16});
 
-	auto Player1ScoreText = std::make_unique<bew::GameObject>();
-	Player1ScoreText->SetPosition(0, 210);
-	auto textScorep1 = Player1ScoreText->AddComponent<bew::TextComponent>("Player1 Score: ", fontTxt);
-
-	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
-
-	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
-
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Enemy));
 	scene.Add(std::move(Player1));
+
+	
+	
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }

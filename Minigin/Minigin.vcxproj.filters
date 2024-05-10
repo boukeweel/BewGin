@@ -159,6 +159,9 @@
     <ClInclude Include="AnimatorComponent.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="RandomFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">

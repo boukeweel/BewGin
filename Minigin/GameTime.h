@@ -2,8 +2,6 @@
 #include <chrono>
 #include <thread>
 
-#include "Singleton.h"
-
 namespace bew
 {
 	class GameTime final
