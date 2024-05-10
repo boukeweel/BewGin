@@ -36,7 +36,7 @@ namespace bew
 		std::vector<KeyFrame> m_Keyframes{};
 
 		double m_FrameDuration{0.0};
-		int m_CurrentFrame{0};
+		unsigned int m_CurrentFrame{0};
 		double m_TimeElapsed{0.0};
 		bool m_IsAnimating{false};
 		bool m_Looping{ true };
