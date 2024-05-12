@@ -10,7 +10,6 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
-#include "Animation.h"
 #include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "HealthComponent.h"
@@ -26,6 +25,8 @@
 
 void GaligaScene::Load()
 {
+
+	EnemyComponent::CreatePaths();
 
 	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
@@ -76,7 +77,7 @@ void GaligaScene::Load()
 	Enemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
 	Enemy->AddComponent<HealthComponent>(1);
 	Enemy->AddComponent<EnemyComponent>(Player1.get());
-	Enemy->SetPosition(200, 100);
+	//Enemy->SetPosition(0, 0);
 	Enemy->SetScale(2,2);
 	Enemy->SetRotation(180);
 	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16});
@@ -84,9 +85,6 @@ void GaligaScene::Load()
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Enemy));
 	scene.Add(std::move(Player1));
-
-	
-	
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }

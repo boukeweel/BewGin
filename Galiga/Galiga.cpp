@@ -50,7 +50,7 @@ void load()
 	bew::SceneManager::GetInstance().CreateScene("Demo", std::make_unique<DemoScene>());
 	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
 
-	bew::SceneManager::GetInstance().LoadScene(1);
+	
 
 #if NDEBUG
 	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::SDLSoundSystem>());
@@ -59,6 +59,8 @@ void load()
 #endif
 
 	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav")));
+
+	bew::SceneManager::GetInstance().LoadScene(1);
 }
 
 int main(int, char* []) {

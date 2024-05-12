@@ -15,9 +15,7 @@ namespace bew
 		virtual void Update(){}
 		virtual void Render() const{}
 
-	protected:
 		GameObject* GetParentObject() const;
-
 	private:
 		GameObject* m_pParentObject;
 	};

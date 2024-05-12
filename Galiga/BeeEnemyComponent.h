@@ -16,11 +16,6 @@ public:
     BeeEnemyComponent& operator=(BeeEnemyComponent&& other) = delete;
 
 private:
-    void Attack();
-    void ShootingRun();
-    void Crashing();
-    void Returning();
 
-    bool m_isBomming{ false };
 };
 

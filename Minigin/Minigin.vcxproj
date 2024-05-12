@@ -215,6 +215,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="BewGin.h" />
     <ClInclude Include="LoggingSDLSoundSystem.h" />
+    <ClInclude Include="MathHelpers.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="RandomFunctions.h" />
     <ClInclude Include="Renderer.h" />

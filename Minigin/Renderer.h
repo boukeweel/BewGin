@@ -27,6 +27,8 @@ namespace bew
 
 		void RenderRect(const SDL_Rect& rect) const;
 
+		void DrawLine(float sX, float sY, float eX, float eY);
+
 		SDL_Renderer* GetSDLRenderer() const;
 
 		const SDL_Color& GetBackgroundColor() const { return m_clearColor; }

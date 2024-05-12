@@ -106,4 +106,10 @@ void bew::Renderer::RenderRect(const SDL_Rect& rect) const
 	SDL_RenderDrawRect(GetSDLRenderer(), &rect);
 }
 
+void bew::Renderer::DrawLine(float sX, float sY, float eX, float eY)
+{
+	SDL_SetRenderDrawColor(GetSDLRenderer(), 0, 255, 0, 255);
+	SDL_RenderDrawLineF(GetSDLRenderer(), sX, sY, eX, eY);
+}
+
 SDL_Renderer* bew::Renderer::GetSDLRenderer() const { return m_renderer; }

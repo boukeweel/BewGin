@@ -37,6 +37,12 @@
     <Filter Include="Events\PlayerEvents">
       <UniqueIdentifier>{89965280-d980-48a7-8afe-923329af1d2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BezierPath">
+      <UniqueIdentifier>{4e37a39c-1a76-4c86-9472-08058c62854f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\EnemyComponents\States">
+      <UniqueIdentifier>{a61ad557-7f98-42f7-be57-4fbea200a743}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galiga.cpp">
@@ -86,6 +92,12 @@
     </ClCompile>
     <ClCompile Include="StarComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyStates.cpp">
+      <Filter>Components\EnemyComponents\States</Filter>
+    </ClCompile>
+    <ClCompile Include="BezierPath.cpp">
+      <Filter>BezierPath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="StarComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyStates.h">
+      <Filter>Components\EnemyComponents\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BezierPath.h">
+      <Filter>BezierPath</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

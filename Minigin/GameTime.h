@@ -12,7 +12,7 @@ namespace bew
 		[[nodiscard]] static double GetDeltaTime() { return s_DeltaTime; }
 		[[nodiscard]] static float GetDeltaTimeFloat() { return static_cast<float>(s_DeltaTime); }
 
-		[[nodiscard]] static double GetFixedDeltaTime() { return g_FixedDeltaTime; }
+		[[nodiscard]] static double GetFixedDeltaTime() { return s_FixedDeltaTime; }
 		
 	private:
 
@@ -27,7 +27,8 @@ namespace bew
 			return std::chrono::duration_cast<std::chrono::milliseconds>(frame_end_time - frame_start_time);
 		}
 
-		inline static double g_FixedDeltaTime{ 1.0 / 60.0 };
+		inline static double s_FixedDeltaTime{ 1.0 / 60.0 };
+		inline static double s_MaxDeltatTime{ 1.0 / 30 };
 
 		inline static int s_MaxFrames{ 60 };
 		inline static double s_DeltaTime;

@@ -2,24 +2,96 @@
 
 #include <iostream>
 
+#include "BewGin.h"
+#include "BezierPath.h"
 #include "GameObject.h"
+#include "GameTime.h"
 #include "HitBoxComponent.h"
 #include "ObjectPoolingComponent.h"
 #include "PoolComponent.h"
+#include "Renderer.h"
 #include "ScoreComponent.h"
-#include "SubjectComponent.h"
 
-EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player): Component(pParentObject),m_pPlayer{ Player }
+std::vector<std::vector<glm::vec2>> EnemyComponent::s_Paths;
+
+void EnemyComponent::CreatePaths()
 {
+	int screenWidthMid = bew::ScreenWidth / 2;
+
+	int currentPath = 0;
+	BezierPath* path = new BezierPath();
+
+	path->AddCurve({
+		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,-10),
+		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,-20),
+		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,30.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,20.f) },
+		1);
+
+	path->AddCurve({
+		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,20.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 10.f,150.f),
+		glm::vec2(50.f,180.f),
+		glm::vec2(50.f,240.f) },
+		20);
+
+	path->AddCurve({
+		glm::vec2(50.f,240.f),
+		glm::vec2(50.f,340.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 10,340.f),
+		glm::vec2(static_cast<float>(screenWidthMid),240.f) },
+		20);
+
+	s_Paths.emplace_back();
+	path->Sample(&s_Paths[currentPath]);
+
+	delete path;
+}
+
+EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player)
+: Component(pParentObject),m_pPlayer{ Player },m_States{new FlyIn()}, m_speed{200}
+{
+	
 	if(m_pPlayer->HasComponent<ObjectPoolingComponent>())
 	{
 		m_pBulletVector = m_pPlayer->GetComponent<ObjectPoolingComponent>()->GetObjectList();
 	}
+
+	m_States->OnEnter(this);
 }
 
 void EnemyComponent::FixedUpdate()
 {
 	CheckInHitBox();
+}
+
+void EnemyComponent::Update()
+{
+	HandelStates();
+}
+
+void EnemyComponent::Render() const
+{
+#if NDEBUG
+	return;
+#else
+	m_States->Render();
+#endif
+}
+
+void EnemyComponent::HandelStates()
+{
+	EnemyStates* state = m_States->Update(this);
+
+	if(state != nullptr)
+	{
+		m_States->OnExit(this);
+
+		delete m_States;
+		m_States = state;
+
+		m_States->OnEnter(this);
+	}
 }
 
 void EnemyComponent::CheckInHitBox()
@@ -37,9 +109,14 @@ void EnemyComponent::CheckInHitBox()
 
 				GetParentObject()->SetIsActive(false);
 
-				//todo kinda wack ngl
 				m_pPlayer->GetComponent<ScoreComponent>()->AddScore(100);
 			}
 		}
 	}
+}
+
+EnemyComponent::~EnemyComponent()
+{
+	delete m_States;
+	m_States = nullptr;
 }
