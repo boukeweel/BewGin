@@ -87,9 +87,6 @@
     <ClCompile Include="HealthComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="BeeEnemyComponent.cpp">
-      <Filter>Components\EnemyComponents</Filter>
-    </ClCompile>
     <ClCompile Include="StarComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -145,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="HealthComponent.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="BeeEnemyComponent.h">
-      <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
     <ClInclude Include="StarComponent.h">
       <Filter>Components</Filter>

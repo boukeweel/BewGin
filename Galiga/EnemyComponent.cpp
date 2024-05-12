@@ -1,7 +1,5 @@
 #include "EnemyComponent.h"
-
 #include <iostream>
-
 #include "BewGin.h"
 #include "BezierPath.h"
 #include "GameObject.h"
