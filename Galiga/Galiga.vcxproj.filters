@@ -45,7 +45,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Galiga.cpp">
+    <ClCompile Include="Galaga.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MoveCommands.cpp">

@@ -194,7 +194,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
-    <ClCompile Include="Galiga.cpp" />
+    <ClCompile Include="Galaga.cpp" />
     <ClCompile Include="GaligaScene.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="LivesTextObserver.cpp" />
