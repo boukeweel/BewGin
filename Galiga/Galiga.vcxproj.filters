@@ -96,6 +96,12 @@
     <ClCompile Include="BezierPath.cpp">
       <Filter>BezierPath</Filter>
     </ClCompile>
+    <ClCompile Include="FormationComponent.cpp">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="BeeEnemyComponent.cpp">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -151,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="BezierPath.h">
       <Filter>BezierPath</Filter>
+    </ClInclude>
+    <ClInclude Include="FormationComponent.h">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="BeeEnemyComponent.h">
+      <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

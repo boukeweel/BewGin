@@ -11,6 +11,7 @@
 #include "ScoreComponent.h"
 
 std::vector<std::vector<glm::vec2>> EnemyComponent::s_Paths;
+FormationComponent* EnemyComponent::s_pFormation = nullptr;
 
 void EnemyComponent::CreatePaths()
 {
@@ -46,8 +47,13 @@ void EnemyComponent::CreatePaths()
 	delete path;
 }
 
-EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player)
-: Component(pParentObject),m_pPlayer{ Player },m_States{new FlyIn()}, m_speed{200}
+void EnemyComponent::SetFormation(FormationComponent* formation)
+{
+	s_pFormation = formation;
+}
+
+EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player, int index, int path, bool ChallangeStage)
+: Component(pParentObject),m_pPlayer{ Player },m_States{new FlyIn(path)}, m_speed{200}, m_Index{index},m_ChallengeStage{ChallangeStage}
 {
 	
 	if(m_pPlayer->HasComponent<ObjectPoolingComponent>())

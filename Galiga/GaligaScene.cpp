@@ -10,8 +10,11 @@
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
+#include "BeeEnemyComponent.h"
+#include "BewGin.h"
 #include "HitBoxComponent.h"
 #include "EnemyComponent.h"
+#include "FormationComponent.h"
 #include "HealthComponent.h"
 #include "LivesTextObserver.h"
 #include "ObjectPoolingComponent.h"
@@ -25,8 +28,6 @@
 
 void GaligaScene::Load()
 {
-
-	EnemyComponent::CreatePaths();
 
 	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
@@ -60,7 +61,7 @@ void GaligaScene::Load()
 
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
-	Player1->SetPosition(200, 500);
+	Player1->SetPosition(bew::ScreenWidth * 0.4f, 440);
 	Player1->SetScale(2, 2);
 	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
@@ -73,17 +74,32 @@ void GaligaScene::Load()
 
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
-	auto Enemy = std::make_unique<bew::GameObject>();
-	Enemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
-	Enemy->AddComponent<HealthComponent>(1);
-	Enemy->AddComponent<EnemyComponent>(Player1.get());
-	//Enemy->SetPosition(0, 0);
-	Enemy->SetScale(2,2);
-	Enemy->SetRotation(180);
-	Enemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{-8,-8,16,16});
+	auto Formation = std::make_unique<bew::GameObject>();
+	auto formationComponent = Formation->AddComponent<FormationComponent>();
+	formationComponent->Lock();
+	Formation->SetPosition(bew::ScreenWidth * 0.4f, 100.f);
+
+	EnemyComponent::SetFormation(formationComponent);
+
+	scene.Add(std::move(Formation));
+
+	//testing
+	for (int i = 0; i < 18; ++i)
+	{
+		auto BeeEnemy = std::make_unique<bew::GameObject>();
+		BeeEnemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
+		BeeEnemy->AddComponent<HealthComponent>(1);
+		BeeEnemy->AddComponent<BeeEnemyComponent>(Player1.get(), i, 0, false);
+		BeeEnemy->SetScale(2, 2);
+		BeeEnemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
+
+		scene.Add(std::move(BeeEnemy));
+	}
+	
 
 	scene.Add(std::move(Player1ScoreText));
-	scene.Add(std::move(Enemy));
+	
+	
 	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));

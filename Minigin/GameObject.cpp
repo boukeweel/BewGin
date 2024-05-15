@@ -76,7 +76,7 @@ void bew::GameObject::SetParrent(GameObject* pParent, bool KeepWorldPosition)
 	{
 		if (KeepWorldPosition)
 		{
-			SetLocalPosition(GetWorldPosition() - m_pParent->GetWorldPosition());
+			SetLocalPosition(GetWorldPosition() - pParent->GetWorldPosition());
 		}
 		SetPositionDirty();
 	}
@@ -196,5 +196,3 @@ void bew::GameObject::UpdateWorldPosition()
 }
 
 #pragma endregion
-
-

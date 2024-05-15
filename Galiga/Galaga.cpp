@@ -13,6 +13,7 @@
 #include "SceneManager.h"
 #include <InputKeyEnum.cpp>
 #include "DemoScene.h"
+#include "EnemyComponent.h"
 #include "GaligaScene.h"
 #include "LoggingSDLSoundSystem.h"
 #include "SDLSoundSystem.h"
@@ -59,6 +60,8 @@ void load()
 #endif
 
 	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav")));
+
+	EnemyComponent::CreatePaths();
 
 	bew::SceneManager::GetInstance().LoadScene(1);
 }

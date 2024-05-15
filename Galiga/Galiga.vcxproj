@@ -189,11 +189,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BeeEnemyComponent.cpp" />
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="BezierPath.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
+    <ClCompile Include="FormationComponent.cpp" />
     <ClCompile Include="Galaga.cpp" />
     <ClCompile Include="GaligaScene.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
@@ -209,11 +211,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseSceneCreator.h" />
+    <ClInclude Include="BeeEnemyComponent.h" />
     <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="BezierPath.h" />
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="EnemyComponent.h" />
+    <ClInclude Include="FormationComponent.h" />
     <ClInclude Include="GaligaScene.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="LivesTextObserver.h" />

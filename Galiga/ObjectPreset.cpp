@@ -1,8 +1,6 @@
 #include "ObjectPreset.h"
-
 #include "BulletComponent.h"
 #include <TextureComponent.h>
-
 #include "Animation.h"
 #include "AnimatorComponent.h"
 #include "HitBoxComponent.h"

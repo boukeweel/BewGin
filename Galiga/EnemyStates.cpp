@@ -7,6 +7,9 @@
 #include "GameTime.h"
 #include "Renderer.h"
 
+FlyIn::FlyIn(int path) : m_CurrentPath{path}
+{}
+
 void FlyIn::OnEnter(EnemyComponent* component)
 {
 	m_Path = component->getPath(m_CurrentPath);
@@ -39,7 +42,10 @@ EnemyStates* FlyIn::Update(EnemyComponent* component)
 	}
 	else
 	{
-		return new Formation();
+		if (component->GetIsChallengeStage())
+			return new Attacking();
+		else
+			return new FlyToFormationPosition();
 	}
 }
 
@@ -52,6 +58,39 @@ void FlyIn::Render() const
 	}
 }
 
-void FlyIn::OnExit(EnemyComponent*)
+
+EnemyStates* FlyToFormationPosition::Update(EnemyComponent* component)
 {
+	auto parentObject{ component->GetParentObject() };
+
+	glm::vec3 targetpos = FlyInTargetPosition(component);
+	glm::vec3 dist = targetpos - parentObject->GetWorldPosition();
+	parentObject->Translate(glm::normalize(dist) * bew::GameTime::GetDeltaTimeFloat() * component->GetSpeed());
+
+	parentObject->SetRotation(atan2(dist.y, dist.x) * (180.f / 3.14f) + 90);
+
+	if (glm::length(dist) < EPSILON)
+		return new Formation;
+
+	return nullptr;
+}
+
+void FlyToFormationPosition::OnExit(EnemyComponent* component)
+{
+	auto parentObject{ component->GetParentObject() };
+	parentObject->SetPosition(FlyInTargetPosition(component));
+	parentObject->SetRotation(0);
+	parentObject->SetParrent(component->GetFormation()->GetParentObject(), true);
+}
+
+glm::vec3 FlyToFormationPosition::FlyInTargetPosition(EnemyComponent* component)
+{
+	return component->GetFormation()->GetParentObject()->GetWorldPosition() + component->GetTargetPos();
+}
+
+EnemyStates* Formation::Update(EnemyComponent* /*component*/)
+{
+	//component->GetParentObject()->SetPosition(glm::vec3(component->GetFormationPosition(), 0));
+
+	return nullptr;
 }
