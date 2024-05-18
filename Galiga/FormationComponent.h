@@ -1,6 +1,10 @@
 #pragma once
 #include <Component.h>
+#include <memory>
 #include <string>
+#include <vector>
+
+class EnemyComponent;
 
 class FormationComponent :
     public bew::Component
@@ -24,9 +28,9 @@ private:
     void LoadFormationFile(const std::string& FileName);
     void AddBoss(glm::vec3 pos);
     void AddBee(glm::vec3 pos);
-    void Addbutterfly(glm::vec3 pos);
+    void AddbutterFly(glm::vec3 pos);
 
-    //for breath animation
+    //For Moving Formation side to side
     float m_OffsetAmount{10.f};
     float m_OffsetTimer{0.f};
     float m_OffsetDelay{0.4f};
@@ -39,7 +43,9 @@ private:
     int m_SpreadCounter{0};
     int m_SpreadDirection{1};
 
-    glm::vec2 m_GridSize{16.f,32.f};
+    glm::vec2 m_GridSize{32.f,32.f};
+
+    std::vector<std::unique_ptr<bew::GameObject>> m_Enemies;
 
     bool m_Locked{false};
 };

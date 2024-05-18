@@ -1,10 +1,10 @@
 #pragma once
 #include "EnemyComponent.h"
-class BeeEnemyComponent :
+class ButterfliesEnemyComponent :
     public EnemyComponent
 {
 public:
-    BeeEnemyComponent(bew::GameObject* pParentObject);
+    ButterfliesEnemyComponent(bew::GameObject* pParentObject);
 
 private:
     void TakeDamages(bew::GameObject* pPlayer) override;

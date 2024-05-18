@@ -9,9 +9,11 @@ void bew::AnimatorComponent::Update()
 	animations[m_CurrentAnimation]->Update();
 }
 
-void bew::AnimatorComponent::SwitchAnimation(int animation)
+void bew::AnimatorComponent::SwitchAnimation(int animation,bool PlayAnimation)
 {
 	m_CurrentAnimation = animation;
+	if (PlayAnimation)
+		PlayCurrentAmation();
 }
 
 void bew::AnimatorComponent::AddAnimation(std::unique_ptr<Animation> animation)

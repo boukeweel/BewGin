@@ -2,10 +2,14 @@
 
 #include <iostream>
 
+#include "EnemyComponent.h"
 #include "fstream"
 #include "GameObject.h"
 #include "GameTime.h"
+#include "ObjectPreset.h"
 #include "ResourceManager.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
 FormationComponent::FormationComponent(bew::GameObject* pParentObject, const std::string& FileName) : Component(pParentObject)
 {
@@ -64,7 +68,7 @@ void FormationComponent::LoadFormationFile(const std::string& FileName)
                 AddBoss({ x,y,0 });
                 break;
             case 'v':
-                Addbutterfly({ x,y,0 });
+                AddbutterFly({ x,y,0 });
                 break;
             case 'b':
                 AddBee({ x,y,0 });
@@ -80,18 +84,38 @@ void FormationComponent::LoadFormationFile(const std::string& FileName)
 
 }
 
-void FormationComponent::AddBoss(glm::vec3 /*pos*/)
+void FormationComponent::AddBoss(glm::vec3 pos)
 {
+    BossEnemyPreset BossPreset;
 
+    auto Boss = BossPreset.Create();
+    auto EnemyComp = Boss->GetComponent<EnemyComponent>();
+    EnemyComp->SetFormationPosition(this, pos);
+
+    bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(Boss));
 }
 
-void FormationComponent::AddBee(glm::vec3 /*pos*/)
+void FormationComponent::AddBee(glm::vec3 pos)
 {
-	
+    BeeEnemyPreset beePreset;
+
+    auto bee = beePreset.Create();
+    auto EnemyComp = bee->GetComponent<EnemyComponent>();
+    EnemyComp->SetFormationPosition(this,pos);
+
+    bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(bee));
+    //m_Enemies.emplace_back(std::move(bee));
+
 }
-void FormationComponent::Addbutterfly(glm::vec3 /*pos*/)
+void FormationComponent::AddbutterFly(glm::vec3 pos)
 {
-	
+    ButterfliesEnemyPreset butterfliesPreset;
+
+    auto butterFly = butterfliesPreset.Create();
+    auto EnemyComp = butterFly->GetComponent<EnemyComponent>();
+    EnemyComp->SetFormationPosition(this, pos);
+
+    bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(butterFly));
 }
 
 

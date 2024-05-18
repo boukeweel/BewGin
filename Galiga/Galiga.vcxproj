@@ -190,6 +190,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BeeEnemyComponent.cpp" />
+    <ClCompile Include="BossEnemyComponent.cpp" />
+    <ClCompile Include="ButterfliesEnemyComponent.cpp" />
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="BezierPath.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
@@ -213,6 +215,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
   <ItemGroup>
     <ClInclude Include="BaseSceneCreator.h" />
     <ClInclude Include="BeeEnemyComponent.h" />
+    <ClInclude Include="BossEnemyComponent.h" />
+    <ClInclude Include="ButterfliesEnemyComponent.h" />
     <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="BezierPath.h" />
     <ClInclude Include="BulletComponent.h" />

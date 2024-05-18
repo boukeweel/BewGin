@@ -21,7 +21,7 @@ public:
 class FlyIn final : public EnemyStates
 {
 public:
-	FlyIn(int path);
+	FlyIn();
 
 	void OnEnter(EnemyComponent* component) override;
 	EnemyStates* Update(EnemyComponent* component) override;

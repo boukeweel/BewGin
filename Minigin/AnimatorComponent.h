@@ -14,7 +14,7 @@ namespace bew
 
 		void Update() override;
 
-		void SwitchAnimation(int animation);
+		void SwitchAnimation(int animation,bool PlayAnimaton = false);
 		void AddAnimation(std::unique_ptr<Animation> animation);
 
 		void PlayCurrentAmation();

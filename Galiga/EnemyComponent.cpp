@@ -5,6 +5,7 @@
 #include "GameData.h"
 #include "GameObject.h"
 #include "GameTime.h"
+#include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "ObjectPoolingComponent.h"
 #include "PoolComponent.h"
@@ -12,7 +13,6 @@
 #include "ScoreComponent.h"
 
 std::vector<std::vector<glm::vec2>> EnemyComponent::s_Paths;
-FormationComponent* EnemyComponent::s_pFormation = nullptr;
 
 void EnemyComponent::CreatePaths()
 {
@@ -48,13 +48,8 @@ void EnemyComponent::CreatePaths()
 	delete path;
 }
 
-void EnemyComponent::SetFormation(FormationComponent* formation)
-{
-	s_pFormation = formation;
-}
-
-EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, int index, int path, bool ChallangeStage)
-: Component(pParentObject),m_States{new FlyIn(path)}, m_speed{200}, m_Index{index},m_ChallengeStage{ChallangeStage}
+EnemyComponent::EnemyComponent(bew::GameObject* pParentObject)
+: Component(pParentObject),m_States{new FlyIn()}, m_speed{200}
 {
 	m_pPlayers = GameData::GetInstance().GetPlayers();
 
@@ -115,15 +110,24 @@ void EnemyComponent::CheckInHitBox()
 						bulletPoolComp->SetInUse(false);
 						bullet->SetIsActive(false);
 
-						GetParentObject()->SetIsActive(false);
-
-						Player->GetComponent<ScoreComponent>()->AddScore(100);
+						TakeDamages(Player);
+						
 					}
 				}
 			}
 		}
 	}
 }
+
+void EnemyComponent::SetFormationPosition(FormationComponent* formation,glm::vec3 posIndex)
+{
+	pFormation = formation;
+
+	m_TargetPos.x = pFormation->GetParentObject()->GetWorldPosition().x + (posIndex.x * pFormation->GetGridSize().x);
+	m_TargetPos.y = pFormation->GetParentObject()->GetWorldPosition().y + (posIndex.y * pFormation->GetGridSize().y);
+}
+
+
 
 EnemyComponent::~EnemyComponent()
 {

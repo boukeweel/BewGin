@@ -1,5 +1,7 @@
 #include "SpriteSheetComponent.h"
 
+#include <iostream>
+
 #include "GameObject.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
@@ -23,17 +25,21 @@ void bew::SpriteSheetComponent::Render() const
     if (m_pTexture != nullptr) {
         const auto& pos = GetParentObject()->GetWorldPosition();
         const auto& scale = GetParentObject()->GetTransform().GetScale();
-        float spriteWidth = static_cast<float>(m_pTexture->GetSize().x) / static_cast<float>(m_Columns) * scale.x;
-        float spriteHeight = static_cast<float>(m_pTexture->GetSize().y) / static_cast<float>(m_Rows) * scale.y;
 
-        float spriteSheetX = m_CurrentSprite.y * (spriteWidth / scale.x);
-        float spriteSheetY = m_CurrentSprite.x * (spriteHeight / scale.y);
+        float textureWidth = static_cast<float>(m_pTexture->GetSize().x);
+        float textureHeight = static_cast<float>(m_pTexture->GetSize().y);
+
+        float spriteWidth = (textureWidth / static_cast<float>(m_Columns)) * scale.x;
+        float spriteHeight = (textureHeight / static_cast<float>(m_Rows)) * scale.y;
+
+        float spriteSheetX = m_CurrentSprite.y * (textureWidth / static_cast<float>(m_Columns));
+        float spriteSheetY = m_CurrentSprite.x * (textureHeight / static_cast<float>(m_Rows));
 
         Renderer::GetInstance().RenderTexture(*m_pTexture,
             pos.x - spriteWidth / 2, pos.y - spriteHeight / 2,
             spriteWidth, spriteHeight,
             spriteSheetX, spriteSheetY,
-            spriteWidth, spriteHeight,
+            textureWidth / static_cast<float>(m_Columns), textureHeight / static_cast<float>(m_Rows),
             GetParentObject()->GetTransform().GetRotation().x);
     }
 

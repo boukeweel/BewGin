@@ -9,7 +9,11 @@ HealthComponent::HealthComponent(bew::GameObject* pparentObject, int lifes) : Co
 
 void HealthComponent::notifySubject(bew::GameEvents event, bew::GameObject* object)
 {
-	object->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(event, object);
+	auto subjectComp = object->GetComponent<bew::SubjectComponent>();
+	if(subjectComp)
+	{
+		subjectComp->GetSubject()->notify(event, object);
+	}
 }
 
 void HealthComponent::TakeDammages(int amount)

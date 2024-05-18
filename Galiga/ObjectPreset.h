@@ -23,7 +23,19 @@ public:
 
 };
 
-class BeeEnemy : public ObjectPreset
+class BeeEnemyPreset : public ObjectPreset
+{
+public:
+	std::unique_ptr<bew::GameObject> Create() override;
+};
+
+class ButterfliesEnemyPreset : public ObjectPreset
+{
+public:
+	std::unique_ptr<bew::GameObject> Create() override;
+};
+
+class BossEnemyPreset : public ObjectPreset
 {
 public:
 	std::unique_ptr<bew::GameObject> Create() override;

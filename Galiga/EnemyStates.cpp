@@ -7,12 +7,12 @@
 #include "GameTime.h"
 #include "Renderer.h"
 
-FlyIn::FlyIn(int path) : m_CurrentPath{path}
+FlyIn::FlyIn()
 {}
 
 void FlyIn::OnEnter(EnemyComponent* component)
 {
-	m_Path = component->getPath(m_CurrentPath);
+	m_Path = component->getPath(component->GetCurrentPath());
 	component->GetParentObject()->SetPosition((*m_Path)[m_CurrentWayPoint].x, (*m_Path)[m_CurrentWayPoint].y);
 }
 
@@ -85,12 +85,12 @@ void FlyToFormationPosition::OnExit(EnemyComponent* component)
 
 glm::vec3 FlyToFormationPosition::FlyInTargetPosition(EnemyComponent* component)
 {
-	return component->GetFormation()->GetParentObject()->GetWorldPosition() + component->GetTargetPos();
+	return component->GetTargetPos();
 }
 
 EnemyStates* Formation::Update(EnemyComponent* /*component*/)
 {
-	//component->GetParentObject()->SetPosition(glm::vec3(component->GetFormationPosition(), 0));
+	//component->GetParentObject()->SetPosition(glm::vec3(component->SetFormationPosition(), 0));
 
 	return nullptr;
 }

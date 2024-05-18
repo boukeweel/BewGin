@@ -35,7 +35,7 @@ void GaligaScene::Load()
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("Lingua.otf", 14);
 
-	auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
+	/*auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
 
 	for (int i = 0; i < 50; ++i)
 	{
@@ -43,7 +43,7 @@ void GaligaScene::Load()
 		testStar->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
 		testStar->AddComponent<StarComponent>();
 		scene.Add(std::move(testStar));
-	}
+	}*/
 
 	auto SwitchSceneTxt = std::make_unique<bew::GameObject>();
 	SwitchSceneTxt->SetPosition(0, 150);
@@ -78,30 +78,14 @@ void GaligaScene::Load()
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
 	auto Formation = std::make_unique<bew::GameObject>();
-	auto formationComponent = Formation->AddComponent<FormationComponent>("Formation1.txt");
-	formationComponent->Lock();
-	Formation->SetPosition(bew::ScreenWidth * 0.4f, 100.f);
+	Formation->SetPosition(bew::ScreenWidth * 0.1f, 100.f);
+	Formation->AddComponent<FormationComponent>("Formation1.txt");
 
-	EnemyComponent::SetFormation(formationComponent);
 
 	scene.Add(std::move(Formation));
-
-	//testing
-	for (int i = 0; i < 18; ++i)
-	{
-		auto BeeEnemy = std::make_unique<bew::GameObject>();
-		BeeEnemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
-		BeeEnemy->AddComponent<HealthComponent>(1);
-		BeeEnemy->AddComponent<BeeEnemyComponent>(i, 0, false);
-		BeeEnemy->SetScale(2, 2);
-		BeeEnemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
-
-		scene.Add(std::move(BeeEnemy));
-	}
-	
-
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Player1));
+	
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }
