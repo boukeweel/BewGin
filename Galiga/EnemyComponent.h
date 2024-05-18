@@ -36,6 +36,8 @@ public:
     void SetPath(int path) { m_CurrentPath = path; }
     void SetChallengeStage(bool ChallengeStage) { m_ChallengeStage = ChallengeStage; }
 
+    void StartAndSetActive();
+
     
 
     virtual ~EnemyComponent() override;

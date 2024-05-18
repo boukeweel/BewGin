@@ -16,7 +16,7 @@ std::vector<std::vector<glm::vec2>> EnemyComponent::s_Paths;
 
 void EnemyComponent::CreatePaths()
 {
-	int screenWidthMid = bew::ScreenWidth / 2;
+	int screenWidthMid =static_cast<int>( bew::ScreenWidth * 0.4f);
 
 	int currentPath = 0;
 	BezierPath* path = new BezierPath();
@@ -31,15 +31,43 @@ void EnemyComponent::CreatePaths()
 	path->AddCurve({
 		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,20.f),
 		glm::vec2(static_cast<float>(screenWidthMid) + 10.f,150.f),
-		glm::vec2(50.f,180.f),
-		glm::vec2(50.f,240.f) },
+		glm::vec2(75.f,180.f),
+		glm::vec2(75.f,240.f) },
 		20);
 
 	path->AddCurve({
-		glm::vec2(50.f,240.f),
-		glm::vec2(50.f,340.f),
-		glm::vec2(static_cast<float>(screenWidthMid) + 10,340.f),
-		glm::vec2(static_cast<float>(screenWidthMid),240.f) },
+		glm::vec2(75.f,240.f),
+		glm::vec2(75.f,340.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 60.f,340.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,240.f) },
+		20);
+
+	s_Paths.emplace_back();
+	path->Sample(&s_Paths[currentPath]);
+	delete path;
+
+	path =  new BezierPath();
+
+	currentPath++;
+	path->AddCurve({
+		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,-10),
+		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,-20),
+		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,30.f),
+		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,20.f) },
+		1);
+
+	path->AddCurve({
+		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,20.f),
+		glm::vec2(static_cast<float>(screenWidthMid) - 10.f,150.f),
+		glm::vec2(425.f,180.f),
+		glm::vec2(425.f,240.f) },
+		20);
+
+	path->AddCurve({
+		glm::vec2(425.f,240.f),
+		glm::vec2(425.f,340.f),
+		glm::vec2(static_cast<float>(screenWidthMid) - 60.f,340.f),
+		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,240.f) },
 		20);
 
 	s_Paths.emplace_back();
@@ -128,6 +156,12 @@ void EnemyComponent::SetFormationPosition(FormationComponent* formation,glm::vec
 }
 
 
+
+void EnemyComponent::StartAndSetActive()
+{
+	m_States->OnEnter(this);
+	GetParentObject()->SetIsActive(true);
+}
 
 EnemyComponent::~EnemyComponent()
 {

@@ -17,7 +17,7 @@ void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
 	{
 		GetParentObject()->SetIsActive(false);
 
-		pPlayer->GetComponent<ScoreComponent>()->AddScore(100);
+		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
 	}
 
 }

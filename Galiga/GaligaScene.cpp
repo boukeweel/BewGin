@@ -35,7 +35,7 @@ void GaligaScene::Load()
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("Lingua.otf", 14);
 
-	/*auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
+	auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
 
 	for (int i = 0; i < 50; ++i)
 	{
@@ -43,12 +43,7 @@ void GaligaScene::Load()
 		testStar->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
 		testStar->AddComponent<StarComponent>();
 		scene.Add(std::move(testStar));
-	}*/
-
-	auto SwitchSceneTxt = std::make_unique<bew::GameObject>();
-	SwitchSceneTxt->SetPosition(0, 150);
-	SwitchSceneTxt->AddComponent<bew::TextComponent>("Switch to Demo scene with 0 ", fontTxt);
-	scene.Add(std::move(SwitchSceneTxt));
+	}
 
 	auto ControlTxt = std::make_unique<bew::GameObject>();
 	ControlTxt->SetPosition(0, 170);
@@ -81,13 +76,11 @@ void GaligaScene::Load()
 	Formation->SetPosition(bew::ScreenWidth * 0.1f, 100.f);
 	Formation->AddComponent<FormationComponent>("Formation1.txt");
 
-
 	scene.Add(std::move(Formation));
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Player1));
-	
 
-	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
+	//input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)

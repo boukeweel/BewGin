@@ -81,6 +81,8 @@ void FlyToFormationPosition::OnExit(EnemyComponent* component)
 	parentObject->SetPosition(FlyInTargetPosition(component));
 	parentObject->SetRotation(0);
 	parentObject->SetParrent(component->GetFormation()->GetParentObject(), true);
+
+	component->GetFormation()->Lock();
 }
 
 glm::vec3 FlyToFormationPosition::FlyInTargetPosition(EnemyComponent* component)
