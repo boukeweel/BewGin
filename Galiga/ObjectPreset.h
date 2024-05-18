@@ -23,5 +23,9 @@ public:
 
 };
 
-
+class BeeEnemy : public ObjectPreset
+{
+public:
+	std::unique_ptr<bew::GameObject> Create() override;
+};
 

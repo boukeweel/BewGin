@@ -25,3 +25,8 @@ std::unique_ptr<bew::GameObject> ExplotionPreset::Create()
 	Explotion->AddComponent<bew::AnimatorComponent>()->AddAnimation(std::make_unique<bew::Animation>(Explotion.get(), keyframes, 0.05, false));
 	return std::move(Explotion);
 }
+
+std::unique_ptr<bew::GameObject> BeeEnemy::Create()
+{
+	return std::unique_ptr<bew::GameObject>();
+}

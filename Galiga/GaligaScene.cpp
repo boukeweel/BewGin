@@ -15,6 +15,7 @@
 #include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "FormationComponent.h"
+#include "GameData.h"
 #include "HealthComponent.h"
 #include "LivesTextObserver.h"
 #include "ObjectPoolingComponent.h"
@@ -66,7 +67,9 @@ void GaligaScene::Load()
 	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
 	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
+
 	SetControllsP1(input, Player1.get());
+	GameData::GetInstance().AddPlayer(Player1.get());
 
 	auto Player1ScoreText = std::make_unique<bew::GameObject>();
 	Player1ScoreText->SetPosition(0, 210);
@@ -75,7 +78,7 @@ void GaligaScene::Load()
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
 	auto Formation = std::make_unique<bew::GameObject>();
-	auto formationComponent = Formation->AddComponent<FormationComponent>();
+	auto formationComponent = Formation->AddComponent<FormationComponent>("Formation1.txt");
 	formationComponent->Lock();
 	Formation->SetPosition(bew::ScreenWidth * 0.4f, 100.f);
 
@@ -89,7 +92,7 @@ void GaligaScene::Load()
 		auto BeeEnemy = std::make_unique<bew::GameObject>();
 		BeeEnemy->AddComponent<bew::TextureComponent>("EnemyBees.png");
 		BeeEnemy->AddComponent<HealthComponent>(1);
-		BeeEnemy->AddComponent<BeeEnemyComponent>(Player1.get(), i, 0, false);
+		BeeEnemy->AddComponent<BeeEnemyComponent>(i, 0, false);
 		BeeEnemy->SetScale(2, 2);
 		BeeEnemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
 
@@ -98,8 +101,6 @@ void GaligaScene::Load()
 	
 
 	scene.Add(std::move(Player1ScoreText));
-	
-	
 	scene.Add(std::move(Player1));
 
 	input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));

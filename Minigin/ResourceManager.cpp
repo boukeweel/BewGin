@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 
 #include <SDL_mixer.h>
+#include "fstream"
 
 #include "Renderer.h"
 #include "Texture2D.h"
@@ -44,5 +45,12 @@ std::unique_ptr<bew::AudioClip> bew::ResourceManager::LoadAudio(const std::strin
 		throw std::runtime_error(std::string("Failed to load audio: ") + Mix_GetError());
 	}
 	return std::make_unique<AudioClip>(chunk);
+}
+
+std::ifstream bew::ResourceManager::LoadTxtFile(const std::string& file) const
+{
+	std::ifstream stream{ m_dataPath + file };
+
+	return stream;
 }
 

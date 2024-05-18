@@ -16,7 +16,7 @@ public:
     static void CreatePaths();
     static void SetFormation(FormationComponent* formation);
 
-    EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player, int index, int path,bool ChallengeStage);
+    EnemyComponent(bew::GameObject* pParentObject, int index, int path,bool ChallengeStage);
 
     void FixedUpdate() override;
     void Update() override;
@@ -40,12 +40,11 @@ public:
     EnemyComponent& operator=(const EnemyComponent& other) = delete;
     EnemyComponent& operator=(EnemyComponent&& other) = delete;
 protected:
-    bew::GameObject* GetPlayer() { return m_pPlayer; }
+    std::vector < bew::GameObject*>* GetPlayer() { return m_pPlayers; }
 
     void CheckInHitBox();
 
-    bew::GameObject* m_pPlayer;
-    std::vector<bew::GameObject*>* m_pBulletVector;
+    std::vector <bew::GameObject*>* m_pPlayers;
 
     EnemyStates* m_States;
 

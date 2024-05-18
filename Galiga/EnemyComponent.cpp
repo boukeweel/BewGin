@@ -2,6 +2,7 @@
 #include <iostream>
 #include "BewGin.h"
 #include "BezierPath.h"
+#include "GameData.h"
 #include "GameObject.h"
 #include "GameTime.h"
 #include "HitBoxComponent.h"
@@ -52,14 +53,10 @@ void EnemyComponent::SetFormation(FormationComponent* formation)
 	s_pFormation = formation;
 }
 
-EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player, int index, int path, bool ChallangeStage)
-: Component(pParentObject),m_pPlayer{ Player },m_States{new FlyIn(path)}, m_speed{200}, m_Index{index},m_ChallengeStage{ChallangeStage}
+EnemyComponent::EnemyComponent(bew::GameObject* pParentObject, int index, int path, bool ChallangeStage)
+: Component(pParentObject),m_States{new FlyIn(path)}, m_speed{200}, m_Index{index},m_ChallengeStage{ChallangeStage}
 {
-	
-	if(m_pPlayer->HasComponent<ObjectPoolingComponent>())
-	{
-		m_pBulletVector = m_pPlayer->GetComponent<ObjectPoolingComponent>()->GetObjectList();
-	}
+	m_pPlayers = GameData::GetInstance().GetPlayers();
 
 	m_States->OnEnter(this);
 }
@@ -100,20 +97,29 @@ void EnemyComponent::HandelStates()
 
 void EnemyComponent::CheckInHitBox()
 {
-	for (const auto& bullet : *m_pBulletVector)
+
+	for (const auto& Player : *m_pPlayers)
 	{
-		auto bulletPoolComp = bullet->GetComponent<PoolComponent>();
+		std::vector<bew::GameObject*>* pBulltes = Player->GetComponent<ObjectPoolingComponent>()->GetObjectList();
 
-		if (bulletPoolComp->InUse())
+		if (!pBulltes->empty())
 		{
-			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(bullet))
+			for (const auto& bullet : *pBulltes)
 			{
-				bulletPoolComp->SetInUse(false);
-				bullet->SetIsActive(false);
+				auto bulletPoolComp = bullet->GetComponent<PoolComponent>();
 
-				GetParentObject()->SetIsActive(false);
+				if (bulletPoolComp->InUse())
+				{
+					if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(bullet))
+					{
+						bulletPoolComp->SetInUse(false);
+						bullet->SetIsActive(false);
 
-				m_pPlayer->GetComponent<ScoreComponent>()->AddScore(100);
+						GetParentObject()->SetIsActive(false);
+
+						Player->GetComponent<ScoreComponent>()->AddScore(100);
+					}
+				}
 			}
 		}
 	}

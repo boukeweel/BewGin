@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-BeeEnemyComponent::BeeEnemyComponent(bew::GameObject* pParentObject, bew::GameObject* Player, int index, int path, bool ChallengeStage)
-: EnemyComponent(pParentObject,Player,index,path,ChallengeStage)
+BeeEnemyComponent::BeeEnemyComponent(bew::GameObject* pParentObject, int index, int path, bool ChallengeStage)
+: EnemyComponent(pParentObject,index,path,ChallengeStage)
 {
 	if(!m_ChallengeStage)
 	{
