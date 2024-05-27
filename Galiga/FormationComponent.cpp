@@ -66,12 +66,7 @@ void FormationComponent::SpawnEnemies()
         {
             m_SpawningWave = true;
 
-            if (m_RandomPath == 0)
-                m_RandomPath = 1;
-            else
-            {
-                m_RandomPath = 0;
-            }
+            m_ChosenPath = (m_ChosenPath + 1) % 4;
 
             m_TimeWave = 0;
             
@@ -85,7 +80,7 @@ void FormationComponent::SpawnEnemies()
                 const int enemyCount = static_cast<int>(m_Enemies.size());
                 int RandomEnemy = bew::RandomFunctions::RandomI(0, enemyCount - 1);
                 auto comp = m_Enemies[RandomEnemy]->GetComponent<EnemyComponent>();
-                comp->SetPath(m_RandomPath);
+                comp->SetPath(m_ChosenPath);
                 comp->StartAndSetActive();
                 m_Enemies.erase(m_Enemies.begin() + RandomEnemy);
 

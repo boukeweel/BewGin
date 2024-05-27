@@ -72,12 +72,55 @@ void EnemyComponent::CreatePaths()
 
 	s_Paths.emplace_back();
 	path->Sample(&s_Paths[currentPath]);
+	delete path;
 
+	path = new BezierPath();
+
+	currentPath++;
+
+	path->AddCurve({
+		glm::vec2(0,static_cast<float>(bew::ScreenHeight)),
+		glm::vec2(0,static_cast<float>(bew::ScreenHeight) + 10.f),
+		glm::vec2(100.f,static_cast<float>(bew::ScreenHeight) - 110.f),
+		glm::vec2(100.f,static_cast<float>(bew::ScreenHeight) - 100.f) },
+		1);
+
+	path->AddCurve({
+		glm::vec2(100.f,static_cast<float>(bew::ScreenHeight) - 100.f),
+		glm::vec2(200.f,static_cast<float>(bew::ScreenHeight) - 450.f),
+		glm::vec2(-125.f,static_cast<float>(bew::ScreenHeight) + 50.f ),
+		glm::vec2(static_cast<float>(screenWidthMid) - 15.f,225.f) },
+		30);
+
+	s_Paths.emplace_back();
+	path->Sample(&s_Paths[currentPath]);
+	delete path;
+
+	path = new BezierPath();
+
+	currentPath++;
+
+	path->AddCurve({
+		glm::vec2(static_cast<float>(bew::ScreenWidth) - 150.f,static_cast<float>(bew::ScreenHeight)),
+		glm::vec2(static_cast<float>(bew::ScreenWidth) - 150.f,static_cast<float>(bew::ScreenHeight) + 10.f),
+		glm::vec2(static_cast<float>(bew::ScreenWidth) - 250.f,static_cast<float>(bew::ScreenHeight) - 110.f),
+		glm::vec2(static_cast<float>(bew::ScreenWidth) - 250.f,static_cast<float>(bew::ScreenHeight) - 100.f) },
+		1);
+
+	path->AddCurve({
+		glm::vec2(static_cast<float>(bew::ScreenWidth) - 250.f,static_cast<float>(bew::ScreenHeight) - 100.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 100.f,100.f),
+		glm::vec2(static_cast<float>(bew::ScreenWidth) + 50.f,static_cast<float>(bew::ScreenHeight) + 50.f),
+		glm::vec2(static_cast<float>(screenWidthMid) + 15.f,240.f) },
+		30);
+
+	s_Paths.emplace_back();
+	path->Sample(&s_Paths[currentPath]);
 	delete path;
 }
 
 EnemyComponent::EnemyComponent(bew::GameObject* pParentObject)
-: Component(pParentObject),m_States{new FlyIn()}, m_speed{200}
+: Component(pParentObject),m_States{new FlyIn()}, m_speed{400}
 {
 	m_pPlayers = GameData::GetInstance().GetPlayers();
 

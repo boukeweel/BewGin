@@ -47,11 +47,11 @@ private:
     //spawning timers
     float m_WaveDelay{1.f};
     float m_TimeWave;
-    float m_SpawnDelay{0.15f};
+    float m_SpawnDelay{0.1f};
     float m_TimeDelay;
-    int m_EnemiesInOneWave{4};
+    int m_EnemiesInOneWave{6};
     int m_EnemiesSpawnedThisWave{};
-    int m_RandomPath{};
+    int m_ChosenPath{};
     bool m_SpawningWave{false};
 
     glm::vec2 m_GridSize{32.f,32.f};
