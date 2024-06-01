@@ -117,22 +117,10 @@ EnemyStates* Formation::Update(EnemyComponent* component)
 
 #pragma endregion
 
-#pragma region Attacking bee
+#pragma region Attacking Base
 
-void AttackingBee::OnEnter(EnemyComponent* component)
+EnemyStates* Attacking::Update(EnemyComponent* component)
 {
-	auto parentObject{ component->GetParentObject() };
-	parentObject->SetParrent(nullptr, true);
-
-	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
-
-	m_DiveStartPos = parentObject->GetWorldPosition();
-	component->SetIsDiving(true);
-}
-
-EnemyStates* AttackingBee::Update(EnemyComponent* component)
-{
-	//I feel like this is wack but it looks so mutch more smooth
 	glm::vec3 CheckPos{
 		(m_DiveStartPos.x + (*m_Path)[m_CurrentWayPoint].x) - component->GetParentObject()->GetWorldPosition().x,
 		(m_DiveStartPos.y + (*m_Path)[m_CurrentWayPoint].y) - component->GetParentObject()->GetWorldPosition().y,
@@ -163,20 +151,34 @@ EnemyStates* AttackingBee::Update(EnemyComponent* component)
 	}
 }
 
-void AttackingBee::OnExit(EnemyComponent* component)
-{
-	component->SetIsDiving(false);
-}
-
-void AttackingBee::Render() const
+void Attacking::Render() const
 {
 	//just for debug
 	for (size_t i = 0; i < m_Path->size() - 1; ++i)
 	{
-		bew::Renderer::GetInstance().DrawLine(m_DiveStartPos.x + (*m_Path)[i].x, m_DiveStartPos.y + (*m_Path)[i].y, m_DiveStartPos.x +  (*m_Path)[i + 1].x, m_DiveStartPos.y + (*m_Path)[i + 1].y);
+		bew::Renderer::GetInstance().DrawLine(m_DiveStartPos.x + (*m_Path)[i].x, m_DiveStartPos.y + (*m_Path)[i].y, m_DiveStartPos.x + (*m_Path)[i + 1].x, m_DiveStartPos.y + (*m_Path)[i + 1].y);
 	}
 }
 
+#pragma endregion
+
+#pragma region Attacking bee
+
+void AttackingBee::OnEnter(EnemyComponent* component)
+{
+	auto parentObject{ component->GetParentObject() };
+	parentObject->SetParrent(nullptr, true);
+
+	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
+
+	m_DiveStartPos = parentObject->GetWorldPosition();
+	component->SetIsDiving(true);
+}
+
+void AttackingBee::OnExit(EnemyComponent* component)
+{
+	component->SetIsDiving(false);
+}
 #pragma endregion
 
 #pragma region Attacking Butterly
@@ -191,54 +193,10 @@ void AttackingButterFly::OnEnter(EnemyComponent* component)
 	component->SetIsDiving(true);
 }
 
-EnemyStates* AttackingButterFly::Update(EnemyComponent* component)
-{
-	//I feel like this is wack but it looks so mutch more smooth
-	glm::vec3 CheckPos{
-		(m_DiveStartPos.x + (*m_Path)[m_CurrentWayPoint].x) - component->GetParentObject()->GetWorldPosition().x,
-		(m_DiveStartPos.y + (*m_Path)[m_CurrentWayPoint].y) - component->GetParentObject()->GetWorldPosition().y,
-		component->GetParentObject()->GetWorldPosition().z };
-	float distance = glm::length(CheckPos);
-
-	if (distance < m_Epsilon)
-	{
-		m_CurrentWayPoint++;
-	}
-
-	if (m_CurrentWayPoint < static_cast<int>(m_Path->size()))
-	{
-		const glm::vec2 wayPointPosition = m_DiveStartPos + (*m_Path)[m_CurrentWayPoint];
-
-		const glm::vec2 dist = wayPointPosition - glm::vec2(component->GetParentObject()->GetWorldPosition().x, component->GetParentObject()->GetWorldPosition().y);
-		const glm::vec2 velocity = glm::normalize(dist);
-
-		component->GetParentObject()->Translate(glm::vec3(velocity, 0.0f) * bew::GameTime::GetDeltaTimeFloat() * component->GetSpeed());
-
-		component->GetParentObject()->SetRotation(atan2(dist.y, dist.x) * (180.f / 3.14f) + 90);
-
-		return nullptr;
-	}
-	else
-	{
-		component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
-
-		return new FlyToFormationPosition;
-	}
-}
-
 void AttackingButterFly::OnExit(EnemyComponent* component)
 {
 	component->SetIsDiving(false);
 	component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
-}
-
-void AttackingButterFly::Render() const
-{
-	//just for debug
-	for (size_t i = 0; i < m_Path->size() - 1; ++i)
-	{
-		bew::Renderer::GetInstance().DrawLine(m_DiveStartPos.x + (*m_Path)[i].x, m_DiveStartPos.y + (*m_Path)[i].y, m_DiveStartPos.x + (*m_Path)[i + 1].x, m_DiveStartPos.y + (*m_Path)[i + 1].y);
-	}
 }
 
 #pragma endregion
@@ -310,54 +268,10 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 	}
 }
 
-
-EnemyStates* AttackingBoss::Update(EnemyComponent* component)
-{
-	//I feel like this is wack but it looks so mutch more smooth
-	glm::vec3 CheckPos{
-		(m_DiveStartPos.x + (*m_Path)[m_CurrentWayPoint].x) - component->GetParentObject()->GetWorldPosition().x,
-		(m_DiveStartPos.y + (*m_Path)[m_CurrentWayPoint].y) - component->GetParentObject()->GetWorldPosition().y,
-		component->GetParentObject()->GetWorldPosition().z };
-	float distance = glm::length(CheckPos);
-
-	if (distance < m_Epsilon)
-	{
-		m_CurrentWayPoint++;
-	}
-
-	if (m_CurrentWayPoint < static_cast<int>(m_Path->size()))
-	{
-		const glm::vec2 wayPointPosition = m_DiveStartPos + (*m_Path)[m_CurrentWayPoint];
-
-		const glm::vec2 dist = wayPointPosition - glm::vec2(component->GetParentObject()->GetWorldPosition().x, component->GetParentObject()->GetWorldPosition().y);
-		const glm::vec2 velocity = glm::normalize(dist);
-
-		component->GetParentObject()->Translate(glm::vec3(velocity, 0.0f) * bew::GameTime::GetDeltaTimeFloat() * component->GetSpeed());
-
-		component->GetParentObject()->SetRotation(atan2(dist.y, dist.x) * (180.f / 3.14f) + 90);
-
-		return nullptr;
-	}
-	else
-	{
-		return new FlyToFormationPosition;
-	}
-}
-
 void AttackingBoss::OnExit(EnemyComponent* component)
 {
 	component->SetIsDiving(false);
 	component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
-}
-
-
-void AttackingBoss::Render() const
-{
-	//just for debug
-	for (size_t i = 0; i < m_Path->size() - 1; ++i)
-	{
-		bew::Renderer::GetInstance().DrawLine(m_DiveStartPos.x + (*m_Path)[i].x, m_DiveStartPos.y + (*m_Path)[i].y, m_DiveStartPos.x + (*m_Path)[i + 1].x, m_DiveStartPos.y + (*m_Path)[i + 1].y);
-	}
 }
 
 #pragma endregion

@@ -56,58 +56,49 @@ public:
 
 };
 
-class AttackingBee final : public EnemyStates
+class Attacking : public EnemyStates
+{
+public:
+	Attacking() = default;
+	void OnEnter(EnemyComponent* ) override{}
+	EnemyStates* Update(EnemyComponent* component) override;
+	void OnExit(EnemyComponent* ) override{}
+	void Render() const override;
+
+protected:
+	int m_CurrentWayPoint{};
+	int m_CurrentPath{};
+	const float m_Epsilon{ 5.f };
+	std::vector<glm::vec2>* m_Path{};
+	glm::vec2 m_DiveStartPos;
+	glm::vec2 m_DiveEndPos;
+};
+
+
+class AttackingBee final : public Attacking
 {
 public:
 	AttackingBee() = default;
 	void OnEnter(EnemyComponent* component) override;
-	EnemyStates* Update(EnemyComponent* component) override;
 	void OnExit(EnemyComponent* component) override;
-	void Render() const override;
-
-private:
-	int m_CurrentWayPoint{};
-	int m_CurrentPath{};
-	const float m_Epsilon{ 5.f };
-	std::vector<glm::vec2>* m_Path{};
-	glm::vec2 m_DiveStartPos;
-	glm::vec2 m_DiveEndPos;
 };
 
-class AttackingButterFly final : public EnemyStates
+class AttackingButterFly final : public Attacking
 {
 public:
 	AttackingButterFly() = default;
 	void OnEnter(EnemyComponent* component) override;
-	EnemyStates* Update(EnemyComponent* component) override;
 	void OnExit(EnemyComponent* component) override;
-	void Render() const override;
-
-private:
-	int m_CurrentWayPoint{};
-	int m_CurrentPath{};
-	const float m_Epsilon{ 5.f };
-	std::vector<glm::vec2>* m_Path{};
-	glm::vec2 m_DiveStartPos;
-	glm::vec2 m_DiveEndPos;
 };
 
-class AttackingBoss final : public EnemyStates
+class AttackingBoss final : public Attacking
 {
 public:
 	AttackingBoss() = default;
 	void OnEnter(EnemyComponent* component) override;
-	EnemyStates* Update(EnemyComponent* component) override;
 	void OnExit(EnemyComponent* component) override;
-	void Render() const override;
 
 private:
 	void FindEscoretButterFlies(EnemyComponent* component);
 
-	int m_CurrentWayPoint{};
-	int m_CurrentPath{};
-	const float m_Epsilon{ 5.f };
-	std::vector<glm::vec2>* m_Path{};
-	glm::vec2 m_DiveStartPos;
-	glm::vec2 m_DiveEndPos;
 };
