@@ -5,7 +5,7 @@
 namespace bew
 {
 	const static int ScreenWidth{ 640 };
-	const static int ScreenHeight{ 480 };
+	const static int ScreenHeight{ 520 };
 
 	class BewGin final 
 	{

@@ -45,7 +45,6 @@ public:
     void StartAndSetActive();
 
     EnemyTypes GetEnemyType() const { return m_Type; }
-    void SetEnemyType(EnemyTypes type) { m_Type = type; }
 
     bool GetAbleToAttack() { return m_AbleToAttack; }
     void SetAbleToAttack(bool ableToAttack) { m_AbleToAttack = ableToAttack; }

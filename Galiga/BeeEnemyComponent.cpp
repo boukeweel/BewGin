@@ -29,14 +29,14 @@ void BeeEnemyComponent::CreateAttackingPaths()
 		glm::vec2(50.f,75.f),
 		glm::vec2(200.f, 70.f),
 		glm::vec2(250.f,100.f),
-		glm::vec2(250.f,225.f) },
+		glm::vec2(250.f,250.f) },
 		15);
 
 	path->AddCurve({
-		glm::vec2(250.f,225.f),
-		glm::vec2(250.f, 325.f),
-		glm::vec2(100.f,325.f),
-		glm::vec2(100.f,225.f) },
+		glm::vec2(250.f,250.f),
+		glm::vec2(250.f, 350.f),
+		glm::vec2(100.f,350.f),
+		glm::vec2(100.f,250.f) },
 		15);
 
 	s_AttackingPaths.emplace_back();
@@ -65,14 +65,14 @@ void BeeEnemyComponent::CreateAttackingPaths()
 		glm::vec2(-50.f,75.f),
 		glm::vec2(-200.f, 70.f),
 		glm::vec2(-250.f,100.f),
-		glm::vec2(-250.f,225.f) },
+		glm::vec2(-250.f,250.f) },
 		15);
 
 	path->AddCurve({
-		glm::vec2(-250.f,225.f),
-		glm::vec2(-250.f, 325.f),
-		glm::vec2(-100.f,325.f),
-		glm::vec2(-100.f,225.f) },
+		glm::vec2(-250.f,250.f),
+		glm::vec2(-250.f, 350.f),
+		glm::vec2(-100.f,350.f),
+		glm::vec2(-100.f,250.f) },
 		15);
 
 	s_AttackingPaths.emplace_back();
@@ -83,7 +83,7 @@ void BeeEnemyComponent::CreateAttackingPaths()
 BeeEnemyComponent::BeeEnemyComponent(bew::GameObject* pParentObject)
 : EnemyComponent(pParentObject)
 {
-	SetEnemyType(EnemyTypes::Bee);
+	m_Type = EnemyTypes::Bee;
 }
 
 void BeeEnemyComponent::TakeDamages(bew::GameObject* pPlayer)

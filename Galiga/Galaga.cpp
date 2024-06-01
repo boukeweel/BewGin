@@ -14,6 +14,8 @@
 #include <InputKeyEnum.cpp>
 
 #include "BeeEnemyComponent.h"
+#include "BossEnemyComponent.h"
+#include "ButterfliesEnemyComponent.h"
 #include "DemoScene.h"
 #include "EnemyComponent.h"
 #include "GaligaScene.h"
@@ -63,8 +65,11 @@ void load()
 
 	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav")));
 
+	//create the paths for the enemies
 	EnemyComponent::CreatePaths();
 	BeeEnemyComponent::CreateAttackingPaths();
+	ButterfliesEnemyComponent::CreateAttackingPaths();
+	BossEnemyComponent::CreateAttackingPaths();
 
 	bew::SceneManager::GetInstance().LoadScene(1);
 }

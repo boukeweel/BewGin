@@ -199,7 +199,6 @@ void FormationComponent::AddBee(glm::vec3 pos)
         EnemyComp->SetAttackingPath(0);
     else
 		EnemyComp->SetAttackingPath(1);
-    
 
     bee->SetIsActive(false);
 
@@ -214,6 +213,13 @@ void FormationComponent::AddbutterFly(glm::vec3 pos)
     auto butterFly = butterfliesPreset.Create();
     auto EnemyComp = butterFly->GetComponent<EnemyComponent>();
     EnemyComp->SetFormationPosition(this, pos);
+    //todo this is not modular 
+    if (pos.x <= 5)
+        EnemyComp->SetAttackingPath(0);
+    else
+        EnemyComp->SetAttackingPath(1);
+
+    EnemyComp->SetAbleToAttack(true);
 
     butterFly->SetIsActive(false);
 

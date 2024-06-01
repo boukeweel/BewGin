@@ -2,6 +2,7 @@
 
 #include <glm/vec3.hpp>
 
+#include "BewGin.h"
 #include "EnemyComponent.h"
 #include "GameObject.h"
 #include "GameTime.h"
@@ -213,6 +214,8 @@ EnemyStates* AttackingButterFly::Update(EnemyComponent* component)
 	}
 	else
 	{
+		component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
+
 		return new FlyToFormationPosition;
 	}
 }

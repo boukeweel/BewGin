@@ -1,6 +1,7 @@
 #include "BossEnemyComponent.h"
 
 #include "AnimatorComponent.h"
+#include "BezierPath.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
@@ -10,12 +11,12 @@ std::vector<std::vector<glm::vec2>> BossEnemyComponent::s_AttackingPaths;
 
 void BossEnemyComponent::CreateAttackingPaths()
 {
-
+	
 }
 
 BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject) : EnemyComponent(pParentObject)
 {
-	SetEnemyType(EnemyTypes::Boss);
+	m_Type = EnemyTypes::Boss;
 }
 
 void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
