@@ -46,9 +46,13 @@ public:
 
     EnemyTypes GetEnemyType() const { return m_Type; }
 
-    bool GetAbleToAttack() { return m_AbleToAttack; }
+    bool GetAbleToAttack() const { return m_AbleToAttack; }
     void SetAbleToAttack(bool ableToAttack) { m_AbleToAttack = ableToAttack; }
-    
+
+    bool GetIsDiving() const { return m_IsDiving; }
+    void SetIsDiving(bool value) { m_IsDiving = value; }
+
+    glm::vec3 GetPosIndex() const { return m_PositionIndex; }
 
     virtual ~EnemyComponent() override;
     EnemyComponent(const EnemyComponent& other) = delete;
@@ -77,6 +81,7 @@ protected:
     FormationComponent* m_pFormation;
     glm::vec3 m_PositionIndex;
 
+    bool m_IsDiving{false};
     bool m_AbleToAttack{false};
 
     //static because All enemies need them to be the same exact thing

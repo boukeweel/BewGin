@@ -16,6 +16,7 @@ private:
 
     int m_AmountPoints{ 100 };
 
+
     static std::vector<std::vector<glm::vec2>> s_AttackingPaths;
 };
 

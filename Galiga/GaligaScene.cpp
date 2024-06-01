@@ -9,6 +9,8 @@
 #include <iostream>
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
+
+#include "AudioClip.h"
 #include "BewGin.h"
 #include "EnemyComponent.h"
 #include "FormationComponent.h"
@@ -20,6 +22,7 @@
 #include "SpriteSheetComponent.h"
 #include "StarComponent.h"
 #include "SubjectComponent.h"
+#include "TempComands.h"
 
 void GaligaScene::Load()
 {
@@ -70,11 +73,12 @@ void GaligaScene::Load()
 	Formation->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
 	Formation->AddComponent<FormationComponent>("Formation1.txt");
 
-	
 
 	scene.Add(std::move(Formation));
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Player1));
+
+	input.AddCommand(bew::ActionKeys::Num9, bew::ButtonState::Down, std::make_unique<AttackBoss>());
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)
@@ -86,4 +90,6 @@ void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* play
 	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
 	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
 	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down, std::make_unique<ShootCommand>(player));
+
+	
 }

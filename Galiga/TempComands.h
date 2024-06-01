@@ -55,6 +55,21 @@ private:
 	unsigned int m_Scene;
 };
 
+class AttackBoss final : public bew::Command
+{
+public:
+	AttackBoss() = default;
+	void Execute() override;
+
+	AttackBoss(const Score& other) = delete;
+	AttackBoss(Score&& other) = delete;
+	AttackBoss& operator=(const Score& other) = delete;
+	AttackBoss& operator=(Score&& other) = delete;
+
+private:
+	unsigned int count{3};
+};
+
 
 
 

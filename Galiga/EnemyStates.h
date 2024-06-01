@@ -62,6 +62,7 @@ public:
 	AttackingBee() = default;
 	void OnEnter(EnemyComponent* component) override;
 	EnemyStates* Update(EnemyComponent* component) override;
+	void OnExit(EnemyComponent* component) override;
 	void Render() const override;
 
 private:
@@ -79,6 +80,7 @@ public:
 	AttackingButterFly() = default;
 	void OnEnter(EnemyComponent* component) override;
 	EnemyStates* Update(EnemyComponent* component) override;
+	void OnExit(EnemyComponent* component) override;
 	void Render() const override;
 
 private:
@@ -96,9 +98,12 @@ public:
 	AttackingBoss() = default;
 	void OnEnter(EnemyComponent* component) override;
 	EnemyStates* Update(EnemyComponent* component) override;
+	void OnExit(EnemyComponent* component) override;
 	void Render() const override;
 
 private:
+	void FindEscoretButterFlies(EnemyComponent* component);
+
 	int m_CurrentWayPoint{};
 	int m_CurrentPath{};
 	const float m_Epsilon{ 5.f };

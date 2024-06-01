@@ -1,5 +1,7 @@
 #include "TempComands.h"
 
+#include "EnemyComponent.h"
+#include "GameData.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "SceneManager.h"
@@ -43,4 +45,23 @@ void SwitchScene::Execute()
 	{
 		sceneManger.LoadScene(m_Scene);
 	}
+}
+
+void AttackBoss::Execute()
+{
+	auto enemies = GameData::GetInstance().GetEnemies();
+
+	auto enemycomp = (*enemies)[count]->GetComponent<EnemyComponent>();
+
+	if(!enemycomp->GetAbleToAttack())
+	{
+		enemycomp->SetAbleToAttack(true);
+		count++;
+
+		if(count == 4)
+		{
+			count = 0;
+		}
+	}
+	
 }

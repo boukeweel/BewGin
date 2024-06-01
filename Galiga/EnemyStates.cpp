@@ -4,6 +4,7 @@
 
 #include "BewGin.h"
 #include "EnemyComponent.h"
+#include "GameData.h"
 #include "GameObject.h"
 #include "GameTime.h"
 #include "InputManager.h"
@@ -87,6 +88,7 @@ void FlyToFormationPosition::OnExit(EnemyComponent* component)
 	parentObject->SetParrent(component->GetFormation()->GetParentObject(), true);
 
 	component->GetFormation()->Lock();
+	component->SetAbleToAttack(false);
 }
 
 #pragma endregion
@@ -125,7 +127,7 @@ void AttackingBee::OnEnter(EnemyComponent* component)
 	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
-	m_CurrentWayPoint = 1;
+	component->SetIsDiving(true);
 }
 
 EnemyStates* AttackingBee::Update(EnemyComponent* component)
@@ -161,6 +163,10 @@ EnemyStates* AttackingBee::Update(EnemyComponent* component)
 	}
 }
 
+void AttackingBee::OnExit(EnemyComponent* component)
+{
+	component->SetIsDiving(false);
+}
 
 void AttackingBee::Render() const
 {
@@ -182,7 +188,7 @@ void AttackingButterFly::OnEnter(EnemyComponent* component)
 	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
-	m_CurrentWayPoint = 1;
+	component->SetIsDiving(true);
 }
 
 EnemyStates* AttackingButterFly::Update(EnemyComponent* component)
@@ -220,6 +226,11 @@ EnemyStates* AttackingButterFly::Update(EnemyComponent* component)
 	}
 }
 
+void AttackingButterFly::OnExit(EnemyComponent* component)
+{
+	component->SetIsDiving(false);
+	component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
+}
 
 void AttackingButterFly::Render() const
 {
@@ -239,11 +250,66 @@ void AttackingBoss::OnEnter(EnemyComponent* component)
 	auto parentObject{ component->GetParentObject() };
 	parentObject->SetParrent(nullptr, true);
 
-	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
+	int attackPath = component->GetAttackingPathIndex();
+	m_Path = component->GetAttackingPath(attackPath);
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
-	m_CurrentWayPoint = 1;
+	component->SetIsDiving(true);
+
+	if(attackPath < 2)
+	{
+		FindEscoretButterFlies(component);
+	}
 }
+
+void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
+{
+	glm::vec3 posindex = component->GetPosIndex();
+
+	std::vector<bew::GameObject*>* enemies = GameData::GetInstance().GetEnemies();
+
+	std::vector<bew::GameObject*> foundEnemies;
+
+	for (auto* enemy : *enemies)
+	{
+		glm::vec3 enemyPos = enemy->GetComponent<EnemyComponent>()->GetPosIndex();
+
+		//only check the row below the bosses
+		if (enemyPos.y != posindex.y + 1)
+		{
+			continue;
+		}
+
+		if (enemyPos.x == posindex.x)
+		{
+			foundEnemies.push_back(enemy);
+		}
+		else if (posindex.x <= 5 && enemyPos.x == posindex.x - 1)
+		{
+			foundEnemies.push_back(enemy);
+		}
+		else if (posindex.x > 5 && enemyPos.x == posindex.x + 1)
+		{
+			foundEnemies.push_back(enemy);
+		}
+		// If both enemies are found, break out of the loop early
+		if (foundEnemies.size() == 2)
+		{
+			break;
+		}
+	}
+
+	for (auto found_enemy : foundEnemies)
+	{
+		auto enemycomp = found_enemy->GetComponent<EnemyComponent>();
+		if (enemycomp->GetIsDiving() == false)
+		{
+			enemycomp->SetAttackingPath(component->GetAttackingPathIndex() + 2);
+			enemycomp->SetAbleToAttack(true);
+		}
+	}
+}
+
 
 EnemyStates* AttackingBoss::Update(EnemyComponent* component)
 {
@@ -276,6 +342,12 @@ EnemyStates* AttackingBoss::Update(EnemyComponent* component)
 	{
 		return new FlyToFormationPosition;
 	}
+}
+
+void AttackingBoss::OnExit(EnemyComponent* component)
+{
+	component->SetIsDiving(false);
+	component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
 }
 
 
