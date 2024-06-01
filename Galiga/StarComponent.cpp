@@ -10,7 +10,7 @@ StarComponent::StarComponent(bew::GameObject* pParentObject) : Component(pParent
 {
 	ResetStar();
 
-	int randomWidth = bew::RandomFunctions::RandomI(bew::ScreenWidth);
+	int randomWidth = bew::RandomFunctions::RandomI(bew::ScreenWidth - 150);
 	int randomHeight = bew::RandomFunctions::RandomI(bew::ScreenHeight);
 	GetParentObject()->SetPosition(static_cast<float>(randomWidth), static_cast<float>(randomHeight));
 }
@@ -37,7 +37,7 @@ void StarComponent::ResetStar()
 
 void StarComponent::ResetPostion()
 {
-	int randomWidth = bew::RandomFunctions::RandomI(bew::ScreenWidth);
+	int randomWidth = bew::RandomFunctions::RandomI(bew::ScreenWidth - 150);
 	GetParentObject()->SetPosition(static_cast<float>(randomWidth), -10);
 }
 
@@ -56,6 +56,6 @@ void StarComponent::ResetScale()
 
 void StarComponent::RandomSpeed()
 {
-	m_speed = bew::RandomFunctions::RandomF(50, 100);
+	m_speed = bew::RandomFunctions::RandomF(150, 300);
 }
 

@@ -13,6 +13,8 @@ class EnemyComponent :
     public bew::Component
 {
 public:
+    enum class EnemyTypes { Bee, Butterfly, Boss };
+
     static void CreatePaths();
 
     EnemyComponent(bew::GameObject* pParentObject);
@@ -24,20 +26,29 @@ public:
     virtual void HandelStates();
 
     float GetSpeed() const { return m_speed; }
-    std::vector<glm::vec2>* getPath(int index) { return &s_Paths[index]; }
+    std::vector<glm::vec2>* GetFormationPath(int index) const { return &s_FormationPaths[index]; }
+    virtual std::vector<glm::vec2>* GetAttackingPath(int index) const = 0;
+
     bool GetIsChallengeStage() const { return m_ChallengeStage; }
-    FormationComponent* GetFormation() const { return pFormation; }
-    int GetCurrentPath() const { return m_CurrentPath; }
+    FormationComponent* GetFormation() const { return m_pFormation; }
+    int GetCurrentFormationPath() const { return m_CurrentFormationPath; }
+    int GetAttackingPathIndex() const { return m_AttackingPath; }
 
 	void SetFormationPosition(FormationComponent* formation, glm::vec3 posIndex);
 
-    glm::vec3 GetTargetPos() const { return m_TargetPos; }
+    glm::vec3 GetFormationTargetPosition() const;
 
-    void SetPath(int path) { m_CurrentPath = path; }
+    void SetAttackingPath(int path) { m_AttackingPath = path; }
+    void SetForamationPath(int path) { m_CurrentFormationPath = path; }
     void SetChallengeStage(bool ChallengeStage) { m_ChallengeStage = ChallengeStage; }
 
     void StartAndSetActive();
 
+    EnemyTypes GetEnemyType() const { return m_Type; }
+    void SetEnemyType(EnemyTypes type) { m_Type = type; }
+
+    bool GetAbleToAttack() { return m_AbleToAttack; }
+    void SetAbleToAttack(bool ableToAttack) { m_AbleToAttack = ableToAttack; }
     
 
     virtual ~EnemyComponent() override;
@@ -52,20 +63,24 @@ protected:
 
 
     void CheckInHitBox();
-   
+
+    EnemyTypes m_Type;
 
     std::vector <bew::GameObject*>* m_pPlayers;
 
     EnemyStates* m_States;
 
     float m_speed;
-    glm::vec3 m_TargetPos{};
     bool m_ChallengeStage;
-    int m_CurrentPath{0};
+    int m_CurrentFormationPath{0};
+    int m_AttackingPath;
 
-    FormationComponent* pFormation;
+    FormationComponent* m_pFormation;
+    glm::vec3 m_PositionIndex;
+
+    bool m_AbleToAttack{false};
 
     //static because All enemies need them to be the same exact thing
-    static std::vector<std::vector<glm::vec2>> s_Paths;
+    static std::vector<std::vector<glm::vec2>> s_FormationPaths;
 };
 

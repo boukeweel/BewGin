@@ -21,7 +21,7 @@ public:
 class FlyIn final : public EnemyStates
 {
 public:
-	FlyIn();
+	FlyIn() = default;
 
 	void OnEnter(EnemyComponent* component) override;
 	EnemyStates* Update(EnemyComponent* component) override;
@@ -30,7 +30,7 @@ public:
 private:
 	int m_CurrentWayPoint{};
 	int m_CurrentPath{};
-	const float EPSILON{ 5.f };
+	const float m_Epsilon{ 5.f };
 	std::vector<glm::vec2>* m_Path{};
 };
 
@@ -43,24 +43,66 @@ public:
 	void OnExit(EnemyComponent* component) override;
 
 private:
-	glm::vec3 FlyInTargetPosition(EnemyComponent* component);
 
-	const float EPSILON{ 5.f };
+	const float m_Epsilon{ 5.f };
 };
 
-//todo make this bozo
 class Formation final : public EnemyStates
 {
 public:
 	Formation() = default;
 
 	EnemyStates* Update(EnemyComponent* component) override;
+
 };
 
-class Attacking final : public EnemyStates
+class AttackingBee final : public EnemyStates
 {
 public:
-	Attacking() = default;
+	AttackingBee() = default;
+	void OnEnter(EnemyComponent* component) override;
+	EnemyStates* Update(EnemyComponent* component) override;
+	void Render() const override;
 
-	EnemyStates* Update(EnemyComponent*) override { return nullptr; }
+private:
+	int m_CurrentWayPoint{};
+	int m_CurrentPath{};
+	const float m_Epsilon{ 5.f };
+	std::vector<glm::vec2>* m_Path{};
+	glm::vec2 m_DiveStartPos;
+	glm::vec2 m_DiveEndPos;
+};
+
+class AttackingButterFly final : public EnemyStates
+{
+public:
+	AttackingButterFly() = default;
+	void OnEnter(EnemyComponent* component) override;
+	EnemyStates* Update(EnemyComponent* component) override;
+	void Render() const override;
+
+private:
+	int m_CurrentWayPoint{};
+	int m_CurrentPath{};
+	const float m_Epsilon{ 5.f };
+	std::vector<glm::vec2>* m_Path{};
+	glm::vec2 m_DiveStartPos;
+	glm::vec2 m_DiveEndPos;
+};
+
+class AttackingBoss final : public EnemyStates
+{
+public:
+	AttackingBoss() = default;
+	void OnEnter(EnemyComponent* component) override;
+	EnemyStates* Update(EnemyComponent* component) override;
+	void Render() const override;
+
+private:
+	int m_CurrentWayPoint{};
+	int m_CurrentPath{};
+	const float m_Epsilon{ 5.f };
+	std::vector<glm::vec2>* m_Path{};
+	glm::vec2 m_DiveStartPos;
+	glm::vec2 m_DiveEndPos;
 };

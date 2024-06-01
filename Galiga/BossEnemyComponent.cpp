@@ -6,8 +6,16 @@
 #include "ScoreComponent.h"
 #include "SpriteSheetComponent.h"
 
+std::vector<std::vector<glm::vec2>> BossEnemyComponent::s_AttackingPaths;
+
+void BossEnemyComponent::CreateAttackingPaths()
+{
+
+}
+
 BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject) : EnemyComponent(pParentObject)
 {
+	SetEnemyType(EnemyTypes::Boss);
 }
 
 void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)

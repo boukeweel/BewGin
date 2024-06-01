@@ -9,15 +9,10 @@
 #include <iostream>
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
-
-#include "BeeEnemyComponent.h"
 #include "BewGin.h"
-#include "HitBoxComponent.h"
 #include "EnemyComponent.h"
 #include "FormationComponent.h"
 #include "GameData.h"
-#include "HealthComponent.h"
-#include "LivesTextObserver.h"
 #include "ObjectPoolingComponent.h"
 #include "ScoreComponent.h"
 #include "ScoreTextObserver.h"
@@ -25,7 +20,6 @@
 #include "SpriteSheetComponent.h"
 #include "StarComponent.h"
 #include "SubjectComponent.h"
-#include "TempComands.h"
 
 void GaligaScene::Load()
 {
@@ -73,14 +67,14 @@ void GaligaScene::Load()
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
 	auto Formation = std::make_unique<bew::GameObject>();
-	Formation->SetPosition(bew::ScreenWidth * 0.1f, 100.f);
+	Formation->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
 	Formation->AddComponent<FormationComponent>("Formation1.txt");
+
+	
 
 	scene.Add(std::move(Formation));
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Player1));
-
-	//input.AddCommand(bew::ActionKeys::Num0, bew::ButtonState::Up, std::make_unique<SwitchScene>(0));
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)

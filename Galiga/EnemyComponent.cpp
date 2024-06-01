@@ -12,7 +12,7 @@
 #include "Renderer.h"
 #include "ScoreComponent.h"
 
-std::vector<std::vector<glm::vec2>> EnemyComponent::s_Paths;
+std::vector<std::vector<glm::vec2>> EnemyComponent::s_FormationPaths;
 
 void EnemyComponent::CreatePaths()
 {
@@ -42,8 +42,8 @@ void EnemyComponent::CreatePaths()
 		glm::vec2(static_cast<float>(screenWidthMid) + 50.f,240.f) },
 		20);
 
-	s_Paths.emplace_back();
-	path->Sample(&s_Paths[currentPath]);
+	s_FormationPaths.emplace_back();
+	path->Sample(&s_FormationPaths[currentPath]);
 	delete path;
 
 	path =  new BezierPath();
@@ -70,8 +70,8 @@ void EnemyComponent::CreatePaths()
 		glm::vec2(static_cast<float>(screenWidthMid) - 50.f,240.f) },
 		20);
 
-	s_Paths.emplace_back();
-	path->Sample(&s_Paths[currentPath]);
+	s_FormationPaths.emplace_back();
+	path->Sample(&s_FormationPaths[currentPath]);
 	delete path;
 
 	path = new BezierPath();
@@ -92,8 +92,8 @@ void EnemyComponent::CreatePaths()
 		glm::vec2(static_cast<float>(screenWidthMid) - 15.f,225.f) },
 		30);
 
-	s_Paths.emplace_back();
-	path->Sample(&s_Paths[currentPath]);
+	s_FormationPaths.emplace_back();
+	path->Sample(&s_FormationPaths[currentPath]);
 	delete path;
 
 	path = new BezierPath();
@@ -114,8 +114,8 @@ void EnemyComponent::CreatePaths()
 		glm::vec2(static_cast<float>(screenWidthMid) + 15.f,240.f) },
 		30);
 
-	s_Paths.emplace_back();
-	path->Sample(&s_Paths[currentPath]);
+	s_FormationPaths.emplace_back();
+	path->Sample(&s_FormationPaths[currentPath]);
 	delete path;
 }
 
@@ -182,7 +182,6 @@ void EnemyComponent::CheckInHitBox()
 						bullet->SetIsActive(false);
 
 						TakeDamages(Player);
-						
 					}
 				}
 			}
@@ -192,13 +191,19 @@ void EnemyComponent::CheckInHitBox()
 
 void EnemyComponent::SetFormationPosition(FormationComponent* formation,glm::vec3 posIndex)
 {
-	pFormation = formation;
+	m_pFormation = formation;
 
-	m_TargetPos.x = pFormation->GetParentObject()->GetWorldPosition().x + (posIndex.x * pFormation->GetGridSize().x);
-	m_TargetPos.y = pFormation->GetParentObject()->GetWorldPosition().y + (posIndex.y * pFormation->GetGridSize().y);
+	m_PositionIndex = posIndex;
 }
 
-
+glm::vec3 EnemyComponent::GetFormationTargetPosition() const
+{
+	glm::vec3 targetPos;
+	targetPos.x = m_pFormation->GetParentObject()->GetWorldPosition().x + (m_PositionIndex.x * m_pFormation->GetGridSize().x);
+	targetPos.y = m_pFormation->GetParentObject()->GetWorldPosition().y + (m_PositionIndex.y * m_pFormation->GetGridSize().y);
+	targetPos.z = 0;
+	return targetPos;
+}
 
 void EnemyComponent::StartAndSetActive()
 {

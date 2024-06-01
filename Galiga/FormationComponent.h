@@ -14,6 +14,7 @@ public:
     
     glm::vec2 GetGridSize() const { return m_GridSize; }
     void Lock();
+    bool GetIsLocked() const { return m_Locked && m_OffsetCounter == 4; }
     void Update() override;
 
     ~FormationComponent() override = default;
@@ -29,8 +30,9 @@ private:
     void AddBee(glm::vec3 pos);
     void AddbutterFly(glm::vec3 pos);
 
-    void Breathing();
+    void Moving();
     void SpawnEnemies();
+    void Breathing();
 
     //For Moving Formation side to side
     float m_OffsetAmount{10.f};

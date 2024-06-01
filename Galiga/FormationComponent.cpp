@@ -4,6 +4,7 @@
 
 #include "EnemyComponent.h"
 #include "fstream"
+#include "GameData.h"
 #include "GameObject.h"
 #include "GameTime.h"
 #include "ObjectPreset.h"
@@ -28,14 +29,15 @@ void FormationComponent::Lock()
 
 void FormationComponent::Update()
 {
-    Breathing();
+    Moving();
     SpawnEnemies();
+    Breathing();
 }
 
-void FormationComponent::Breathing()
+void FormationComponent::Moving()
 {
-    //breathing animation
-    if (m_Locked || m_OffsetCounter != 4)
+    //moving before all enemys are in postion
+    if (!m_Locked || m_OffsetCounter != 4)
     {
         m_OffsetTimer += bew::GameTime::GetDeltaTimeFloat();
         if (m_OffsetTimer >= m_OffsetDelay)
@@ -80,7 +82,7 @@ void FormationComponent::SpawnEnemies()
                 const int enemyCount = static_cast<int>(m_Enemies.size());
                 int RandomEnemy = bew::RandomFunctions::RandomI(0, enemyCount - 1);
                 auto comp = m_Enemies[RandomEnemy]->GetComponent<EnemyComponent>();
-                comp->SetPath(m_ChosenPath);
+                comp->SetForamationPath(m_ChosenPath);
                 comp->StartAndSetActive();
                 m_Enemies.erase(m_Enemies.begin() + RandomEnemy);
 
@@ -95,6 +97,34 @@ void FormationComponent::SpawnEnemies()
             }
         }
     }
+}
+
+void FormationComponent::Breathing()
+{
+    //breathing
+    //todo this looks weird if time fix it if not just delete it
+   /* if(m_Locked)
+    {
+        m_SpreadTimer += bew::GameTime::GetDeltaTimeFloat();
+        if(m_SpreadTimer >= m_SpreadDelay)
+        {
+            m_SpreadCounter += m_SpreadDirection;
+
+            float spread = static_cast<float>(m_SpreadDirection * ((m_SpreadCounter % 2 == 0) ? 1 : 2));
+
+            m_GridSize.x += spread;
+
+            glm::vec3 position = GetParentObject()->GetWorldPosition() ;
+            position.x -= spread * 5;
+            GetParentObject()->SetPosition(position);
+
+            if(m_SpreadCounter == 4 || m_SpreadCounter == 0)
+            {
+                m_SpreadDirection *= -1;
+            }
+            m_SpreadTimer -= m_SpreadDelay;
+        }
+    }*/
 }
 
 
@@ -138,6 +168,7 @@ void FormationComponent::LoadFormationFile(const std::string& FileName)
     }
 
     m_AmountEnemies = static_cast<int>(m_Enemies.size());
+    GameData::GetInstance().AddEnemies(m_Enemies);
 }
 
 void FormationComponent::AddBoss(glm::vec3 pos)
@@ -161,7 +192,14 @@ void FormationComponent::AddBee(glm::vec3 pos)
 
     auto bee = beePreset.Create();
     auto EnemyComp = bee->GetComponent<EnemyComponent>();
-    EnemyComp->SetFormationPosition(this,pos);
+    EnemyComp->SetFormationPosition(this, pos);
+
+    //todo this is not modular 
+    if (pos.x <= 5)
+        EnemyComp->SetAttackingPath(0);
+    else
+		EnemyComp->SetAttackingPath(1);
+    
 
     bee->SetIsActive(false);
 
