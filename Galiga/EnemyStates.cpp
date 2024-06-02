@@ -2,6 +2,7 @@
 
 #include <glm/vec3.hpp>
 
+#include "AnimatorComponent.h"
 #include "BewGin.h"
 #include "EnemyComponent.h"
 #include "GameData.h"
@@ -154,9 +155,12 @@ EnemyStates* Attacking::Update(EnemyComponent* component)
 void Attacking::Render() const
 {
 	//just for debug
-	for (size_t i = 0; i < m_Path->size() - 1; ++i)
+	if(m_Path != nullptr)
 	{
-		bew::Renderer::GetInstance().DrawLine(m_DiveStartPos.x + (*m_Path)[i].x, m_DiveStartPos.y + (*m_Path)[i].y, m_DiveStartPos.x + (*m_Path)[i + 1].x, m_DiveStartPos.y + (*m_Path)[i + 1].y);
+		for (size_t i = 0; i < m_Path->size() - 1; ++i)
+		{
+			bew::Renderer::GetInstance().DrawLine(m_DiveStartPos.x + (*m_Path)[i].x, m_DiveStartPos.y + (*m_Path)[i].y, m_DiveStartPos.x + (*m_Path)[i + 1].x, m_DiveStartPos.y + (*m_Path)[i + 1].y);
+		}
 	}
 }
 
@@ -196,7 +200,7 @@ void AttackingButterFly::OnEnter(EnemyComponent* component)
 void AttackingButterFly::OnExit(EnemyComponent* component)
 {
 	component->SetIsDiving(false);
-	component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
+	component->GetParentObject()->SetPosition(m_DiveStartPos.x,-100);
 }
 
 #pragma endregion
@@ -217,8 +221,15 @@ void AttackingBoss::OnEnter(EnemyComponent* component)
 	if(attackPath < 2)
 	{
 		FindEscoretButterFlies(component);
+		m_BeamAttack = false;
+	}
+	else
+	{
+		m_BeamAttack = true;
 	}
 }
+
+
 
 void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 {
@@ -250,7 +261,6 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 		{
 			foundEnemies.push_back(enemy);
 		}
-		// If both enemies are found, break out of the loop early
 		if (foundEnemies.size() == 2)
 		{
 			break;
@@ -268,11 +278,106 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 	}
 }
 
+
+EnemyStates* AttackingBoss::Update(EnemyComponent* component)
+{
+	glm::vec3 CheckPos{
+		(m_DiveStartPos.x + (*m_Path)[m_CurrentWayPoint].x) - component->GetParentObject()->GetWorldPosition().x,
+		(m_DiveStartPos.y + (*m_Path)[m_CurrentWayPoint].y) - component->GetParentObject()->GetWorldPosition().y,
+		component->GetParentObject()->GetWorldPosition().z };
+	float distance = glm::length(CheckPos);
+
+	if (distance < m_Epsilon)
+	{
+		m_CurrentWayPoint++;
+	}
+
+	if (m_CurrentWayPoint < static_cast<int>(m_Path->size()))
+	{
+		const glm::vec2 wayPointPosition = m_DiveStartPos + (*m_Path)[m_CurrentWayPoint];
+
+		const glm::vec2 dist = wayPointPosition - glm::vec2(component->GetParentObject()->GetWorldPosition().x, component->GetParentObject()->GetWorldPosition().y);
+		const glm::vec2 velocity = glm::normalize(dist);
+
+		component->GetParentObject()->Translate(glm::vec3(velocity, 0.0f) * bew::GameTime::GetDeltaTimeFloat() * component->GetSpeed());
+
+		component->GetParentObject()->SetRotation(atan2(dist.y, dist.x) * (180.f / 3.14f) + 90);
+
+		return nullptr;
+	}
+	else
+	{
+		if(m_BeamAttack)
+		{
+			return new AttackingBossBeam;
+		}
+		else
+		{
+			return new FlyToFormationPosition;
+		}
+		
+	}
+}
+
 void AttackingBoss::OnExit(EnemyComponent* component)
 {
+	if(!m_BeamAttack)
+	{
+		component->SetIsDiving(false);
+		component->GetParentObject()->SetPosition(m_DiveStartPos.x, -100);
+	}
+}
+
+void AttackingBossBeam::OnEnter(EnemyComponent* component)
+{
+	m_Capturing = true;
+	component->GetParentObject()->SetRotation(180.f);
+	m_DiveStartPos = component->GetFormationTargetPosition();
+	component->GetCaptureBeam()->GetParentObject()->SetIsActive(true);
+	component->GetCaptureBeam()->StartCapturing();
+}
+
+EnemyStates* AttackingBossBeam::Update(EnemyComponent* component)
+{
+	if(m_Capturing)
+	{
+		auto beam = component->GetCaptureBeam();
+		if(beam->GetFinsihed())
+		{
+			m_Capturing = false;
+		}
+
+		return nullptr;
+	}
+	else
+	{
+		glm::vec2 endPoint;
+		endPoint.x = component->GetParentObject()->GetWorldPosition().x;
+		endPoint.y = bew::ScreenHeight + 100;
+
+		const glm::vec2 dist = endPoint - glm::vec2(component->GetParentObject()->GetWorldPosition().x, component->GetParentObject()->GetWorldPosition().y);
+		const glm::vec2 velocity = glm::normalize(dist);
+
+		component->GetParentObject()->Translate(glm::vec3(velocity, 0.0f) * bew::GameTime::GetDeltaTimeFloat() * component->GetSpeed());
+		component->GetParentObject()->SetRotation(atan2(dist.y, dist.x) * (180.f / 3.14f) + 90);
+
+		if (glm::length(dist) < m_Epsilon)
+		{
+			return new FlyToFormationPosition;
+		}
+
+		return nullptr;
+	}
+}
+
+void AttackingBossBeam::OnExit(EnemyComponent* component)
+{
 	component->SetIsDiving(false);
-	component->GetParentObject()->SetPosition(m_DiveStartPos.x, 0 - 100);
+	component->GetParentObject()->SetPosition(m_DiveStartPos.x,-100);
+	component->GetCaptureBeam()->GetParentObject()->SetIsActive(false);
+	component->GetCaptureBeam()->ResetBeam();
 }
 
 #pragma endregion
+
 

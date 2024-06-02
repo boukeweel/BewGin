@@ -115,9 +115,51 @@ void BossEnemyComponent::CreateAttackingPaths()
 	s_AttackingPaths.emplace_back();
 	path->Sample(&s_AttackingPaths[currentPath]);
 	delete path;
+
+	currentPath++;
+	path = new BezierPath;
+
+	path->AddCurve({
+		glm::vec2(0.f,0.f),
+		glm::vec2(0.f, -50.f),
+		glm::vec2(-50.f,-50.f),
+		glm::vec2(-50.f,0.f) },
+		12);
+
+	path->AddCurve({
+		glm::vec2(-50.f,0.f),
+		glm::vec2(-90.f, 60.f),
+		glm::vec2(100.f,180.f),
+		glm::vec2(100.f,250.f) },
+		12);
+
+	s_AttackingPaths.emplace_back();
+	path->Sample(&s_AttackingPaths[currentPath]);
+	delete path;
+
+	currentPath++;
+	path = new BezierPath;
+
+	path->AddCurve({
+		glm::vec2(0.f,0.f),
+		glm::vec2(0.f, -50.f),
+		glm::vec2(50.f,-50.f),
+		glm::vec2(50.f,0.f) },
+		12);
+
+	path->AddCurve({
+	glm::vec2(50.f,0.f),
+	glm::vec2(90.f, 60.f),
+	glm::vec2(-100.f,180.f),
+	glm::vec2(-100.f,250.f) },
+	12);
+
+	s_AttackingPaths.emplace_back();
+	path->Sample(&s_AttackingPaths[currentPath]);
+	delete path;
 }
 
-BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject) : EnemyComponent(pParentObject)
+BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject, CaptureBeamComponent* captureBeam) : EnemyComponent(pParentObject),m_CaptureBeam{captureBeam}
 {
 	m_Type = EnemyTypes::Boss;
 }

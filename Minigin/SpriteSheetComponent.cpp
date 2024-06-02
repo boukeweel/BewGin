@@ -26,20 +26,26 @@ void bew::SpriteSheetComponent::Render() const
         const auto& pos = GetParentObject()->GetWorldPosition();
         const auto& scale = GetParentObject()->GetTransform().GetScale();
 
-        float textureWidth = static_cast<float>(m_pTexture->GetSize().x);
-        float textureHeight = static_cast<float>(m_pTexture->GetSize().y);
+        const float textureWidth = static_cast<float>(m_pTexture->GetSize().x);
+        const float textureHeight = static_cast<float>(m_pTexture->GetSize().y);
 
-        float spriteWidth = (textureWidth / static_cast<float>(m_Columns)) * scale.x;
-        float spriteHeight = (textureHeight / static_cast<float>(m_Rows)) * scale.y;
+        const float fullSpriteWidth = textureWidth / static_cast<float>(m_Columns);
+        const float fullSpriteHeight = textureHeight / static_cast<float>(m_Rows);
 
-        float spriteSheetX = m_CurrentSprite.y * (textureWidth / static_cast<float>(m_Columns));
-        float spriteSheetY = m_CurrentSprite.x * (textureHeight / static_cast<float>(m_Rows));
+        const float spriteWidth = fullSpriteWidth * m_SpriteSize.x * scale.x;
+        const float spriteHeight = fullSpriteHeight * m_SpriteSize.y * scale.y;
+
+        const float spriteSheetX = m_CurrentSprite.y * fullSpriteWidth + fullSpriteWidth * m_SpriteOffset.x;
+        const float spriteSheetY = m_CurrentSprite.x * fullSpriteHeight + fullSpriteHeight * m_SpriteOffset.y;
+
+        const float texturePartWidth = fullSpriteWidth * m_SpriteSize.x;
+        const float texturePartHeight = fullSpriteHeight * m_SpriteSize.y;
 
         Renderer::GetInstance().RenderTexture(*m_pTexture,
-            pos.x - spriteWidth / 2, pos.y - spriteHeight / 2,
+            pos.x - (fullSpriteWidth * scale.x) / 2, pos.y - (fullSpriteHeight * scale.y )/ 2,
             spriteWidth, spriteHeight,
             spriteSheetX, spriteSheetY,
-            textureWidth / static_cast<float>(m_Columns), textureHeight / static_cast<float>(m_Rows),
+            texturePartWidth, texturePartHeight,
             GetParentObject()->GetTransform().GetRotation().x);
     }
 

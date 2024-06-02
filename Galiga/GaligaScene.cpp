@@ -12,6 +12,7 @@
 
 #include "AudioClip.h"
 #include "BewGin.h"
+#include "CaptureBeamComponent.h"
 #include "EnemyComponent.h"
 #include "FormationComponent.h"
 #include "GameData.h"
@@ -72,7 +73,6 @@ void GaligaScene::Load()
 	auto Formation = std::make_unique<bew::GameObject>();
 	Formation->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
 	Formation->AddComponent<FormationComponent>("Formation1.txt");
-
 
 	scene.Add(std::move(Formation));
 	scene.Add(std::move(Player1ScoreText));

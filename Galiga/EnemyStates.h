@@ -96,9 +96,24 @@ class AttackingBoss final : public Attacking
 public:
 	AttackingBoss() = default;
 	void OnEnter(EnemyComponent* component) override;
+	EnemyStates* Update(EnemyComponent* component) override;
 	void OnExit(EnemyComponent* component) override;
 
 private:
 	void FindEscoretButterFlies(EnemyComponent* component);
 
+	bool m_BeamAttack;
+};
+
+class AttackingBossBeam final : public  Attacking
+{
+public:
+	AttackingBossBeam() = default;
+	void OnEnter(EnemyComponent* component) override;
+	EnemyStates* Update(EnemyComponent* component) override;
+	void OnExit(EnemyComponent* component) override;
+
+private:
+
+	bool m_Capturing;
 };

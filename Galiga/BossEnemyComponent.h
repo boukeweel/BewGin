@@ -1,4 +1,5 @@
 #pragma once
+#include "CaptureBeamComponent.h"
 #include "EnemyComponent.h"
 class BossEnemyComponent :
     public EnemyComponent
@@ -6,15 +7,24 @@ class BossEnemyComponent :
 public:
     static void CreateAttackingPaths();
 
-    BossEnemyComponent(bew::GameObject* pParentObject);
+    BossEnemyComponent(bew::GameObject* pParentObject,CaptureBeamComponent* captureBeam);
 
     std::vector<glm::vec2>* GetAttackingPath(int index) const override { return &s_AttackingPaths[index]; }
 
+    CaptureBeamComponent* GetCaptureBeam() const override { return m_CaptureBeam; }
+
+    virtual ~BossEnemyComponent() override = default;
+    BossEnemyComponent(const BossEnemyComponent& other) = delete;
+    BossEnemyComponent(BossEnemyComponent&& other) = delete;
+    BossEnemyComponent& operator=(const BossEnemyComponent& other) = delete;
+    BossEnemyComponent& operator=(BossEnemyComponent&& other) = delete;
 private:
     void TakeDamages(bew::GameObject* pPlayer) override;
 
     int m_AmountPoints{ 100 };
 
     static std::vector<std::vector<glm::vec2>> s_AttackingPaths;
+
+    CaptureBeamComponent* m_CaptureBeam;
 };
 

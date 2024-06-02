@@ -2,6 +2,7 @@
 #include <Component.h>
 #include <vector>
 
+#include "CaptureBeamComponent.h"
 #include "EnemyStates.h"
 
 
@@ -53,6 +54,10 @@ public:
     void SetIsDiving(bool value) { m_IsDiving = value; }
 
     glm::vec3 GetPosIndex() const { return m_PositionIndex; }
+
+    //I know this shit
+    //todo make it better some way
+	virtual CaptureBeamComponent* GetCaptureBeam() const { return nullptr; }
 
     virtual ~EnemyComponent() override;
     EnemyComponent(const EnemyComponent& other) = delete;

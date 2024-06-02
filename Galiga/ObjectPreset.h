@@ -41,3 +41,9 @@ public:
 	std::unique_ptr<bew::GameObject> Create() override;
 };
 
+class BossCaptureBeamPreset : public ObjectPreset
+{
+public:
+	std::unique_ptr<bew::GameObject> Create() override;
+};
+

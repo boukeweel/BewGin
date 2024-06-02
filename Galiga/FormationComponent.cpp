@@ -181,9 +181,9 @@ void FormationComponent::AddBoss(glm::vec3 pos)
 
     //todo this is not modular 
     if (pos.x <= 5)
-        EnemyComp->SetAttackingPath(0);
+        EnemyComp->SetAttackingPath(2);
     else
-        EnemyComp->SetAttackingPath(1);
+        EnemyComp->SetAttackingPath(3);
     Boss->SetIsActive(false);
 
     m_Enemies.emplace_back(Boss.get());

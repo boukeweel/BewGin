@@ -8,7 +8,7 @@ namespace bew
 {
 	class Texture2D;
 
-	class SpriteSheetComponent :
+	class SpriteSheetComponent final:
 		public Component
 	{
 	public:
@@ -17,8 +17,13 @@ namespace bew
 
 		void Render() const override;
 
-		void SetSpriteSheet(const std::string& filename);
+		
 		void SetSprite(int row, int column);
+
+		void SetSpriteOffset(const glm::vec2& offset) { m_SpriteOffset = offset; }
+		void SetSpriteSize(const glm::vec2& size) { m_SpriteSize = size; }
+
+		const Texture2D* GetTexture() const { return m_pTexture.get(); }
 
 		virtual ~SpriteSheetComponent() = default;
 		SpriteSheetComponent(const SpriteSheetComponent& other) = delete;
@@ -26,8 +31,13 @@ namespace bew
 		SpriteSheetComponent& operator=(const SpriteSheetComponent& other) = delete;
 		SpriteSheetComponent& operator=(SpriteSheetComponent&& other) = delete;
 	private:
-
+		void SetSpriteSheet(const std::string& filename);
 		std::shared_ptr<Texture2D> m_pTexture{};
+
+		glm::vec2 m_SpriteOffset = glm::vec2(0.0f, 0.0f);
+		glm::vec2 m_SpriteSize = glm::vec2(1.0f, 1.0f);
+
+		glm::ivec2 m_TextureSize;
 
 		int m_Rows;
 		int m_Columns;

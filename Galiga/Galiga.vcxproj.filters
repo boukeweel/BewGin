@@ -114,6 +114,9 @@
     <ClCompile Include="BossEnemyComponent.cpp">
       <Filter>Components\EnemyComponents\EnemyTypes</Filter>
     </ClCompile>
+    <ClCompile Include="CaptureBeamComponent.cpp">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="BossEnemyComponent.h">
       <Filter>Components\EnemyComponents\EnemyTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="CaptureBeamComponent.h">
+      <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

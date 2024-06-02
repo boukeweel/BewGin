@@ -6,6 +6,7 @@
 #include "HealthComponent.h"
 #include "SceneManager.h"
 #include "ScoreComponent.h"
+#include "SpriteSheetComponent.h"
 
 DammagesPlayer::DammagesPlayer(bew::GameObject* targetObject, int Dammages) : m_TargetObject{ targetObject }, m_Damages{ Dammages }
 {

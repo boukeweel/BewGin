@@ -6,9 +6,13 @@
 #include "BeeEnemyComponent.h"
 #include "BossEnemyComponent.h"
 #include "ButterfliesEnemyComponent.h"
+#include "CaptureBeamComponent.h"
 #include "HitBoxComponent.h"
 #include "SpriteSheetComponent.h"
 #include "HealthComponent.h"
+#include "Scene.h"
+#include "SceneManager.h"
+#include "Texture2D.h"
 
 std::unique_ptr<bew::GameObject> BulletPreset::Create()
 {
@@ -80,7 +84,38 @@ std::unique_ptr<bew::GameObject> BossEnemyPreset::Create()
 	animator->PlayCurrentAmation();
 
 	BossEnemy->AddComponent<HealthComponent>(2);
-	BossEnemy->AddComponent<BossEnemyComponent>();
 	BossEnemy->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
+
+	//adding the capture beam
+	BossCaptureBeamPreset captureBeamPreset;
+	auto captureBeam = captureBeamPreset.Create();
+
+	captureBeam->SetParrent(BossEnemy.get());
+	float BeamYpos = static_cast<float>(captureBeam->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y + BossEnemy->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y / 2);
+	captureBeam->SetPosition(0, BeamYpos);
+
+	BossEnemy->AddComponent<BossEnemyComponent>(captureBeam->GetComponent<CaptureBeamComponent>());
+
+	captureBeam->SetIsActive(false);
+
+	bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(captureBeam));
+
 	return std::move(BossEnemy);
+}
+
+std::unique_ptr<bew::GameObject> BossCaptureBeamPreset::Create()
+{
+	auto CaptureBeam = std::make_unique<bew::GameObject>();
+	CaptureBeam->SetScale(2, 2);
+	CaptureBeam->AddComponent<bew::SpriteSheetComponent>("CaptureBeam.png", 1, 3);
+	CaptureBeam->AddComponent<CaptureBeamComponent>();
+
+	std::vector<bew::KeyFrame> keyframes{ {0,0},{0,1},{0,2} };
+
+	auto animator = CaptureBeam->AddComponent<bew::AnimatorComponent>();
+	animator->AddAnimation(std::make_unique<bew::Animation>(CaptureBeam.get(), keyframes, 0.2f, true));
+
+	//todo add a hitbox
+
+	return std::move(CaptureBeam);
 }
