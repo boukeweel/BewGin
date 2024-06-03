@@ -62,16 +62,15 @@ public:
     //todo make it better some way
 	virtual CaptureBeamComponent* GetCaptureBeam() const { return nullptr; }
 
+    virtual void TakeDamages(bew::GameObject* pPlayer) = 0;
+
     virtual ~EnemyComponent() override;
     EnemyComponent(const EnemyComponent& other) = delete;
     EnemyComponent(EnemyComponent&& other) = delete;
     EnemyComponent& operator=(const EnemyComponent& other) = delete;
     EnemyComponent& operator=(EnemyComponent&& other) = delete;
-private:
-    virtual void TakeDamages(bew::GameObject* pPlayer) = 0;
 protected:
     std::vector < bew::GameObject*>* GetPlayer() { return m_pPlayers; }
-
 
     void CheckInHitBox();
 

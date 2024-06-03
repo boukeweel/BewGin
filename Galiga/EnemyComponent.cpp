@@ -2,7 +2,7 @@
 #include <iostream>
 #include "BewGin.h"
 #include "BezierPath.h"
-#include "GameData.h"
+#include "GameEntityData.h"
 #include "GameObject.h"
 #include "GameTime.h"
 #include "HealthComponent.h"
@@ -122,7 +122,7 @@ void EnemyComponent::CreatePaths()
 EnemyComponent::EnemyComponent(bew::GameObject* pParentObject)
 : Component(pParentObject),m_States{new FlyIn()}, m_speed{400}
 {
-	m_pPlayers = GameData::GetInstance().GetPlayers();
+	m_pPlayers = GameEntityData::GetInstance().GetPlayers();
 
 	m_States->OnEnter(this);
 }
@@ -185,17 +185,6 @@ void EnemyComponent::CheckInHitBox()
 						TakeDamages(Player);
 					}
 				}
-			}
-		}
-
-		//todo this might be better in a player class
-		//collsion player
-		if(!Player->GetIsActive())
-		{
-			if(GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Player))
-			{
-				std::cout << "hit player\n";
-				GetParentObject()->SetIsActive(false);
 			}
 		}
 	}

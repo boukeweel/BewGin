@@ -102,7 +102,7 @@
     <ClCompile Include="FormationComponent.cpp">
       <Filter>Components\EnemyComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameData.cpp">
+    <ClCompile Include="GameEntityData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BeeEnemyComponent.cpp">
@@ -119,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="EnemyAttackControllerComponent.cpp">
       <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +182,7 @@
     <ClInclude Include="FormationComponent.h">
       <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GameData.h">
+    <ClInclude Include="GameEntityData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BeeEnemyComponent.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="EnemyAttackControllerComponent.h">
       <Filter>Components\EnemyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Components\PlayerComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

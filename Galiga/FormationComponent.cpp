@@ -4,7 +4,7 @@
 
 #include "EnemyComponent.h"
 #include "fstream"
-#include "GameData.h"
+#include "GameEntityData.h"
 #include "GameObject.h"
 #include "GameTime.h"
 #include "ObjectPreset.h"
@@ -20,6 +20,9 @@ FormationComponent::FormationComponent(bew::GameObject* pParentObject, const std
 
 void FormationComponent::Lock()
 {
+    if(m_Locked)
+        return;
+
     m_AmountEnemies--;
     if(m_AmountEnemies == 0)
     {
@@ -168,7 +171,7 @@ void FormationComponent::LoadFormationFile(const std::string& FileName)
     }
 
     m_AmountEnemies = static_cast<int>(m_Enemies.size());
-    GameData::GetInstance().AddEnemies(m_Enemies);
+    GameEntityData::GetInstance().AddEnemies(m_Enemies);
 }
 
 void FormationComponent::AddBoss(glm::vec3 pos)

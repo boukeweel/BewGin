@@ -23,7 +23,6 @@
 #include "SDLSoundSystem.h"
 #include "SoundServiceLocator.h"
 
-
 void AddTestingInputs()
 {
 	auto& input = bew::InputManager::GetInstance();

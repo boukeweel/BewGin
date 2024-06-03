@@ -5,7 +5,7 @@
 #include "AnimatorComponent.h"
 #include "BewGin.h"
 #include "EnemyComponent.h"
-#include "GameData.h"
+#include "GameEntityData.h"
 #include "GameObject.h"
 #include "GameTime.h"
 #include "InputManager.h"
@@ -235,7 +235,7 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 {
 	glm::vec3 posindex = component->GetPosIndex();
 
-	std::vector<bew::GameObject*>* enemies = GameData::GetInstance().GetEnemies();
+	std::vector<bew::GameObject*>* enemies = GameEntityData::GetInstance().GetEnemies();
 
 	std::vector<bew::GameObject*> foundEnemies;
 

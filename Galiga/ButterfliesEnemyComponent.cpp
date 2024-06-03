@@ -216,6 +216,10 @@ void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
 	{
 		GetParentObject()->SetIsActive(false);
 
+		//this is not good but could not think of something else
+		m_pFormation->Lock();
+
+		health->SetLifes(1);
 		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
 	}
 

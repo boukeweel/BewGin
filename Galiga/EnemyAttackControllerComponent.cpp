@@ -1,13 +1,13 @@
 #include "EnemyAttackControllerComponent.h"
 
 #include "EnemyComponent.h"
-#include "GameData.h"
+#include "GameEntityData.h"
 #include "GameTime.h"
 #include "RandomFunctions.h"
 
 EnemyAttackControllerComponent::EnemyAttackControllerComponent(bew::GameObject* pParentObject) : Component(pParentObject)
 {
-	m_pEnemies = GameData::GetInstance().GetEnemies();
+	m_pEnemies = GameEntityData::GetInstance().GetEnemies();
 }
 
 void EnemyAttackControllerComponent::Update()
@@ -24,7 +24,9 @@ void EnemyAttackControllerComponent::Update()
 		{
 			m_Timer -= m_EnemyAttackDelay;
 
-			SelectRandomEnemy()->GetComponent<EnemyComponent>()->SetAbleToAttack(true);
+			bew::GameObject* selectEnemy = SelectRandomEnemy();
+			if(selectEnemy)
+				selectEnemy->GetComponent<EnemyComponent>()->SetAbleToAttack(true);
 		}
 	}
 	
@@ -32,15 +34,18 @@ void EnemyAttackControllerComponent::Update()
 
 bew::GameObject* EnemyAttackControllerComponent::SelectRandomEnemy() const
 {
-	int enemyIndex;
-	bew::GameObject* selectedEnemy;
+	std::vector<bew::GameObject*> validEnemies;
 
-	//I feel like this is not good
-	do {
-		enemyIndex = bew::RandomFunctions::RandomI(static_cast<int>(m_pEnemies->size()));
-		selectedEnemy = (*m_pEnemies)[enemyIndex];
-	} while (selectedEnemy->GetComponent<EnemyComponent>()->GetIsDiving() || !selectedEnemy->GetIsActive());
+	for (auto enemy : *m_pEnemies) {
+		if (enemy->GetIsActive() && !enemy->GetComponent<EnemyComponent>()->GetIsDiving()) {
+			validEnemies.push_back(enemy);
+		}
+	}
 
-	return selectedEnemy;
+	if (validEnemies.empty()) {
+		return nullptr;
+	}
+	int enemyIndex = bew::RandomFunctions::RandomI(static_cast<int>(validEnemies.size()));
+	return validEnemies[enemyIndex];
 }
 

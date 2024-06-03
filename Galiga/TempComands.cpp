@@ -1,7 +1,7 @@
 #include "TempComands.h"
 
 #include "EnemyComponent.h"
-#include "GameData.h"
+#include "GameEntityData.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "SceneManager.h"
@@ -50,7 +50,7 @@ void SwitchScene::Execute()
 
 void AttackBoss::Execute()
 {
-	auto enemies = GameData::GetInstance().GetEnemies();
+	auto enemies = GameEntityData::GetInstance().GetEnemies();
 
 	auto enemycomp = (*enemies)[count]->GetComponent<EnemyComponent>();
 

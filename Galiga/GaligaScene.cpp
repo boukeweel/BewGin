@@ -16,9 +16,10 @@
 #include "EnemyAttackControllerComponent.h"
 #include "EnemyComponent.h"
 #include "FormationComponent.h"
-#include "GameData.h"
+#include "GameEntityData.h"
 #include "HitBoxComponent.h"
 #include "ObjectPoolingComponent.h"
+#include "PlayerComponent.h"
 #include "ScoreComponent.h"
 #include "ScoreTextObserver.h"
 #include "ShootCommand.h"
@@ -29,7 +30,6 @@
 
 void GaligaScene::Load()
 {
-
 	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
 
@@ -45,15 +45,10 @@ void GaligaScene::Load()
 		scene.Add(std::move(testStar));
 	}
 
-	auto ControlTxt = std::make_unique<bew::GameObject>();
-	ControlTxt->SetPosition(0, 170);
-	ControlTxt->AddComponent<bew::TextComponent>("Move with arrow Left and Right Shoot with z ", fontTxt);
-	scene.Add(std::move(ControlTxt));
-
-	auto ControlControllerTxt = std::make_unique<bew::GameObject>();
-	ControlControllerTxt->SetPosition(0, 190);
-	ControlControllerTxt->AddComponent<bew::TextComponent>("Move with Dpad Left and Right Shoot with DpadA ", fontTxt);
-	scene.Add(std::move(ControlControllerTxt));
+	auto Formation = std::make_unique<bew::GameObject>();
+	Formation->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
+	Formation->AddComponent<FormationComponent>("Formation1.txt");
+	Formation->AddComponent<EnemyAttackControllerComponent>();
 
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
@@ -62,10 +57,11 @@ void GaligaScene::Load()
 	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
 	Player1->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
+	Player1->AddComponent<PlayerComponent>();
 	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
 
 	SetControllsP1(input, Player1.get());
-	GameData::GetInstance().AddPlayer(Player1.get());
+	GameEntityData::GetInstance().AddPlayer(Player1.get());
 
 	auto Player1ScoreText = std::make_unique<bew::GameObject>();
 	Player1ScoreText->SetPosition(0, 210);
@@ -73,16 +69,9 @@ void GaligaScene::Load()
 
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
-	auto Formation = std::make_unique<bew::GameObject>();
-	Formation->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
-	Formation->AddComponent<FormationComponent>("Formation1.txt");
-	Formation->AddComponent<EnemyAttackControllerComponent>();
-
 	scene.Add(std::move(Formation));
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Player1));
-
-	input.AddCommand(bew::ActionKeys::Num9, bew::ButtonState::Down, std::make_unique<AttackBoss>());
 }
 
 void GaligaScene::SetControllsP1(bew::InputManager& input, bew::GameObject* player)
