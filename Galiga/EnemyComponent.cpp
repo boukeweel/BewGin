@@ -166,6 +166,7 @@ void EnemyComponent::CheckInHitBox()
 
 	for (const auto& Player : *m_pPlayers)
 	{
+		//collsion Bullets
 		std::vector<bew::GameObject*>* pBulltes = Player->GetComponent<ObjectPoolingComponent>()->GetObjectList();
 
 		if (!pBulltes->empty())
@@ -184,6 +185,17 @@ void EnemyComponent::CheckInHitBox()
 						TakeDamages(Player);
 					}
 				}
+			}
+		}
+
+		//todo this might be better in a player class
+		//collsion player
+		if(!Player->GetIsActive())
+		{
+			if(GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Player))
+			{
+				std::cout << "hit player\n";
+				GetParentObject()->SetIsActive(false);
 			}
 		}
 	}
@@ -209,6 +221,12 @@ void EnemyComponent::StartAndSetActive()
 {
 	m_States->OnEnter(this);
 	GetParentObject()->SetIsActive(true);
+}
+
+void EnemyComponent::SetAbleToAttack(bool ableToAttack)
+{
+	m_AbleToAttack = ableToAttack;
+	SetAttackingPath(m_AttackSide);
 }
 
 EnemyComponent::~EnemyComponent()

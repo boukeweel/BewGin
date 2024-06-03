@@ -20,7 +20,7 @@ public:
     CaptureBeamComponent& operator=(CaptureBeamComponent&& other) = delete;
 
 private:
-    float m_TotalBeamTime{10.f};
+    float m_TotalBeamTime{8.f};
     float m_timer{};
     float m_SpritePart{};
 

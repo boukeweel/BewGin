@@ -5,6 +5,7 @@
 #include "BezierPath.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
+#include "RandomFunctions.h"
 #include "ScoreComponent.h"
 #include "SpriteSheetComponent.h"
 
@@ -164,6 +165,20 @@ BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject, CaptureBe
 	m_Type = EnemyTypes::Boss;
 }
 
+void BossEnemyComponent::SetAbleToAttack(bool ableToAttack)
+{
+	m_AbleToAttack = ableToAttack;
+	
+
+	//random path
+	const int rnd = bew::RandomFunctions::RandomI(0, 2);
+	if(rnd == 2)
+	{
+		SetAttackingPath(m_AttackSide + 2);
+	}
+
+}
+
 void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 {
 	auto health = GetParentObject()->GetComponent<HealthComponent>();
@@ -176,6 +191,10 @@ void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 	if (health->GetLives() == 0)
 	{
 		GetParentObject()->SetIsActive(false);
+		for (int i = 0; i < GetParentObject()->GetChildCount(); ++i)
+		{
+			GetParentObject()->GetChildAtIndex(i)->SetIsActive(false);
+		}
 
 		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
 	}

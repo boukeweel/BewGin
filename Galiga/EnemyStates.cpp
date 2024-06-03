@@ -272,8 +272,8 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 		auto enemycomp = found_enemy->GetComponent<EnemyComponent>();
 		if (enemycomp->GetIsDiving() == false)
 		{
-			enemycomp->SetAttackingPath(component->GetAttackingPathIndex() + 2);
 			enemycomp->SetAbleToAttack(true);
+			enemycomp->SetAttackingPath(component->GetAttackingPathIndex() + 2);
 		}
 	}
 }

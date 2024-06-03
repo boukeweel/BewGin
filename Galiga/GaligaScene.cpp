@@ -13,9 +13,11 @@
 #include "AudioClip.h"
 #include "BewGin.h"
 #include "CaptureBeamComponent.h"
+#include "EnemyAttackControllerComponent.h"
 #include "EnemyComponent.h"
 #include "FormationComponent.h"
 #include "GameData.h"
+#include "HitBoxComponent.h"
 #include "ObjectPoolingComponent.h"
 #include "ScoreComponent.h"
 #include "ScoreTextObserver.h"
@@ -59,6 +61,7 @@ void GaligaScene::Load()
 	Player1->SetScale(2, 2);
 	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
+	Player1->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
 	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
 
 	SetControllsP1(input, Player1.get());
@@ -73,6 +76,7 @@ void GaligaScene::Load()
 	auto Formation = std::make_unique<bew::GameObject>();
 	Formation->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
 	Formation->AddComponent<FormationComponent>("Formation1.txt");
+	Formation->AddComponent<EnemyAttackControllerComponent>();
 
 	scene.Add(std::move(Formation));
 	scene.Add(std::move(Player1ScoreText));

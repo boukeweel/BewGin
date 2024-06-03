@@ -13,6 +13,8 @@ public:
 
     CaptureBeamComponent* GetCaptureBeam() const override { return m_CaptureBeam; }
 
+    void SetAbleToAttack(bool ableToAttack) override;
+
     virtual ~BossEnemyComponent() override = default;
     BossEnemyComponent(const BossEnemyComponent& other) = delete;
     BossEnemyComponent(BossEnemyComponent&& other) = delete;

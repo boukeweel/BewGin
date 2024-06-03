@@ -181,9 +181,9 @@ void FormationComponent::AddBoss(glm::vec3 pos)
 
     //todo this is not modular 
     if (pos.x <= 5)
-        EnemyComp->SetAttackingPath(2);
+        EnemyComp->SetAttackSide(0);
     else
-        EnemyComp->SetAttackingPath(3);
+        EnemyComp->SetAttackSide(1);
     Boss->SetIsActive(false);
 
     m_Enemies.emplace_back(Boss.get());
@@ -201,9 +201,9 @@ void FormationComponent::AddBee(glm::vec3 pos)
 
     //todo this is not modular 
     if (pos.x <= 5)
-        EnemyComp->SetAttackingPath(0);
+        EnemyComp->SetAttackSide(0);
     else
-		EnemyComp->SetAttackingPath(1);
+        EnemyComp->SetAttackSide(1);
     bee->SetIsActive(false);
 
     m_Enemies.emplace_back(bee.get());
@@ -217,11 +217,12 @@ void FormationComponent::AddbutterFly(glm::vec3 pos)
     auto butterFly = butterfliesPreset.Create();
     auto EnemyComp = butterFly->GetComponent<EnemyComponent>();
     EnemyComp->SetFormationPosition(this, pos);
+
     //todo this is not modular 
     if (pos.x <= 5)
-        EnemyComp->SetAttackingPath(0);
+        EnemyComp->SetAttackSide(0);
     else
-        EnemyComp->SetAttackingPath(1);
+        EnemyComp->SetAttackSide(1);
     butterFly->SetIsActive(false);
 
     m_Enemies.emplace_back(butterFly.get());

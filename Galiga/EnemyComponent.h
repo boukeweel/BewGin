@@ -48,9 +48,12 @@ public:
     EnemyTypes GetEnemyType() const { return m_Type; }
 
     bool GetAbleToAttack() const { return m_AbleToAttack; }
-    void SetAbleToAttack(bool ableToAttack) { m_AbleToAttack = ableToAttack; }
+    virtual void SetAbleToAttack(bool ableToAttack);
+
+    void SetAttackSide(int side) { m_AttackSide = side; }
 
     bool GetIsDiving() const { return m_IsDiving; }
+    ///false is left, true is right
     void SetIsDiving(bool value) { m_IsDiving = value; }
 
     glm::vec3 GetPosIndex() const { return m_PositionIndex; }
@@ -88,6 +91,7 @@ protected:
 
     bool m_IsDiving{false};
     bool m_AbleToAttack{false};
+    int m_AttackSide{};
 
     //static because All enemies need them to be the same exact thing
     static std::vector<std::vector<glm::vec2>> s_FormationPaths;

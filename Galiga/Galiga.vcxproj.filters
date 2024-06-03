@@ -117,6 +117,9 @@
     <ClCompile Include="CaptureBeamComponent.cpp">
       <Filter>Components\EnemyComponents</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyAttackControllerComponent.cpp">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -189,6 +192,9 @@
       <Filter>Components\EnemyComponents\EnemyTypes</Filter>
     </ClInclude>
     <ClInclude Include="CaptureBeamComponent.h">
+      <Filter>Components\EnemyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttackControllerComponent.h">
       <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
   </ItemGroup>
