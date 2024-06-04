@@ -14,6 +14,7 @@ public:
     void Load() override;
 
 private:
-    void SetControllsP1(bew::InputManager& input, bew::GameObject* player);
+    void SetControlsSinglePlayer(bew::InputManager& input, bew::GameObject* player);
+    void SetControlsTwoPlayers(bew::InputManager& input, bew::GameObject* player1, bew::GameObject* player2);
 };
 

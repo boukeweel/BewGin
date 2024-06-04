@@ -22,13 +22,14 @@
 #include "LoggingSDLSoundSystem.h"
 #include "SDLSoundSystem.h"
 #include "SoundServiceLocator.h"
+#include "StartMenuScene.h"
 
 void AddTestingInputs()
 {
 	auto& input = bew::InputManager::GetInstance();
 
-	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_W}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_S}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_W,SDL_SCANCODE_UP}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_S,SDL_SCANCODE_DOWN}, {}, {} });
 	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_A,SDL_SCANCODE_LEFT}, {}, {} });
 	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { {SDL_SCANCODE_D, SDL_SCANCODE_RIGHT}, {}, {} });
 
@@ -52,10 +53,9 @@ void load()
 {
 	AddTestingInputs();
 
-	bew::SceneManager::GetInstance().CreateScene("Demo", std::make_unique<DemoScene>());
+	bew::SceneManager::GetInstance().CreateScene("StartMenu", std::make_unique<StartMenuScene>());
 	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
 
-	
 
 #if NDEBUG
 	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::SDLSoundSystem>());
@@ -71,7 +71,7 @@ void load()
 	ButterfliesEnemyComponent::CreateAttackingPaths();
 	BossEnemyComponent::CreateAttackingPaths();
 
-	bew::SceneManager::GetInstance().LoadScene(1);
+	bew::SceneManager::GetInstance().LoadScene(0);
 }
 
 int main(int, char* []) {

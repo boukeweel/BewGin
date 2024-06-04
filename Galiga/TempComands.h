@@ -46,10 +46,10 @@ public:
 	SwitchScene(unsigned int scene);
 	void Execute() override;
 
-	SwitchScene(const Score& other) = delete;
-	SwitchScene(Score&& other) = delete;
-	SwitchScene& operator=(const Score& other) = delete;
-	SwitchScene& operator=(Score&& other) = delete;
+	SwitchScene(const SwitchScene& other) = delete;
+	SwitchScene(SwitchScene&& other) = delete;
+	SwitchScene& operator=(const SwitchScene& other) = delete;
+	SwitchScene& operator=(SwitchScene&& other) = delete;
 
 private:
 	unsigned int m_Scene;
@@ -61,10 +61,10 @@ public:
 	NextWave(bew::GameObject* test);
 	void Execute() override;
 
-	NextWave(const Score& other) = delete;
-	NextWave(Score&& other) = delete;
-	NextWave& operator=(const Score& other) = delete;
-	NextWave& operator=(Score&& other) = delete;
+	NextWave(const NextWave& other) = delete;
+	NextWave(NextWave&& other) = delete;
+	NextWave& operator=(const NextWave& other) = delete;
+	NextWave& operator=(NextWave&& other) = delete;
 
 	bew::GameObject* m_pTargetObject;
 };

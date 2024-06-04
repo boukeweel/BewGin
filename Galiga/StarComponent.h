@@ -1,10 +1,11 @@
 #pragma once
+#include "BewGin.h"
 #include "Component.h"
 
 class StarComponent : public bew::Component
 {
 public:
-	StarComponent(bew::GameObject* pParentObject);
+	StarComponent(bew::GameObject* pParentObject,int Width = bew::ScreenWidth);
 
 	void Update() override;
 
@@ -22,5 +23,6 @@ public:
 	StarComponent& operator=(StarComponent&& other) = delete;
 private:
 	float m_speed;
+	int m_Width;
 };
 

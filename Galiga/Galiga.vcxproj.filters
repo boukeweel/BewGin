@@ -49,6 +49,12 @@
     <Filter Include="Components\EnemyComponents\EnemyHandelers">
       <UniqueIdentifier>{4fbd53b7-38ba-4a47-8ff8-19f297e33a25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\UiComponents">
+      <UniqueIdentifier>{73e9c4b8-1229-4522-aa46-0e625d065239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{b3a77e2f-c9a9-4032-818d-2706d754533f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galaga.cpp">
@@ -62,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="ShootCommand.cpp">
       <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="GaligaScene.cpp">
       <Filter>Scenes</Filter>
@@ -102,9 +105,6 @@
     <ClCompile Include="BezierPath.cpp">
       <Filter>BezierPath</Filter>
     </ClCompile>
-    <ClCompile Include="GameEntityData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BeeEnemyComponent.cpp">
       <Filter>Components\EnemyComponents\EnemyTypes</Filter>
     </ClCompile>
@@ -132,6 +132,21 @@
     <ClCompile Include="PlayerHealthDisplayComponent.cpp">
       <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
+    <ClCompile Include="StartMenuScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="UiArrowComponent.cpp">
+      <Filter>Components\UiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="UiCommands.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="GameData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntityData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -144,9 +159,6 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="BaseSceneCreator.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="GaligaScene.h">
@@ -188,9 +200,6 @@
     <ClInclude Include="BezierPath.h">
       <Filter>BezierPath</Filter>
     </ClInclude>
-    <ClInclude Include="GameEntityData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BeeEnemyComponent.h">
       <Filter>Components\EnemyComponents\EnemyTypes</Filter>
     </ClInclude>
@@ -217,6 +226,21 @@
     </ClInclude>
     <ClInclude Include="PlayerHealthDisplayComponent.h">
       <Filter>Components\PlayerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenuScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="UiArrowComponent.h">
+      <Filter>Components\UiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="UiCommands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEntityData.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
