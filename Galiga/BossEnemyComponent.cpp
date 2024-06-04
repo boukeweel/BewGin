@@ -5,6 +5,7 @@
 #include "BezierPath.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
+#include "PoolComponent.h"
 #include "RandomFunctions.h"
 #include "ScoreComponent.h"
 #include "SpriteSheetComponent.h"
@@ -165,6 +166,15 @@ BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject, CaptureBe
 	m_Type = EnemyTypes::Boss;
 }
 
+void BossEnemyComponent::ResetEnemy()
+{
+	delete m_States;
+	m_States = new FlyIn;
+	m_States->OnEnter(this);
+	GetParentObject()->GetComponent<bew::SpriteSheetComponent>()->SetSprite(0, 0);
+	GetParentObject()->GetComponent<bew::AnimatorComponent>()->SwitchAnimation(0, true);
+}
+
 void BossEnemyComponent::SetAbleToAttack(bool ableToAttack)
 {
 	m_AbleToAttack = ableToAttack;
@@ -198,6 +208,7 @@ void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 		//this is not good but could not think of something else
 		m_pFormation->Lock();
 
+		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);
 		health->SetLifes(2);
 
 		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);

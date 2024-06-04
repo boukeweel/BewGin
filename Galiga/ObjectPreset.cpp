@@ -39,6 +39,7 @@ std::unique_ptr<bew::GameObject> BeeEnemyPreset::Create()
 	auto BeeEnemy = std::make_unique<bew::GameObject>();
 	BeeEnemy->SetScale(2, 2);
 	BeeEnemy->AddComponent<bew::SpriteSheetComponent>("EnemyBees.png", 1, 2);
+	BeeEnemy->AddComponent<PoolComponent>();
 	
 	std::vector<bew::KeyFrame> keyFrames{ {0,0},{0,1} };
 	auto animator = BeeEnemy->AddComponent<bew::AnimatorComponent>();
@@ -57,6 +58,7 @@ std::unique_ptr<bew::GameObject> ButterfliesEnemyPreset::Create()
 	auto ButterFlie = std::make_unique<bew::GameObject>();
 	ButterFlie->SetScale(2, 2);
 	ButterFlie->AddComponent<bew::SpriteSheetComponent>("Butterflies.png", 1, 2);
+	ButterFlie->AddComponent<PoolComponent>();
 
 	std::vector<bew::KeyFrame> keyFrames{ {0,0},{0,1} };
 	auto animator = ButterFlie->AddComponent<bew::AnimatorComponent>();
@@ -74,6 +76,7 @@ std::unique_ptr<bew::GameObject> BossEnemyPreset::Create()
 	auto BossEnemy = std::make_unique<bew::GameObject>();
 	BossEnemy->SetScale(2, 2);
 	BossEnemy->AddComponent<bew::SpriteSheetComponent>("Boss.png", 2, 2);
+	BossEnemy->AddComponent<PoolComponent>();
 
 	std::vector<bew::KeyFrame> keyFrames1{ {0,0},{0,1} };
 	std::vector<bew::KeyFrame> keyFrames2{ {1,0},{1,1} };
@@ -118,4 +121,12 @@ std::unique_ptr<bew::GameObject> BossCaptureBeamPreset::Create()
 	//todo add a hitbox
 
 	return std::move(CaptureBeam);
+}
+
+std::unique_ptr<bew::GameObject> PlayerHealthIcon::Create()
+{
+	auto PlayerHealthIcon = std::make_unique<bew::GameObject>();
+	PlayerHealthIcon->SetScale(2, 2);
+	PlayerHealthIcon->AddComponent<bew::TextureComponent>("Player1.png");
+	return PlayerHealthIcon;
 }

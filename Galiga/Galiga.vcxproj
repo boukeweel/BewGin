@@ -194,6 +194,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="ButterfliesEnemyComponent.cpp" />
     <ClCompile Include="CaptureBeamComponent.cpp" />
     <ClCompile Include="EnemyAttackControllerComponent.cpp" />
+    <ClCompile Include="EnemySpawnerComponent.cpp" />
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="BezierPath.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
@@ -204,11 +205,12 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="GaligaScene.cpp" />
     <ClCompile Include="GameEntityData.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
-    <ClCompile Include="LivesTextObserver.cpp" />
+    <ClCompile Include="LivesDisplayObserver.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
     <ClCompile Include="ObjectPoolingComponent.cpp" />
     <ClCompile Include="ObjectPreset.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreTextObserver.cpp" />
     <ClCompile Include="ShootCommand.cpp" />
@@ -222,6 +224,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="ButterfliesEnemyComponent.h" />
     <ClInclude Include="CaptureBeamComponent.h" />
     <ClInclude Include="EnemyAttackControllerComponent.h" />
+    <ClInclude Include="EnemySpawnerComponent.h" />
     <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="BezierPath.h" />
     <ClInclude Include="BulletComponent.h" />
@@ -231,11 +234,12 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="GaligaScene.h" />
     <ClInclude Include="GameEntityData.h" />
     <ClInclude Include="HealthComponent.h" />
-    <ClInclude Include="LivesTextObserver.h" />
+    <ClInclude Include="LivesDisplayObserver.h" />
     <ClInclude Include="MoveCommands.h" />
     <ClInclude Include="ObjectPoolingComponent.h" />
     <ClInclude Include="ObjectPreset.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PlayerHealthDisplayComponent.h" />
     <ClInclude Include="PoolComponent.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreTextObserver.h" />

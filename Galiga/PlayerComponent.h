@@ -17,7 +17,7 @@ public:
 	PlayerComponent& operator=(PlayerComponent&& other) = delete;
 private:
 
-	void CheckCollsion();
+	void CheckCollision();
 	void constrainPlayerPosition();
 
 	void GetEnemies();

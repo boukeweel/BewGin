@@ -13,6 +13,7 @@ namespace bew
 		PlayerAddedScore,
 		PlayerWon,
 		TakeDamages,
+		ObjectDied,
 		Died,
 	};
 

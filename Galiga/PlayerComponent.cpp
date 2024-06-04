@@ -6,6 +6,8 @@
 #include "EnemyComponent.h"
 #include "GameEntityData.h"
 #include "HitBoxComponent.h"
+#include "PoolComponent.h"
+#include "SubjectComponent.h"
 #include "Texture2D.h"
 #include "TextureComponent.h"
 
@@ -16,22 +18,21 @@ PlayerComponent::PlayerComponent(bew::GameObject* pparentObject) :Component(ppar
 
 void PlayerComponent::FixedUpdate()
 {
-	CheckCollsion();
+	CheckCollision();
 	constrainPlayerPosition();
 }
 
-void PlayerComponent::CheckCollsion()
+void PlayerComponent::CheckCollision()
 {
 	for (const auto& Enemy : *m_pEnemies)
 	{
-		if(Enemy->GetIsActive())
+		if(Enemy->GetIsActive() && Enemy->GetComponent<PoolComponent>()->InUse())
 		{
 			if(GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Enemy))
 			{
 				Enemy->GetComponent<EnemyComponent>()->TakeDamages(GetParentObject());
 				
-				std::cout << "Player hit\n";
-				//todo add shit for reusing enemy
+				GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::TakeDamages, GetParentObject());
 
 				//todo add explotion + sound + other code what is needed
 			}

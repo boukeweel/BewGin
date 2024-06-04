@@ -10,12 +10,15 @@ class FormationComponent :
     public bew::Component
 {
 public:
-    FormationComponent(bew::GameObject* pParentObject, const std::string& FileName);
+    FormationComponent(bew::GameObject* pParentObject);
     
     glm::vec2 GetGridSize() const { return m_GridSize; }
     void Lock();
+    void Unlock();
     bool GetIsLocked() const { return m_Locked && m_OffsetCounter == 4; }
     void Update() override;
+
+    void SetAmountEnemies(int amount) { m_AmountEnemies = amount; }
 
     ~FormationComponent() override = default;
     FormationComponent(const FormationComponent& other) = delete;
@@ -24,14 +27,7 @@ public:
     FormationComponent& operator=(FormationComponent&& other) = delete;
 
 private:
-
-    void LoadFormationFile(const std::string& FileName);
-    void AddBoss(glm::vec3 pos);
-    void AddBee(glm::vec3 pos);
-    void AddbutterFly(glm::vec3 pos);
-
     void Moving();
-    void SpawnEnemies();
     void Breathing();
 
     //For Moving Formation side to side
@@ -46,21 +42,9 @@ private:
     int m_SpreadCounter{0};
     int m_SpreadDirection{1};
 
-    //spawning timers
-    float m_WaveDelay{1.f};
-    float m_TimeWave;
-    float m_SpawnDelay{0.1f};
-    float m_TimeDelay;
-    int m_EnemiesInOneWave{6};
-    int m_EnemiesSpawnedThisWave{};
-    int m_ChosenPath{};
-    bool m_SpawningWave{false};
-
     glm::vec2 m_GridSize{32.f,32.f};
-
-    std::vector<bew::GameObject*> m_Enemies;
-
     bool m_Locked{false};
-    int m_AmountEnemies;
+
+    int m_AmountEnemies{};
 };
 

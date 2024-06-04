@@ -1,7 +1,7 @@
 #include "ScoreTextObserver.h"
 
 #include "GameObject.h"
-#include "LivesTextObserver.h"
+#include "LivesDisplayObserver.h"
 #include "ScoreComponent.h"
 
 ScoreTextObserver::ScoreTextObserver(bew::TextComponent* pTextComponent) : m_TextComponent{ pTextComponent }

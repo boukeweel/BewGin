@@ -8,6 +8,7 @@ public:
     static void CreateAttackingPaths();
 
     BossEnemyComponent(bew::GameObject* pParentObject,CaptureBeamComponent* captureBeam);
+    void ResetEnemy() override;
 
     std::vector<glm::vec2>* GetAttackingPath(int index) const override { return &s_AttackingPaths[index]; }
 

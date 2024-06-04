@@ -4,6 +4,7 @@
 #include "BezierPath.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
+#include "PoolComponent.h"
 #include "ScoreComponent.h"
 
 std::vector<std::vector<glm::vec2>> ButterfliesEnemyComponent::s_AttackingPaths;
@@ -219,6 +220,7 @@ void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
 		//this is not good but could not think of something else
 		m_pFormation->Lock();
 
+		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);
 		health->SetLifes(1);
 		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
 	}

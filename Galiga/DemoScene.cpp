@@ -5,7 +5,7 @@
 #include "FpsComponent.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
-#include "LivesTextObserver.h"
+#include "LivesDisplayObserver.h"
 #include "MoveCommands.h"
 #include "ResourceManager.h"
 #include "Scene.h"
@@ -77,11 +77,11 @@ void DemoScene::Load()
 
 	auto Player1HealthText = std::make_unique<bew::GameObject>();
 	Player1HealthText->SetPosition(0, 200);
-	auto textLivesp1 = Player1HealthText->AddComponent<bew::TextComponent>("Player1 Lives: ", fontTxt);
+	//auto textLivesp1 = Player1HealthText->AddComponent<bew::TextComponent>("Player1 Lives: ", fontTxt);
 
 	auto Player1Subject = Player1->AddComponent<bew::SubjectComponent>();
 
-	Player1Subject->GetSubject()->AddObserver(std::make_unique<LivesTextObserver>(textLivesp1));
+	//Player1Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(textLivesp1));
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 
 	scene.Add(std::move(Player1HealthText));
@@ -103,12 +103,12 @@ void DemoScene::Load()
 
 	auto Player2HealthText = std::make_unique<bew::GameObject>();
 	Player2HealthText->SetPosition(0, 230);
-	auto textLivesp2 = Player2HealthText->AddComponent<bew::TextComponent>("Player2 Lives: ", fontTxt);
+	/*auto textLivesp2 = Player2HealthText->AddComponent<bew::TextComponent>("Player2 Lives: ", fontTxt);*/
 
 	auto Player2Subject = Player2->AddComponent<bew::SubjectComponent>();
 
 	Player2Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep2));
-	Player2Subject->GetSubject()->AddObserver(std::make_unique<LivesTextObserver>(textLivesp2));
+	//Player2Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(textLivesp2));
 
 	scene.Add(std::move(Player2ScoreText));
 	scene.Add(std::move(Player2HealthText));

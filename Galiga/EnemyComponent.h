@@ -19,6 +19,7 @@ public:
     static void CreatePaths();
 
     EnemyComponent(bew::GameObject* pParentObject);
+    virtual void ResetEnemy();
 
     void FixedUpdate() override;
     void Update() override;
@@ -30,7 +31,6 @@ public:
     std::vector<glm::vec2>* GetFormationPath(int index) const { return &s_FormationPaths[index]; }
     virtual std::vector<glm::vec2>* GetAttackingPath(int index) const = 0;
 
-    bool GetIsChallengeStage() const { return m_ChallengeStage; }
     FormationComponent* GetFormation() const { return m_pFormation; }
     int GetCurrentFormationPath() const { return m_CurrentFormationPath; }
     int GetAttackingPathIndex() const { return m_AttackingPath; }
@@ -41,7 +41,6 @@ public:
 
     void SetAttackingPath(int path) { m_AttackingPath = path; }
     void SetForamationPath(int path) { m_CurrentFormationPath = path; }
-    void SetChallengeStage(bool ChallengeStage) { m_ChallengeStage = ChallengeStage; }
 
     void StartAndSetActive();
 
@@ -81,7 +80,6 @@ protected:
     EnemyStates* m_States;
 
     float m_speed;
-    bool m_ChallengeStage;
     int m_CurrentFormationPath{0};
     int m_AttackingPath;
 

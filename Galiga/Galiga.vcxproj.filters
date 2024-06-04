@@ -46,6 +46,9 @@
     <Filter Include="Components\EnemyComponents\EnemyTypes">
       <UniqueIdentifier>{2bf157bf-f043-441a-afc8-e040f14e2096}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\EnemyComponents\EnemyHandelers">
+      <UniqueIdentifier>{4fbd53b7-38ba-4a47-8ff8-19f297e33a25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Galaga.cpp">
@@ -81,7 +84,7 @@
     <ClCompile Include="EnemyComponent.cpp">
       <Filter>Components\EnemyComponents</Filter>
     </ClCompile>
-    <ClCompile Include="LivesTextObserver.cpp">
+    <ClCompile Include="LivesDisplayObserver.cpp">
       <Filter>Events\PlayerEvents</Filter>
     </ClCompile>
     <ClCompile Include="ScoreTextObserver.cpp">
@@ -99,9 +102,6 @@
     <ClCompile Include="BezierPath.cpp">
       <Filter>BezierPath</Filter>
     </ClCompile>
-    <ClCompile Include="FormationComponent.cpp">
-      <Filter>Components\EnemyComponents</Filter>
-    </ClCompile>
     <ClCompile Include="GameEntityData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -117,10 +117,19 @@
     <ClCompile Include="CaptureBeamComponent.cpp">
       <Filter>Components\EnemyComponents</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyAttackControllerComponent.cpp">
-      <Filter>Components\EnemyComponents</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Components\PlayerComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttackControllerComponent.cpp">
+      <Filter>Components\EnemyComponents\EnemyHandelers</Filter>
+    </ClCompile>
+    <ClCompile Include="FormationComponent.cpp">
+      <Filter>Components\EnemyComponents\EnemyHandelers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawnerComponent.cpp">
+      <Filter>Components\EnemyComponents\EnemyHandelers</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHealthDisplayComponent.cpp">
       <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,7 +170,7 @@
     <ClInclude Include="EnemyComponent.h">
       <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
-    <ClInclude Include="LivesTextObserver.h">
+    <ClInclude Include="LivesDisplayObserver.h">
       <Filter>Events\PlayerEvents</Filter>
     </ClInclude>
     <ClInclude Include="ScoreTextObserver.h">
@@ -179,9 +188,6 @@
     <ClInclude Include="BezierPath.h">
       <Filter>BezierPath</Filter>
     </ClInclude>
-    <ClInclude Include="FormationComponent.h">
-      <Filter>Components\EnemyComponents</Filter>
-    </ClInclude>
     <ClInclude Include="GameEntityData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -197,10 +203,19 @@
     <ClInclude Include="CaptureBeamComponent.h">
       <Filter>Components\EnemyComponents</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyAttackControllerComponent.h">
-      <Filter>Components\EnemyComponents</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerComponent.h">
+      <Filter>Components\PlayerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttackControllerComponent.h">
+      <Filter>Components\EnemyComponents\EnemyHandelers</Filter>
+    </ClInclude>
+    <ClInclude Include="FormationComponent.h">
+      <Filter>Components\EnemyComponents\EnemyHandelers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawnerComponent.h">
+      <Filter>Components\EnemyComponents\EnemyHandelers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHealthDisplayComponent.h">
       <Filter>Components\PlayerComponents</Filter>
     </ClInclude>
   </ItemGroup>

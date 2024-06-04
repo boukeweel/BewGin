@@ -22,7 +22,7 @@ void HealthComponent::TakeDammages(int amount)
 	{
 		m_Lifes -= amount;
 
-		notifySubject(bew::GameEvents::PlayerTookDamages, GetParentObject());
+		notifySubject(bew::GameEvents::TakeDamages, GetParentObject());
 		
 		if (m_Lifes == 0)
 		{
@@ -33,7 +33,7 @@ void HealthComponent::TakeDammages(int amount)
 
 void HealthComponent::Died()
 {
-	notifySubject(bew::GameEvents::PlayerDied, GetParentObject());
+	notifySubject(bew::GameEvents::ObjectDied, GetParentObject());
 	m_IsAlive = false;
 }
 

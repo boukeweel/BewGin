@@ -47,3 +47,9 @@ public:
 	std::unique_ptr<bew::GameObject> Create() override;
 };
 
+class PlayerHealthIcon : public ObjectPreset
+{
+public:
+	std::unique_ptr<bew::GameObject> Create() override;
+};
+

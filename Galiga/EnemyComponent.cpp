@@ -123,8 +123,12 @@ EnemyComponent::EnemyComponent(bew::GameObject* pParentObject)
 : Component(pParentObject),m_States{new FlyIn()}, m_speed{400}
 {
 	m_pPlayers = GameEntityData::GetInstance().GetPlayers();
+}
 
-	m_States->OnEnter(this);
+void EnemyComponent::ResetEnemy()
+{
+	delete m_States;
+	m_States = new FlyIn;
 }
 
 void EnemyComponent::FixedUpdate()

@@ -1,6 +1,7 @@
 #include "TempComands.h"
 
 #include "EnemyComponent.h"
+#include "EnemySpawnerComponent.h"
 #include "GameEntityData.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
@@ -48,21 +49,13 @@ void SwitchScene::Execute()
 	}
 }
 
-void AttackBoss::Execute()
+void NextWave::Execute()
 {
-	auto enemies = GameEntityData::GetInstance().GetEnemies();
-
-	auto enemycomp = (*enemies)[count]->GetComponent<EnemyComponent>();
-
-	if(!enemycomp->GetAbleToAttack())
-	{
-		enemycomp->SetAbleToAttack(true);
-		count++;
-
-		if(count == 4)
-		{
-			count = 0;
-		}
-	}
+	m_pTargetObject->GetComponent<EnemySpawnerComponent>()->NextLevel();
 	
+}
+
+NextWave::NextWave(bew::GameObject* test)
+{
+	m_pTargetObject = test;
 }

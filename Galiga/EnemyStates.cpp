@@ -45,9 +45,6 @@ EnemyStates* FlyIn::Update(EnemyComponent* component)
 	}
 	else
 	{
-		if (component->GetIsChallengeStage())
-			return new AttackingBee();
-		else
 			return new FlyToFormationPosition();
 	}
 }

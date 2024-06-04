@@ -23,11 +23,8 @@ public:
 	ScoreComponent& operator=(const ScoreComponent& other) = delete;
 	ScoreComponent& operator=(ScoreComponent&& other) = delete;
 private:
-	void Won();
-
 	bool m_Won{false};
 	int m_Score{ 0 };
-	int m_WinAmount{ 1000 };
 };
 
 

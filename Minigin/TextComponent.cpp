@@ -8,12 +8,12 @@
 #include "Renderer.h"
 #include "Texture2D.h"
 
-bew::TextComponent::TextComponent(GameObject* pparentObject,const std::string& text, std::shared_ptr<Font> font):
-	m_NeedsUpdate(true), m_Text(text), m_pFont(std::move(font)), m_pTextTexture(nullptr), Component(pparentObject), m_FontSize{1}
+bew::TextComponent::TextComponent(GameObject* pparentObject,const std::string& text, std::shared_ptr<Font> font, SDL_Color color):
+	m_NeedsUpdate(true), m_Text(text), m_pFont(std::move(font)), m_pTextTexture(nullptr), Component(pparentObject), m_FontSize{1}, m_Color{color}
 {
 }
 
-bew::TextComponent::TextComponent(GameObject* pparentObject, std::shared_ptr<Font> font) : TextComponent(pparentObject," ",font)
+bew::TextComponent::TextComponent(GameObject* pparentObject, std::shared_ptr<Font> font, SDL_Color color) : TextComponent(pparentObject," ",font, color)
 {
 }
 
@@ -21,8 +21,7 @@ void bew::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{
-		const SDL_Color color = { 255,255,255,255 }; // only white text is supported now
-		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), color);
+		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Color);
 		if (surf == nullptr)
 		{
 			throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
@@ -67,6 +66,11 @@ void bew::TextComponent::SetFont(std::shared_ptr<Font> font)
 void bew::TextComponent::SetFontSize(unsigned int size)
 {
 	m_pFont->ChangeSize(size);
+}
+
+void bew::TextComponent::SetColor(SDL_Color color)
+{
+	m_Color = color;
 }
 
 

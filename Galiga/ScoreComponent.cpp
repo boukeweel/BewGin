@@ -14,11 +14,6 @@ void ScoreComponent::notifySubject(bew::GameEvents event, bew::GameObject* objec
 	object->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(event, object);
 }
 
-void ScoreComponent::Won()
-{
-	notifySubject(bew::GameEvents::PlayerWon, GetParentObject());
-	m_Won = true;
-}
 
 void ScoreComponent::AddScore(int addAmount)
 {
@@ -26,7 +21,5 @@ void ScoreComponent::AddScore(int addAmount)
 	{
 		m_Score += addAmount;
 		notifySubject(bew::GameEvents::PlayerAddedScore, GetParentObject());
-		if (m_Score >= m_WinAmount)
-			Won();
 	}
 }
