@@ -32,6 +32,11 @@ void EnemySpawnerComponent::NextLevel()
         m_CurrentLevel = 0;
     }
 
+    m_EnemiesSpawnedThisWave = 0;
+    m_TimeWave = 0;
+    m_SpawningWave = false;
+    m_TimeDelay = 0;
+
     GetParentObject()->GetComponent<FormationComponent>()->Unlock();
 
     LoadFormationFile();
@@ -222,6 +227,7 @@ void EnemySpawnerComponent::SetupEnemy(bew::GameObject* enemy, const glm::vec3& 
     else
         EnemyComp->SetAttackSide(1);
     enemy->SetIsActive(false);
+    enemy->SetParrent(nullptr);
     EnemyComp->ResetEnemy();
 
     m_Enemies.emplace_back(enemy);

@@ -57,6 +57,8 @@ void CaptureBeamComponent::Update()
 		{
 			m_StartCapturing = false;
 			m_Finished = true;
+			m_SpritePart = 0.0f;
+			m_Increasing = true;
 		}
 
 	}
@@ -74,6 +76,7 @@ void CaptureBeamComponent::ResetBeam()
 	m_timer = 0;
 	GetParentObject()->GetComponent<bew::SpriteSheetComponent>()->SetSpriteSize({ 1,0 });
 	m_Finished = false;
+	m_Increasing = true;
 	m_SpritePart = 0;
 }
 
