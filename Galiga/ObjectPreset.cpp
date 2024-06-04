@@ -112,6 +112,8 @@ std::unique_ptr<bew::GameObject> BossCaptureBeamPreset::Create()
 	CaptureBeam->SetScale(2, 2);
 	CaptureBeam->AddComponent<bew::SpriteSheetComponent>("CaptureBeam.png", 1, 3);
 	CaptureBeam->AddComponent<CaptureBeamComponent>();
+	auto hitbox = CaptureBeam->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -24,-40,48,0 });
+	hitbox->SetDrawHitBox(true);
 
 	std::vector<bew::KeyFrame> keyframes{ {0,0},{0,1},{0,2} };
 

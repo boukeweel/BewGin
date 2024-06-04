@@ -4,12 +4,12 @@
 #include "Scene.h"
 #include "SceneManager.h"
 
-PlayerHealthDisplayComponent::PlayerHealthDisplayComponent(bew::GameObject* pparentObject,int health):Component(pparentObject),m_Health{ health }
+PlayerHealthDisplayComponent::PlayerHealthDisplayComponent(bew::GameObject* pparentObject,int health):Component(pparentObject),m_Health{ health - 1 }
 {
 	PlayerHealthIcon iconPreset;
 	glm::vec3 objectPos = GetParentObject()->GetWorldPosition();
 	//magic number bad
-	for (int i = 0; i < health; ++i)
+	for (int i = 0; i < m_Health; ++i)
 	{
 		auto icon = iconPreset.Create();
 		icon->SetPosition(objectPos.x + static_cast<float>(32 * i), objectPos.y);

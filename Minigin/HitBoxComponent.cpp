@@ -2,7 +2,7 @@
 #include "Renderer.h"
 #include "HitBoxComponent.h"
 
-bew::HitBoxComponent::HitBoxComponent(GameObject* pparentObject, SDL_Rect hitBox) : Component(pparentObject),m_hitbox{hitBox}
+bew::HitBoxComponent::HitBoxComponent(GameObject* pparentObject, SDL_Rect hitBox) : Component(pparentObject) ,m_hitbox{hitBox}
 {
 	m_hitbox.x *= static_cast<int>(GetParentObject()->GetTransform().GetScale().x);
 	m_hitbox.y *= static_cast<int>(GetParentObject()->GetTransform().GetScale().y);
@@ -16,6 +16,11 @@ void bew::HitBoxComponent::Render() const
 	{
 		Renderer::GetInstance().RenderRect(GetHitBox());
 	}
+}
+
+void bew::HitBoxComponent::SetHitBox(SDL_Rect hitbox)
+{
+	m_hitbox = hitbox;
 }
 
 SDL_Rect bew::HitBoxComponent::GetHitBox() const

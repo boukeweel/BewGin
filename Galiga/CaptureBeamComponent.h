@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "Component.h"
 
 class CaptureBeamComponent : public  bew::Component
@@ -7,6 +9,8 @@ public:
     CaptureBeamComponent(bew::GameObject* pParentObject);
 
     void Update() override;
+
+    void FixedUpdate() override;
 
     void ResetBeam();
     bool GetFinsihed() const { return m_Finished; }
@@ -20,6 +24,9 @@ public:
     CaptureBeamComponent& operator=(CaptureBeamComponent&& other) = delete;
 
 private:
+    void Collision();
+    std::vector<bew::GameObject*>* m_pPlayers;
+
     float m_TotalBeamTime{8.f};
     float m_timer{};
     float m_SpritePart{};

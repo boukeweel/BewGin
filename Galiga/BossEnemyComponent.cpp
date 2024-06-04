@@ -179,14 +179,16 @@ void BossEnemyComponent::SetAbleToAttack(bool ableToAttack)
 {
 	m_AbleToAttack = ableToAttack;
 	
-
+	int path = m_AttackSide;
+	path += 2;
 	//random path
-	const int rnd = bew::RandomFunctions::RandomI(0, 2);
+	/*const int rnd = bew::RandomFunctions::RandomI(0, 2);
 	if(rnd == 2)
 	{
-		SetAttackingPath(m_AttackSide + 2);
-	}
-
+		path += 2;
+		
+	}*/
+	SetAttackingPath(path);
 }
 
 void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)

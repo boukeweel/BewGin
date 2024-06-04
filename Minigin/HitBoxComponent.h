@@ -14,10 +14,11 @@ namespace bew
 
 		void Render() const override;
 
-		void SetHitBox(SDL_Rect hitbox) { m_hitbox = hitbox; }
+		void SetHitBox(SDL_Rect hitbox);
 
 		void SetDrawHitBox(bool drawHitBox) { m_DrawHitBox = drawHitBox; }
 		SDL_Rect GetHitBox() const;
+		SDL_Rect GetHitBoxRaw() const { return m_hitbox; }
 
 		bool InsideHitBox(SDL_Rect OtherHitBox);
 		bool InsideHitBox(GameObject* OtherObject);
