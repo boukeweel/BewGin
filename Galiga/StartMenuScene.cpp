@@ -13,6 +13,8 @@
 #include "UiCommands.h"
 #include <InputKeyEnum.cpp>
 
+#include "GameData.h"
+
 void StartMenuScene::Load()
 {
 	auto& input = bew::InputManager::GetInstance();
@@ -30,31 +32,30 @@ void StartMenuScene::Load()
 	}
 
 	auto oneUptxt = std::make_unique<bew::GameObject>();
-	oneUptxt->SetPosition(50, 40);
+	oneUptxt->SetPosition(50, 10);
 	oneUptxt->AddComponent<bew::TextComponent>("1UP", fontTxt, SDL_Color{ 255,0,0,255 });
 
 	//todo get previus score
 	auto oneUpscore = std::make_unique<bew::GameObject>();
-	oneUpscore->SetPosition(100, 70);
-	oneUpscore->AddComponent<bew::TextComponent>("0", fontTxt);
+	oneUpscore->SetPosition(100, 30);
+	oneUpscore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP1()), fontTxt);
 
 	auto highScoretxt = std::make_unique<bew::GameObject>();
-	highScoretxt->SetPosition(225, 40);
+	highScoretxt->SetPosition(250, 10);
 	highScoretxt->AddComponent<bew::TextComponent>("HI-SCORE", fontTxt, SDL_Color{ 255,0,0,255 });
 
 	//todo get high score
 	auto highScoreScore = std::make_unique<bew::GameObject>();
-	highScoreScore->SetPosition(250, 70);
-	highScoreScore->AddComponent<bew::TextComponent>("30000", fontTxt);
+	highScoreScore->SetPosition(275, 30);
+	highScoreScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHighScore()), fontTxt);
 
 	auto twoUptxt = std::make_unique<bew::GameObject>();
-	twoUptxt->SetPosition(450, 40);
+	twoUptxt->SetPosition(480, 10);
 	twoUptxt->AddComponent<bew::TextComponent>("2UP", fontTxt, SDL_Color{ 255,0,0,255 });
 
-	//todo get high score
 	auto twoUpScore = std::make_unique<bew::GameObject>();
-	twoUpScore->SetPosition(500, 70);
-	twoUpScore->AddComponent<bew::TextComponent>("0", fontTxt);
+	twoUpScore->SetPosition(530, 30);
+	twoUpScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP2()), fontTxt);
 
 	auto Logo = std::make_unique<bew::GameObject>();
 	Logo->SetPosition(bew::ScreenHeight / 2 + 25, 200);

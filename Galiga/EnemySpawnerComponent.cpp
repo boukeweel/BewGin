@@ -27,7 +27,7 @@ void EnemySpawnerComponent::NextLevel()
 {
     m_CurrentLevel++;
 
-    if(m_CurrentLevel > static_cast<int>(m_levels.size()) - 1)
+    if(m_CurrentLevel > static_cast<int>(m_levels.size()))
     {
         m_CurrentLevel = 0;
     }
@@ -91,7 +91,7 @@ void EnemySpawnerComponent::SpawnEnemies()
 
 void EnemySpawnerComponent::LoadFormationFile()
 {
-    std::ifstream file = bew::ResourceManager::GetInstance().LoadTxtFile(m_levels[m_CurrentLevel]);
+    std::ifstream file = bew::ResourceManager::GetInstance().LoadTxtFileIf(m_levels[m_CurrentLevel]);
 
     if (!file)
     {

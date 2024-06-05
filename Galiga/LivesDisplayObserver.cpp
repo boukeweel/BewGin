@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "GameData.h"
 #include "GameEntityData.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
@@ -12,7 +13,7 @@ LivesDisplayObserver::LivesDisplayObserver(PlayerHealthDisplayComponent* pDispla
 {
 }
 
-void LivesDisplayObserver::Notify(bew::GameEvents event, bew::GameObject* )
+void LivesDisplayObserver::Notify(bew::GameEvents event, bew::GameObject*)
 {
 	switch (event)
 	{
@@ -33,7 +34,12 @@ void LivesDisplayObserver::Notify(bew::GameEvents event, bew::GameObject* )
 			}
 		}
 		if(allDead)
+		{
+			GameData::GetInstance().SetCurrentScoreP1((*Players)[0]->GetComponent<ScoreComponent>()->getScore());
+			if(Players->size() == 2)
+				GameData::GetInstance().SetCurrentScoreP2((*Players)[1]->GetComponent<ScoreComponent>()->getScore());
 			bew::SceneManager::GetInstance().SwitchScene(2);
+		}
 		break;
 	}
 

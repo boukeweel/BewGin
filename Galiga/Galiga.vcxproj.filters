@@ -150,6 +150,18 @@
     <ClCompile Include="BulletPool.cpp">
       <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
+    <ClCompile Include="HighScoreScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchSceneOnTimeComponent.cpp">
+      <Filter>Components\UiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="InitialsComponent.cpp">
+      <Filter>Components\UiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="HighScoreEntryComponent.cpp">
+      <Filter>Components\UiComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -247,6 +259,18 @@
     </ClInclude>
     <ClInclude Include="BulletPool.h">
       <Filter>Components\PlayerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScoreScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchSceneOnTimeComponent.h">
+      <Filter>Components\UiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="InitialsComponent.h">
+      <Filter>Components\UiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScoreEntryComponent.h">
+      <Filter>Components\UiComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

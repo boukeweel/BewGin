@@ -62,7 +62,7 @@ void GaligaScene::Load()
 	//todo get highscore
 	auto HighScoreScore = std::make_unique<bew::GameObject>();
 	HighScoreScore->SetPosition(500, 70);
-	HighScoreScore->AddComponent<bew::TextComponent>("30000", fontTxt);
+	HighScoreScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHighScore()), fontTxt);
 	scene.Add(std::move(HighScoreScore));
 	scene.Add(std::move(HighScoretxt));
 
@@ -72,6 +72,8 @@ void GaligaScene::Load()
 	EnemyHandlerObject->AddComponent<EnemyAttackControllerComponent>();
 	auto enemiesSpawner = EnemyHandlerObject->AddComponent<EnemySpawnerComponent>();
 	enemiesSpawner->AddLevel("Formation1.txt");
+	enemiesSpawner->AddLevel("Formation2.txt");
+	enemiesSpawner->AddLevel("Formation3.txt");
 
 	//enemiesSpawner->NextLevel();
 
@@ -118,8 +120,6 @@ void GaligaScene::Load()
 		Player2->AddComponent<PlayerComponent>();
 		auto Player2Subject = Player2->AddComponent<bew::SubjectComponent>();
 
-		GameEntityData::GetInstance().AddPlayer(Player1.get());
-
 		auto Player2ScoreText = std::make_unique<bew::GameObject>();
 		Player2ScoreText->SetPosition(550, 190);
 		auto textScorep2 = Player2ScoreText->AddComponent<bew::TextComponent>(" ", fontTxt);
@@ -135,13 +135,15 @@ void GaligaScene::Load()
 		Player2Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep2));
 		Player2Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(DisplayP2Health));
 
+		GameEntityData::GetInstance().AddPlayer(Player2.get());
+
+		Player1->SetPosition(bew::ScreenWidth * 0.4f - 30, 440);
+		SetControlsTwoPlayers(input, Player1.get(), Player2.get());
+
 		scene.Add(std::move(Player2ScoreText));
 		scene.Add(std::move(Player2HealthDisplay));
 		scene.Add(std::move(Player2));
 		scene.Add(std::move(Up2Text));
-
-		Player1->SetPosition(bew::ScreenWidth * 0.4f - 30, 440);
-		SetControlsTwoPlayers(input, Player1.get(), Player2.get());
 	}
 	else
 	{
@@ -176,7 +178,7 @@ void GaligaScene::SetControlsTwoPlayers(bew::InputManager& input, bew::GameObjec
 	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(-1, 0, 0), 300.f));
 	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(player1));
 
-	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 300.f));
-	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 300.f));
-	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down, std::make_unique<ShootCommand>(player2));
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held,0, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held,0, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down,0, std::make_unique<ShootCommand>(player2));
 }

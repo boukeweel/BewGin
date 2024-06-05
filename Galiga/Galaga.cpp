@@ -19,6 +19,8 @@
 #include "DemoScene.h"
 #include "EnemyComponent.h"
 #include "GaligaScene.h"
+#include "GameData.h"
+#include "HighScoreScene.h"
 #include "LoggingSDLSoundSystem.h"
 #include "SDLSoundSystem.h"
 #include "ShotDataScene.h"
@@ -57,6 +59,7 @@ void load()
 	bew::SceneManager::GetInstance().CreateScene("StartMenu", std::make_unique<StartMenuScene>());
 	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
 	bew::SceneManager::GetInstance().CreateScene("ShotData", std::make_unique<ShotDataScene>());
+	bew::SceneManager::GetInstance().CreateScene("HighScore", std::make_unique<HighScoreScene>());
 
 
 #if NDEBUG
@@ -72,6 +75,8 @@ void load()
 	BeeEnemyComponent::CreateAttackingPaths();
 	ButterfliesEnemyComponent::CreateAttackingPaths();
 	BossEnemyComponent::CreateAttackingPaths();
+
+	GameData::GetInstance().LoadLeaderBoard();
 
 	bew::SceneManager::GetInstance().LoadScene(0);
 }

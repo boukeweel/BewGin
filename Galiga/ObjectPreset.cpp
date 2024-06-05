@@ -10,8 +10,10 @@
 #include "HitBoxComponent.h"
 #include "SpriteSheetComponent.h"
 #include "HealthComponent.h"
+#include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "TextComponent.h"
 #include "Texture2D.h"
 
 std::unique_ptr<bew::GameObject> BulletPreset::Create()
@@ -142,3 +144,5 @@ std::unique_ptr<bew::GameObject> PlayerHealthIconP2::Create()
 	PlayerHealthIcon->AddComponent<bew::TextureComponent>("Player2.png");
 	return PlayerHealthIcon;
 }
+
+

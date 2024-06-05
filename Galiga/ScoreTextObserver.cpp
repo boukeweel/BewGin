@@ -16,17 +16,13 @@ void ScoreTextObserver::Notify(bew::GameEvents event, bew::GameObject* gameObjec
 {
 	switch (event)
 	{
-		//wanted to do it in one observer but it does not work like this
-	case bew::GameEvents::PlayerWon:
-		m_TextComponent->SetText(m_ScoreTxt + "WON");
-		//trigger achivement
-		break;
 	case bew::GameEvents::PlayerAddedScore:
 		if (gameObject->HasComponent<ScoreComponent>())
 		{
 			int score = gameObject->GetComponent<ScoreComponent>()->getScore();
 
 			m_TextComponent->SetText(m_ScoreTxt + std::to_string(score));
+			
 		}
 		break;
 	}

@@ -47,9 +47,16 @@ std::unique_ptr<bew::AudioClip> bew::ResourceManager::LoadAudio(const std::strin
 	return std::make_unique<AudioClip>(chunk);
 }
 
-std::ifstream bew::ResourceManager::LoadTxtFile(const std::string& file) const
+std::ifstream bew::ResourceManager::LoadTxtFileIf(const std::string& file) const
 {
 	std::ifstream stream{ m_dataPath + file };
+
+	return stream;
+}
+
+std::ofstream bew::ResourceManager::LoadTxtFileOf(const std::string& file) const
+{
+	std::ofstream stream{ m_dataPath + file };
 
 	return stream;
 }

@@ -34,8 +34,6 @@ void PlayerComponent::CheckCollision()
 				Enemy->GetComponent<EnemyComponent>()->TakeDamages(GetParentObject());
 
 				GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
-				
-				/*GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::TakeDamages, GetParentObject());*/
 
 				//todo add explotion + sound + other code what is needed
 			}

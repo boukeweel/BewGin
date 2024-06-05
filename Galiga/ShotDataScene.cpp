@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "SpriteSheetComponent.h"
 #include "StarComponent.h"
+#include "SwitchSceneOnTimeComponent.h"
 #include "TextComponent.h"
 
 void ShotDataScene::Load()
@@ -24,9 +25,39 @@ void ShotDataScene::Load()
 	{
 		auto Star = std::make_unique<bew::GameObject>();
 		Star->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
-		Star->AddComponent<StarComponent>(bew::ScreenWidth - 150);
+		Star->AddComponent<StarComponent>();
 		scene.Add(std::move(Star));
 	}
+
+	auto oneUptxt = std::make_unique<bew::GameObject>();
+	oneUptxt->SetPosition(50, 10);
+	oneUptxt->AddComponent<bew::TextComponent>("1UP", fontTxt, SDL_Color{ 255,0,0,255 });
+
+	//todo get previus score
+	auto oneUpscore = std::make_unique<bew::GameObject>();
+	oneUpscore->SetPosition(100, 30);
+	oneUpscore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP1()), fontTxt);
+
+	auto highScoretxt = std::make_unique<bew::GameObject>();
+	highScoretxt->SetPosition(250, 10);
+	highScoretxt->AddComponent<bew::TextComponent>("HI-SCORE", fontTxt, SDL_Color{ 255,0,0,255 });
+
+	//todo get high score
+	auto highScoreScore = std::make_unique<bew::GameObject>();
+	highScoreScore->SetPosition(275, 30);
+	highScoreScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHighScore()), fontTxt);
+
+	auto twoUptxt = std::make_unique<bew::GameObject>();
+	twoUptxt->SetPosition(480, 10);
+	twoUptxt->AddComponent<bew::TextComponent>("2UP", fontTxt, SDL_Color{ 255,0,0,255 });
+
+	auto twoUpScore = std::make_unique<bew::GameObject>();
+	twoUpScore->SetPosition(530, 30);
+	twoUpScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP2()), fontTxt);
+
+	auto timerObj = std::make_unique<bew::GameObject>();
+	timerObj->AddComponent<SwitchSceneOnTimeComponent>(3);
+	scene.Add(std::move(timerObj));
 
 	auto Resulttxt = std::make_unique<bew::GameObject>();
 	Resulttxt->SetPosition(230, 200);
@@ -55,6 +86,13 @@ void ShotDataScene::Load()
 	auto HitMisScore = std::make_unique<bew::GameObject>();
 	HitMisScore->SetPosition(400, 320);
 	HitMisScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHitMisRatio()) + "%", fontTxt, SDL_Color{ 255,224,0,255 });
+
+	scene.Add(std::move(oneUptxt));
+	scene.Add(std::move(oneUpscore));
+	scene.Add(std::move(highScoretxt));
+	scene.Add(std::move(highScoreScore));
+	scene.Add(std::move(twoUptxt));
+	scene.Add(std::move(twoUpScore));
 
 	scene.Add(std::move(Resulttxt));
 	scene.Add(std::move(shotsFiredtxt));

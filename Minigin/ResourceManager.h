@@ -17,7 +17,8 @@ namespace bew
 		[[nodiscard]] std::shared_ptr<Font> LoadFont(const std::string& file, unsigned int size) const;
 		[[nodiscard]] std::unique_ptr<AudioClip> LoadAudio(const std::string& file) const;
 
-		[[nodiscard]] std::ifstream LoadTxtFile(const std::string& file) const;
+		[[nodiscard]] std::ifstream LoadTxtFileIf(const std::string& file) const;
+		[[nodiscard]] std::ofstream LoadTxtFileOf(const std::string& file) const;
 
 	private:
 		friend class Singleton<ResourceManager>;

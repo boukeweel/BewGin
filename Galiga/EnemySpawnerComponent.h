@@ -32,7 +32,7 @@ private:
     void SpawnEnemies();
 
     std::vector<std::string> m_levels;
-    int m_CurrentLevel{0};
+    int m_CurrentLevel{-1};
 
     float m_WaveDelay{ 1.f };
     float m_TimeWave{};
