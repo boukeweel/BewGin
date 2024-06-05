@@ -6,7 +6,7 @@
 class PlayerHealthDisplayComponent : public bew::Component
 {
 public:
-	PlayerHealthDisplayComponent(bew::GameObject* pparentObject, int health);
+	PlayerHealthDisplayComponent(bew::GameObject* pparentObject, int health, bool p2 = false);
 
 	void RemoveHealthCount();
 	void AddHealthCount();

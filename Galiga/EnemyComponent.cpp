@@ -7,7 +7,8 @@
 #include "GameTime.h"
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
-#include "ObjectPoolingComponent.h"
+#include "BulletPool.h"
+#include "GameData.h"
 #include "PoolComponent.h"
 #include "Renderer.h"
 #include "ScoreComponent.h"
@@ -171,7 +172,7 @@ void EnemyComponent::CheckInHitBox()
 	for (const auto& Player : *m_pPlayers)
 	{
 		//collsion Bullets
-		std::vector<bew::GameObject*>* pBulltes = Player->GetComponent<ObjectPoolingComponent>()->GetObjectList();
+		std::vector<bew::GameObject*>* pBulltes = Player->GetComponent<BulletPool>()->GetObjectList();
 
 		if (!pBulltes->empty())
 		{
@@ -185,6 +186,7 @@ void EnemyComponent::CheckInHitBox()
 					{
 						bulletPoolComp->SetInUse(false);
 						bullet->SetIsActive(false);
+						GameData::GetInstance().ShotHit();
 
 						TakeDamages(Player);
 					}

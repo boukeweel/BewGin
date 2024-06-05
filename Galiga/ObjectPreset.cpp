@@ -19,7 +19,7 @@ std::unique_ptr<bew::GameObject> BulletPreset::Create()
 	auto bullet = std::make_unique<bew::GameObject>();
 	bullet->AddComponent<bew::TextureComponent>("Bullet.png");
 	bullet->AddComponent<PoolComponent>();
-	bullet->AddComponent<BulletComponent>(150.f);
+	bullet->AddComponent<BulletComponent>(600.f);
 	bullet->SetScale(2, 2);
 	bullet->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -4,-4,8,8 });
 	return std::move(bullet);
@@ -125,10 +125,18 @@ std::unique_ptr<bew::GameObject> BossCaptureBeamPreset::Create()
 	return std::move(CaptureBeam);
 }
 
-std::unique_ptr<bew::GameObject> PlayerHealthIcon::Create()
+std::unique_ptr<bew::GameObject> PlayerHealthIconP1::Create()
 {
 	auto PlayerHealthIcon = std::make_unique<bew::GameObject>();
 	PlayerHealthIcon->SetScale(2, 2);
 	PlayerHealthIcon->AddComponent<bew::TextureComponent>("Player1.png");
+	return PlayerHealthIcon;
+}
+
+std::unique_ptr<bew::GameObject> PlayerHealthIconP2::Create()
+{
+	auto PlayerHealthIcon = std::make_unique<bew::GameObject>();
+	PlayerHealthIcon->SetScale(2, 2);
+	PlayerHealthIcon->AddComponent<bew::TextureComponent>("Player2.png");
 	return PlayerHealthIcon;
 }

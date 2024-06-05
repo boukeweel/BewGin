@@ -97,6 +97,11 @@ void bew::BewGin::Run(const std::function<void()>& load)
 	bool doContinue = true;
 	while (doContinue)
 	{
+		if(sceneManager.GetNeedSceneSwitch())
+		{
+			sceneManager.ExecuteSceneSwitch();
+		}
+
 		GameTime::Update();
 
 		m_Lag += GameTime::GetDeltaTime();

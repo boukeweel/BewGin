@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "TextComponent.h"
+#include "../Galiga/GameEntityData.h"
 
 void bew::SceneManager::FixedUpdate()
 {
@@ -44,20 +45,7 @@ bew::Scene& bew::SceneManager::CreateScene(const std::string& name, std::unique_
 void bew::SceneManager::LoadScene(unsigned int idScene)
 {
 	m_scenes[m_CurrentScene]->RemoveAll();
+	GameEntityData::GetInstance().ResetAll();
 	m_CurrentScene = idScene;
 	m_scenes[m_CurrentScene]->LoadInScene();
-}
-
-void bew::SceneManager::LoadScene(const std::string& name)
-{
-	for (const auto& scene : m_scenes)
-	{
-		if(scene->GetName().size() == name.size())
-		{
-			if(scene->GetName() == name)
-			{
-				LoadScene(scene->GetId());
-			}
-		}
-	}
 }

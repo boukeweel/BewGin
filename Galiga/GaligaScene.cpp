@@ -20,7 +20,7 @@
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "LivesDisplayObserver.h"
-#include "ObjectPoolingComponent.h"
+#include "BulletPool.h"
 #include "PlayerComponent.h"
 #include "PlayerHealthDisplayComponent.h"
 #include "ScoreComponent.h"
@@ -73,7 +73,7 @@ void GaligaScene::Load()
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
 	Player1->SetPosition(bew::ScreenWidth * 0.4f, 440);
 	Player1->SetScale(2, 2);
-	Player1->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
+	Player1->AddComponent<BulletPool>(2, glm::vec3{ 0,-10,0 });
 	Player1->AddComponent<ScoreComponent>();
 	auto healthP1Comp = Player1->AddComponent<HealthComponent>(3);
 	Player1->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
@@ -97,15 +97,14 @@ void GaligaScene::Load()
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(DisplayHealth));
 
-	
-
+	//load in player 2 if 2 players is selected
 	if (GameData::GetInstance().GetTwoPlayers())
 	{
 		auto Player2 = std::make_unique<bew::GameObject>();
-		Player2->AddComponent<bew::TextureComponent>("Player1.png");
+		Player2->AddComponent<bew::TextureComponent>("Player2.png");
 		Player2->SetPosition(bew::ScreenWidth * 0.4f + 30, 440);
 		Player2->SetScale(2, 2);
-		Player2->AddComponent<ObjectPoolingComponent>(std::make_unique<BulletPreset>(), 10, glm::vec3{ 0,-10,0 });
+		Player2->AddComponent<BulletPool>(2, glm::vec3{ 0,-10,0 });
 		Player2->AddComponent<ScoreComponent>();
 		auto healthP2Comp = Player2->AddComponent<HealthComponent>(3);
 		Player2->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -8,-8,16,16 });
@@ -124,7 +123,7 @@ void GaligaScene::Load()
 
 		auto Player2HealthDisplay = std::make_unique<bew::GameObject>();
 		Player2HealthDisplay->SetPosition(520, 340);
-		auto DisplayP2Health = Player2HealthDisplay->AddComponent<PlayerHealthDisplayComponent>(healthP2Comp->GetLives());
+		auto DisplayP2Health = Player2HealthDisplay->AddComponent<PlayerHealthDisplayComponent>(healthP2Comp->GetLives(),true);
 
 		Player2Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep2));
 		Player2Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(DisplayP2Health));
@@ -149,18 +148,16 @@ void GaligaScene::Load()
 	scene.Add(std::move(Player1HealthDisplay));
 	scene.Add(std::move(Player1));
 	scene.Add(std::move(Up1Text));
-
-
 }
 
 void GaligaScene::SetControlsSinglePlayer(bew::InputManager& input, bew::GameObject* player)
 {
-	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 300.f));
 	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(player));
 
-	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player, glm::vec3(-1, 0, 0), 300.f));
 	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down, std::make_unique<ShootCommand>(player));
 
 	
@@ -168,11 +165,11 @@ void GaligaScene::SetControlsSinglePlayer(bew::InputManager& input, bew::GameObj
 
 void GaligaScene::SetControlsTwoPlayers(bew::InputManager& input, bew::GameObject* player1, bew::GameObject* player2)
 {
-	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(1, 0, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(-1, 0, 0), 300.f));
 	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(player1));
 
-	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 100.f));
-	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 100.f));
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 300.f));
 	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down, std::make_unique<ShootCommand>(player2));
 }

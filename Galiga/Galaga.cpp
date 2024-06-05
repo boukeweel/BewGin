@@ -21,6 +21,7 @@
 #include "GaligaScene.h"
 #include "LoggingSDLSoundSystem.h"
 #include "SDLSoundSystem.h"
+#include "ShotDataScene.h"
 #include "SoundServiceLocator.h"
 #include "StartMenuScene.h"
 
@@ -55,6 +56,7 @@ void load()
 
 	bew::SceneManager::GetInstance().CreateScene("StartMenu", std::make_unique<StartMenuScene>());
 	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
+	bew::SceneManager::GetInstance().CreateScene("ShotData", std::make_unique<ShotDataScene>());
 
 
 #if NDEBUG

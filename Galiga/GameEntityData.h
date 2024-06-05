@@ -16,6 +16,12 @@ public:
 	void AddEnemies(std::vector<bew::GameObject*> enemies);
 	std::vector<bew::GameObject*>* GetEnemies();
 
+	void ResetAll()
+	{
+		m_Players.clear();
+		m_Enemies.clear();
+	}
+
 private:
 	friend class Singleton<GameEntityData>;
 	GameEntityData() = default;

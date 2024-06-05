@@ -5,6 +5,7 @@
 #include "BewGin.h"
 #include "EnemyComponent.h"
 #include "GameEntityData.h"
+#include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "PoolComponent.h"
 #include "SubjectComponent.h"
@@ -18,8 +19,8 @@ PlayerComponent::PlayerComponent(bew::GameObject* pparentObject) :Component(ppar
 
 void PlayerComponent::FixedUpdate()
 {
-	CheckCollision();
 	constrainPlayerPosition();
+	CheckCollision();
 }
 
 void PlayerComponent::CheckCollision()
@@ -31,8 +32,10 @@ void PlayerComponent::CheckCollision()
 			if(GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Enemy))
 			{
 				Enemy->GetComponent<EnemyComponent>()->TakeDamages(GetParentObject());
+
+				GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
 				
-				GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::TakeDamages, GetParentObject());
+				/*GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::TakeDamages, GetParentObject());*/
 
 				//todo add explotion + sound + other code what is needed
 			}

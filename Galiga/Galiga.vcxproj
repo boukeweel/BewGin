@@ -207,13 +207,14 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="LivesDisplayObserver.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
-    <ClCompile Include="ObjectPoolingComponent.cpp" />
+    <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="ObjectPreset.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreTextObserver.cpp" />
     <ClCompile Include="ShootCommand.cpp" />
+    <ClCompile Include="ShotDataScene.cpp" />
     <ClCompile Include="StarComponent.cpp" />
     <ClCompile Include="StartMenuScene.cpp" />
     <ClCompile Include="TempComands.cpp" />
@@ -239,7 +240,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="LivesDisplayObserver.h" />
     <ClInclude Include="MoveCommands.h" />
-    <ClInclude Include="ObjectPoolingComponent.h" />
+    <ClInclude Include="BulletPool.h" />
     <ClInclude Include="ObjectPreset.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlayerHealthDisplayComponent.h" />
@@ -247,6 +248,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreTextObserver.h" />
     <ClInclude Include="ShootCommand.h" />
+    <ClInclude Include="ShotDataScene.h" />
     <ClInclude Include="StarComponent.h" />
     <ClInclude Include="StartMenuScene.h" />
     <ClInclude Include="TempComands.h" />

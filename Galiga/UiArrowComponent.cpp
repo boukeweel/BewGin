@@ -38,5 +38,6 @@ void UiArrowComponent::Selcet()
 	else if(m_CurrentOption == 2)
 		GameData::GetInstance().SetTwoPlayers(true);
 
-	bew::SceneManager::GetInstance().LoadScene(1);
+	GameData::GetInstance().ResetShots();
+	bew::SceneManager::GetInstance().SwitchScene(1);
 }

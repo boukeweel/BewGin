@@ -33,8 +33,9 @@ void HealthComponent::TakeDammages(int amount)
 
 void HealthComponent::Died()
 {
-	notifySubject(bew::GameEvents::ObjectDied, GetParentObject());
 	m_IsAlive = false;
+	GetParentObject()->SetIsActive(false);
+	notifySubject(bew::GameEvents::ObjectDied, GetParentObject());
 }
 
 void HealthComponent::SetLifes(int amoutLives)

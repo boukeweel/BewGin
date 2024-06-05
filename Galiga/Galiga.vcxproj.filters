@@ -81,9 +81,6 @@
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectPoolingComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyComponent.cpp">
       <Filter>Components\EnemyComponents</Filter>
     </ClCompile>
@@ -147,6 +144,12 @@
     <ClCompile Include="GameEntityData.cpp">
       <Filter>Data</Filter>
     </ClCompile>
+    <ClCompile Include="ShotDataScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletPool.cpp">
+      <Filter>Components\PlayerComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -175,9 +178,6 @@
     </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Components\PlayerComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectPoolingComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="EnemyComponent.h">
       <Filter>Components\EnemyComponents</Filter>
@@ -241,6 +241,12 @@
     </ClInclude>
     <ClInclude Include="GameEntityData.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotDataScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletPool.h">
+      <Filter>Components\PlayerComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
