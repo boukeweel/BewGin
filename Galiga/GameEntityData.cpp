@@ -1,5 +1,7 @@
 #include "GameEntityData.h"
 
+#include "AnimatorComponent.h"
+
 void GameEntityData::AddPlayer(bew::GameObject* player) 
 {
 	m_Players.emplace_back(player);
@@ -25,4 +27,23 @@ std::vector<bew::GameObject*>* GameEntityData::GetEnemies()
 {
 	return &m_Enemies;
 }
+
+void GameEntityData::AddExplosion(bew::GameObject* explosion)
+{
+	m_Explosion.emplace_back(explosion);
+}
+
+bew::GameObject* GameEntityData::GetExplosion() const
+{
+	for (auto* gameObject : m_Explosion)
+	{
+		if (!gameObject->GetComponent<bew::AnimatorComponent>()->getCurrentAnimation()->GetIsAnimation())
+		{
+			return gameObject;
+		}
+	}
+	return nullptr;
+}
+
+
 

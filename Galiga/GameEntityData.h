@@ -16,10 +16,15 @@ public:
 	void AddEnemies(std::vector<bew::GameObject*> enemies);
 	std::vector<bew::GameObject*>* GetEnemies();
 
+	void AddExplosion(bew::GameObject* explosion);
+	bew::GameObject* GetExplosion() const;
+	
+
 	void ResetAll()
 	{
 		m_Players.clear();
 		m_Enemies.clear();
+		m_Explosion.clear();
 	}
 
 private:
@@ -28,5 +33,6 @@ private:
 
 	std::vector<bew::GameObject*> m_Players;
 	std::vector<bew::GameObject*> m_Enemies;
+	std::vector<bew::GameObject*> m_Explosion;
 };
 

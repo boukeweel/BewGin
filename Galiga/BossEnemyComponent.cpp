@@ -3,6 +3,7 @@
 #include "AnimatorComponent.h"
 #include "BewGin.h"
 #include "BezierPath.h"
+#include "GameEntityData.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "PoolComponent.h"
@@ -200,6 +201,10 @@ void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 
 	if (health->GetLives() == 0)
 	{
+		auto explosion = GameEntityData::GetInstance().GetExplosion();
+		explosion->SetPosition(GetParentObject()->GetWorldPosition());
+		explosion->GetComponent<bew::AnimatorComponent>()->PlayCurrentAmation();
+
 		GetParentObject()->SetIsActive(false);
 		for (int i = 0; i < GetParentObject()->GetChildCount(); ++i)
 		{

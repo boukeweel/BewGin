@@ -26,6 +26,8 @@ namespace bew
 		void PlayAnimation();
 		void StopAnimation();
 
+		bool GetIsAnimation() const { return m_IsAnimating; }
+
 		~Animation() = default;
 		Animation(const Animation& other) = delete;
 		Animation(Animation&& other) = delete;

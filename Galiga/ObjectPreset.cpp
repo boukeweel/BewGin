@@ -29,8 +29,10 @@ std::unique_ptr<bew::GameObject> ExplotionPreset::Create()
 {
 	auto Explotion = std::make_unique<bew::GameObject>();
 	Explotion->AddComponent<bew::SpriteSheetComponent>("ExplotionSheet.png", 1, 5);
-	std::vector<bew::KeyFrame> keyframes{ {0,0},{0, 1}, { 0, 2 }, { 0, 3 },{ 0, 4 } };
-	Explotion->AddComponent<bew::AnimatorComponent>()->AddAnimation(std::make_unique<bew::Animation>(Explotion.get(), keyframes, 0.05, false));
+	std::vector<bew::KeyFrame> keyframes{ {0,0},{0, 1}, { 0, 2 }, { 0, 3 },{ 0, 4 },{0,5} };
+	auto animator = Explotion->AddComponent<bew::AnimatorComponent>();
+	animator->AddAnimation(std::make_unique<bew::Animation>(Explotion.get(), keyframes, 0.05, false));
+	animator->StopCurrentAnimation();
 	return std::move(Explotion);
 }
 

@@ -38,9 +38,26 @@ void GaligaScene::Load()
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 14);
 
+	ExplotionPreset explosionPreset;
+	for (int i = 0; i < 3; ++i)
+	{
+		auto Explosion = explosionPreset.Create();
+		GameEntityData::GetInstance().AddExplosion(Explosion.get());
+		scene.Add(std::move(Explosion));
+	}
+
+	auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
+	for (int i = 0; i < 50; ++i)
+	{
+		auto Star = std::make_unique<bew::GameObject>();
+		Star->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
+		Star->AddComponent<StarComponent>(bew::ScreenWidth - 150);
+		scene.Add(std::move(Star));
+	}
+
 	auto HighScoretxt = std::make_unique<bew::GameObject>();
 	HighScoretxt->SetPosition(500, 50);
-	HighScoretxt->AddComponent<bew::TextComponent>("HIGHSCORE", fontTxt,SDL_Color{255,0,0,255});
+	HighScoretxt->AddComponent<bew::TextComponent>("HIGHSCORE", fontTxt, SDL_Color{ 255,0,0,255 });
 
 	//todo get highscore
 	auto HighScoreScore = std::make_unique<bew::GameObject>();
@@ -48,16 +65,6 @@ void GaligaScene::Load()
 	HighScoreScore->AddComponent<bew::TextComponent>("30000", fontTxt);
 	scene.Add(std::move(HighScoreScore));
 	scene.Add(std::move(HighScoretxt));
-
-	auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
-
-	for (int i = 0; i < 50; ++i)
-	{
-		auto testStar = std::make_unique<bew::GameObject>();
-		testStar->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
-		testStar->AddComponent<StarComponent>(bew::ScreenWidth - 150);
-		scene.Add(std::move(testStar));
-	}
 
 	auto EnemyHandlerObject = std::make_unique<bew::GameObject>();
 	EnemyHandlerObject->SetPosition(bew::ScreenWidth * 0.1f, 50.f);

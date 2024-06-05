@@ -21,13 +21,12 @@ void StartMenuScene::Load()
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 14);
 
 	auto startexture = bew::ResourceManager::GetInstance().LoadTexture("Stars.png");
-
 	for (int i = 0; i < 50; ++i)
 	{
-		auto testStar = std::make_unique<bew::GameObject>();
-		testStar->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
-		testStar->AddComponent<StarComponent>();
-		scene.Add(std::move(testStar));
+		auto Star = std::make_unique<bew::GameObject>();
+		Star->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
+		Star->AddComponent<StarComponent>(bew::ScreenWidth - 150);
+		scene.Add(std::move(Star));
 	}
 
 	auto oneUptxt = std::make_unique<bew::GameObject>();
