@@ -17,6 +17,9 @@
 #include <InputKeyEnum.cpp>
 
 #include "HighScoreEntryComponent.h"
+#include "LeaderBoardComponent.h"
+#include "LeaderBoardObserver.h"
+#include "SubjectComponent.h"
 #include "UiCommands.h"
 
 void HighScoreScene::Load()
@@ -65,10 +68,15 @@ void HighScoreScene::Load()
 	twoUpScore->SetPosition(530, 30);
 	twoUpScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP2()), fontTxt);
 
+	auto LeaderBoard = std::make_unique<bew::GameObject>();
+	auto leadboardcomp = LeaderBoard->AddComponent<LeaderBoardComponent>();
+
 	//type name initials text
 	auto InitialsTxtP1 = std::make_unique<bew::GameObject>();
 	InitialsTxtP1->AddComponent<bew::TextComponent>("AAA", fontTxt, SDL_Color{ 255,224,0,255 });
 	InitialsTxtP1->AddComponent<InitialsComponent>();
+	auto subjectP1= InitialsTxtP1->AddComponent<bew::SubjectComponent>();
+	subjectP1->GetSubject()->AddObserver(std::make_unique<LeaderBoardObserver>(leadboardcomp));
 
 	auto P1TxtInitails = std::make_unique <bew::GameObject>();
 	P1TxtInitails->AddComponent<bew::TextComponent>("1UP", fontTxt, SDL_Color{ 255,0,0,255 });
@@ -78,6 +86,9 @@ void HighScoreScene::Load()
 		auto InitialsTxtP2 = std::make_unique<bew::GameObject>();
 		InitialsTxtP2->AddComponent<bew::TextComponent>("AAA", fontTxt, SDL_Color{ 255,224,0,255 });
 		InitialsTxtP2->AddComponent<InitialsComponent>(false);
+		auto subjectP2 = InitialsTxtP2->AddComponent<bew::SubjectComponent>();
+		subjectP2->GetSubject()->AddObserver(std::make_unique<LeaderBoardObserver>(leadboardcomp));
+
 		InitialsTxtP2->SetPosition(380, 90);
 
 		auto P2TxtInitails = std::make_unique <bew::GameObject>();
@@ -115,19 +126,7 @@ void HighScoreScene::Load()
 	IniTxt->SetPosition(400, 150);
 	IniTxt->AddComponent<bew::TextComponent>("INI", fontTxt);
 
-
-	auto HighScores = GameData::GetInstance().GetHighScoreList();
-	float addedToY = 0;
-	for (const auto& highScoreData : *HighScores)
-	{
-		auto testScoreText = std::make_unique<bew::GameObject>();
-		testScoreText->SetPosition(150, 180 + addedToY);
-		addedToY += 30;
-		auto comp = testScoreText->AddComponent<HighScoreEntryComponent>();
-		comp->CreateTextObjects(highScoreData->number, highScoreData->Score, highScoreData->Initials);
-		scene.Add(std::move(testScoreText));
-	}
-
+	scene.Add(std::move(LeaderBoard));
 	scene.Add(std::move(P1TxtInitails));
 	scene.Add(std::move(oneUptxt));
 	scene.Add(std::move(oneUpscore));

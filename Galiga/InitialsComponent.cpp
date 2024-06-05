@@ -5,6 +5,7 @@
 #include "GameData.h"
 #include "GameObject.h"
 #include "GameTime.h"
+#include "SubjectComponent.h"
 #include "TextComponent.h"
 
 InitialsComponent::InitialsComponent(bew::GameObject* pParentOjbect, bool Player1) : Component(pParentOjbect),m_Player1{Player1}
@@ -79,6 +80,7 @@ void InitialsComponent::Finish()
     {
         GameData::GetInstance().WriteToLeadBoard(GameData::GetInstance().GetCurrentScoreP2(), initialsString);
     }
+    GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::UpdateLeaderBoard, GetParentObject());
     m_AddedScore = true;
 }
 

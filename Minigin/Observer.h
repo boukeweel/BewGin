@@ -14,6 +14,7 @@ namespace bew
 		PlayerWon,
 		TakeDamages,
 		ObjectDied,
+		UpdateLeaderBoard,
 		Died,
 	};
 

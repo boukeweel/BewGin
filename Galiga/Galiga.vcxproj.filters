@@ -162,6 +162,12 @@
     <ClCompile Include="HighScoreEntryComponent.cpp">
       <Filter>Components\UiComponents</Filter>
     </ClCompile>
+    <ClCompile Include="LeaderBoardComponent.cpp">
+      <Filter>Components\UiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaderBoardObserver.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -271,6 +277,12 @@
     </ClInclude>
     <ClInclude Include="HighScoreEntryComponent.h">
       <Filter>Components\UiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderBoardComponent.h">
+      <Filter>Components\UiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderBoardObserver.h">
+      <Filter>Events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -208,12 +208,14 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="HighScoreEntryComponent.cpp" />
     <ClCompile Include="HighScoreScene.cpp" />
     <ClCompile Include="InitialsComponent.cpp" />
+    <ClCompile Include="LeaderBoardComponent.cpp" />
     <ClCompile Include="LivesDisplayObserver.cpp" />
     <ClCompile Include="MoveCommands.cpp" />
     <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="ObjectPreset.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
+    <ClCompile Include="LeaderBoardObserver.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreTextObserver.cpp" />
     <ClCompile Include="ShootCommand.cpp" />
@@ -245,6 +247,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="HighScoreEntryComponent.h" />
     <ClInclude Include="HighScoreScene.h" />
     <ClInclude Include="InitialsComponent.h" />
+    <ClInclude Include="LeaderBoardComponent.h" />
     <ClInclude Include="LivesDisplayObserver.h" />
     <ClInclude Include="MoveCommands.h" />
     <ClInclude Include="BulletPool.h" />
@@ -252,6 +255,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlayerHealthDisplayComponent.h" />
     <ClInclude Include="PoolComponent.h" />
+    <ClInclude Include="LeaderBoardObserver.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreTextObserver.h" />
     <ClInclude Include="ShootCommand.h" />
