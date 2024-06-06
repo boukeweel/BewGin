@@ -1,7 +1,5 @@
 #include "PlayerComponent.h"
 
-#include <iostream>
-
 #include "BewGin.h"
 #include "EnemyComponent.h"
 #include "GameEntityData.h"
@@ -9,6 +7,7 @@
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "PoolComponent.h"
+#include "SpriteSheetComponent.h"
 #include "SubjectComponent.h"
 #include "Texture2D.h"
 #include "TextureComponent.h"
@@ -24,6 +23,17 @@ void PlayerComponent::FixedUpdate()
 	CheckCollision();
 }
 
+void PlayerComponent::Update()
+{
+	SuckUpAnimation();
+}
+
+void PlayerComponent::StartSuckUpAnimation(bew::GameObject* beam)
+{
+	m_Beam = beam;
+	m_BeingSuckedUp = true;
+	m_AllowedToMove = false;
+}
 
 void PlayerComponent::CheckCollision()
 {
@@ -35,12 +45,7 @@ void PlayerComponent::CheckCollision()
 			{
 				Enemy->GetComponent<EnemyComponent>()->TakeDamages(GetParentObject());
 
-				GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
-				GetParentObject()->SetIsActive(false);
-				GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::PauseEnemyAttacking, GetParentObject());
-				
-
-				//todo add explotion + sound + other code what is needed
+				PlayerGotHit();
 			}
 		}
 	}
@@ -60,6 +65,42 @@ void PlayerComponent::constrainPlayerPosition()
 	{
 		GetParentObject()->SetPosition(static_cast<float>(maxX), position.y);
 	}
+}
+
+void PlayerComponent::SuckUpAnimation()
+{
+	if(!m_BeingSuckedUp)
+		return;
+
+	glm::vec2 TargetPos;
+	TargetPos.x = m_Beam->GetWorldPosition().x;
+	TargetPos.y = m_Beam->GetWorldPosition().y - (static_cast<float>(m_Beam->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y) - 50.f);
+
+	const glm::vec2 dist = TargetPos - glm::vec2(GetParentObject()->GetWorldPosition().x, GetParentObject()->GetWorldPosition().y);
+	const glm::vec2 velocity = glm::normalize(dist);
+
+	GetParentObject()->Translate(glm::vec3(velocity, 0.0f) * bew::GameTime::GetDeltaTimeFloat() * 100.f);
+	const float distance = glm::length(dist);
+
+	if (distance < 3.f)
+	{
+		PlayerGotHit();
+		m_BeingSuckedUp = false;
+		m_Beam = nullptr;
+	}
+
+	float rotation = GetParentObject()->GetRotation() + 5;
+	if (rotation >= 360)
+		rotation = 0;
+	GetParentObject()->SetRotation(rotation);
+}
+
+void PlayerComponent::PlayerGotHit()
+{
+	GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
+	GetParentObject()->SetIsActive(false);
+	GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::PauseEnemyAttacking, GetParentObject());
+	//todo add explotion + sound + other code what is needed
 }
 
 void PlayerComponent::GetEnemies()

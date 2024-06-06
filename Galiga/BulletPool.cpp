@@ -14,7 +14,7 @@ BulletPool::BulletPool(bew::GameObject* pParentObject, int amount, glm::vec3 pos
 }
 void BulletPool::CreateObjects(int amount)
 {
-	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
+	auto& SceneManger = bew::SceneManager::GetInstance();
 
 	for (int i = 0; i < amount; ++i)
 	{
@@ -23,7 +23,7 @@ void BulletPool::CreateObjects(int amount)
 
 		m_Objects.emplace_back(newobj.get());
 
-		scene.Add(std::move(newobj));
+		SceneManger.AddToCurrentScene(std::move(newobj));
 	}
 
 	m_POOLSIZE += amount;

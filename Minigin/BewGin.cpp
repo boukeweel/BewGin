@@ -101,6 +101,7 @@ void bew::BewGin::Run(const std::function<void()>& load)
 		{
 			sceneManager.ExecuteSceneSwitch();
 		}
+		sceneManager.LoadingInNewObjects();
 
 		GameTime::Update();
 

@@ -6,7 +6,9 @@
 #include "GameEntityData.h"
 #include "GameObject.h"
 #include "GameTime.h"
+#include "HealthComponent.h"
 #include "HitBoxComponent.h"
+#include "PlayerComponent.h"
 #include "SpriteSheetComponent.h"
 #include "SubjectComponent.h"
 
@@ -89,13 +91,15 @@ void CaptureBeamComponent::StartCapturing()
 
 void CaptureBeamComponent::Collision()
 {
+	//should be in the player
 	for (const auto& Player : *m_pPlayers)
 	{
 		if (Player->GetIsActive())
 		{
 			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Player))
 			{
-				Player->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::TakeDamages, GetParentObject());
+				Player->GetComponent<PlayerComponent>()->StartSuckUpAnimation(GetParentObject());
+				//Player->GetComponent<HealthComponent>()->TakeDammages(1);
 				//todo moving animaton
 			}
 		}

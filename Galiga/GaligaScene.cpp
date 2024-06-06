@@ -151,8 +151,6 @@ void GaligaScene::Load()
 		SetControlsSinglePlayer(input, Player1.get());
 	}
 
-	input.AddCommand(bew::ActionKeys::Num9, bew::ButtonState::Up, std::make_unique<NextWave>(EnemyHandlerObject.get()));
-
 	scene.Add(std::move(EnemyHandlerObject));
 	scene.Add(std::move(Player1ScoreText));
 	scene.Add(std::move(Player1HealthDisplay));

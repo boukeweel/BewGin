@@ -21,11 +21,13 @@ namespace bew
 		void SetPosition(const glm::vec3& pos); 
 		glm::vec3& GetWorldPosition();
 
+
 		void SetRotation(float x);
 		void SetRotation(const glm::vec3& rotation);
+		float GetRotation() const;
 
 		void SetScale(float x, float y);
-		void SetScale(const glm::vec3& scale);
+		void SetScale(const glm::vec3& scale) ;
 
 		Transform GetTransform() const;
 

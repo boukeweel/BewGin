@@ -157,6 +157,11 @@ void bew::GameObject::SetRotation(const glm::vec3& rotation)
 	SetRotation(rotation.x);
 }
 
+float bew::GameObject::GetRotation() const
+{
+	return m_transform.GetRotation().x;
+}
+
 void bew::GameObject::SetScale(float x, float y)
 {
 	m_transform.SetScale(x, y,0);

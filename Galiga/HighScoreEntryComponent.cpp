@@ -37,7 +37,7 @@ void HighScoreEntryComponent::CreateNumberText(int number)
     NumberTxt->AddComponent<bew::TextComponent>("NO. " + std::to_string(number), m_Font,m_Color);
     NumberTxt->SetParrent(GetParentObject());
 
-    bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(NumberTxt));
+    bew::SceneManager::GetInstance().AddToCurrentScene(std::move(NumberTxt));
 
 }
 
@@ -49,7 +49,7 @@ void HighScoreEntryComponent::CreateScoreText(int Score)
     ScoreTxt->AddComponent<bew::TextComponent>(std::to_string(Score), m_Font, m_Color);
     ScoreTxt->SetParrent(GetParentObject());
 
-    bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(ScoreTxt));
+    bew::SceneManager::GetInstance().AddToCurrentScene(std::move(ScoreTxt));
 }
 
 void HighScoreEntryComponent::CreateInitialsText(const std::string& initials)
@@ -60,7 +60,7 @@ void HighScoreEntryComponent::CreateInitialsText(const std::string& initials)
     InitialsTxt->AddComponent<bew::TextComponent>(initials, m_Font, m_Color);
     InitialsTxt->SetParrent(GetParentObject());
 
-    bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(InitialsTxt));
+    bew::SceneManager::GetInstance().AddToCurrentScene(std::move(InitialsTxt));
 }
 
 void HighScoreEntryComponent::SetColor(int number)

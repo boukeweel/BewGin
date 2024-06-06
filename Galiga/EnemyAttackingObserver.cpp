@@ -16,6 +16,7 @@ void EnemyAttackingObserver::Notify(bew::GameEvents event, bew::GameObject*)
 		for (auto& player : *Players)
 		{
 			player->SetIsActive(true);
+			player->GetComponent<PlayerComponent>()->SetAllowedToMove(true);
 		}
 		break;
 	case bew::GameEvents::PauseEnemyAttacking:

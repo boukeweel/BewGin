@@ -46,6 +46,21 @@ void bew::SceneManager::LoadScene(unsigned int idScene)
 {
 	m_scenes[m_CurrentScene]->RemoveAll();
 	GameEntityData::GetInstance().ResetAll();
+	m_Objects.clear();
 	m_CurrentScene = idScene;
 	m_scenes[m_CurrentScene]->LoadInScene();
 }
+
+void bew::SceneManager::AddToCurrentScene(std::unique_ptr<GameObject> obj)
+{
+	m_Objects.emplace_back(std::move(obj));
+}
+
+void bew::SceneManager::LoadingInNewObjects()
+{
+	for (auto& obj : m_Objects) {
+		GetCurrentScene().Add(std::move(obj));
+	}
+	m_Objects.clear();
+}
+

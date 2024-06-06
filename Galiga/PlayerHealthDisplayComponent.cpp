@@ -16,7 +16,7 @@ PlayerHealthDisplayComponent::PlayerHealthDisplayComponent(bew::GameObject* ppar
 			auto icon = iconPreset.Create();
 			icon->SetPosition(objectPos.x + static_cast<float>(32 * i), objectPos.y);
 			m_DisplayObjects.emplace_back(icon.get());
-			bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(icon));
+			bew::SceneManager::GetInstance().AddToCurrentScene(std::move(icon));
 		}
 	}
 	else
@@ -28,7 +28,7 @@ PlayerHealthDisplayComponent::PlayerHealthDisplayComponent(bew::GameObject* ppar
 			auto icon = iconPreset.Create();
 			icon->SetPosition(objectPos.x + static_cast<float>(32 * i), objectPos.y);
 			m_DisplayObjects.emplace_back(icon.get());
-			bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(icon));
+			bew::SceneManager::GetInstance().AddToCurrentScene(std::move(icon));
 		}
 	}
 	

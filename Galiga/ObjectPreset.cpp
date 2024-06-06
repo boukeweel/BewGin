@@ -105,7 +105,7 @@ std::unique_ptr<bew::GameObject> BossEnemyPreset::Create()
 
 	captureBeam->SetIsActive(false);
 
-	bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(captureBeam));
+	bew::SceneManager::GetInstance().AddToCurrentScene(std::move(captureBeam));
 
 	return std::move(BossEnemy);
 }

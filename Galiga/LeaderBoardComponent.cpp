@@ -18,7 +18,7 @@ LeaderBoardComponent::LeaderBoardComponent(bew::GameObject* pParentOjbect) : Com
 		auto comp = ScoreText->AddComponent<HighScoreEntryComponent>();
 		comp->CreateTextObjects(highScoreData->number, highScoreData->Score, highScoreData->Initials);
 		m_Enteries.emplace_back(ScoreText.get());
-		bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(ScoreText));
+		bew::SceneManager::GetInstance().AddToCurrentScene(std::move(ScoreText));
 	}
 }
 

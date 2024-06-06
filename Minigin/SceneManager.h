@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <memory>
+
+#include "GameObject.h"
 #include "Singleton.h"
 
 class BaseSceneCreator;
@@ -29,6 +31,10 @@ namespace bew
 			m_NeedSwitch = false;
 		}
 
+		//adding objects to the current scene in run time;
+		void AddToCurrentScene(std::unique_ptr<GameObject> obj);
+		void LoadingInNewObjects();
+
 		Scene& GetCurrentScene() const { return *m_scenes[m_CurrentScene]; }
 		unsigned int GetCurrentSceneId() const { return m_CurrentScene; }
 
@@ -45,5 +51,8 @@ namespace bew
 		//sceneSwitchThings
 		bool m_NeedSwitch{ false };
 		int m_DiserdScene{ 0 };
+
+		//adding objects to the CurrentScene in run time
+		std::vector<std::unique_ptr<GameObject>> m_Objects;
 	};
 }
