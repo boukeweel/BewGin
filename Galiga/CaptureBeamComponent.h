@@ -27,7 +27,7 @@ private:
     void Collision();
     std::vector<bew::GameObject*>* m_pPlayers;
 
-    float m_TotalBeamTime{8.f};
+    float m_TotalBeamTime{5.f};
     float m_timer{};
     float m_SpritePart{};
 
@@ -36,7 +36,7 @@ private:
 
     bool m_Increasing{true};
     float m_SegmentTime{};
-    const float m_WaitTime{1.f};
+    const float m_WaitTime{0.5f};
     const int m_Segments{5};
 };
 

@@ -25,6 +25,7 @@ void LivesDisplayObserver::Notify(bew::GameEvents event, bew::GameObject*)
 		auto Players = GameEntityData::GetInstance().GetPlayers();
 		bool allDead = true;
 
+		//if its co-op wait till both are dead
 		for (const auto& player : *Players)
 		{
 			if (player->GetComponent<HealthComponent>()->GetAlive())
@@ -35,6 +36,7 @@ void LivesDisplayObserver::Notify(bew::GameEvents event, bew::GameObject*)
 		}
 		if(allDead)
 		{
+			//add score's to GameData
 			GameData::GetInstance().SetCurrentScoreP1((*Players)[0]->GetComponent<ScoreComponent>()->getScore());
 			if(Players->size() == 2)
 				GameData::GetInstance().SetCurrentScoreP2((*Players)[1]->GetComponent<ScoreComponent>()->getScore());

@@ -22,6 +22,7 @@ private:
 
 	void GetEnemies();
 
+
 	std::vector<bew::GameObject*>* m_pEnemies;
 };
 

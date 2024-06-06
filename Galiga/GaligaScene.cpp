@@ -6,7 +6,6 @@
 #include "SceneManager.h"
 #include "TextComponent.h"
 #include "TextureComponent.h"
-#include <iostream>
 #include "MoveCommands.h"
 #include <InputKeyEnum.cpp>
 
@@ -21,8 +20,10 @@
 #include "HitBoxComponent.h"
 #include "LivesDisplayObserver.h"
 #include "BulletPool.h"
+#include "EnemyAttackingObserver.h"
 #include "PlayerComponent.h"
 #include "PlayerHealthDisplayComponent.h"
+#include "PoolComponent.h"
 #include "ScoreComponent.h"
 #include "ScoreTextObserver.h"
 #include "ShootCommand.h"
@@ -69,14 +70,13 @@ void GaligaScene::Load()
 	auto EnemyHandlerObject = std::make_unique<bew::GameObject>();
 	EnemyHandlerObject->SetPosition(bew::ScreenWidth * 0.1f, 50.f);
 	EnemyHandlerObject->AddComponent<FormationComponent>();
-	EnemyHandlerObject->AddComponent<EnemyAttackControllerComponent>();
+	auto AttackingController = EnemyHandlerObject->AddComponent<EnemyAttackControllerComponent>();
 	auto enemiesSpawner = EnemyHandlerObject->AddComponent<EnemySpawnerComponent>();
+	auto EnemyHandlerSubject = EnemyHandlerObject->AddComponent<bew::SubjectComponent>();
+	EnemyHandlerSubject->GetSubject()->AddObserver(std::make_unique<EnemyAttackingObserver>(AttackingController));
 	enemiesSpawner->AddLevel("Formation1.txt");
 	enemiesSpawner->AddLevel("Formation2.txt");
 	enemiesSpawner->AddLevel("Formation3.txt");
-
-	//enemiesSpawner->NextLevel();
-
 	
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
@@ -105,6 +105,7 @@ void GaligaScene::Load()
 
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep1));
 	Player1Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(DisplayHealth));
+	Player1Subject->GetSubject()->AddObserver(std::make_unique<EnemyAttackingObserver>(AttackingController));
 
 	//load in player 2 if 2 players is selected
 	if (GameData::GetInstance().GetTwoPlayers())
@@ -134,6 +135,7 @@ void GaligaScene::Load()
 
 		Player2Subject->GetSubject()->AddObserver(std::make_unique<ScoreTextObserver>(textScorep2));
 		Player2Subject->GetSubject()->AddObserver(std::make_unique<LivesDisplayObserver>(DisplayP2Health));
+		Player2Subject->GetSubject()->AddObserver(std::make_unique<EnemyAttackingObserver>(AttackingController));
 
 		GameEntityData::GetInstance().AddPlayer(Player2.get());
 

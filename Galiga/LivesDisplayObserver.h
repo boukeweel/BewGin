@@ -7,7 +7,7 @@ class LivesDisplayObserver final :
 	public bew::Observer
 {
 public:
-	LivesDisplayObserver(PlayerHealthDisplayComponent* pTextComponent);
+	LivesDisplayObserver(PlayerHealthDisplayComponent* pHealthDisplay);
 
 	void Notify(bew::GameEvents event, bew::GameObject*) override;
 

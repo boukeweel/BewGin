@@ -11,10 +11,11 @@ namespace bew
 		PlayerDied,
 		PlayerTookDamages,
 		PlayerAddedScore,
-		PlayerWon,
 		TakeDamages,
 		ObjectDied,
 		UpdateLeaderBoard,
+		PauseEnemyAttacking,
+		UnPauseEnemyAttacking,
 		Died,
 	};
 

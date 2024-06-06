@@ -5,6 +5,7 @@
 #include "BewGin.h"
 #include "EnemyComponent.h"
 #include "GameEntityData.h"
+#include "GameTime.h"
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "PoolComponent.h"
@@ -23,6 +24,7 @@ void PlayerComponent::FixedUpdate()
 	CheckCollision();
 }
 
+
 void PlayerComponent::CheckCollision()
 {
 	for (const auto& Enemy : *m_pEnemies)
@@ -34,6 +36,10 @@ void PlayerComponent::CheckCollision()
 				Enemy->GetComponent<EnemyComponent>()->TakeDamages(GetParentObject());
 
 				GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
+				GetParentObject()->SetIsActive(false);
+				GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::PauseEnemyAttacking, GetParentObject());
+				std::cout << "Test\n";
+				
 
 				//todo add explotion + sound + other code what is needed
 			}
@@ -61,3 +67,4 @@ void PlayerComponent::GetEnemies()
 {
 	m_pEnemies = GameEntityData::GetInstance().GetEnemies();
 }
+

@@ -194,6 +194,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="ButterfliesEnemyComponent.cpp" />
     <ClCompile Include="CaptureBeamComponent.cpp" />
     <ClCompile Include="EnemyAttackControllerComponent.cpp" />
+    <ClCompile Include="EnemyAttackingObserver.cpp" />
     <ClCompile Include="EnemySpawnerComponent.cpp" />
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="BezierPath.cpp" />
@@ -234,6 +235,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="ButterfliesEnemyComponent.h" />
     <ClInclude Include="CaptureBeamComponent.h" />
     <ClInclude Include="EnemyAttackControllerComponent.h" />
+    <ClInclude Include="EnemyAttackingObserver.h" />
     <ClInclude Include="EnemySpawnerComponent.h" />
     <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="BezierPath.h" />
