@@ -23,7 +23,6 @@
 #include "EnemyAttackingObserver.h"
 #include "PlayerComponent.h"
 #include "PlayerHealthDisplayComponent.h"
-#include "PoolComponent.h"
 #include "ScoreComponent.h"
 #include "ScoreTextObserver.h"
 #include "ShootCommand.h"

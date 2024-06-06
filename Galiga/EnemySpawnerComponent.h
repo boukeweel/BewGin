@@ -43,6 +43,8 @@ private:
     int m_ChosenPath{};
     bool m_SpawningWave{ false };
 
+    bool m_SpawnInNextWave{ false };
+
     std::vector<bew::GameObject*> m_Enemies;
 
     std::vector<bew::GameObject*> m_Bees;

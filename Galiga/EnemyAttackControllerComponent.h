@@ -21,6 +21,7 @@ public:
 private:
     void EnemyAttacking();
     void DisabledTime();
+    void CheckAllEnemiesDead() const;
     bew::GameObject* SelectRandomEnemy() const;
 
     std::vector<bew::GameObject*>* m_pEnemies;

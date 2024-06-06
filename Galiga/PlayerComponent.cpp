@@ -38,7 +38,6 @@ void PlayerComponent::CheckCollision()
 				GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
 				GetParentObject()->SetIsActive(false);
 				GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::PauseEnemyAttacking, GetParentObject());
-				std::cout << "Test\n";
 				
 
 				//todo add explotion + sound + other code what is needed

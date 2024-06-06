@@ -23,6 +23,7 @@ void EnemySpawnerComponent::AddLevel(const std::string& levelName)
 {
     m_levels.emplace_back(levelName);
 }
+
 void EnemySpawnerComponent::NextLevel()
 {
     m_CurrentLevel++;
@@ -39,13 +40,16 @@ void EnemySpawnerComponent::NextLevel()
 
     GetParentObject()->GetComponent<FormationComponent>()->Unlock();
 
-    LoadFormationFile();
+    m_SpawnInNextWave = true;
 }
-
-
 
 void EnemySpawnerComponent::Update()
 {
+    if(m_SpawnInNextWave)
+    {
+        LoadFormationFile();
+        m_SpawnInNextWave = false;
+    }
     SpawnEnemies();
 }
 
@@ -151,14 +155,12 @@ void EnemySpawnerComponent::AddBoss(glm::vec3 pos)
 
         m_Bosses.emplace_back(Boss.get());
 
-        bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(Boss));
+        bew::SceneManager::GetInstance().AddToCurrentScene(std::move(Boss));
     }
     else
     {
         SetupEnemy(SelectBoss, pos);
     }
-   
-  
 }
 
 void EnemySpawnerComponent::AddBee(glm::vec3 pos)
@@ -181,7 +183,7 @@ void EnemySpawnerComponent::AddBee(glm::vec3 pos)
 
         m_Bees.emplace_back(bee.get());
 
-        bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(bee));
+        bew::SceneManager::GetInstance().AddToCurrentScene(std::move(bee));
     }
     else
     {
@@ -209,7 +211,7 @@ void EnemySpawnerComponent::AddButterFly(glm::vec3 pos)
 
         m_ButterFlies.emplace_back(butterFly.get());
 
-        bew::SceneManager::GetInstance().GetCurrentScene().Add(std::move(butterFly));
+        bew::SceneManager::GetInstance().AddToCurrentScene(std::move(butterFly));
     }
     else
     {

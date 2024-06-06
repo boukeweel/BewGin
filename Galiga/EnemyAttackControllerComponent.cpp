@@ -1,8 +1,10 @@
 #include "EnemyAttackControllerComponent.h"
 
 #include "EnemyComponent.h"
+#include "EnemySpawnerComponent.h"
 #include "GameEntityData.h"
 #include "GameTime.h"
+#include "PoolComponent.h"
 #include "RandomFunctions.h"
 #include "SubjectComponent.h"
 
@@ -16,6 +18,7 @@ void EnemyAttackControllerComponent::Update()
 	
 	EnemyAttacking();
 	DisabledTime();
+	CheckAllEnemiesDead();
 }
 
 void EnemyAttackControllerComponent::EnemyAttacking()
@@ -52,6 +55,24 @@ void EnemyAttackControllerComponent::DisabledTime()
 			m_DisabledTimer = 0;
 			m_StartDisabledTimer = false;
 		}
+	}
+}
+
+void EnemyAttackControllerComponent::CheckAllEnemiesDead() const
+{
+	bool allDead = true;
+	for (const auto enemy : *m_pEnemies)
+	{
+		if(enemy->GetComponent<PoolComponent>()->InUse())
+		{
+			allDead = false;
+			break;
+		}
+	}
+
+	if(allDead)
+	{
+		GetParentObject()->GetComponent<EnemySpawnerComponent>()->NextLevel();
 	}
 }
 
