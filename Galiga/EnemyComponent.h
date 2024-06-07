@@ -90,6 +90,9 @@ protected:
     bool m_AbleToAttack{false};
     int m_AttackSide{};
 
+    int m_AmountPointsFormation;
+    int m_AmountPointsDiving;
+
     //static because All enemies need them to be the same exact thing
     static std::vector<std::vector<glm::vec2>> s_FormationPaths;
 };

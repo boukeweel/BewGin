@@ -212,6 +212,7 @@ void AttackingBoss::OnEnter(EnemyComponent* component)
 	int attackPath = component->GetAttackingPathIndex();
 	m_Path = component->GetAttackingPath(attackPath);
 
+
 	m_DiveStartPos = parentObject->GetWorldPosition();
 	component->SetIsDiving(true);
 

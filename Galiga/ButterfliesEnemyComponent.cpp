@@ -207,6 +207,8 @@ void ButterfliesEnemyComponent::CreateAttackingPaths()
 ButterfliesEnemyComponent::ButterfliesEnemyComponent(bew::GameObject* pParentObject) : EnemyComponent(pParentObject)
 {
 	m_Type = EnemyTypes::Butterfly;
+	m_AmountPointsDiving = 160;
+	m_AmountPointsFormation = 80;
 }
 
 void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
@@ -228,7 +230,12 @@ void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
 
 		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);
 		health->SetLifes(1);
-		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
-	}
 
+		int points{ m_AmountPointsFormation };
+		if (m_IsDiving)
+		{
+			points = m_AmountPointsDiving;
+		}
+		pPlayer->GetComponent<ScoreComponent>()->AddScore(points);
+	}
 }

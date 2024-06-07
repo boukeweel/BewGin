@@ -165,6 +165,9 @@ void BossEnemyComponent::CreateAttackingPaths()
 BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject, CaptureBeamComponent* captureBeam) : EnemyComponent(pParentObject),m_CaptureBeam{captureBeam}
 {
 	m_Type = EnemyTypes::Boss;
+	m_AmountPointsDiving = 400;
+	m_AmountPointsFormation = 150;
+
 }
 
 void BossEnemyComponent::ResetEnemy()
@@ -216,6 +219,11 @@ void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);
 		health->SetLifes(2);
 
-		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
+		int points{ m_AmountPointsFormation };
+		if (m_IsDiving)
+		{
+			points = m_AmountPointsDiving;
+		}
+		pPlayer->GetComponent<ScoreComponent>()->AddScore(points);
 	}
 }

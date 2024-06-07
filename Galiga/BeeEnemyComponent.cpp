@@ -87,6 +87,8 @@ BeeEnemyComponent::BeeEnemyComponent(bew::GameObject* pParentObject)
 : EnemyComponent(pParentObject)
 {
 	m_Type = EnemyTypes::Bee;
+	m_AmountPointsDiving = 100;
+	m_AmountPointsFormation = 50;
 }
 
 void BeeEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
@@ -108,6 +110,11 @@ void BeeEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 
 		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);
 		health->SetLifes(1);
-		pPlayer->GetComponent<ScoreComponent>()->AddScore(m_AmountPoints);
+		int points{m_AmountPointsFormation};
+		if(m_IsDiving)
+		{
+			points = m_AmountPointsDiving;
+		}
+		pPlayer->GetComponent<ScoreComponent>()->AddScore(points);
 	}
 }
