@@ -75,9 +75,6 @@
     <ClCompile Include="ObjectPreset.cpp">
       <Filter>Presets</Filter>
     </ClCompile>
-    <ClCompile Include="BulletComponent.cpp">
-      <Filter>Components\PlayerComponents</Filter>
-    </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components\PlayerComponents</Filter>
     </ClCompile>
@@ -171,6 +168,9 @@
     <ClCompile Include="EnemyAttackingObserver.cpp">
       <Filter>Events\PlayerEvents</Filter>
     </ClCompile>
+    <ClCompile Include="BulletComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TempComands.h">
@@ -193,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="PoolComponent.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletComponent.h">
-      <Filter>Components\PlayerComponents</Filter>
     </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Components\PlayerComponents</Filter>
@@ -289,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="EnemyAttackingObserver.h">
       <Filter>Events\PlayerEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

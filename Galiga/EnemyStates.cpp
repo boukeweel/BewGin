@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "GameTime.h"
 #include "InputManager.h"
+#include "RandomFunctions.h"
 #include "Renderer.h"
 
 #pragma region Fly in 
@@ -45,7 +46,7 @@ EnemyStates* FlyIn::Update(EnemyComponent* component)
 	}
 	else
 	{
-			return new FlyToFormationPosition();
+		return new FlyToFormationPosition();
 	}
 }
 
@@ -128,6 +129,8 @@ EnemyStates* Attacking::Update(EnemyComponent* component)
 	if (distance < m_Epsilon)
 	{
 		m_CurrentWayPoint++;
+		if (m_CurrentWayPoint == static_cast<int>(m_Path->size() / 2) && m_AllowedToShoot)
+			component->Shoot();
 	}
 
 	if (m_CurrentWayPoint < static_cast<int>(m_Path->size()))
@@ -140,6 +143,8 @@ EnemyStates* Attacking::Update(EnemyComponent* component)
 		component->GetParentObject()->Translate(glm::vec3(velocity, 0.0f) * bew::GameTime::GetDeltaTimeFloat() * component->GetSpeed());
 
 		component->GetParentObject()->SetRotation(atan2(dist.y, dist.x) * (180.f / 3.14f) + 90);
+
+		
 
 		return nullptr;
 	}
@@ -173,6 +178,13 @@ void AttackingBee::OnEnter(EnemyComponent* component)
 	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
+
+	int AbleToShootRnd = bew::RandomFunctions::RandomI(5);
+	if(AbleToShootRnd == 4)
+	{
+		m_AllowedToShoot = true;
+	}
+
 	component->SetIsDiving(true);
 }
 
@@ -192,6 +204,12 @@ void AttackingButterFly::OnEnter(EnemyComponent* component)
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
 	component->SetIsDiving(true);
+
+	int AbleToShootRnd = bew::RandomFunctions::RandomI(4);
+	if (AbleToShootRnd == 3)
+	{
+		m_AllowedToShoot = true;
+	}
 }
 
 void AttackingButterFly::OnExit(EnemyComponent* component)
@@ -225,9 +243,13 @@ void AttackingBoss::OnEnter(EnemyComponent* component)
 	{
 		m_BeamAttack = true;
 	}
+
+	int AbleToShootRnd = bew::RandomFunctions::RandomI(3);
+	if (AbleToShootRnd == 2)
+	{
+		m_AllowedToShoot = true;
+	}
 }
-
-
 
 void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 {
@@ -276,7 +298,6 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 	}
 }
 
-
 EnemyStates* AttackingBoss::Update(EnemyComponent* component)
 {
 	glm::vec3 CheckPos{
@@ -288,6 +309,8 @@ EnemyStates* AttackingBoss::Update(EnemyComponent* component)
 	if (distance < m_Epsilon)
 	{
 		m_CurrentWayPoint++;
+		if (m_CurrentPath == static_cast<int>(m_Path->size() / 2) && !m_BeamAttack && m_AllowedToShoot)
+			component->Shoot();
 	}
 
 	if (m_CurrentWayPoint < static_cast<int>(m_Path->size()))

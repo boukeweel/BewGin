@@ -70,8 +70,9 @@ protected:
 	int m_CurrentPath{};
 	const float m_Epsilon{ 5.f };
 	std::vector<glm::vec2>* m_Path{};
-	glm::vec2 m_DiveStartPos;
-	glm::vec2 m_DiveEndPos;
+	glm::vec2 m_DiveStartPos{};
+	glm::vec2 m_DiveEndPos{};
+	bool m_AllowedToShoot{ false };
 };
 
 
@@ -102,7 +103,7 @@ public:
 private:
 	void FindEscoretButterFlies(EnemyComponent* component);
 
-	bool m_BeamAttack;
+	bool m_BeamAttack{};
 };
 
 class AttackingBossBeam final : public  Attacking
@@ -115,5 +116,5 @@ public:
 
 private:
 
-	bool m_Capturing;
+	bool m_Capturing{};
 };

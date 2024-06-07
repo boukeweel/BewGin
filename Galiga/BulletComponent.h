@@ -10,6 +10,10 @@ public:
 
     void Update() override;
 
+    void SetSpeed(float speed) { m_Speed = speed; }
+    void SetDirection(glm::vec3 dir) { m_Direction = dir; }
+    void SetResetHeight(float height) { m_ResetHeight = height; }
+
     virtual ~BulletComponent() = default;
     BulletComponent(const BulletComponent& other) = delete;
     BulletComponent(BulletComponent&& other) = delete;
@@ -19,6 +23,7 @@ public:
 private:
     float m_Speed;
     glm::vec3 m_Direction{ 0,-1,0 };
+    float m_ResetHeight{ -10.f };
     PoolComponent* poolComp;
 };
 

@@ -173,11 +173,15 @@ void GaligaScene::SetControlsSinglePlayer(bew::InputManager& input, bew::GameObj
 
 void GaligaScene::SetControlsTwoPlayers(bew::InputManager& input, bew::GameObject* player1, bew::GameObject* player2)
 {
-	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(1, 0, 0), 300.f));
-	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player1, glm::vec3(-1, 0, 0), 300.f));
-	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(player1));
+	input.AddCommand(bew::ActionKeys::MoveRightKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::MoveLeftKeyBoard, bew::ButtonState::Held, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::ActionKeyOneKeyBoard, bew::ButtonState::Down, std::make_unique<ShootCommand>(player2));
 
-	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held,0, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 300.f));
-	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held,0, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 300.f));
-	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down,0, std::make_unique<ShootCommand>(player2));
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held, 1, std::make_unique<MoveCommand>(player2, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held, 1, std::make_unique<MoveCommand>(player2, glm::vec3(-1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down, 1, std::make_unique<ShootCommand>(player2));
+
+	input.AddCommand(bew::ActionKeys::DpadRight, bew::ButtonState::Held,0, std::make_unique<MoveCommand>(player1, glm::vec3(1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadLeft, bew::ButtonState::Held,0, std::make_unique<MoveCommand>(player1, glm::vec3(-1, 0, 0), 300.f));
+	input.AddCommand(bew::ActionKeys::DpadA, bew::ButtonState::Down,0, std::make_unique<ShootCommand>(player1));
 }

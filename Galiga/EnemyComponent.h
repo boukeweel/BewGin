@@ -19,6 +19,13 @@ public:
     static void CreatePaths();
 
     EnemyComponent(bew::GameObject* pParentObject);
+    virtual ~EnemyComponent() override;
+
+    EnemyComponent(const EnemyComponent& other) = delete;
+    EnemyComponent(EnemyComponent&& other) = delete;
+    EnemyComponent& operator=(const EnemyComponent& other) = delete;
+    EnemyComponent& operator=(EnemyComponent&& other) = delete;
+
     virtual void ResetEnemy();
 
     void FixedUpdate() override;
@@ -63,35 +70,36 @@ public:
 
     virtual void TakeDamages(bew::GameObject* pPlayer) = 0;
 
-    virtual ~EnemyComponent() override;
-    EnemyComponent(const EnemyComponent& other) = delete;
-    EnemyComponent(EnemyComponent&& other) = delete;
-    EnemyComponent& operator=(const EnemyComponent& other) = delete;
-    EnemyComponent& operator=(EnemyComponent&& other) = delete;
+    void Shoot();
+    bew::GameObject* GetBullet()const { return m_pBullet; }
+
 protected:
     std::vector < bew::GameObject*>* GetPlayer() { return m_pPlayers; }
 
     void CheckInHitBox();
+    void CreateBullet();
 
-    EnemyTypes m_Type;
+    EnemyTypes m_Type{};
 
-    std::vector <bew::GameObject*>* m_pPlayers;
+    std::vector <bew::GameObject*>* m_pPlayers{};
 
-    EnemyStates* m_States;
+    EnemyStates* m_States{};
 
-    float m_speed;
+    float m_speed{};
     int m_CurrentFormationPath{0};
-    int m_AttackingPath;
+    int m_AttackingPath{};
 
-    FormationComponent* m_pFormation;
-    glm::vec3 m_PositionIndex;
+    FormationComponent* m_pFormation{};
+    glm::vec3 m_PositionIndex{};
 
     bool m_IsDiving{false};
     bool m_AbleToAttack{false};
     int m_AttackSide{};
 
-    int m_AmountPointsFormation;
-    int m_AmountPointsDiving;
+    int m_AmountPointsFormation{};
+    int m_AmountPointsDiving{};
+
+    bew::GameObject* m_pBullet{};
 
     //static because All enemies need them to be the same exact thing
     static std::vector<std::vector<glm::vec2>> s_FormationPaths;

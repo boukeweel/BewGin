@@ -2,6 +2,7 @@
 #include <iostream>
 #include "BewGin.h"
 #include "BezierPath.h"
+#include "BulletComponent.h"
 #include "GameEntityData.h"
 #include "GameObject.h"
 #include "GameTime.h"
@@ -11,6 +12,7 @@
 #include "GameData.h"
 #include "PoolComponent.h"
 #include "Renderer.h"
+#include "SceneManager.h"
 #include "ScoreComponent.h"
 
 std::vector<std::vector<glm::vec2>> EnemyComponent::s_FormationPaths;
@@ -124,6 +126,22 @@ EnemyComponent::EnemyComponent(bew::GameObject* pParentObject)
 : Component(pParentObject),m_States{new FlyIn()}, m_speed{400}
 {
 	m_pPlayers = GameEntityData::GetInstance().GetPlayers();
+
+	CreateBullet();
+}
+
+void EnemyComponent::CreateBullet()
+{
+	BulletPreset bulletPreset;
+	auto bullet = bulletPreset.Create();
+	auto bulletcomp = bullet->GetComponent<BulletComponent>();
+	bulletcomp->SetDirection({ 0,1,0 });
+	bulletcomp->SetResetHeight(bew::ScreenHeight + 10.f);
+	bulletcomp->SetSpeed(300.f);
+	bullet->SetRotation(180.f);
+	m_pBullet = bullet.get();
+	bullet->SetIsActive(false);
+	bew::SceneManager::GetInstance().AddToCurrentScene(std::move(bullet));
 }
 
 void EnemyComponent::ResetEnemy()
@@ -166,9 +184,14 @@ void EnemyComponent::HandelStates()
 	}
 }
 
+void EnemyComponent::Shoot()
+{
+	m_pBullet->SetPosition(GetParentObject()->GetWorldPosition());
+	m_pBullet->SetIsActive(true);
+}
+
 void EnemyComponent::CheckInHitBox()
 {
-
 	for (const auto& Player : *m_pPlayers)
 	{
 		//collsion Bullets

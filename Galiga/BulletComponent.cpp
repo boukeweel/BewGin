@@ -12,10 +12,20 @@ void BulletComponent::Update()
 {
 	GetParentObject()->Translate(m_Direction * m_Speed * bew::GameTime::GetDeltaTimeFloat());
 
-	if (GetParentObject()->GetWorldPosition().y <= -10.f)
+	bool reset{false};
+	if(m_Direction.y == -1.f && GetParentObject()->GetWorldPosition().y <= m_ResetHeight)
+	{
+		reset = true;
+	}
+	else if(m_Direction.y == 1.f && GetParentObject()->GetWorldPosition().y >= m_ResetHeight)
+	{
+		reset = true;
+	}
+
+	if(reset)
 	{
 		GetParentObject()->SetIsActive(false);
-		if(poolComp != nullptr)
+		if (poolComp != nullptr)
 		{
 			poolComp->SetInUse(false);
 		}
