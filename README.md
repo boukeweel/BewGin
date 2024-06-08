@@ -21,7 +21,7 @@ Download the latest release of this project and compile/run in visual studio. Si
 https://github.com/boukeweel/BewGin
 
 
-##Enemies
+## Enemies
 The enemies follow paths defined by Bézier curves. I got this idea from a YouTube video about making SDL Galaga, and it seemed like the best and easiest way to implement various enemy paths. Their behaviors are handled by a state machine, which allows for easy switching between different behaviors as needed.
 
 ## enemy spawning.
