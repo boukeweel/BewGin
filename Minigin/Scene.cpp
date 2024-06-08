@@ -10,34 +10,34 @@ using namespace bew;
 
 unsigned int Scene::m_idCounter = 0;
 
-Scene::Scene(const std::string& name, std::unique_ptr<BaseSceneCreator> load) : m_name(name), m_id(m_idCounter++), m_Load{ std::move(load) } {}
+Scene::Scene(const std::string& name, std::unique_ptr<BaseSceneCreator> load) : m_name(name), m_id(m_idCounter++), m_pLoad{ std::move(load) } {}
 
 Scene::~Scene() = default;
 
 void Scene::Add(std::unique_ptr<GameObject> object)
 {
-	m_objects.emplace_back(std::move(object));
+	m_pObjects.emplace_back(std::move(object));
 }
 
 void Scene::Remove(std::unique_ptr<GameObject> object)
 {
-	m_objects.erase(std::remove(m_objects.begin(), m_objects.end(), object), m_objects.end());
+	m_pObjects.erase(std::remove(m_pObjects.begin(), m_pObjects.end(), object), m_pObjects.end());
 }
 
 void Scene::RemoveAll()
 {
-	m_objects.clear();
+	m_pObjects.clear();
 	bew::InputManager::GetInstance().RemoveAllCommands();
 }
 
 void Scene::LoadInScene()
 {
-	m_Load->Load();
+	m_pLoad->Load();
 }
 
 void Scene::ChangeActiveStateInScene(bool state)
 {
-	for (auto& object : m_objects)
+	for (auto& object : m_pObjects)
 	{
 		object->SetIsActive(state);
 	}
@@ -45,7 +45,7 @@ void Scene::ChangeActiveStateInScene(bool state)
 
 void bew::Scene::FixedUpdate()
 {
-	for (auto& object : m_objects)
+	for (auto& object : m_pObjects)
 	{
 		object->FixedUpdate();
 	}
@@ -53,7 +53,7 @@ void bew::Scene::FixedUpdate()
 
 void Scene::Update()
 {
-	for(auto& object : m_objects)
+	for(auto& object : m_pObjects)
 	{
 		object->Update();
 	}
@@ -61,7 +61,7 @@ void Scene::Update()
 
 void Scene::Render() const
 {
-	for (const auto& object : m_objects)
+	for (const auto& object : m_pObjects)
 	{
 		object->Render();
 	}

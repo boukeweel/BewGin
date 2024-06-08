@@ -5,7 +5,7 @@
 
 BulletComponent::BulletComponent(bew::GameObject* pParentObject, float speed):Component(pParentObject),m_Speed{speed}
 {
-	poolComp = GetParentObject()->GetComponent<PoolComponent>();
+	m_pPoolComp = GetParentObject()->GetComponent<PoolComponent>();
 }
 
 void BulletComponent::Update()
@@ -14,20 +14,16 @@ void BulletComponent::Update()
 
 	bool reset{false};
 	if(m_Direction.y == -1.f && GetParentObject()->GetWorldPosition().y <= m_ResetHeight)
-	{
 		reset = true;
-	}
 	else if(m_Direction.y == 1.f && GetParentObject()->GetWorldPosition().y >= m_ResetHeight)
-	{
 		reset = true;
-	}
 
 	if(reset)
 	{
 		GetParentObject()->SetIsActive(false);
-		if (poolComp != nullptr)
+		if (m_pPoolComp != nullptr)
 		{
-			poolComp->SetInUse(false);
+			m_pPoolComp->SetInUse(false);
 		}
 	}
 }

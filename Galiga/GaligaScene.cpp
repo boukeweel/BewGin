@@ -29,7 +29,6 @@
 #include "SpriteSheetComponent.h"
 #include "StarComponent.h"
 #include "SubjectComponent.h"
-#include "TempComands.h"
 
 void GaligaScene::Load()
 {

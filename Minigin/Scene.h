@@ -33,11 +33,10 @@ namespace bew
 	private: 
 		explicit Scene(const std::string& name, std::unique_ptr<BaseSceneCreator> load);
 
-		//I have no idea if this is good practis
-		std::unique_ptr<BaseSceneCreator> m_Load;
+		std::unique_ptr<BaseSceneCreator> m_pLoad;
 
 		std::string m_name;
-		std::vector < std::unique_ptr<GameObject>> m_objects{};
+		std::vector < std::unique_ptr<GameObject>> m_pObjects{};
 
 		static unsigned int m_idCounter;
 		unsigned int m_id;

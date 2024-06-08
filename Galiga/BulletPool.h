@@ -12,15 +12,15 @@ public:
     void SetNextObjectActive();
     void SetNextObjectActive(glm::vec3 pos);
 
-    std::vector<bew::GameObject*>* GetObjectList() { return &m_Objects; }
+    std::vector<bew::GameObject*>* GetObjectList() { return &m_pBullets; }
     
     BulletPool(const BulletPool& other) = delete;
     BulletPool(BulletPool&& other) = delete;
     BulletPool& operator=(const BulletPool& other) = delete;
     BulletPool& operator=(BulletPool&& other) = delete;
 private:
-    std::unique_ptr<ObjectPreset> m_BaseObject;
-    std::vector<bew::GameObject*> m_Objects;
+    std::unique_ptr<ObjectPreset> m_pBaseObject;
+    std::vector<bew::GameObject*> m_pBullets;
 
 	int m_Currentobj{ 0 };
     int m_POOLSIZE;

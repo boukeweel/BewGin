@@ -26,7 +26,7 @@ private:
 	void UpdateText();
 
 	float m_DisappearTime{ 0.2f };
-	float m_VisibleTime{ 1.f };
+	float m_VisibleTime{ 0.5f };
 	float m_timer{};
 	bool m_Visible{};
 

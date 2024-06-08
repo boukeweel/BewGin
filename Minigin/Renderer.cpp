@@ -23,9 +23,9 @@ int GetOpenGLDriverIndex()
 
 void bew::Renderer::Init(SDL_Window* window)
 {
-	m_window = window;
-	m_renderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED);
-	if (m_renderer == nullptr) 
+	m_pWindow = window;
+	m_pRenderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED);
+	if (m_pRenderer == nullptr) 
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
 	}
@@ -39,12 +39,12 @@ void bew::Renderer::Init(SDL_Window* window)
 void bew::Renderer::Render() const
 {
 	const auto& color = GetBackgroundColor();
-	SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a);
-	SDL_RenderClear(m_renderer);
+	SDL_SetRenderDrawColor(m_pRenderer, color.r, color.g, color.b, color.a);
+	SDL_RenderClear(m_pRenderer);
 
 	SceneManager::GetInstance().Render();
 
-	SDL_RenderPresent(m_renderer);
+	SDL_RenderPresent(m_pRenderer);
 }
 
 void bew::Renderer::Destroy()
@@ -53,10 +53,10 @@ void bew::Renderer::Destroy()
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 
-	if (m_renderer != nullptr)
+	if (m_pRenderer != nullptr)
 	{
-		SDL_DestroyRenderer(m_renderer);
-		m_renderer = nullptr;
+		SDL_DestroyRenderer(m_pRenderer);
+		m_pRenderer = nullptr;
 	}
 }
 
@@ -111,4 +111,4 @@ void bew::Renderer::DrawLine(float sX, float sY, float eX, float eY) const
 	SDL_SetRenderDrawColor(GetSDLRenderer(), 0, 255, 0, 255);
 	SDL_RenderDrawLineF(GetSDLRenderer(), sX, sY, eX, eY);
 }
-SDL_Renderer* bew::Renderer::GetSDLRenderer() const { return m_renderer; }
+SDL_Renderer* bew::Renderer::GetSDLRenderer() const { return m_pRenderer; }

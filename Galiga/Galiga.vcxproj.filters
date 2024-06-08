@@ -63,9 +63,6 @@
     <ClCompile Include="MoveCommands.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
-    <ClCompile Include="TempComands.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
     <ClCompile Include="ShootCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
@@ -171,11 +168,11 @@
     <ClCompile Include="BulletComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="SwitchLevelSceneCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TempComands.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
     <ClInclude Include="MoveCommands.h">
       <Filter>Commands</Filter>
     </ClInclude>
@@ -289,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="BulletComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchLevelSceneCommands.h">
+      <Filter>Source Files\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #include "ShotDataScene.h"
 
 #include <iomanip>
-#include <iostream>
 #include <SDL_pixels.h>
 
 #include "GameData.h"

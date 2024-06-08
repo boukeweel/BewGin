@@ -24,6 +24,6 @@ private:
     float m_Speed;
     glm::vec3 m_Direction{ 0,-1,0 };
     float m_ResetHeight{ -10.f };
-    PoolComponent* poolComp;
+    PoolComponent* m_pPoolComp;
 };
 

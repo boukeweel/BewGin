@@ -80,9 +80,7 @@ namespace bew
     };
 }
 
-bew::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}
-{
-}
+bew::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}{}
 
 bew::InputManager::~InputManager() = default;
 

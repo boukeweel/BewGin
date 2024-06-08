@@ -19,12 +19,6 @@ public:
     static void CreatePaths();
 
     EnemyComponent(bew::GameObject* pParentObject);
-    virtual ~EnemyComponent() override;
-
-    EnemyComponent(const EnemyComponent& other) = delete;
-    EnemyComponent(EnemyComponent&& other) = delete;
-    EnemyComponent& operator=(const EnemyComponent& other) = delete;
-    EnemyComponent& operator=(EnemyComponent&& other) = delete;
 
     virtual void ResetEnemy();
 
@@ -33,25 +27,25 @@ public:
     void Render() const override;
 
     virtual void HandelStates();
-
-    float GetSpeed() const { return m_speed; }
-    std::vector<glm::vec2>* GetFormationPath(int index) const { return &s_FormationPaths[index]; }
-    virtual std::vector<glm::vec2>* GetAttackingPath(int index) const = 0;
-
-    FormationComponent* GetFormation() const { return m_pFormation; }
-    int GetCurrentFormationPath() const { return m_CurrentFormationPath; }
-    int GetAttackingPathIndex() const { return m_AttackingPath; }
-
-	void SetFormationPosition(FormationComponent* formation, glm::vec3 posIndex);
-
-    glm::vec3 GetFormationTargetPosition() const;
-
-    void SetAttackingPath(int path) { m_AttackingPath = path; }
-    void SetForamationPath(int path) { m_CurrentFormationPath = path; }
-
     void StartAndSetActive();
 
     EnemyTypes GetEnemyType() const { return m_Type; }
+
+    float GetSpeed() const { return m_speed; }
+
+    FormationComponent* GetFormation() const { return m_pFormation; }
+    void SetFormationPosition(FormationComponent* formation, glm::vec3 posIndex);
+    glm::vec3 GetPosIndex() const { return m_PositionIndex; }
+
+    std::vector<glm::vec2>* GetFormationPath(int index) const { return &s_FormationPaths[index]; }
+    void SetForamationPath(int path) { m_CurrentFormationPath = path; }
+    int GetCurrentFormationPath() const { return m_CurrentFormationPath; }
+
+    virtual std::vector<glm::vec2>* GetAttackingPath(int index) const = 0;
+    void SetAttackingPath(int path) { m_AttackingPath = path; }
+    int GetCurrentAttackingPath() const { return m_AttackingPath; }
+
+    glm::vec3 GetFormationTargetPosition() const;
 
     bool GetAbleToAttack() const { return m_AbleToAttack; }
     virtual void SetAbleToAttack(bool ableToAttack);
@@ -59,21 +53,21 @@ public:
     void SetAttackSide(int side) { m_AttackSide = side; }
 
     bool GetIsDiving() const { return m_IsDiving; }
-    ///false is left, true is right
     void SetIsDiving(bool value) { m_IsDiving = value; }
-
-    glm::vec3 GetPosIndex() const { return m_PositionIndex; }
-
-    //I know this shit
-    //todo make it better some way
-	virtual CaptureBeamComponent* GetCaptureBeam() const { return nullptr; }
 
     virtual void TakeDamages(bew::GameObject* pPlayer) = 0;
 
+    //in the EnemyComponent because it needs to be used in the enemyStates
+    virtual CaptureBeamComponent* GetCaptureBeam() const { return nullptr; }
+
     void Shoot();
-    bew::GameObject* GetBullet()const { return m_pBullet; }
+    bew::GameObject* GetBullet() const { return m_pBullet; }
 
-
+    virtual ~EnemyComponent() override;
+    EnemyComponent(const EnemyComponent& other) = delete;
+    EnemyComponent(EnemyComponent&& other) = delete;
+    EnemyComponent& operator=(const EnemyComponent& other) = delete;
+    EnemyComponent& operator=(EnemyComponent&& other) = delete;
 private:
     void CreateBullet();
     void CheckInHitBox();
@@ -81,19 +75,18 @@ protected:
     std::vector < bew::GameObject*>* GetPlayer() { return m_pPlayers; }
 
     void SpawnExplosion();
-   
 
     EnemyTypes m_Type{};
-
     std::vector <bew::GameObject*>* m_pPlayers{};
+    bew::GameObject* m_pBullet{};
 
-    EnemyStates* m_States{};
+    EnemyStates* m_pStates{};
+    FormationComponent* m_pFormation{};
 
     float m_speed{};
     int m_CurrentFormationPath{0};
     int m_AttackingPath{};
 
-    FormationComponent* m_pFormation{};
     glm::vec3 m_PositionIndex{};
 
     bool m_IsDiving{false};
@@ -102,8 +95,6 @@ protected:
 
     int m_AmountPointsFormation{};
     int m_AmountPointsDiving{};
-
-    bew::GameObject* m_pBullet{};
 
     //static because All enemies need them to be the same exact thing
     static std::vector<std::vector<glm::vec2>> s_FormationPaths;

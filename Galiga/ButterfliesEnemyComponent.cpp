@@ -226,7 +226,7 @@ void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
 
 		bew::SoundServiceLocator::GetSoundSystem().Play(2, 1);
 
-		//this is not good but could not think of something else
+		//Still lock the formation when its dies while flying in
 		m_pFormation->Lock();
 
 		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);

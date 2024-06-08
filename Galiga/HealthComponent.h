@@ -11,24 +11,25 @@ class HealthComponent final :
 	public bew::Component
 {
 public:
+
+	HealthComponent(bew::GameObject* pparentObject, int lives);
+
 	void TakeDammages(int amount);
 	void Died();
 
 	int GetLives() const { return m_Lifes; }
 	bool GetAlive() const { return m_IsAlive; }
 
-	//this is for object pooling of the enemy
 	void SetLifes(int amoutLives);
 	void SetBackAlive();
 
-	HealthComponent(bew::GameObject* pparentObject, int lives);
+	void notifySubject(bew::GameEvents event, bew::GameObject* object);
+	
 	virtual ~HealthComponent() = default;
 	HealthComponent(const HealthComponent& other) = delete;
 	HealthComponent(HealthComponent&& other) = delete;
 	HealthComponent& operator=(const HealthComponent& other) = delete;
 	HealthComponent& operator=(HealthComponent&& other) = delete;
-
-	void notifySubject(bew::GameEvents event, bew::GameObject* object);
 private:
 	int m_Lifes;
 	bool m_IsAlive{true};

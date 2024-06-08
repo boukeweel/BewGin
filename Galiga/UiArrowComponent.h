@@ -9,7 +9,7 @@ public:
 	void MoveUp();
 	void MoveDown();
 
-	void Selcet();
+	void Select();
 
 	virtual ~UiArrowComponent() = default;
 	UiArrowComponent(const UiArrowComponent& other) = delete;

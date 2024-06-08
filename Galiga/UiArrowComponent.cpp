@@ -31,7 +31,7 @@ void UiArrowComponent::MoveDown()
 	}
 }
 
-void UiArrowComponent::Selcet()
+void UiArrowComponent::Select()
 {
 	if (m_CurrentOption == 1)
 		GameData::GetInstance().SetTwoPlayers(false);

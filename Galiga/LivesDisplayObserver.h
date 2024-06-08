@@ -18,6 +18,6 @@ public:
 	LivesDisplayObserver& operator=(LivesDisplayObserver&& other) = delete;
 
 private:
-	PlayerHealthDisplayComponent* m_DisplayHealth;
+	PlayerHealthDisplayComponent* m_pDisplayHealth;
 };
 

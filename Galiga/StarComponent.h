@@ -15,7 +15,6 @@ public:
 	void ResetScale();
 	void RandomSpeed();
 
-
 	virtual ~StarComponent() = default;
 	StarComponent(const StarComponent& other) = delete;
 	StarComponent(StarComponent&& other) = delete;
@@ -23,6 +22,6 @@ public:
 	StarComponent& operator=(StarComponent&& other) = delete;
 private:
 	float m_speed;
-	int m_Width;
+	int m_ScreenWidth;
 };
 

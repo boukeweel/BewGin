@@ -10,7 +10,7 @@ namespace bew
 	public:
 		SubjectComponent(GameObject* pParentObject) : Component(pParentObject){}
 
-		Subject* GetSubject() const { return m_subject.get(); }
+		Subject* GetSubject() const { return m_pSubject.get(); }
 
 		virtual ~SubjectComponent() = default;
 		SubjectComponent(const SubjectComponent& other) = delete;
@@ -18,7 +18,7 @@ namespace bew
 		SubjectComponent& operator=(const SubjectComponent& other) = delete;
 		SubjectComponent& operator=(SubjectComponent&& other) = delete;
 	private:
-		std::unique_ptr<Subject> m_subject{ std::make_unique<Subject>() };
+		std::unique_ptr<Subject> m_pSubject{ std::make_unique<Subject>() };
 	};
 }
 

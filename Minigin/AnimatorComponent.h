@@ -28,7 +28,7 @@ namespace bew
 		AnimatorComponent& operator=(const AnimatorComponent& other) = delete;
 		AnimatorComponent& operator=(AnimatorComponent&& other) = delete;
 	private:
-		std::vector<std::unique_ptr<Animation>> animations;
+		std::vector<std::unique_ptr<Animation>> m_pAnimations;
 		int m_CurrentAnimation;
 	};
 }

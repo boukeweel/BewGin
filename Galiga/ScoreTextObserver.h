@@ -16,9 +16,8 @@ public:
 	ScoreTextObserver(ScoreTextObserver&& other) = delete;
 	ScoreTextObserver& operator=(const ScoreTextObserver& other) = delete;
 	ScoreTextObserver& operator=(ScoreTextObserver&& other) = delete;
-
 private:
-	bew::TextComponent* m_TextComponent;
+	bew::TextComponent* m_pTextComponent;
 	std::string m_ScoreTxt;
 };
 

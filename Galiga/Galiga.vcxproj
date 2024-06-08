@@ -223,8 +223,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="ShotDataScene.cpp" />
     <ClCompile Include="StarComponent.cpp" />
     <ClCompile Include="StartMenuScene.cpp" />
+    <ClCompile Include="SwitchLevelSceneCommands.cpp" />
     <ClCompile Include="SwitchSceneOnTimeComponent.cpp" />
-    <ClCompile Include="TempComands.cpp" />
     <ClCompile Include="UiArrowComponent.cpp" />
     <ClCompile Include="UiCommands.cpp" />
   </ItemGroup>
@@ -264,8 +264,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="ShotDataScene.h" />
     <ClInclude Include="StarComponent.h" />
     <ClInclude Include="StartMenuScene.h" />
+    <ClInclude Include="SwitchLevelSceneCommands.h" />
     <ClInclude Include="SwitchSceneOnTimeComponent.h" />
-    <ClInclude Include="TempComands.h" />
     <ClInclude Include="UiArrowComponent.h" />
     <ClInclude Include="UiCommands.h" />
   </ItemGroup>

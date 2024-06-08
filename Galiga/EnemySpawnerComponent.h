@@ -47,6 +47,7 @@ private:
 
     std::vector<bew::GameObject*> m_Enemies;
 
+    //hold enemies so its able to be reused
     std::vector<bew::GameObject*> m_Bees;
     std::vector<bew::GameObject*> m_ButterFlies;
     std::vector<bew::GameObject*> m_Bosses;

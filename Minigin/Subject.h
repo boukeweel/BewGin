@@ -21,7 +21,7 @@ namespace bew
 		Subject& operator=(const Subject& other) = delete;
 		Subject& operator=(Subject&& other) = delete;
 	private:
-		std::vector<std::unique_ptr<Observer>> m_Observers;
+		std::vector<std::unique_ptr<Observer>> m_pObservers;
 	};
 }
 

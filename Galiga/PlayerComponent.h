@@ -23,16 +23,17 @@ public:
 	PlayerComponent& operator=(const PlayerComponent& other) = delete;
 	PlayerComponent& operator=(PlayerComponent&& other) = delete;
 private:
+	void GetEnemies();
 
 	void PlayerGotHit();
-
 	void CheckCollision();
+
 	void constrainPlayerPosition();
+
 	void SuckUpAnimation();
 
 	void CreateExplosion();
 	void SpawnExplosion();
-	void GetEnemies();
 
 	bool m_BeingSuckedUp{ false };
 	bew::GameObject* m_pBeam;

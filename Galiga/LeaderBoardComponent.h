@@ -8,7 +8,7 @@ class LeaderBoardComponent :
 public:
 	LeaderBoardComponent(bew::GameObject* pParentOjbect);
 
-	void UpdateLeaderBoared();
+	void UpdateLeaderBoard();
 
 	virtual ~LeaderBoardComponent() = default;
 	LeaderBoardComponent(const LeaderBoardComponent& other) = delete;
@@ -16,6 +16,6 @@ public:
 	LeaderBoardComponent& operator=(const LeaderBoardComponent& other) = delete;
 	LeaderBoardComponent& operator=(LeaderBoardComponent&& other) = delete;
 private:
-	std::vector<bew::GameObject*> m_Enteries;
+	std::vector<bew::GameObject*> m_pEnteries;
 };
 

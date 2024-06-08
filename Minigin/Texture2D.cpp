@@ -3,7 +3,7 @@
 
 bew::Texture2D::~Texture2D()
 {
-	SDL_DestroyTexture(m_texture);
+	SDL_DestroyTexture(m_pTexture);
 }
 
 glm::ivec2 bew::Texture2D::GetSize() const
@@ -15,10 +15,10 @@ glm::ivec2 bew::Texture2D::GetSize() const
 
 SDL_Texture* bew::Texture2D::GetSDLTexture() const
 {
-	return m_texture;
+	return m_pTexture;
 }
 
 bew::Texture2D::Texture2D(SDL_Texture* texture)
 {
-	m_texture = texture;
+	m_pTexture = texture;
 }

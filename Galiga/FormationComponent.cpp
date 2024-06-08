@@ -29,7 +29,6 @@ void FormationComponent::Unlock()
 void FormationComponent::Update()
 {
     Moving();
-    Breathing();
 }
 
 void FormationComponent::Moving()
@@ -55,31 +54,4 @@ void FormationComponent::Moving()
             m_OffsetTimer = 0.f;
         }
     }
-}
-void FormationComponent::Breathing()
-{
-    //breathing
-    //todo this looks weird if time fix it if not just delete it
-   /* if(m_Locked)
-    {
-        m_SpreadTimer += bew::GameTime::GetDeltaTimeFloat();
-        if(m_SpreadTimer >= m_SpreadDelay)
-        {
-            m_SpreadCounter += m_SpreadDirection;
-
-            float spread = static_cast<float>(m_SpreadDirection * ((m_SpreadCounter % 2 == 0) ? 1 : 2));
-
-            m_GridSize.x += spread;
-
-            glm::vec3 position = GetParentObject()->GetWorldPosition() ;
-            position.x -= spread * 5;
-            GetParentObject()->SetPosition(position);
-
-            if(m_SpreadCounter == 4 || m_SpreadCounter == 0)
-            {
-                m_SpreadDirection *= -1;
-            }
-            m_SpreadTimer -= m_SpreadDelay;
-        }
-    }*/
 }

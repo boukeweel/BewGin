@@ -14,8 +14,7 @@ public:
 	LeaderBoardObserver(LeaderBoardObserver&& other) = delete;
 	LeaderBoardObserver& operator=(const LeaderBoardObserver& other) = delete;
 	LeaderBoardObserver& operator=(LeaderBoardObserver&& other) = delete;
-
 private:
-	LeaderBoardComponent* m_LeaderBoard;
+	LeaderBoardComponent* m_pLeaderBoard;
 };
 

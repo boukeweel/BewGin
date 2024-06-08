@@ -38,7 +38,6 @@ void HighScoreEntryComponent::CreateNumberText(int number)
     NumberTxt->SetParrent(GetParentObject());
 
     bew::SceneManager::GetInstance().AddToCurrentScene(std::move(NumberTxt));
-
 }
 
 void HighScoreEntryComponent::CreateScoreText(int Score)

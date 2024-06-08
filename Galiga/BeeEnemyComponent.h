@@ -19,9 +19,6 @@ public:
 private:
     void TakeDamages(bew::GameObject* pPlayer) override;
 
-    int m_AmountPoints{ 100 };
-
-
     static std::vector<std::vector<glm::vec2>> s_AttackingPaths;
 };
 

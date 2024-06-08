@@ -17,17 +17,17 @@ LeaderBoardComponent::LeaderBoardComponent(bew::GameObject* pParentOjbect) : Com
 		addedToY += 30;
 		auto comp = ScoreText->AddComponent<HighScoreEntryComponent>();
 		comp->CreateTextObjects(highScoreData->number, highScoreData->Score, highScoreData->Initials);
-		m_Enteries.emplace_back(ScoreText.get());
+		m_pEnteries.emplace_back(ScoreText.get());
 		bew::SceneManager::GetInstance().AddToCurrentScene(std::move(ScoreText));
 	}
 }
 
-void LeaderBoardComponent::UpdateLeaderBoared()
+void LeaderBoardComponent::UpdateLeaderBoard()
 {
 	auto HighScores = GameData::GetInstance().GetHighScoreList();
 	for (size_t i = 0; i < HighScores->size() - 1; ++i)
 	{
-		auto comp = m_Enteries[i]->GetComponent<HighScoreEntryComponent>();
+		auto comp = m_pEnteries[i]->GetComponent<HighScoreEntryComponent>();
 		comp->ChanceEnteryValues(HighScores->at(i)->number, HighScores->at(i)->Score, HighScores->at(i)->Initials);
 	}
 }

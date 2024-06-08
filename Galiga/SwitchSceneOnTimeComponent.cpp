@@ -4,12 +4,10 @@
 #include "SceneManager.h"
 
 SwitchSceneOnTimeComponent::SwitchSceneOnTimeComponent(bew::GameObject* pParentOjbect, int Scene) : SwitchSceneOnTimeComponent(pParentOjbect,Scene,10)
-{
-}
+{}
 
 SwitchSceneOnTimeComponent::SwitchSceneOnTimeComponent(bew::GameObject* pParentOjbect, int Scene, float Time) : Component(pParentOjbect),m_TimeActive(Time),m_Timer{0},m_TargetScene{Scene}
-{
-}
+{}
 
 
 void SwitchSceneOnTimeComponent::Update()

@@ -13,10 +13,12 @@ public:
     FormationComponent(bew::GameObject* pParentObject);
     
     glm::vec2 GetGridSize() const { return m_GridSize; }
+
+    void Update() override;
+
     void Lock();
     void Unlock();
     bool GetIsLocked() const { return m_Locked && m_OffsetCounter == 4; }
-    void Update() override;
 
     void SetAmountEnemies(int amount) { m_AmountEnemies = amount; }
 
@@ -28,7 +30,6 @@ public:
 
 private:
     void Moving();
-    void Breathing();
 
     //For Moving Formation side to side
     float m_OffsetAmount{10.f};
@@ -36,11 +37,6 @@ private:
     float m_OffsetDelay{0.4f};
     int m_OffsetCounter{4};
     int m_OffsetDirection{1};
-
-    float m_SpreadTimer{0.f};
-    float m_SpreadDelay{1.f};
-    int m_SpreadCounter{0};
-    int m_SpreadDirection{1};
 
     glm::vec2 m_GridSize{32.f,32.f};
     bool m_Locked{false};

@@ -15,7 +15,6 @@ EnemyAttackControllerComponent::EnemyAttackControllerComponent(bew::GameObject* 
 
 void EnemyAttackControllerComponent::Update()
 {
-	
 	EnemyAttacking();
 	DisabledTime();
 	CheckAllEnemiesDead();
@@ -23,9 +22,8 @@ void EnemyAttackControllerComponent::Update()
 
 void EnemyAttackControllerComponent::EnemyAttacking()
 {
-	if (!m_pEnemies || m_pEnemies->empty() || m_StartDisabledTimer) {
+	if (!m_pEnemies || m_pEnemies->empty() || m_StartDisabledTimer)
 		return;
-	}
 
 	if (GetParentObject()->GetComponent<FormationComponent>()->GetIsLocked())
 	{
@@ -44,7 +42,6 @@ void EnemyAttackControllerComponent::EnemyAttacking()
 
 void EnemyAttackControllerComponent::DisabledTime()
 {
-	//lol ofc this does not work object is not active XD
 	if (m_StartDisabledTimer)
 	{
 		m_DisabledTimer += bew::GameTime::GetDeltaTimeFloat();
@@ -78,18 +75,18 @@ void EnemyAttackControllerComponent::CheckAllEnemiesDead() const
 
 bew::GameObject* EnemyAttackControllerComponent::SelectRandomEnemy() const
 {
-	std::vector<bew::GameObject*> validEnemies;
+	std::vector<bew::GameObject*> pvalidEnemies;
 
 	for (auto enemy : *m_pEnemies) {
 		if (enemy->GetIsActive() && !enemy->GetComponent<EnemyComponent>()->GetIsDiving()) {
-			validEnemies.push_back(enemy);
+			pvalidEnemies.push_back(enemy);
 		}
 	}
 
-	if (validEnemies.empty()) {
+	if (pvalidEnemies.empty()) {
 		return nullptr;
 	}
-	int enemyIndex = bew::RandomFunctions::RandomI(static_cast<int>(validEnemies.size()));
-	return validEnemies[enemyIndex];
+	int enemyIndex = bew::RandomFunctions::RandomI(static_cast<int>(pvalidEnemies.size()));
+	return pvalidEnemies[enemyIndex];
 }
 

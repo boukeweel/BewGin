@@ -22,17 +22,17 @@ public:
 
 	void ResetAll()
 	{
-		m_Players.clear();
-		m_Enemies.clear();
-		m_Explosion.clear();
+		m_pPlayers.clear();
+		m_pEnemies.clear();
+		m_pExplosion.clear();
 	}
 
 private:
 	friend class Singleton<GameEntityData>;
 	GameEntityData() = default;
 
-	std::vector<bew::GameObject*> m_Players;
-	std::vector<bew::GameObject*> m_Enemies;
-	std::vector<bew::GameObject*> m_Explosion;
+	std::vector<bew::GameObject*> m_pPlayers;
+	std::vector<bew::GameObject*> m_pEnemies;
+	std::vector<bew::GameObject*> m_pExplosion;
 };
 

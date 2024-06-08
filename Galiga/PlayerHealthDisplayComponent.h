@@ -17,7 +17,7 @@ public:
 	PlayerHealthDisplayComponent& operator=(PlayerHealthDisplayComponent&& other) = delete;
 
 private:
-	std::vector<bew::GameObject*> m_DisplayObjects;
+	std::vector<bew::GameObject*> m_pDisplayObjects;
 	int m_Health;
 };
 

@@ -4,8 +4,6 @@
 namespace bew
 {
 	class GameObject;
-	//this should become something the user can add things to
-	//todo add more events
 	enum class GameEvents
 	{
 		PlayerDied,

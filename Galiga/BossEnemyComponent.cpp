@@ -168,14 +168,13 @@ BossEnemyComponent::BossEnemyComponent(bew::GameObject* pParentObject, CaptureBe
 	m_Type = EnemyTypes::Boss;
 	m_AmountPointsDiving = 400;
 	m_AmountPointsFormation = 150;
-
 }
 
 void BossEnemyComponent::ResetEnemy()
 {
-	delete m_States;
-	m_States = new FlyIn;
-	m_States->OnEnter(this);
+	delete m_pStates;
+	m_pStates = new FlyIn;
+	m_pStates->OnEnter(this);
 	GetParentObject()->GetComponent<bew::SpriteSheetComponent>()->SetSprite(0, 0);
 	GetParentObject()->GetComponent<bew::AnimatorComponent>()->SwitchAnimation(0, true);
 	GetParentObject()->GetComponent<HealthComponent>()->SetLifes(2);

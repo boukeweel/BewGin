@@ -138,7 +138,6 @@ EnemyStates* Attacking::Update(EnemyComponent* component)
 		if (m_CurrentWayPoint == static_cast<int>(m_Path->size() / 2) && m_AllowedToShoot)
 			component->Shoot();
 	}
-
 	if (m_CurrentWayPoint < static_cast<int>(m_Path->size()))
 	{
 		const glm::vec2 wayPointPosition = m_DiveStartPos + (*m_Path)[m_CurrentWayPoint];
@@ -181,7 +180,7 @@ void AttackingBee::OnEnter(EnemyComponent* component)
 	auto parentObject{ component->GetParentObject() };
 	parentObject->SetParrent(nullptr, true);
 
-	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
+	m_Path = component->GetAttackingPath(component->GetCurrentAttackingPath());
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
 
@@ -206,7 +205,7 @@ void AttackingButterFly::OnEnter(EnemyComponent* component)
 	auto parentObject{ component->GetParentObject() };
 	parentObject->SetParrent(nullptr, true);
 
-	m_Path = component->GetAttackingPath(component->GetAttackingPathIndex());
+	m_Path = component->GetAttackingPath(component->GetCurrentAttackingPath());
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
 	component->SetIsDiving(true);
@@ -233,9 +232,8 @@ void AttackingBoss::OnEnter(EnemyComponent* component)
 	auto parentObject{ component->GetParentObject() };
 	parentObject->SetParrent(nullptr, true);
 
-	int attackPath = component->GetAttackingPathIndex();
+	int attackPath = component->GetCurrentAttackingPath();
 	m_Path = component->GetAttackingPath(attackPath);
-
 
 	m_DiveStartPos = parentObject->GetWorldPosition();
 	component->SetIsDiving(true);
@@ -245,10 +243,9 @@ void AttackingBoss::OnEnter(EnemyComponent* component)
 		FindEscoretButterFlies(component);
 		m_BeamAttack = false;
 	}
-	else
-	{
+	else 
 		m_BeamAttack = true;
-	}
+	
 
 	int AbleToShootRnd = bew::RandomFunctions::RandomI(3);
 	if (AbleToShootRnd == 2)
@@ -299,7 +296,7 @@ void AttackingBoss::FindEscoretButterFlies(EnemyComponent* component)
 		if (enemycomp->GetIsDiving() == false)
 		{
 			enemycomp->SetAbleToAttack(true);
-			enemycomp->SetAttackingPath(component->GetAttackingPathIndex() + 2);
+			enemycomp->SetAttackingPath(component->GetCurrentAttackingPath() + 2);
 		}
 	}
 }
@@ -370,10 +367,7 @@ EnemyStates* AttackingBossBeam::Update(EnemyComponent* component)
 	{
 		auto beam = component->GetCaptureBeam();
 		if(beam->GetFinsihed())
-		{
 			m_Capturing = false;
-		}
-
 		return nullptr;
 	}
 	else

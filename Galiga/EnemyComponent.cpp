@@ -125,7 +125,7 @@ void EnemyComponent::CreatePaths()
 }
 
 EnemyComponent::EnemyComponent(bew::GameObject* pParentObject)
-: Component(pParentObject),m_States{new FlyIn()}, m_speed{400}
+: Component(pParentObject),m_pStates{new FlyIn()}, m_speed{400}
 {
 	m_pPlayers = GameEntityData::GetInstance().GetPlayers();
 
@@ -148,8 +148,8 @@ void EnemyComponent::CreateBullet()
 
 void EnemyComponent::ResetEnemy()
 {
-	delete m_States;
-	m_States = new FlyIn;
+	delete m_pStates;
+	m_pStates = new FlyIn;
 }
 
 void EnemyComponent::FixedUpdate()
@@ -167,22 +167,22 @@ void EnemyComponent::Render() const
 #if NDEBUG
 	return;
 #else
-	m_States->Render();
+	m_pStates->Render();
 #endif
 }
 
 void EnemyComponent::HandelStates()
 {
-	EnemyStates* state = m_States->Update(this);
+	EnemyStates* state = m_pStates->Update(this);
 
 	if(state != nullptr)
 	{
-		m_States->OnExit(this);
+		m_pStates->OnExit(this);
 
-		delete m_States;
-		m_States = state;
+		delete m_pStates;
+		m_pStates = state;
 
-		m_States->OnEnter(this);
+		m_pStates->OnEnter(this);
 	}
 }
 
@@ -212,7 +212,6 @@ void EnemyComponent::CheckInHitBox()
 						bulletPoolComp->SetInUse(false);
 						bullet->SetIsActive(false);
 						GameData::GetInstance().ShotHit();
-
 						TakeDamages(Player);
 					}
 				}
@@ -231,7 +230,6 @@ void EnemyComponent::SpawnExplosion()
 void EnemyComponent::SetFormationPosition(FormationComponent* formation,glm::vec3 posIndex)
 {
 	m_pFormation = formation;
-
 	m_PositionIndex = posIndex;
 }
 
@@ -246,7 +244,7 @@ glm::vec3 EnemyComponent::GetFormationTargetPosition() const
 
 void EnemyComponent::StartAndSetActive()
 {
-	m_States->OnEnter(this);
+	m_pStates->OnEnter(this);
 	GetParentObject()->SetIsActive(true);
 }
 
@@ -258,6 +256,6 @@ void EnemyComponent::SetAbleToAttack(bool ableToAttack)
 
 EnemyComponent::~EnemyComponent()
 {
-	delete m_States;
-	m_States = nullptr;
+	delete m_pStates;
+	m_pStates = nullptr;
 }

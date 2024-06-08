@@ -15,9 +15,7 @@
 #include "SceneManager.h"
 
 
-EnemySpawnerComponent::EnemySpawnerComponent(bew::GameObject* pParentObject):Component(pParentObject)
-{
-}
+EnemySpawnerComponent::EnemySpawnerComponent(bew::GameObject* pParentObject):Component(pParentObject){}
 
 void EnemySpawnerComponent::AddLevel(const std::string& levelName)
 {
@@ -55,17 +53,14 @@ void EnemySpawnerComponent::Update()
 
 void EnemySpawnerComponent::SpawnEnemies()
 {
-    if (m_Enemies.size() != 0)
+    if (!m_Enemies.empty())
     {
         m_TimeWave += bew::GameTime::GetDeltaTimeFloat();
         if (m_TimeWave >= m_WaveDelay && !m_SpawningWave)
         {
             m_SpawningWave = true;
-
             m_ChosenPath = (m_ChosenPath + 1) % 4;
-
             m_TimeWave = 0;
-
         }
 
         if (m_SpawningWave)
@@ -75,6 +70,7 @@ void EnemySpawnerComponent::SpawnEnemies()
             {
                 const int enemyCount = static_cast<int>(m_Enemies.size());
                 int RandomEnemy = bew::RandomFunctions::RandomI(0, enemyCount - 1);
+
                 auto comp = m_Enemies[RandomEnemy]->GetComponent<EnemyComponent>();
                 comp->SetForamationPath(m_ChosenPath);
                 comp->StartAndSetActive();
@@ -138,6 +134,7 @@ void EnemySpawnerComponent::LoadFormationFile()
 void EnemySpawnerComponent::AddBoss(glm::vec3 pos)
 {
     bew::GameObject* SelectBoss = nullptr;
+    //find if A enmey is available 
     for (auto boss : m_Bosses)
     {
         if (!boss->GetComponent<PoolComponent>()->InUse())
@@ -166,6 +163,7 @@ void EnemySpawnerComponent::AddBoss(glm::vec3 pos)
 void EnemySpawnerComponent::AddBee(glm::vec3 pos)
 {
     bew::GameObject* SelectBee = nullptr;
+    //find if A enmey is available 
     for (auto bee : m_Bees)
     {
         if (!bee->GetComponent<PoolComponent>()->InUse())
@@ -194,6 +192,7 @@ void EnemySpawnerComponent::AddBee(glm::vec3 pos)
 void EnemySpawnerComponent::AddButterFly(glm::vec3 pos)
 {
     bew::GameObject* SelectButterfly = nullptr;
+    //find if A enmey is available 
     for (auto butterFly : m_ButterFlies)
     {
         if (!butterFly->GetComponent<PoolComponent>()->InUse())
@@ -224,10 +223,12 @@ void EnemySpawnerComponent::SetupEnemy(bew::GameObject* enemy, const glm::vec3& 
     auto EnemyComp = enemy->GetComponent<EnemyComponent>();
     EnemyComp->SetFormationPosition(GetParentObject()->GetComponent<FormationComponent>(), pos);
     enemy->GetComponent<PoolComponent>()->SetInUse(true);
+
     if (pos.x <= 5)
         EnemyComp->SetAttackSide(0);
     else
         EnemyComp->SetAttackSide(1);
+
     enemy->SetIsActive(false);
     enemy->SetParrent(nullptr);
     EnemyComp->ResetEnemy();

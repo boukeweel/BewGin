@@ -27,7 +27,7 @@ SelectOption::SelectOption(bew::GameObject* TargetObject) : m_pTargetObject{Targ
 
 void SelectOption::Execute()
 {
-	m_pTargetObject->GetComponent<UiArrowComponent>()->Selcet();
+	m_pTargetObject->GetComponent<UiArrowComponent>()->Select();
 }
 
 //scoreboard Commands

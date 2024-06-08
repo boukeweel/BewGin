@@ -102,15 +102,6 @@
     <ClInclude Include="Command.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiTrashTheCacheComponent.h">
-      <Filter>GameObject\Components\AssigmentComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="RotatorComponent.h">
-      <Filter>GameObject\Components\AssigmentComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="FpsComponent.h">
-      <Filter>GameObject\Components\AssigmentComponents</Filter>
-    </ClInclude>
     <ClInclude Include="GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -211,15 +202,6 @@
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
       <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiTrashTheCacheComponent.cpp">
-      <Filter>GameObject\Components\AssigmentComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="RotatorComponent.cpp">
-      <Filter>GameObject\Components\AssigmentComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="FpsComponent.cpp">
-      <Filter>GameObject\Components\AssigmentComponents</Filter>
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
       <Filter>Source Files</Filter>

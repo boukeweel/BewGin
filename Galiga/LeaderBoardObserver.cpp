@@ -1,6 +1,6 @@
 #include "LeaderBoardObserver.h"
 
-LeaderBoardObserver::LeaderBoardObserver(LeaderBoardComponent* pLeaderBoardComponent) : m_LeaderBoard{pLeaderBoardComponent}
+LeaderBoardObserver::LeaderBoardObserver(LeaderBoardComponent* pLeaderBoardComponent) : m_pLeaderBoard{pLeaderBoardComponent}
 {
 	
 }
@@ -8,10 +8,6 @@ LeaderBoardObserver::LeaderBoardObserver(LeaderBoardComponent* pLeaderBoardCompo
 
 void LeaderBoardObserver::Notify(bew::GameEvents event, bew::GameObject*)
 {
-	switch (event)
-	{
-	case bew::GameEvents::UpdateLeaderBoard:
-		m_LeaderBoard->UpdateLeaderBoared();
-		break;
-	}
+	if(event == bew::GameEvents::UpdateLeaderBoard)
+		m_pLeaderBoard->UpdateLeaderBoard();
 }

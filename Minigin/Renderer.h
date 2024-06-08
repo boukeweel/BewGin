@@ -12,9 +12,9 @@ namespace bew
 	 */
 	class Renderer final : public Singleton<Renderer>
 	{
-		SDL_Renderer* m_renderer{};
-		SDL_Window* m_window{};
-		SDL_Color m_clearColor{};
+		SDL_Renderer* m_pRenderer{};
+		SDL_Window* m_pWindow{};
+		SDL_Color m_pClearColor{};
 
 	public:
 		void Init(SDL_Window* window);
@@ -31,8 +31,8 @@ namespace bew
 
 		SDL_Renderer* GetSDLRenderer() const;
 
-		const SDL_Color& GetBackgroundColor() const { return m_clearColor; }
-		void SetBackgroundColor(const SDL_Color& color) { m_clearColor = color; }
+		const SDL_Color& GetBackgroundColor() const { return m_pClearColor; }
+		void SetBackgroundColor(const SDL_Color& color) { m_pClearColor = color; }
 	};
 }
 

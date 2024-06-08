@@ -6,11 +6,11 @@
 #include "RandomFunctions.h"
 #include "SpriteSheetComponent.h"
 
-StarComponent::StarComponent(bew::GameObject* pParentObject, int Width) : Component(pParentObject), m_Width{Width}
+StarComponent::StarComponent(bew::GameObject* pParentObject, int Width) : Component(pParentObject), m_ScreenWidth{Width}
 {
 	ResetStar();
 
-	int randomWidth = bew::RandomFunctions::RandomI(m_Width);
+	int randomWidth = bew::RandomFunctions::RandomI(m_ScreenWidth);
 	int randomHeight = bew::RandomFunctions::RandomI(bew::ScreenHeight);
 	GetParentObject()->SetPosition(static_cast<float>(randomWidth), static_cast<float>(randomHeight));
 }
@@ -37,7 +37,7 @@ void StarComponent::ResetStar()
 
 void StarComponent::ResetPostion()
 {
-	int randomWidth = bew::RandomFunctions::RandomI(m_Width);
+	int randomWidth = bew::RandomFunctions::RandomI(m_ScreenWidth);
 	GetParentObject()->SetPosition(static_cast<float>(randomWidth), -10);
 }
 

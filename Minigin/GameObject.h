@@ -76,11 +76,8 @@ namespace bew
 		}
 
 		GameObject();
-
-		//copy operator
-		GameObject(const GameObject& other) = delete;
-
 		~GameObject() = default;
+		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;

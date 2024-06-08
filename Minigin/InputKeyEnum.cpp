@@ -29,5 +29,9 @@ namespace bew
 		Num8,
 		Num9,
 		Num0,
+
+		F1,
+		F2,
+		F3,
 	};
 }
