@@ -9,7 +9,6 @@
 class FormationComponent;
 
 
-//todo clean this class up it a mess
 class EnemyComponent :
     public bew::Component
 {

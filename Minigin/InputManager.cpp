@@ -87,15 +87,3 @@ void bew::CommandInfo::TryExecutedControllerButton(ButtonState checkState, int c
 
 	m_Command->Execute();
 }
-
-void bew::CommandInfo::TryExecutedControllerAxis(int controllerIndex, DWORD axis) const
-{
-	if (!m_Action.HasControllerAxis(axis))
-		return;
-
-	if (m_ControllerIndex != controllerIndex)
-		return;
-
-	m_Command->Execute();
-
-}

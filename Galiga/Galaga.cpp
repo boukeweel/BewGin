@@ -30,28 +30,28 @@ void AddTestingInputs()
 {
 	auto& input = bew::InputManager::GetInstance();
 
-	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_UP}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_DOWN}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_LEFT}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { { SDL_SCANCODE_RIGHT}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_UP}, {} });
+	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_DOWN}, {} });
+	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_LEFT}, {} });
+	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { { SDL_SCANCODE_RIGHT}, {} });
 
-	input.AddInput(bew::ActionKeys::ActionKeyOneKeyBoard, { {SDL_SCANCODE_Z}, {}, {} });
-	input.AddInput(bew::ActionKeys::ActionKeyTwoKeyBoard, { {SDL_SCANCODE_X}, {}, {} });
+	input.AddInput(bew::ActionKeys::ActionKeyOneKeyBoard, { {SDL_SCANCODE_Z}, {} });
+	input.AddInput(bew::ActionKeys::ActionKeyTwoKeyBoard, { {SDL_SCANCODE_X}, {} });
 
-	input.AddInput(bew::ActionKeys::DpadUp, { {}, {XINPUT_GAMEPAD_DPAD_UP}, {} });
-	input.AddInput(bew::ActionKeys::DpadDown, { {}, {XINPUT_GAMEPAD_DPAD_DOWN}, {} });
-	input.AddInput(bew::ActionKeys::DpadLeft, { {}, {XINPUT_GAMEPAD_DPAD_LEFT}, {} });
-	input.AddInput(bew::ActionKeys::DpadRight, { {}, {XINPUT_GAMEPAD_DPAD_RIGHT}, {} });
+	input.AddInput(bew::ActionKeys::DpadUp, { {}, {XINPUT_GAMEPAD_DPAD_UP} });
+	input.AddInput(bew::ActionKeys::DpadDown, { {}, {XINPUT_GAMEPAD_DPAD_DOWN} });
+	input.AddInput(bew::ActionKeys::DpadLeft, { {}, {XINPUT_GAMEPAD_DPAD_LEFT}, });
+	input.AddInput(bew::ActionKeys::DpadRight, { {}, {XINPUT_GAMEPAD_DPAD_RIGHT} });
 
-	input.AddInput(bew::ActionKeys::DpadA, { {}, {XINPUT_GAMEPAD_A}, {} });
-	input.AddInput(bew::ActionKeys::DpadX, { {}, {XINPUT_GAMEPAD_X}, {} });
+	input.AddInput(bew::ActionKeys::DpadA, { {}, {XINPUT_GAMEPAD_A} });
+	input.AddInput(bew::ActionKeys::DpadX, { {}, {XINPUT_GAMEPAD_X}});
 
-	input.AddInput(bew::ActionKeys::Num0, { {SDL_SCANCODE_0}, {}, {} });
-	input.AddInput(bew::ActionKeys::Num1, { {SDL_SCANCODE_1}, {}, {} });
-	input.AddInput(bew::ActionKeys::Num9, { {SDL_SCANCODE_9}, {}, {} });
+	input.AddInput(bew::ActionKeys::Num0, { {SDL_SCANCODE_0}, {} });
+	input.AddInput(bew::ActionKeys::Num1, { {SDL_SCANCODE_1}, {}});
+	input.AddInput(bew::ActionKeys::Num9, { {SDL_SCANCODE_9}, {} });
 
-	input.AddInput(bew::ActionKeys::F1, { {SDL_SCANCODE_F1}, {}, {} });
-	input.AddInput(bew::ActionKeys::F2, { {SDL_SCANCODE_F2}, {}, {} });
+	input.AddInput(bew::ActionKeys::F1, { {SDL_SCANCODE_F1}, {} });
+	input.AddInput(bew::ActionKeys::F2, { {SDL_SCANCODE_F2}, {}});
 }
 
 void LoadInAudio()
@@ -62,7 +62,6 @@ void LoadInAudio()
 	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::LoggingSDLSoundSystem>(std::make_unique<bew::SDLSoundSystem>()));
 #endif
 
-	//todo load in via thread
 	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_shot.wav")));
 	bew::SoundServiceLocator::GetSoundSystem().AddClip(1, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_destroyed.wav")));
 	bew::SoundServiceLocator::GetSoundSystem().AddClip(2, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_destroyed2.wav")));

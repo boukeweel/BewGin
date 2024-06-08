@@ -7,8 +7,6 @@ ScoreComponent::ScoreComponent(bew::GameObject* pparentObject) : Component(ppare
 {
 }
 
-//this can be done better maybe in diffrent class that the components that need it can inherit from
-//todo ^
 void ScoreComponent::notifySubject(bew::GameEvents event, bew::GameObject* object)
 {
 	object->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(event, object);

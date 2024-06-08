@@ -38,7 +38,6 @@ void StartMenuScene::Load()
 	oneUptxt->SetPosition(50, 10);
 	oneUptxt->AddComponent<bew::TextComponent>("1UP", fontTxt, SDL_Color{ 255,0,0,255 });
 
-	//todo get previus score
 	auto oneUpscore = std::make_unique<bew::GameObject>();
 	oneUpscore->SetPosition(100, 30);
 	oneUpscore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP1()), fontTxt);
@@ -47,7 +46,6 @@ void StartMenuScene::Load()
 	highScoretxt->SetPosition(250, 10);
 	highScoretxt->AddComponent<bew::TextComponent>("HI-SCORE", fontTxt, SDL_Color{ 255,0,0,255 });
 
-	//todo get high score
 	auto highScoreScore = std::make_unique<bew::GameObject>();
 	highScoreScore->SetPosition(275, 30);
 	highScoreScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHighScore()), fontTxt);
@@ -71,7 +69,6 @@ void StartMenuScene::Load()
 	PlayerOne->SetPosition(225, 300);
 	PlayerOne->AddComponent<bew::TextComponent>("1 PLAYER", fontTxt);
 
-	//todo get high score
 	auto PlayerTwo = std::make_unique<bew::GameObject>();
 	PlayerTwo->SetPosition(225, 330);
 	PlayerTwo->AddComponent<bew::TextComponent>("2 PLAYERS", fontTxt);

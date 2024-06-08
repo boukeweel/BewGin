@@ -15,14 +15,10 @@ namespace bew
 {
 	enum class ActionKeys;
 
-	//todo rewrite this its to mutch form julian
 	struct InputAction
 	{
 		std::vector<SDL_Scancode> keyBoardkeys;
 		std::vector <WORD> ControllerButtons;
-
-		//for stick controls not inplement yet, and not sure if need for galica 
-		std::vector <DWORD> ControllerAxis;
 
 		bool HasKeyboardKey(SDL_Scancode compareKey) const
 		{
@@ -33,17 +29,11 @@ namespace bew
 			return std::find(ControllerButtons.begin(), ControllerButtons.end(), compareButton) != ControllerButtons.end();
 		}
 
-		bool HasControllerAxis(DWORD compareAxis) const
-		{
-			return std::find(ControllerAxis.begin(), ControllerAxis.end(), compareAxis) != ControllerAxis.end();
-		}
-
 		bool operator==(const InputAction& other) const {
 
 			//first check if the size is the same if not its not the same inputaction
 			if(keyBoardkeys.size() != other.keyBoardkeys.size()
-				|| ControllerButtons.size() != other.ControllerButtons.size()
-				|| ControllerAxis.size() != other.ControllerAxis.size())
+				|| ControllerButtons.size() != other.ControllerButtons.size())
 			{
 				return false;
 			}
@@ -65,14 +55,6 @@ namespace bew
 					}
 				}
 			}
-			if (!ControllerAxis.empty())
-			{
-				for (size_t i = 0; i < ControllerAxis.size(); ++i) {
-					if (ControllerAxis[i] != other.ControllerAxis[i]) {
-						return false;
-					}
-				}
-			}
 
 			return true;
 		}
@@ -85,7 +67,6 @@ namespace bew
 	};
 	struct CommandInfo
 	{
-		//not sure why I need this but other wise I get MoveLeftKeyBoard error in the galiga project, even tho I did not get one when minigin was the exe
 		CommandInfo(ButtonState buttonState, int controllerIndex, const InputAction& action, std::unique_ptr<Command> command)
 			: m_ButtonState(buttonState), m_ControllerIndex(controllerIndex), m_Action(action), m_Command(std::move(command))
 		{
@@ -98,7 +79,6 @@ namespace bew
 
 		void TryExecutedKeyBoard(ButtonState checkState, SDL_Scancode key) const;
 		void TryExecutedControllerButton(ButtonState checkState, int controllerIndex, WORD button) const;
-		void TryExecutedControllerAxis(int controllerIndex, DWORD axis) const;
 	};
 
 	class InputManager final : public Singleton<InputManager>
