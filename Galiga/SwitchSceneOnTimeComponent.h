@@ -9,6 +9,10 @@ public:
 
 	void Update() override;
 
+	void StartTimer() { m_Start = true; }
+
+	void StartTwoPlayers();
+
 	virtual ~SwitchSceneOnTimeComponent() = default;
 	SwitchSceneOnTimeComponent(const SwitchSceneOnTimeComponent& other) = delete;
 	SwitchSceneOnTimeComponent(SwitchSceneOnTimeComponent&& other) = delete;
@@ -18,5 +22,8 @@ private:
 	float m_TimeActive{ 10.f };
 	float m_Timer;
 	int m_TargetScene;
+
+	bool m_Start{ false };
+	int m_AmountCalled{ 0 };
 };
 

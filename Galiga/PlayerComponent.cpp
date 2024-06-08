@@ -102,7 +102,7 @@ void PlayerComponent::SuckUpAnimation()
 
 	glm::vec2 TargetPos;
 	TargetPos.x = m_pBeam->GetWorldPosition().x;
-	TargetPos.y = m_pBeam->GetWorldPosition().y - (static_cast<float>(m_pBeam->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y) - 50.f);
+	TargetPos.y = m_pBeam->GetWorldPosition().y - (static_cast<float>(m_pBeam->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y) - 20.f);
 
 	const glm::vec2 dist = TargetPos - glm::vec2(GetParentObject()->GetWorldPosition().x, GetParentObject()->GetWorldPosition().y);
 	const glm::vec2 velocity = glm::normalize(dist);

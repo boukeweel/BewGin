@@ -23,14 +23,12 @@ public:
 class NextScene final : public bew::Command
 {
 public:
-	NextScene(bew::GameObject* pTargetObject);
+	NextScene() = default;
 	void Execute() override;
 
 	NextScene(const NextScene& other) = delete;
 	NextScene(NextScene&& other) = delete;
 	NextScene& operator=(const NextScene& other) = delete;
 	NextScene& operator=(NextScene&& other) = delete;
-
-	bew::GameObject* m_pTargetObject;
 };
 

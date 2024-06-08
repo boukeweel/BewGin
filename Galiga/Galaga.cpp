@@ -49,6 +49,9 @@ void AddTestingInputs()
 	input.AddInput(bew::ActionKeys::Num0, { {SDL_SCANCODE_0}, {}, {} });
 	input.AddInput(bew::ActionKeys::Num1, { {SDL_SCANCODE_1}, {}, {} });
 	input.AddInput(bew::ActionKeys::Num9, { {SDL_SCANCODE_9}, {}, {} });
+
+	input.AddInput(bew::ActionKeys::F1, { {SDL_SCANCODE_F1}, {}, {} });
+	input.AddInput(bew::ActionKeys::F2, { {SDL_SCANCODE_F2}, {}, {} });
 }
 
 void LoadInAudio()

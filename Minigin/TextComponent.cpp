@@ -63,11 +63,6 @@ void bew::TextComponent::SetFont(std::shared_ptr<Font> font)
 	m_NeedsUpdate = true;
 }
 
-void bew::TextComponent::SetFontSize(unsigned int size)
-{
-	m_pFont->ChangeSize(size);
-}
-
 void bew::TextComponent::SetColor(SDL_Color color)
 {
 	m_Color = color;

@@ -5,17 +5,23 @@
 
 #include "GameData.h"
 #include "GameObject.h"
+#include "InputManager.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "Scene.h"
 #include "SpriteSheetComponent.h"
 #include "StarComponent.h"
+#include "SwitchLevelSceneCommands.h"
 #include "SwitchSceneOnTimeComponent.h"
 #include "TextComponent.h"
+#include <InputKeyEnum.cpp>
 
 void ShotDataScene::Load()
 {
+	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
+
+	input.AddCommand(bew::ActionKeys::F2, bew::ButtonState::Up, std::make_unique<NextScene>());
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 14);
 
@@ -54,10 +60,6 @@ void ShotDataScene::Load()
 	twoUpScore->SetPosition(530, 30);
 	twoUpScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetCurrentScoreP2()), fontTxt);
 
-	auto timerObj = std::make_unique<bew::GameObject>();
-	timerObj->AddComponent<SwitchSceneOnTimeComponent>(3);
-	scene.Add(std::move(timerObj));
-
 	auto Resulttxt = std::make_unique<bew::GameObject>();
 	Resulttxt->SetPosition(230, 200);
 	Resulttxt->AddComponent<bew::TextComponent>("- RESULTS -", fontTxt, SDL_Color{ 255,0,0,255 });
@@ -85,6 +87,13 @@ void ShotDataScene::Load()
 	auto HitMisScore = std::make_unique<bew::GameObject>();
 	HitMisScore->SetPosition(400, 320);
 	HitMisScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHitMisRatio()) + "%", fontTxt, SDL_Color{ 255,224,0,255 });
+
+
+	//timer
+	auto timerObj = std::make_unique<bew::GameObject>();
+	auto comp = timerObj->AddComponent<SwitchSceneOnTimeComponent>(3, 5.f);
+	comp->StartTimer();
+	scene.Add(std::move(timerObj));
 
 	scene.Add(std::move(oneUptxt));
 	scene.Add(std::move(oneUpscore));

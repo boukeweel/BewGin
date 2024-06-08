@@ -11,7 +11,6 @@
 #include "PoolComponent.h"
 #include "RandomFunctions.h"
 #include "ResourceManager.h"
-#include "Scene.h"
 #include "SceneManager.h"
 
 
@@ -25,6 +24,13 @@ void EnemySpawnerComponent::AddLevel(const std::string& levelName)
 void EnemySpawnerComponent::NextLevel()
 {
     m_CurrentLevel++;
+
+    //turn off all enemies
+    for (auto& Enemy : *GameEntityData::GetInstance().GetEnemies())
+    {
+        Enemy->SetIsActive(false);
+        Enemy->GetComponent<PoolComponent>()->SetInUse(false);
+    }
 
     if(m_CurrentLevel > static_cast<int>(m_levels.size() - 1))
     {

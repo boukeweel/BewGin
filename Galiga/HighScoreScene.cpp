@@ -17,12 +17,16 @@
 #include "LeaderBoardComponent.h"
 #include "LeaderBoardObserver.h"
 #include "SubjectComponent.h"
+#include "SwitchLevelSceneCommands.h"
+#include "SwitchSceneOnTimeComponent.h"
 #include "UiCommands.h"
 
 void HighScoreScene::Load()
 {
 	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
+
+	input.AddCommand(bew::ActionKeys::F2, bew::ButtonState::Up, std::make_unique<NextScene>());
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 14);
 
@@ -35,9 +39,8 @@ void HighScoreScene::Load()
 		scene.Add(std::move(Star));
 	}
 
-	/*auto timerObj = std::make_unique<bew::GameObject>();
-	timerObj->AddComponent<SwitchSceneOnTimeComponent>(0);
-	scene.Add(std::move(timerObj));*/
+	auto timerObj = std::make_unique<bew::GameObject>();
+	auto SwitchComp = timerObj->AddComponent<SwitchSceneOnTimeComponent>(0, 5.f);
 
 	auto oneUptxt = std::make_unique<bew::GameObject>();
 	oneUptxt->SetPosition(50,10);
@@ -73,7 +76,7 @@ void HighScoreScene::Load()
 	InitialsTxtP1->AddComponent<bew::TextComponent>("AAA", fontTxt, SDL_Color{ 255,224,0,255 });
 	InitialsTxtP1->AddComponent<InitialsComponent>();
 	auto subjectP1= InitialsTxtP1->AddComponent<bew::SubjectComponent>();
-	subjectP1->GetSubject()->AddObserver(std::make_unique<LeaderBoardObserver>(leadboardcomp));
+	subjectP1->GetSubject()->AddObserver(std::make_unique<LeaderBoardObserver>(leadboardcomp, SwitchComp));
 
 	auto P1TxtInitails = std::make_unique <bew::GameObject>();
 	P1TxtInitails->AddComponent<bew::TextComponent>("1UP", fontTxt, SDL_Color{ 255,0,0,255 });
@@ -84,7 +87,7 @@ void HighScoreScene::Load()
 		InitialsTxtP2->AddComponent<bew::TextComponent>("AAA", fontTxt, SDL_Color{ 255,224,0,255 });
 		InitialsTxtP2->AddComponent<InitialsComponent>(false);
 		auto subjectP2 = InitialsTxtP2->AddComponent<bew::SubjectComponent>();
-		subjectP2->GetSubject()->AddObserver(std::make_unique<LeaderBoardObserver>(leadboardcomp));
+		subjectP2->GetSubject()->AddObserver(std::make_unique<LeaderBoardObserver>(leadboardcomp, SwitchComp));
 
 		InitialsTxtP2->SetPosition(380, 90);
 
@@ -136,7 +139,7 @@ void HighScoreScene::Load()
 	scene.Add(std::move(NoTxt));
 	scene.Add(std::move(ScoreTxt));
 	scene.Add(std::move(IniTxt));
-	
+	scene.Add(std::move(timerObj));
 
 }
 

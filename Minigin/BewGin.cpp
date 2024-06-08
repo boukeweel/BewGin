@@ -7,15 +7,12 @@
 #include <thread> 
 #include "BewGin.h"
 
-#include <iostream>
-
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "chrono"
 #include "GameTime.h"
-#include "ImGuiTrashTheCacheComponent.h"
 #include "RandomFunctions.h"
 
 

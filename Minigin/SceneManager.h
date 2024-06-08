@@ -24,6 +24,10 @@ namespace bew
 		{
 			m_DiserdScene = scene;
 			m_NeedSwitch = true;
+			if (m_DiserdScene > static_cast<int>(m_pScenes.size() - 1))
+			{
+				m_DiserdScene = 0;
+			}
 		}
 		void ExecuteSceneSwitch()
 		{

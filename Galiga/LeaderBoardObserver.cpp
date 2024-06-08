@@ -1,6 +1,8 @@
 #include "LeaderBoardObserver.h"
 
-LeaderBoardObserver::LeaderBoardObserver(LeaderBoardComponent* pLeaderBoardComponent) : m_pLeaderBoard{pLeaderBoardComponent}
+#include "GameData.h"
+
+LeaderBoardObserver::LeaderBoardObserver(LeaderBoardComponent* pLeaderBoardComponent, SwitchSceneOnTimeComponent* pSwitchSceneComponent) : m_pLeaderBoard{pLeaderBoardComponent}, m_pSwitchScene{pSwitchSceneComponent}
 {
 	
 }
@@ -9,5 +11,8 @@ LeaderBoardObserver::LeaderBoardObserver(LeaderBoardComponent* pLeaderBoardCompo
 void LeaderBoardObserver::Notify(bew::GameEvents event, bew::GameObject*)
 {
 	if(event == bew::GameEvents::UpdateLeaderBoard)
+	{
 		m_pLeaderBoard->UpdateLeaderBoard();
+		m_pSwitchScene->StartTwoPlayers();
+	}
 }

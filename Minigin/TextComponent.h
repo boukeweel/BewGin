@@ -21,7 +21,6 @@ namespace bew
 		void SetText(const std::string& text);
 		void SetPosition(float x, float y);
 		void SetFont(std::shared_ptr<Font> font);
-		void SetFontSize(unsigned int size);
 		void SetColor(SDL_Color color);
 
 		std::string getText() { return m_Text; }

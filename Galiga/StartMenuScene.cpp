@@ -14,11 +14,14 @@
 #include <InputKeyEnum.cpp>
 
 #include "GameData.h"
+#include "SwitchLevelSceneCommands.h"
 
 void StartMenuScene::Load()
 {
 	auto& input = bew::InputManager::GetInstance();
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
+
+	input.AddCommand(bew::ActionKeys::F2, bew::ButtonState::Up, std::make_unique<NextScene>());
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 14);
 

@@ -29,6 +29,7 @@
 #include "SpriteSheetComponent.h"
 #include "StarComponent.h"
 #include "SubjectComponent.h"
+#include "SwitchLevelSceneCommands.h"
 
 void GaligaScene::Load()
 {
@@ -36,6 +37,8 @@ void GaligaScene::Load()
 	auto& scene = bew::SceneManager::GetInstance().GetCurrentScene();
 
 	auto fontTxt = bew::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 14);
+
+	input.AddCommand(bew::ActionKeys::F2, bew::ButtonState::Up, std::make_unique<NextScene>());
 
 	ExplotionPreset explosionPreset;
 	for (int i = 0; i < 3; ++i)
@@ -75,6 +78,8 @@ void GaligaScene::Load()
 	enemiesSpawner->AddLevel("Formations/Formation1.txt");
 	enemiesSpawner->AddLevel("Formations/Formation2.txt");
 	enemiesSpawner->AddLevel("Formations/Formation3.txt");
+
+	input.AddCommand(bew::ActionKeys::F1, bew::ButtonState::Up, std::make_unique<NextWave>(EnemyHandlerObject.get()));
 	
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");
