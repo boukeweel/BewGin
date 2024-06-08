@@ -169,7 +169,7 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="SwitchLevelSceneCommands.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,7 +288,7 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SwitchLevelSceneCommands.h">
-      <Filter>Source Files\Header Files</Filter>
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

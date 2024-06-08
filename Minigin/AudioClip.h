@@ -21,7 +21,7 @@ namespace bew {
         AudioClip& operator=(const AudioClip&&) = delete;
 
     private:
-        Mix_Chunk* m_chunk;
+        Mix_Chunk* m_pChunk;
         int m_Volume{};
     };
 }

@@ -139,7 +139,7 @@ namespace bew
 		}
 
 		class ControllerImpl;
-		std::unique_ptr<ControllerImpl> m_ControllerImpl;
+		std::unique_ptr<ControllerImpl> m_pControllerImpl;
 
 		bool HandelKeyBoardEvent(const SDL_Event& event) const;
 		void HandleKeyboardContinually() const;

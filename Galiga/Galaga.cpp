@@ -16,7 +16,6 @@
 #include "BeeEnemyComponent.h"
 #include "BossEnemyComponent.h"
 #include "ButterfliesEnemyComponent.h"
-#include "DemoScene.h"
 #include "EnemyComponent.h"
 #include "GaligaScene.h"
 #include "GameData.h"

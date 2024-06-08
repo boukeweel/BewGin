@@ -31,9 +31,6 @@
     <Filter Include="GameObject\Components">
       <UniqueIdentifier>{186527d0-f848-4a66-85b9-ceaf486fef7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Components\AssigmentComponents">
-      <UniqueIdentifier>{65b4e3fe-f858-4e21-a949-56a6fe50916e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{ffbd48f1-eccb-4075-b37f-ab76f315d3af}</UniqueIdentifier>
     </Filter>

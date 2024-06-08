@@ -19,8 +19,3 @@ bew::Font::~Font()
 {
 	TTF_CloseFont(m_pFont);
 }
-
-void bew::Font::ChangeSize(unsigned int /*newSize*/)
-{
-    //todo add the chance size function 
-}

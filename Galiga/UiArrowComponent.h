@@ -16,7 +16,6 @@ public:
 	UiArrowComponent(UiArrowComponent&& other) = delete;
 	UiArrowComponent& operator=(const UiArrowComponent& other) = delete;
 	UiArrowComponent& operator=(UiArrowComponent&& other) = delete;
-
 private:
 	const int m_SpaceBetween;
 	const int m_AmountOptions;

@@ -20,7 +20,6 @@ public:
 	InitialsComponent(InitialsComponent&& other) = delete;
 	InitialsComponent& operator=(const InitialsComponent& other) = delete;
 	InitialsComponent& operator=(InitialsComponent&& other) = delete;
-
 private:
 	void SetText();
 	void UpdateText();

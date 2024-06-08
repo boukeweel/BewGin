@@ -50,7 +50,6 @@ public:
 	void WriteToLeadBoard(int score,const std::string& initials);
 	void LoadLeaderBoard();
 	const std::vector<std::unique_ptr<HighScoreData>>* GetHighScoreList() const { return &m_HighScoreList; }
-
 private:
 	friend class Singleton<GameData>;
 	GameData() = default;

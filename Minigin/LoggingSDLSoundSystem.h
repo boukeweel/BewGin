@@ -8,7 +8,7 @@ namespace bew
 	{
 		
 	public:
-		LoggingSDLSoundSystem(std::unique_ptr<SoundSystem>&& soundSystem) : m_RealSoundSystem{std::move(soundSystem)}{}
+		LoggingSDLSoundSystem(std::unique_ptr<SoundSystem>&& soundSystem) : m_pRealSoundSystem{std::move(soundSystem)}{}
 		virtual ~LoggingSDLSoundSystem() = default;
 
 		void Play(sound_id id, int volume) override;
@@ -21,7 +21,7 @@ namespace bew
 		LoggingSDLSoundSystem& operator=(LoggingSDLSoundSystem&& other) = delete;
 
 	private:
-		std::unique_ptr<SoundSystem> m_RealSoundSystem;
+		std::unique_ptr<SoundSystem> m_pRealSoundSystem;
 	};
 }
 

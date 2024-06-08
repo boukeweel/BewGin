@@ -27,7 +27,6 @@ namespace bew
 		HitBoxComponent(HitBoxComponent&& other) = delete;
 		HitBoxComponent& operator=(const HitBoxComponent& other) = delete;
 		HitBoxComponent& operator=(HitBoxComponent&& other) = delete;
-
 	private:
 		bool m_DrawHitBox{ false };
 		SDL_Rect m_hitbox;

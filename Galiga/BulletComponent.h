@@ -19,7 +19,6 @@ public:
     BulletComponent(BulletComponent&& other) = delete;
     BulletComponent& operator=(const BulletComponent& other) = delete;
     BulletComponent& operator=(BulletComponent&& other) = delete;
-
 private:
     float m_Speed;
     glm::vec3 m_Direction{ 0,-1,0 };

@@ -1,7 +1,6 @@
 #include "HighScoreScene.h"
 
 #include <iomanip>
-#include <iostream>
 #include <SDL_pixels.h>
 
 #include "GameData.h"
@@ -15,8 +14,6 @@
 #include "StarComponent.h"
 #include "TextComponent.h"
 #include <InputKeyEnum.cpp>
-
-#include "HighScoreEntryComponent.h"
 #include "LeaderBoardComponent.h"
 #include "LeaderBoardObserver.h"
 #include "SubjectComponent.h"

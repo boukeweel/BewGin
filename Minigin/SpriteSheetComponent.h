@@ -17,7 +17,6 @@ namespace bew
 
 		void Render() const override;
 
-		
 		void SetSprite(int row, int column);
 
 		void SetSpriteOffset(const glm::vec2& offset) { m_SpriteOffset = offset; }

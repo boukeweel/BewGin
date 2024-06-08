@@ -35,7 +35,7 @@ namespace bew
 		void AddToCurrentScene(std::unique_ptr<GameObject> obj);
 		void LoadingInNewObjects();
 
-		Scene& GetCurrentScene() const { return *m_scenes[m_CurrentScene]; }
+		Scene& GetCurrentScene() const { return *m_pScenes[m_CurrentScene]; }
 		unsigned int GetCurrentSceneId() const { return m_CurrentScene; }
 
 		void FixedUpdate();
@@ -44,7 +44,7 @@ namespace bew
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_scenes;
+		std::vector<std::shared_ptr<Scene>> m_pScenes;
 
 		unsigned int m_CurrentScene{0};
 
@@ -53,6 +53,6 @@ namespace bew
 		int m_DiserdScene{ 0 };
 
 		//adding objects to the CurrentScene in run time
-		std::vector<std::unique_ptr<GameObject>> m_Objects;
+		std::vector<std::unique_ptr<GameObject>> m_pObjects;
 	};
 }

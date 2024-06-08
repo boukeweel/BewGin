@@ -80,12 +80,12 @@ namespace bew
     };
 }
 
-bew::InputManager::InputManager() : m_ControllerImpl{std::make_unique<ControllerImpl>()}{}
+bew::InputManager::InputManager() : m_pControllerImpl{std::make_unique<ControllerImpl>()}{}
 
 bew::InputManager::~InputManager() = default;
 
 void bew::InputManager::HandleControllerContinually() 
 {
-    m_ControllerImpl->HandleControllerContinually(m_Commands);
+    m_pControllerImpl->HandleControllerContinually(m_Commands);
 }
 
