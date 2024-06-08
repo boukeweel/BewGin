@@ -75,6 +75,10 @@ void PlayerComponent::CheckCollision()
 
 				PlayerGotHit();
 			}
+			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Enemy->GetComponent<EnemyComponent>()->GetBullet()))
+			{
+				PlayerGotHit();
+			}
 		}
 	}
 }

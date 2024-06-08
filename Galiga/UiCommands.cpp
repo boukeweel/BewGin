@@ -1,6 +1,8 @@
 #include "UiCommands.h"
 
 #include "InitialsComponent.h"
+#include "SoundServiceLocator.h"
+#include "TextComponent.h"
 #include "UiArrowComponent.h"
 
 ArrowMove::ArrowMove(bew::GameObject* TargetObject, const glm::vec3& Direction) :m_pTargetObject{TargetObject},m_Direction(Direction)
@@ -74,5 +76,23 @@ void InitialFinish::Execute()
 	if (comp)
 	{
 		comp->Finish();
+	}
+}
+
+MuteUnmuteCommand::MuteUnmuteCommand(bew::GameObject* TargetObject) : m_pTargetObject{TargetObject}
+{}
+
+void MuteUnmuteCommand::Execute()
+{
+	auto& audioSystem = bew::SoundServiceLocator::GetSoundSystem();
+
+	audioSystem.MuteUnmute();
+	if(audioSystem.GetIsMuted())
+	{
+		m_pTargetObject->GetComponent<bew::TextComponent>()->SetText("UNMUTE AUDIO X OR CTR X");
+	}
+	else
+	{
+		m_pTargetObject->GetComponent<bew::TextComponent>()->SetText("MUTE AUDIO X OR CTR X");
 	}
 }

@@ -20,6 +20,9 @@ namespace bew
 		virtual void Play(sound_id id, int volume) = 0;
 
 		virtual void AddClip(sound_id id, std::unique_ptr<AudioClip> clip);
+		void MuteUnmute();
+		bool GetIsMuted() const { return m_MutedVolume; }
+
 
 		AudioClip* GetAudioClip(sound_id id);
 
@@ -40,7 +43,7 @@ namespace bew
 
 					auto* clip = GetAudioClip(event.id);
 					if (clip) {
-						clip->SetVolume(event.volume);
+						clip->SetVolume(event.volume * m_GlobalVolume);
 						clip->Play();
 					}
 				}
@@ -60,6 +63,9 @@ namespace bew
 		std::unordered_map<sound_id, std::unique_ptr<AudioClip>> m_AudioClips;
 		bool m_Running = true;
 		std::thread m_WorkerThread;
+
+		bool m_MutedVolume;
+		int m_GlobalVolume{1};
 	};
 }
 

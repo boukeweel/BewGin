@@ -126,6 +126,16 @@ void HighScoreScene::Load()
 	IniTxt->SetPosition(400, 150);
 	IniTxt->AddComponent<bew::TextComponent>("INI", fontTxt);
 
+	auto ControllstextPart1 = std::make_unique<bew::GameObject>();
+	ControllstextPart1->SetPosition(40, 440);
+	ControllstextPart1->AddComponent<bew::TextComponent>("SWITCH BETWEEN LETTER DPAD OR ARROW KEYS", fontTxt);
+
+	auto ControllstextPart2 = std::make_unique<bew::GameObject>();
+	ControllstextPart2->SetPosition(50, 470);
+	ControllstextPart2->AddComponent<bew::TextComponent>("SWITCH LETTER A OR Z AND FINISH X OR X", fontTxt);
+
+	scene.Add(std::move(ControllstextPart1));
+	scene.Add(std::move(ControllstextPart2));
 	scene.Add(std::move(LeaderBoard));
 	scene.Add(std::move(P1TxtInitails));
 	scene.Add(std::move(oneUptxt));

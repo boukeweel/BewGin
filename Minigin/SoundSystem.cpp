@@ -26,6 +26,21 @@ void bew::SoundSystem::AddClip(sound_id id, std::unique_ptr<AudioClip> clip)
 	m_AudioClips[id] = std::move(clip);
 }
 
+void bew::SoundSystem::MuteUnmute()
+{
+	if(m_MutedVolume)
+	{
+		m_GlobalVolume = 1;
+		m_MutedVolume = false;
+	}
+	else
+	{
+		m_GlobalVolume = 0;
+		m_MutedVolume = true;
+	}
+		
+}
+
 bew::AudioClip* bew::SoundSystem::GetAudioClip(sound_id id)
 {
 	if (m_AudioClips.contains(id)) {

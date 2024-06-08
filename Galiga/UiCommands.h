@@ -84,5 +84,21 @@ private:
 	bew::GameObject* m_pTargetObject;
 };
 
+class MuteUnmuteCommand final :
+	public bew::Command
+{
+public:
+	MuteUnmuteCommand(bew::GameObject* TargetObject);
+	void Execute() override;
+
+	MuteUnmuteCommand(const MuteUnmuteCommand& other) = delete;
+	MuteUnmuteCommand(MuteUnmuteCommand&& other) = delete;
+	MuteUnmuteCommand& operator=(const MuteUnmuteCommand& other) = delete;
+	MuteUnmuteCommand& operator=(MuteUnmuteCommand&& other) = delete;
+
+private:
+	bew::GameObject* m_pTargetObject;
+};
+
 
 

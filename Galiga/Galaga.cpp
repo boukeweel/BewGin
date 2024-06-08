@@ -30,10 +30,10 @@ void AddTestingInputs()
 {
 	auto& input = bew::InputManager::GetInstance();
 
-	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_W,SDL_SCANCODE_UP}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_S,SDL_SCANCODE_DOWN}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_A,SDL_SCANCODE_LEFT}, {}, {} });
-	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { {SDL_SCANCODE_D, SDL_SCANCODE_RIGHT}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveUpKeyBoard, { {SDL_SCANCODE_UP}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveDownKeyBoard, { {SDL_SCANCODE_DOWN}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveLeftKeyBoard, { {SDL_SCANCODE_LEFT}, {}, {} });
+	input.AddInput(bew::ActionKeys::MoveRightKeyBoard, { { SDL_SCANCODE_RIGHT}, {}, {} });
 
 	input.AddInput(bew::ActionKeys::ActionKeyOneKeyBoard, { {SDL_SCANCODE_Z}, {}, {} });
 	input.AddInput(bew::ActionKeys::ActionKeyTwoKeyBoard, { {SDL_SCANCODE_X}, {}, {} });

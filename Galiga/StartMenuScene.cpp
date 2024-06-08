@@ -30,7 +30,7 @@ void StartMenuScene::Load()
 	{
 		auto Star = std::make_unique<bew::GameObject>();
 		Star->AddComponent<bew::SpriteSheetComponent>(startexture, 1, 4);
-		Star->AddComponent<StarComponent>(bew::ScreenWidth - 150);
+		Star->AddComponent<StarComponent>(bew::ScreenWidth);
 		scene.Add(std::move(Star));
 	}
 
@@ -81,17 +81,20 @@ void StartMenuScene::Load()
 	SelectArrow->AddComponent<bew::TextureComponent>("UiArrow.png");
 	SelectArrow->AddComponent<UiArrowComponent>(30, 2);
 
-	auto rights = std::make_unique<bew::GameObject>();
-	rights->SetPosition(100, 390);
-	rights->AddComponent<bew::TextComponent>("TM AND C 1981 1988 NAMCO LTD", fontTxt);
+	auto ControlsKeyBoard = std::make_unique<bew::GameObject>();
+	ControlsKeyBoard->SetPosition(120, 390);
+	ControlsKeyBoard->AddComponent<bew::TextComponent>("MOVE ARROW KEYS, SHOOT Z", fontTxt);
 
-	auto Company = std::make_unique<bew::GameObject>();
-	Company->SetPosition(160, 440);
-	Company->AddComponent<bew::TextComponent>("BANDAI CO. LTD. IS", fontTxt);
+	auto ControlsController = std::make_unique<bew::GameObject>();
+	ControlsController->SetPosition(160, 425);
+	ControlsController->AddComponent<bew::TextComponent>("MOVE DPAD, SHOOT A", fontTxt);
 
-	auto license = std::make_unique<bew::GameObject>();
-	license->SetPosition(145, 475);
-	license->AddComponent<bew::TextComponent>("LICENSED BY NINTENDO", fontTxt);
+	auto MuteText = std::make_unique<bew::GameObject>();
+	MuteText->SetPosition(145, 475);
+	MuteText->AddComponent<bew::TextComponent>("MUTE AUDIO X OR CTR X", fontTxt);
+
+	input.AddCommand(bew::ActionKeys::DpadX, bew::ButtonState::Up, std::make_unique<MuteUnmuteCommand>(MuteText.get()));
+	input.AddCommand(bew::ActionKeys::ActionKeyTwoKeyBoard, bew::ButtonState::Up, std::make_unique<MuteUnmuteCommand>(MuteText.get()));
 
 	input.AddCommand(bew::ActionKeys::MoveUpKeyBoard, bew::ButtonState::Up, std::make_unique<ArrowMove>(SelectArrow.get(), glm::vec3(0, 1, 0)));
 	input.AddCommand(bew::ActionKeys::MoveDownKeyBoard, bew::ButtonState::Up, std::make_unique<ArrowMove>(SelectArrow.get(), glm::vec3(0, -1, 0)));
@@ -109,7 +112,7 @@ void StartMenuScene::Load()
 	scene.Add(std::move(SelectArrow));
 	scene.Add(std::move(PlayerOne));
 	scene.Add(std::move(PlayerTwo));
-	scene.Add(std::move(rights));
-	scene.Add(std::move(Company));
-	scene.Add(std::move(license));
+	scene.Add(std::move(ControlsKeyBoard));
+	scene.Add(std::move(ControlsController));
+	scene.Add(std::move(MuteText));
 }

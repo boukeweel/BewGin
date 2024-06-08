@@ -125,15 +125,12 @@ std::unique_ptr<bew::GameObject> BossCaptureBeamPreset::Create()
 	CaptureBeam->SetScale(2, 2);
 	CaptureBeam->AddComponent<bew::SpriteSheetComponent>("CaptureBeam.png", 1, 3);
 	CaptureBeam->AddComponent<CaptureBeamComponent>();
-	auto hitbox = CaptureBeam->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -24,-40,48,0 });
-	hitbox->SetDrawHitBox(true);
+	CaptureBeam->AddComponent<bew::HitBoxComponent>(SDL_Rect{ -24,-40,48,0 });
 
 	std::vector<bew::KeyFrame> keyframes{ {0,0},{0,1},{0,2} };
 
 	auto animator = CaptureBeam->AddComponent<bew::AnimatorComponent>();
 	animator->AddAnimation(std::make_unique<bew::Animation>(CaptureBeam.get(), keyframes, 0.2f, true));
-
-	//todo add a hitbox
 
 	return std::move(CaptureBeam);
 }
@@ -153,5 +150,3 @@ std::unique_ptr<bew::GameObject> PlayerHealthIconP2::Create()
 	PlayerHealthIcon->AddComponent<bew::TextureComponent>("Player2.png");
 	return PlayerHealthIcon;
 }
-
-
