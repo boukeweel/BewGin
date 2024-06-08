@@ -56,7 +56,6 @@ namespace bew
 
         void UpdateControllerInfo()
         {
-            //todo find a way to detect how many controllers are connected 
             const int joystickCount = XUSER_MAX_COUNT;
             m_ControllerStates.resize(joystickCount);
 

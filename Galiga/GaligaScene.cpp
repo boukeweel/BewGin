@@ -61,7 +61,6 @@ void GaligaScene::Load()
 	HighScoretxt->SetPosition(500, 50);
 	HighScoretxt->AddComponent<bew::TextComponent>("HIGHSCORE", fontTxt, SDL_Color{ 255,0,0,255 });
 
-	//todo get highscore
 	auto HighScoreScore = std::make_unique<bew::GameObject>();
 	HighScoreScore->SetPosition(500, 70);
 	HighScoreScore->AddComponent<bew::TextComponent>(std::to_string(GameData::GetInstance().GetHighScore()), fontTxt);
