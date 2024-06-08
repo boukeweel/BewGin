@@ -53,6 +53,7 @@ public:
 	Formation() = default;
 
 	EnemyStates* Update(EnemyComponent* component) override;
+	void OnExit(EnemyComponent*) override;
 
 };
 

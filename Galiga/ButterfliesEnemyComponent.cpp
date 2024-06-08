@@ -8,6 +8,7 @@
 #include "HealthComponent.h"
 #include "PoolComponent.h"
 #include "ScoreComponent.h"
+#include "SoundServiceLocator.h"
 
 std::vector<std::vector<glm::vec2>> ButterfliesEnemyComponent::s_AttackingPaths;
 
@@ -219,11 +220,11 @@ void ButterfliesEnemyComponent::TakeDamages(bew::GameObject * pPlayer)
 
 	if (health->GetLives() == 0)
 	{
-		auto explosion = GameEntityData::GetInstance().GetExplosion();
-		explosion->SetPosition(GetParentObject()->GetWorldPosition());
-		explosion->GetComponent<bew::AnimatorComponent>()->PlayCurrentAmation();
+		SpawnExplosion();
 
 		GetParentObject()->SetIsActive(false);
+
+		bew::SoundServiceLocator::GetSoundSystem().Play(2, 1);
 
 		//this is not good but could not think of something else
 		m_pFormation->Lock();

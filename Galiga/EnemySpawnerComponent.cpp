@@ -28,7 +28,7 @@ void EnemySpawnerComponent::NextLevel()
 {
     m_CurrentLevel++;
 
-    if(m_CurrentLevel > static_cast<int>(m_levels.size()))
+    if(m_CurrentLevel > static_cast<int>(m_levels.size() - 1))
     {
         m_CurrentLevel = 0;
     }

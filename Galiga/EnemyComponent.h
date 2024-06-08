@@ -73,11 +73,15 @@ public:
     void Shoot();
     bew::GameObject* GetBullet()const { return m_pBullet; }
 
+
+private:
+    void CreateBullet();
+    void CheckInHitBox();
 protected:
     std::vector < bew::GameObject*>* GetPlayer() { return m_pPlayers; }
 
-    void CheckInHitBox();
-    void CreateBullet();
+    void SpawnExplosion();
+   
 
     EnemyTypes m_Type{};
 

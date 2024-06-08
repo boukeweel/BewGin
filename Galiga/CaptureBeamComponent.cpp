@@ -9,6 +9,7 @@
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "PlayerComponent.h"
+#include "SoundServiceLocator.h"
 #include "SpriteSheetComponent.h"
 #include "SubjectComponent.h"
 
@@ -40,6 +41,9 @@ void CaptureBeamComponent::Update()
 					m_SpritePart = 1.0f; 
 					m_Increasing = false;
 					m_SegmentTime -= m_WaitTime;
+
+					if (!m_Captured)
+						bew::SoundServiceLocator::GetSoundSystem().Play(7, 2);
 				}
 			}
 			else {
@@ -79,6 +83,8 @@ void CaptureBeamComponent::ResetBeam()
 	GetParentObject()->GetComponent<bew::SpriteSheetComponent>()->SetSpriteSize({ 1,0 });
 	m_Finished = false;
 	m_Increasing = true;
+	m_Captured = false;
+	m_PlayedCaptureSound = false;
 	m_SpritePart = 0;
 }
 
@@ -87,6 +93,7 @@ void CaptureBeamComponent::StartCapturing()
 	ResetBeam();
 	m_StartCapturing = true;
 	GetParentObject()->GetComponent<bew::AnimatorComponent>()->PlayCurrentAmation();
+	bew::SoundServiceLocator::GetSoundSystem().Play(6, 2);
 }
 
 void CaptureBeamComponent::Collision()
@@ -99,8 +106,14 @@ void CaptureBeamComponent::Collision()
 			if (GetParentObject()->GetComponent<bew::HitBoxComponent>()->InsideHitBox(Player))
 			{
 				Player->GetComponent<PlayerComponent>()->StartSuckUpAnimation(GetParentObject());
-				//Player->GetComponent<HealthComponent>()->TakeDammages(1);
-				//todo moving animaton
+				//only play sound once
+				if(!m_PlayedCaptureSound)
+				{
+					bew::SoundServiceLocator::GetSoundSystem().Play(8, 5);
+					m_PlayedCaptureSound = true;
+				}
+					
+				m_Captured = true;
 			}
 		}
 	}

@@ -52,23 +52,42 @@ void AddTestingInputs()
 	input.AddInput(bew::ActionKeys::Num9, { {SDL_SCANCODE_9}, {}, {} });
 }
 
-void load()
+void LoadInAudio()
 {
-	AddTestingInputs();
-
-	bew::SceneManager::GetInstance().CreateScene("StartMenu", std::make_unique<StartMenuScene>());
-	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
-	bew::SceneManager::GetInstance().CreateScene("ShotData", std::make_unique<ShotDataScene>());
-	bew::SceneManager::GetInstance().CreateScene("HighScore", std::make_unique<HighScoreScene>());
-
-
 #if NDEBUG
 	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::SDLSoundSystem>());
 #else
 	bew::SoundServiceLocator::RegisterSoundSystem(std::make_unique<bew::LoggingSDLSoundSystem>(std::make_unique<bew::SDLSoundSystem>()));
 #endif
 
-	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("galaga_shot.wav")));
+	//todo load in via thread
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(0, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_shot.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(1, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_destroyed.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(2, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_destroyed2.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(3, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/galaga_dive.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(4, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/bossgalaga_injured.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(5, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/bossgalaga_destroyed.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(6, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/tractor_beamDown.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(7, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/tractor_beamUp.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(8, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/fighter_captured.wav")));
+	bew::SoundServiceLocator::GetSoundSystem().AddClip(9, std::move(bew::ResourceManager::GetInstance().LoadAudio("Sounds/fighter_destroyed.wav")));
+}
+
+void LoadInScenes()
+{
+	bew::SceneManager::GetInstance().CreateScene("StartMenu", std::make_unique<StartMenuScene>());
+	bew::SceneManager::GetInstance().CreateScene("Galiga", std::make_unique<GaligaScene>());
+	bew::SceneManager::GetInstance().CreateScene("ShotData", std::make_unique<ShotDataScene>());
+	bew::SceneManager::GetInstance().CreateScene("HighScore", std::make_unique<HighScoreScene>());
+}
+
+void load()
+{
+	AddTestingInputs();
+
+	LoadInScenes();
+
+	LoadInAudio();
 
 	//create the paths for the enemies
 	EnemyComponent::CreatePaths();

@@ -11,6 +11,7 @@
 #include "InputManager.h"
 #include "RandomFunctions.h"
 #include "Renderer.h"
+#include "SoundServiceLocator.h"
 
 #pragma region Fly in 
 
@@ -112,6 +113,11 @@ EnemyStates* Formation::Update(EnemyComponent* component)
 		}
 	}
 	return nullptr;
+}
+
+void Formation::OnExit(EnemyComponent*)
+{
+	bew::SoundServiceLocator::GetSoundSystem().Play(3, 1);
 }
 
 #pragma endregion

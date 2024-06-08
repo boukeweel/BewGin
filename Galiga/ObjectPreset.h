@@ -16,6 +16,13 @@ public:
 	
 };
 
+class PlayerExplotionPreset : public ObjectPreset
+{
+public:
+	std::unique_ptr<bew::GameObject> Create() override;
+
+};
+
 class ExplotionPreset : public ObjectPreset
 {
 public:

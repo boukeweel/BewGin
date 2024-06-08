@@ -7,6 +7,7 @@
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
 #include "PoolComponent.h"
+#include "SoundServiceLocator.h"
 #include "SpriteSheetComponent.h"
 #include "SubjectComponent.h"
 #include "Texture2D.h"
@@ -15,6 +16,13 @@
 PlayerComponent::PlayerComponent(bew::GameObject* pparentObject) :Component(pparentObject)
 {
 	GetEnemies();
+}
+
+void PlayerComponent::ResetPlayer()
+{
+	m_AllowedToMove = true;
+	GetParentObject()->SetPosition(GetParentObject()->GetWorldPosition().x, 440);
+	GetParentObject()->SetRotation(0);
 }
 
 void PlayerComponent::FixedUpdate()
@@ -37,6 +45,9 @@ void PlayerComponent::StartSuckUpAnimation(bew::GameObject* beam)
 
 void PlayerComponent::CheckCollision()
 {
+	if (m_BeingSuckedUp)
+		return;
+
 	for (const auto& Enemy : *m_pEnemies)
 	{
 		if(Enemy->GetIsActive() && Enemy->GetComponent<PoolComponent>()->InUse())
@@ -100,7 +111,8 @@ void PlayerComponent::PlayerGotHit()
 	GetParentObject()->GetComponent<HealthComponent>()->TakeDammages(1);
 	GetParentObject()->SetIsActive(false);
 	GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::PauseEnemyAttacking, GetParentObject());
-	//todo add explotion + sound + other code what is needed
+	bew::SoundServiceLocator::GetSoundSystem().Play(9, 3);
+	//todo add explotion
 }
 
 void PlayerComponent::GetEnemies()

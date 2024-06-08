@@ -9,6 +9,7 @@
 #include "PoolComponent.h"
 #include "RandomFunctions.h"
 #include "ScoreComponent.h"
+#include "SoundServiceLocator.h"
 #include "SpriteSheetComponent.h"
 
 std::vector<std::vector<glm::vec2>> BossEnemyComponent::s_AttackingPaths;
@@ -177,6 +178,7 @@ void BossEnemyComponent::ResetEnemy()
 	m_States->OnEnter(this);
 	GetParentObject()->GetComponent<bew::SpriteSheetComponent>()->SetSprite(0, 0);
 	GetParentObject()->GetComponent<bew::AnimatorComponent>()->SwitchAnimation(0, true);
+	GetParentObject()->GetComponent<HealthComponent>()->SetLifes(2);
 }
 
 void BossEnemyComponent::SetAbleToAttack(bool ableToAttack)
@@ -204,20 +206,21 @@ void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 
 	if (health->GetLives() == 0)
 	{
-		auto explosion = GameEntityData::GetInstance().GetExplosion();
-		explosion->SetPosition(GetParentObject()->GetWorldPosition());
-		explosion->GetComponent<bew::AnimatorComponent>()->PlayCurrentAmation();
+		SpawnExplosion();
 
+		bew::SoundServiceLocator::GetSoundSystem().Play(5, 1);
+
+		//set all children to false
 		GetParentObject()->SetIsActive(false);
 		for (int i = 0; i < GetParentObject()->GetChildCount(); ++i)
 		{
 			GetParentObject()->GetChildAtIndex(i)->SetIsActive(false);
 		}
-		//this is not good but could not think of something else
+
+		//Still lock the formation when its dies while flying in
 		m_pFormation->Lock();
 
 		GetParentObject()->GetComponent<PoolComponent>()->SetInUse(false);
-		health->SetLifes(2);
 
 		int points{ m_AmountPointsFormation };
 		if (m_IsDiving)
@@ -225,5 +228,10 @@ void BossEnemyComponent::TakeDamages(bew::GameObject* pPlayer)
 			points = m_AmountPointsDiving;
 		}
 		pPlayer->GetComponent<ScoreComponent>()->AddScore(points);
+
+	}
+	else
+	{
+		bew::SoundServiceLocator::GetSoundSystem().Play(4, 1);
 	}
 }

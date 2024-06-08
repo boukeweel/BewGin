@@ -31,8 +31,10 @@ private:
     float m_timer{};
     float m_SpritePart{};
 
-    bool m_Finished;
-    bool m_StartCapturing;
+    bool m_Finished{};
+    bool m_StartCapturing{};
+    bool m_Captured{};
+    bool m_PlayedCaptureSound{};
 
     bool m_Increasing{true};
     float m_SegmentTime{};

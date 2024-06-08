@@ -1,5 +1,7 @@
 #include "EnemyComponent.h"
 #include <iostream>
+
+#include "AnimatorComponent.h"
 #include "BewGin.h"
 #include "BezierPath.h"
 #include "BulletComponent.h"
@@ -217,6 +219,13 @@ void EnemyComponent::CheckInHitBox()
 			}
 		}
 	}
+}
+
+void EnemyComponent::SpawnExplosion()
+{
+	auto explosion = GameEntityData::GetInstance().GetExplosion();
+	explosion->SetPosition(GetParentObject()->GetWorldPosition());
+	explosion->GetComponent<bew::AnimatorComponent>()->PlayCurrentAmation();
 }
 
 void EnemyComponent::SetFormationPosition(FormationComponent* formation,glm::vec3 posIndex)

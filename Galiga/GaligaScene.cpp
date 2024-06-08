@@ -73,9 +73,9 @@ void GaligaScene::Load()
 	auto enemiesSpawner = EnemyHandlerObject->AddComponent<EnemySpawnerComponent>();
 	auto EnemyHandlerSubject = EnemyHandlerObject->AddComponent<bew::SubjectComponent>();
 	EnemyHandlerSubject->GetSubject()->AddObserver(std::make_unique<EnemyAttackingObserver>(AttackingController));
-	enemiesSpawner->AddLevel("Formation1.txt");
-	enemiesSpawner->AddLevel("Formation2.txt");
-	enemiesSpawner->AddLevel("Formation3.txt");
+	enemiesSpawner->AddLevel("Formations/Formation1.txt");
+	enemiesSpawner->AddLevel("Formations/Formation2.txt");
+	enemiesSpawner->AddLevel("Formations/Formation3.txt");
 	
 	auto Player1 = std::make_unique<bew::GameObject>();
 	Player1->AddComponent<bew::TextureComponent>("Player1.png");

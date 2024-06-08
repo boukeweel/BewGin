@@ -8,11 +8,12 @@ class PlayerComponent :
 public:
 	PlayerComponent(bew::GameObject* pparentObject);
 
+	void ResetPlayer();
+
 	void FixedUpdate() override;
 	void Update() override;
 
 	bool GetAllowedToMove() const { return m_AllowedToMove; }
-	void SetAllowedToMove(bool valeu) { m_AllowedToMove = valeu; }
 
 	void StartSuckUpAnimation(bew::GameObject* beam);
 
