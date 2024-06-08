@@ -30,12 +30,15 @@ private:
 	void constrainPlayerPosition();
 	void SuckUpAnimation();
 
+	void CreateExplosion();
+	void SpawnExplosion();
 	void GetEnemies();
 
 	bool m_BeingSuckedUp{ false };
-	bew::GameObject* m_Beam;
+	bew::GameObject* m_pBeam;
 
 	bool m_AllowedToMove{ true };
+	bew::GameObject* m_pExplosion;
 
 	std::vector<bew::GameObject*>* m_pEnemies;
 };

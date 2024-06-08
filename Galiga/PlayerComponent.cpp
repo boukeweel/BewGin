@@ -1,12 +1,15 @@
 #include "PlayerComponent.h"
 
+#include "AnimatorComponent.h"
 #include "BewGin.h"
 #include "EnemyComponent.h"
 #include "GameEntityData.h"
 #include "GameTime.h"
 #include "HealthComponent.h"
 #include "HitBoxComponent.h"
+#include "ObjectPreset.h"
 #include "PoolComponent.h"
+#include "SceneManager.h"
 #include "SoundServiceLocator.h"
 #include "SpriteSheetComponent.h"
 #include "SubjectComponent.h"
@@ -16,6 +19,20 @@
 PlayerComponent::PlayerComponent(bew::GameObject* pparentObject) :Component(pparentObject)
 {
 	GetEnemies();
+	CreateExplosion();
+}
+
+void PlayerComponent::CreateExplosion()
+{
+	PlayerExplotionPreset objPreset;
+	auto obj = objPreset.Create();
+	m_pExplosion = obj.get();
+	bew::SceneManager::GetInstance().AddToCurrentScene(std::move(obj));
+}
+
+void PlayerComponent::GetEnemies()
+{
+	m_pEnemies = GameEntityData::GetInstance().GetEnemies();
 }
 
 void PlayerComponent::ResetPlayer()
@@ -38,7 +55,7 @@ void PlayerComponent::Update()
 
 void PlayerComponent::StartSuckUpAnimation(bew::GameObject* beam)
 {
-	m_Beam = beam;
+	m_pBeam = beam;
 	m_BeingSuckedUp = true;
 	m_AllowedToMove = false;
 }
@@ -84,8 +101,8 @@ void PlayerComponent::SuckUpAnimation()
 		return;
 
 	glm::vec2 TargetPos;
-	TargetPos.x = m_Beam->GetWorldPosition().x;
-	TargetPos.y = m_Beam->GetWorldPosition().y - (static_cast<float>(m_Beam->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y) - 50.f);
+	TargetPos.x = m_pBeam->GetWorldPosition().x;
+	TargetPos.y = m_pBeam->GetWorldPosition().y - (static_cast<float>(m_pBeam->GetComponent<bew::SpriteSheetComponent>()->GetTexture()->GetSize().y) - 50.f);
 
 	const glm::vec2 dist = TargetPos - glm::vec2(GetParentObject()->GetWorldPosition().x, GetParentObject()->GetWorldPosition().y);
 	const glm::vec2 velocity = glm::normalize(dist);
@@ -97,7 +114,7 @@ void PlayerComponent::SuckUpAnimation()
 	{
 		PlayerGotHit();
 		m_BeingSuckedUp = false;
-		m_Beam = nullptr;
+		m_pBeam = nullptr;
 	}
 
 	float rotation = GetParentObject()->GetRotation() + 5;
@@ -112,11 +129,12 @@ void PlayerComponent::PlayerGotHit()
 	GetParentObject()->SetIsActive(false);
 	GetParentObject()->GetComponent<bew::SubjectComponent>()->GetSubject()->notify(bew::GameEvents::PauseEnemyAttacking, GetParentObject());
 	bew::SoundServiceLocator::GetSoundSystem().Play(9, 3);
-	//todo add explotion
+	SpawnExplosion();
 }
 
-void PlayerComponent::GetEnemies()
+void PlayerComponent::SpawnExplosion()
 {
-	m_pEnemies = GameEntityData::GetInstance().GetEnemies();
+	m_pExplosion->SetPosition(GetParentObject()->GetWorldPosition());
+	m_pExplosion->GetComponent<bew::AnimatorComponent>()->PlayCurrentAmation();
+	m_pExplosion->SetIsActive(true);
 }
-

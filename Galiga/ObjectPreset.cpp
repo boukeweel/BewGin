@@ -29,13 +29,14 @@ std::unique_ptr<bew::GameObject> BulletPreset::Create()
 
 std::unique_ptr<bew::GameObject> PlayerExplotionPreset::Create()
 {
-	auto Explotion = std::make_unique<bew::GameObject>();
-	Explotion->AddComponent<bew::SpriteSheetComponent>("ExplotionSheet.png", 1, 5);
-	std::vector<bew::KeyFrame> keyframes{ {0,0},{0, 1}, { 0, 2 }, { 0, 3 },{ 0, 4 },{0,5} };
-	auto animator = Explotion->AddComponent<bew::AnimatorComponent>();
-	animator->AddAnimation(std::make_unique<bew::Animation>(Explotion.get(), keyframes, 0.05, false));
+	auto PlayerExplotion = std::make_unique<bew::GameObject>();
+	PlayerExplotion->AddComponent<bew::SpriteSheetComponent>("PlayerExplotion.png", 1, 4);
+	std::vector<bew::KeyFrame> keyframes{ {0,0},{0, 1}, { 0, 2 }, { 0, 3 },{ 0, 4 } };
+	auto animator = PlayerExplotion->AddComponent<bew::AnimatorComponent>();
+	animator->AddAnimation(std::make_unique<bew::Animation>(PlayerExplotion.get(), keyframes, 0.05, false));
 	animator->StopCurrentAnimation();
-	return std::move(Explotion);
+	PlayerExplotion->SetIsActive(false);
+	return std::move(PlayerExplotion);
 }
 
 std::unique_ptr<bew::GameObject> ExplotionPreset::Create()
